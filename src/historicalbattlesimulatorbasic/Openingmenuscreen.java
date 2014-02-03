@@ -81,7 +81,8 @@ public class Openingmenuscreen extends JFrame implements ActionListener
             gui = new GUI(gameFrame,gameMap,gameMap.gameMap,gameMap.tileWidth);
             gui.checkInitalization();
             gui.repainter();
-            
+            //only for now
+            gameFrame.remove(tilePanel);
             //an array of units is loaded into memory via textfile and are stored
             //than drawn from the array to be drawn
 //            int x,y,height,width;
@@ -101,7 +102,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
        
        gameFrame= new JFrame("Historical Battle Simulator");
        
-       // frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
         gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrame.setSize(new Dimension((int)Toolkit.
                 getDefaultToolkit().getScreenSize().getWidth(),
@@ -117,10 +117,10 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         buttonPanel.add(b2);
         buttonPanel.add(b3);
         buttonPanel.add(b4);
-//        buttonPanel.setBackground(Color.red);
+        buttonPanel.setBackground(Color.red);
 //        JPanel 
         tilePanel = new JPanel(new GridBagLayout());
-//        tilePanel.setBackground(Color.orange);
+        tilePanel.setBackground(Color.orange);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
@@ -132,7 +132,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
 
 
         
-//        gameFrame.pack();
         gameFrame.setVisible(true);
 //        gui.gameFrame=this.gameFrame;
    }
@@ -146,4 +145,7 @@ public class Openingmenuscreen extends JFrame implements ActionListener
     {
         return gui;
     }
+    
+    
+    
 }

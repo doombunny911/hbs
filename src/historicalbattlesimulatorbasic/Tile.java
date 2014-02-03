@@ -6,12 +6,8 @@
 
 package historicalbattlesimulatorbasic;
 
-import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
+
 
 
 
@@ -19,13 +15,13 @@ import javax.swing.JButton;
  * One tile can hold one unit. Each tile has a different effect. Each tile is a square
  * @author Schmalz
  */
-public class Tile extends JButton implements ActionListener
+public class Tile extends Rectangle
 {
     boolean tileBlocked;
     int xPosition, yPosition, zPosition;
     int terrainEffect; //terrain effects will be all categorized as ints to allow easy return access.
     int levelOfCover; // 0 is none, 1 is light, 2 is full
-     int  xLength, yLength;
+    int  xLength, yLength;
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileEast, tileWest, tileSouth;
@@ -33,13 +29,14 @@ public class Tile extends JButton implements ActionListener
     //to the (x,y) coords for the top left point
     public Tile(int xPosition, int yPosition, int xLength, int yLength)
     {
-        
+       
+        super.setBounds(xPosition, yPosition, xLength, yLength);
         this.xPosition=xPosition;
         this.yPosition=yPosition;
         this.xLength= xLength; 
         this.yLength= yLength; 
         
-        this.addActionListener(this);
+//        this.addActionListener(this);
         
     }
     
@@ -179,10 +176,10 @@ public class Tile extends JButton implements ActionListener
        
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) 
-    {
-        System.out.println(this.xPosition);
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) 
+//    {
+//        System.out.println(this.xPosition);
+//    }
     
 }

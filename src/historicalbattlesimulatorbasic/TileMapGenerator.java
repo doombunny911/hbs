@@ -8,7 +8,16 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,75 +27,66 @@ import javax.swing.SpringLayout;
  *
  * @author Andrew
  */
-public class TileMapGenerator extends JButton
+public class TileMapGenerator extends JPanel
 {
     
     Tile tiles[][];
-   private int tileWidth;
+    private int tileWidth;
     public TileMapGenerator(int widthf)
     {
+//        super.getSize(new Dimension(Openingmenuscreen.tilePanel.getHeight(),Openingmenuscreen.tilePanel.getWidth()));
         this.tileWidth=widthf;
         tiles=Map.gameMap;
-        
+    }
 
-//       Rectangle rect[][] = Map.gameMap;
-//       Rectangle rect[][]=Map.gameMap;
-       int width = Openingmenuscreen.gameFrame.getWidth();
-//       System.out.println(width);
+
+    /**
+     *
+     * @param g
+     */
+       @Override
+       public void paintComponent(Graphics g)
+    {
+            //this has clearing power, don't fully understand
+//        super.paintComponent(g);
+        System.out.println("Test");
+        Graphics2D g2=(Graphics2D)g;
+       
+       int width = Openingmenuscreen.tilePanel.getWidth();
        
        int height = Openingmenuscreen.tilePanel.getHeight();
        double squareWidth = Math.floor(width/tileWidth);
        double squareHeight = Math.floor(height/tileWidth);
-       Tile[][] tiles=new Tile[(int)squareHeight][(int)squareWidth-1];
+        tiles=new Tile[(int)squareHeight][(int)squareWidth-1];
+
        System.out.println("squarewidth ="+ squareWidth + 
                " tileWidth = " + tileWidth+ " height = " + height +
                " width = " + width );
-////        tileWidth=10;
-        //= new Rectangle[5000][5000];
-        SpringLayout sLayout = new SpringLayout();
-        Openingmenuscreen.tilePanel.setLayout(sLayout);
         for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth-1;j++)
             {
-//                tileWidth=10;
-//                System.out.println(tileWidth);
                 tiles[i][j]= new Tile(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
-//                tiles[i][j]= new Tile(j*10,i*10,10,10);
-//               tiles[i][j]=new Tile();
-               tiles[i][j].setPreferredSize(new Dimension(tileWidth,tileWidth));
-               tiles[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-
-                
-                sLayout.putConstraint(SpringLayout.WEST,tiles[i][j], j*10, SpringLayout.WEST, Openingmenuscreen.tilePanel);
-                sLayout.putConstraint(SpringLayout.NORTH,tiles[i][j],i*10,SpringLayout.NORTH,Openingmenuscreen.tilePanel);
-                Openingmenuscreen.tilePanel.add(tiles[i][j]);
-
-//                  rect[i][j]= new Rectangle(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
-//                  g2.draw(rect[i][j]);
-//                  System.out.println(tiles[i][j]);
-//                if(ifLastTile(i, squareHeight, j, squareWidth))
-//                {
-//                    initializeNewTileArray(i, j, squareHeight, squareWidth, tileWidth);
-//                }
-            }
+                g2.draw(tiles[i][j]);
+//               
+//           
             
-        }
+            
         
+    }
        
         
-        
-     
+       
+   }
+      
+
     }
-    // determine the size the tiles should be
-    //NOT IMPLEMENTED
-    public void tileSizeDeterminer()
-    {
-            
-    }
+  
+    
+
     
     
-    //checks to see if last tile
+    //checks to see if last tile, pretty sure I don't need these two methods anymore
     private boolean ifLastTile(int i, double squareHeight, int j, double squareWidth) 
     {
         return (i+1)>squareHeight&&(j+1)>squareWidth;
@@ -106,5 +106,4 @@ public class TileMapGenerator extends JButton
             }
         }
     }
-
 }

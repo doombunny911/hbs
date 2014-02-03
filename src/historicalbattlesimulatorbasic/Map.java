@@ -6,6 +6,8 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author Schmalz
@@ -48,9 +50,10 @@ public class Map
 //        setTileNESW();
         gameMap = new Tile[5000][5000]; //something that should never be reached
 //        GUI.gameFrame.add(new TileMapGenerator());
-        Openingmenuscreen.tilePanel.add(new TileMapGenerator(tileWidth));
-        
-//        TileMapGenerator gen = new TileMapGenerator();
+        Openingmenuscreen.gameFrame.add(new TileMapGenerator(tileWidth));
+
+//        TileMapGenerator gen = new TileMapGenerator(tileWidth);
+
 //        Openingmenuscreen.gameFrame.add(gen);
 //        GUI gui = new GUI();
 //        gui.addToFrame(gen);
