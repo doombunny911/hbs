@@ -3,13 +3,25 @@
  * and open the template in the editor.
  */
 package historicalbattlesimulatorbasic;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * This is the unit class
  * @author schm1413
  */
 public class Unit extends Soldier
 {
+    String unitName;
     Soldier unitSoldiers[];
+    Soldier soldierType;
     int unitSize; 
     int unitWidth;
     int unitStartLocationX;
@@ -20,10 +32,12 @@ public class Unit extends Soldier
     //Create a unit
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
+        unitName = soldierType.unitname+unitSize;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
         this.unitStartLocationY=y;
         unitSoldiers = new Soldier[unitSize];
+        this.soldierType = soldierType;
         for(int i=0; i<unitSize; i++)
         {
             //make each unit a soldier
@@ -127,6 +141,44 @@ public class Unit extends Soldier
     public void resetMovementPoints() 
     {
         unitPoints=2;
+    }
+
+    public void saveUnit() throws IOException {
+        PrintWriter writer = null;
+        String fileName=unitName+".txt";
+        File file = new File("Units\\"+fileName);
+        File parent = file.getParentFile();
+
+if(!parent.exists() && !parent.mkdirs()){
+    throw new IllegalStateException("Couldn't create dir: " + parent);
+} 
+        try {          
+            
+            writer = new PrintWriter(file, "UTF-8");
+            writer.println(soldierType.unitType); 
+            writer.println(soldierType.facing);
+            writer.println(soldierType.attack); // the bonus to the attack
+            writer.println(soldierType.dmg); // the type of dice to be rolled for damage
+            writer.println(soldierType.dmgBonus); //bonus to damage
+            writer.println(soldierType.hp); // a soldiers health points
+            writer.println(soldierType.armorClass); //a soldiers basic armor class
+            writer.println(soldierType.defense); // a soldiers defense bonus
+            writer.println(soldierType.speed); // the distance of which a soldier can travel
+            writer.println(soldierType.range); // the range of a soldiers weapons
+            writer.println(soldierType.chargeBonus); //The bonus given to charging attack
+            writer.println(soldierType.stamina); // The amount of stamina a soldier has
+            writer.println(soldierType.morale); // The amount of moral a soldier has
+      
+           System.out.println("Saved");
+            writer.close();
+             } 
+        catch (FileNotFoundException ex)
+             {
+            System.out.println("Unable to save file");
+        } 
+        finally {
+            writer.close();
+        }
     }
             
             
