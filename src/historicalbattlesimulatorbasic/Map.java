@@ -29,7 +29,6 @@ public class Map
     {
         tileWidth=xWidth;
         gameMap = new Tile[5000][5000]; //something that should never be reached
-//        GUI.gameFrame.add(new TileMapGenerator());
         Openingmenuscreen.gameFrame.add(new TileMapGenerator(tileWidth));
 
     }

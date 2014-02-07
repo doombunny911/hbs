@@ -15,7 +15,6 @@ import javax.swing.JPanel;
  */
 
 //Units at some level are rectangles holding soldiers.  Therefore, I will draw
-//the units at the moment using rectangles
 public class UnitDraw extends JPanel
 {
    ///arbitrary height and width for the units at this point, may need to be
