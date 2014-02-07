@@ -41,7 +41,7 @@ public class Map
     }
     
     //Sets the tile to have north, east, south, west
-    public void setTileNESW()
+    public void setTileAllDirections()
     {
          for(int x=0; x<gameMap.length ;x++){   
         for(int y=0;y<gameMap[x].length;y++)

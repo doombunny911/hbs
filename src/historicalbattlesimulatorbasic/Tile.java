@@ -24,7 +24,7 @@ public class Tile extends Rectangle
     int  xLength, yLength;
     Soldier occupyingSoldier;
     Boolean isOccupied;
-    Tile tileNorth, tileEast, tileWest, tileSouth;
+    Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
     public Tile(int xPosition, int yPosition, int xLength, int yLength)
@@ -36,7 +36,7 @@ public class Tile extends Rectangle
         this.xLength= xLength; 
         this.yLength= yLength; 
         
-//        this.addActionListener(this);
+
         
     }
     
@@ -92,14 +92,18 @@ public class Tile extends Rectangle
         return distance;
       }
 
-    //refers to if the tile has a neighbor in the designated direction
-    
-    
+    //refers to if the tile has a neighbor[anotehr tile in the designated direction
+      
     //
     boolean hasNorth() 
     {
         return yPosition!=0;
     }
+    /*
+    boolean hasNorthEast()
+    {
+        return yPosition!=0 && return xPosition!=yLength;
+    }*/
     boolean hasWest()
     {
         return xPosition!=0;
@@ -110,7 +114,7 @@ public class Tile extends Rectangle
     }
     boolean hasEast()
     {
-        return xPosition!=yLength; //I may be coding in a dreamstate
+        return xPosition!=xLength; //I may be coding in a dreamstate
     }
     boolean hasNorthEast()
     {
