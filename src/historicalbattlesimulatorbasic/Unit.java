@@ -25,13 +25,26 @@ public class Unit extends Soldier
     boolean unitDefeat = false;
     int unitPoints=2;
 //    static Unit 
-    //Create a unit
+    //Create a unit, with position, on the battlefield
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
-        unitName = soldierType.unitname+unitSize;
+        unitName = soldierType.unitname;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
         this.unitStartLocationY=y;
+        unitSoldiers = new Soldier[unitSize];
+        this.soldierType = soldierType;
+        for(int i=0; i<unitSize; i++)
+        {
+            //make each unit a soldier
+            unitSoldiers[i]= soldierType;
+        }
+    }
+    //Create a unit with out position.
+     public Unit(Soldier soldierType, int unitSize)
+    {
+        unitName = soldierType.unitname;
+        this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
         for(int i=0; i<unitSize; i++)
@@ -139,31 +152,31 @@ public class Unit extends Soldier
         unitPoints=2;
     }
 
-    public void saveUnit() throws IOException {
+    //Saves the unit in the designated filename
+    public void saveUnit(String fileName2) throws IOException {
         PrintWriter writer = null;
-        String fileName=unitName+".txt";
+        String fileName=fileName2+".txt";
         File file = new File("Units\\"+fileName);
         File parent = file.getParentFile();
 
 if(!parent.exists() && !parent.mkdirs()){
     throw new IllegalStateException("Couldn't create dir: " + parent);
 } 
-        try {          
-            
+        try {                      
             writer = new PrintWriter(file, "UTF-8");
+            writer.println("|"+unitName);//
             writer.println(soldierType.unitType); 
-            writer.println(soldierType.facing);
-            writer.println(soldierType.attack); // the bonus to the attack
-            writer.println(soldierType.dmg); // the type of dice to be rolled for damage
-            writer.println(soldierType.dmgBonus); //bonus to damage
-            writer.println(soldierType.hp); // a soldiers health points
-            writer.println(soldierType.armorClass); //a soldiers basic armor class
-            writer.println(soldierType.defense); // a soldiers defense bonus
-            writer.println(soldierType.speed); // the distance of which a soldier can travel
-            writer.println(soldierType.range); // the range of a soldiers weapons
-            writer.println(soldierType.chargeBonus); //The bonus given to charging attack
-            writer.println(soldierType.stamina); // The amount of stamina a soldier has
-            writer.println(soldierType.morale); // The amount of moral a soldier has
+            writer.println("AtkBonus:"+soldierType.attack); // the bonus to the attack
+            writer.println("DMG Dice:"+soldierType.dmg); // the type of dice to be rolled for damage
+            writer.println("DMG Bonus:"+soldierType.dmgBonus); //bonus to damage
+            writer.println("HP:"+soldierType.hp); // a soldiers health points
+            writer.println("AC:"+soldierType.armorClass); //a soldiers basic armor class
+            writer.println("Def:"+soldierType.defense); // a soldiers defense bonus
+            writer.println("Speed:"+soldierType.speed); // the distance of which a soldier can travel
+            writer.println("Range:"+soldierType.range); // the range of a soldiers weapons
+            writer.println("Charge Bonus:"+soldierType.chargeBonus); //The bonus given to charging attack
+            writer.println("Stamina:"+soldierType.stamina); // The amount of stamina a soldier has
+            writer.println("Morale:"+soldierType.morale+"|"); // The amount of moral a soldier has
       
            System.out.println("Saved");
             writer.close();

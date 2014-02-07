@@ -1,0 +1,12 @@
+|Hoplite4
+AtkBonus:2.0
+DMG Dice:3
+DMG Bonus:2.0
+HP:5.0
+AC:1.0
+Def:0.0
+Speed:2.0
+Range:1.0
+Charge Bonus:3.0
+Stamina:2.0
+Morale:4.0
