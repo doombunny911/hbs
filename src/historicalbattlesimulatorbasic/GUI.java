@@ -13,6 +13,7 @@ import javax.swing.JFrame;
  */
 //the overall animation class of the project, every class regarding animation
 //should go through this in some degree
+//will be used for mouse listening too
 public class GUI extends JFrame
 {
    static JFrame gameFrame;

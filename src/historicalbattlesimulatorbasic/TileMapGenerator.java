@@ -20,6 +20,8 @@ public class TileMapGenerator extends JPanel
     
     Tile tiles[][];
     private int tileWidth;
+    static double remainderHeight;
+    static double remainderWidth;
     public TileMapGenerator(int widthf)
     {
 //        super.getSize(new Dimension(Openingmenuscreen.tilePanel.getHeight(),Openingmenuscreen.tilePanel.getWidth()));
@@ -41,21 +43,25 @@ public class TileMapGenerator extends JPanel
       Graphics2D g2=(Graphics2D)g;
        
       int width = Openingmenuscreen.tilePanel.getWidth();
-       
       int height = Openingmenuscreen.tilePanel.getHeight();
+      
+      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
+      System.out.println(remainderHeight = Math.floor(height%tileWidth));
+      
       double squareWidth = Math.floor(width/tileWidth);
       double squareHeight = Math.floor(height/tileWidth);
-      tiles=new Tile[(int)squareHeight][(int)squareWidth-1];
+      tiles=new Tile[(int)squareHeight][(int)squareWidth];
 
       System.out.println("squarewidth ="+ squareWidth + 
                " tileWidth = " + tileWidth+ " height = " + height +
                " width = " + width );
       for(int i=0;i<squareHeight;i++)
       {
-         for(int j=0;j<squareWidth-1;j++)
+         for(int j=0;j<squareWidth;j++)
          {
             tiles[i][j]= new Tile(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
             g2.draw(tiles[i][j]);
+//            System.out.println(tiles[i][j]);
          }
     
        }

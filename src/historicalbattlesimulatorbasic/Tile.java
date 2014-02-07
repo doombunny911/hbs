@@ -97,46 +97,38 @@ public class Tile extends Rectangle
     //
     boolean hasNorth() 
     {
+        //true
         return yPosition!=0;
     }
-    /*
+    
     boolean hasNorthEast()
     {
-        return yPosition!=0 && return xPosition!=yLength;
-    }*/
+        return yPosition!=0 &&  xPosition!=yLength;
+    }
     boolean hasWest()
     {
         return xPosition!=0;
     }
+    boolean hasSouthEast()
+    {
+        return hasEast()&&hasSouth();     
+    }
     boolean hasSouth()
     {
-        return yPosition!=yLength;
+        return yPosition!=yLength-Openingmenuscreen.tilePanel.getHeight()-TileMapGenerator.remainderHeight;
+    }       //1030!=1046-10-6
+     boolean hasSouthWest()
+    {
+        return hasSouth()&&hasEast();
     }
     boolean hasEast()
     {
-        return xPosition!=xLength; //I may be coding in a dreamstate
-    }
-    boolean hasNorthEast()
-    {
-        return false;
-        //not coded
-    }
+        return xPosition!=xLength-Openingmenuscreen.tilePanel.getWidth()-TileMapGenerator.remainderWidth;
+    } 
     boolean hasNorthWest()
     {
-        //not coded
-        return false;
+        return hasNorth()&&hasWest();
     }
-    boolean hasSouthEast()
-    {
-        //not coded
-        return false;
-    }
-    boolean hasSouthWest()
-    {
-        //not coded
-        return false;
-    }
-    
     
     //returns the designated tile, if they exist.
     Tile tileNorth()
@@ -146,7 +138,13 @@ public class Tile extends Rectangle
         else
             return null;
     }
-    
+    Tile tileNorthEast()
+    {
+        if(hasNorthEast())
+            return tileNorthEast;
+        else
+            return null;
+    }
     Tile tileEast()
     {
         if(hasEast())
@@ -154,7 +152,13 @@ public class Tile extends Rectangle
         else
             return null;
     }
-    
+    Tile tileSouthEast()
+    {
+        if(hasSouthEast())
+            return tileSouthEast;
+        else
+            return null;
+    }
       Tile tileSouth()
     {
         if(hasSouth())
@@ -162,7 +166,13 @@ public class Tile extends Rectangle
         else
             return null;
     }
-      
+      Tile tileSouthWest()
+      {
+          if(hasSouthWest())
+              return tileSouthWest;
+          else
+              return null;
+      }
        Tile tileWest()
     {
         if(hasWest())
@@ -170,7 +180,13 @@ public class Tile extends Rectangle
         else
             return null;
     }
-
+       Tile tileNorthWest()
+       {
+           if(hasNorthWest())
+               return tileNorthWest;
+           else
+               return null;
+       }
     void setDirections(Tile north, Tile east, Tile south, Tile west)
     {
         tileNorth = north;
@@ -179,11 +195,4 @@ public class Tile extends Rectangle
         tileWest = west;
        
     }
-
-//    @Override
-//    public void actionPerformed(ActionEvent e) 
-//    {
-//        System.out.println(this.xPosition);
-//    }
-    
 }

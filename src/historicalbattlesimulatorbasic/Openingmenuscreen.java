@@ -99,7 +99,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
    {
 //       b1.addActionListener(this);
 //       GUI gui = new GUI();
-       
        gameFrame= new JFrame("Historical Battle Simulator");
        
         gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -109,7 +108,8 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         System.out.println("gameFrame width = "+gameFrame.getPreferredSize()
                 .getWidth()+" gameFrame Height = "+ gameFrame.
                         getPreferredSize().getHeight());
-        
+       System.out.println(gameFrame.getSize());
+
 //        gameFrame.setBackground(Color.yellow);
 //        GridLayout gLayout= new GridLayout();
         buttonPanel = new JPanel(new GridLayout(4,1));
