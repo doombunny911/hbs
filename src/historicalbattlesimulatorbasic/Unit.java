@@ -164,10 +164,11 @@ if(!parent.exists() && !parent.mkdirs()){
 } 
         try {                      
             writer = new PrintWriter(file, "UTF-8");
-            writer.println("|"+unitName);//
-            writer.println(soldierType.unitType); 
-            writer.println("AtkBonus:"+soldierType.attack); // the bonus to the attack
+            writer.println("||");//
+            writer.println(unitName);
+            writer.println("Unit Type:"+soldierType.unitType); 
             writer.println("DMG Dice:"+soldierType.dmg); // the type of dice to be rolled for damage
+            writer.println("AtkBonus:"+soldierType.attack); // the bonus to the attack
             writer.println("DMG Bonus:"+soldierType.dmgBonus); //bonus to damage
             writer.println("HP:"+soldierType.hp); // a soldiers health points
             writer.println("AC:"+soldierType.armorClass); //a soldiers basic armor class
@@ -176,7 +177,7 @@ if(!parent.exists() && !parent.mkdirs()){
             writer.println("Range:"+soldierType.range); // the range of a soldiers weapons
             writer.println("Charge Bonus:"+soldierType.chargeBonus); //The bonus given to charging attack
             writer.println("Stamina:"+soldierType.stamina); // The amount of stamina a soldier has
-            writer.println("Morale:"+soldierType.morale+"|"); // The amount of moral a soldier has
+            writer.println("Morale:"+soldierType.morale); // The amount of moral a soldier has
       
            System.out.println("Saved");
             writer.close();
