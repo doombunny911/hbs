@@ -7,10 +7,6 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Rectangle;
-
-
-
-
 /**
  * One tile can hold one unit. Each tile has a different effect. Each tile is a square
  * @author Schmalz

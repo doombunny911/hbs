@@ -6,6 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -29,8 +30,9 @@ public class Map
     {
         tileWidth=xWidth;
         gameMap = new Tile[5000][5000]; //something that should never be reached
-        Openingmenuscreen.gameFrame.add(new TileMapGenerator(tileWidth));
-
+        TileMapGenerator gen = new TileMapGenerator(tileWidth);
+        GUI.panel=gen;
+        Openingmenuscreen.gameFrame.add(GUI.panel);
     }
  
     //inserts a specific tile into a specific location

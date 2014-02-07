@@ -81,12 +81,13 @@ public class Openingmenuscreen extends JFrame implements ActionListener
             gui = new GUI(gameFrame,gameMap,gameMap.gameMap,gameMap.tileWidth);
             gui.checkInitalization();
             gui.repainter();
-            //only for now
             gameFrame.remove(tilePanel);
             //an array of units is loaded into memory via textfile and are stored
             //than drawn from the array to be drawn
 //            int x,y,height,width;
 //            x=0;y=0;height=0;width=0;
+            
+            System.out.println(GUI.panel+"test");
             GUI.gameFrame.add(new UnitDraw());
             gui.repainter();
             
@@ -100,6 +101,8 @@ public class Openingmenuscreen extends JFrame implements ActionListener
 //       b1.addActionListener(this);
 //       GUI gui = new GUI();
        gameFrame= new JFrame("Historical Battle Simulator");
+       gameFrame.setUndecorated(true);
+       gameFrame.setResizable(false);
        
         gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrame.setSize(new Dimension((int)Toolkit.
@@ -124,7 +127,7 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
-        
+        gameFrame.validate();
        
         tilePanel.add(buttonPanel,gbc);
 //         frame.add(overallPanel);

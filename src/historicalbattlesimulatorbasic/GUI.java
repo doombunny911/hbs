@@ -6,6 +6,7 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Component;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,6 +21,7 @@ public class GUI extends JFrame
     Map gameMap;
     Tile[][] tileGameMap;
     static int tileWidth;
+    static JPanel panel;
    public GUI(JFrame gameFrame,Map gameMap,Tile[][] tileGameMap,int tileWidth)
    {
        this.gameFrame=gameFrame;
@@ -38,11 +40,6 @@ public class GUI extends JFrame
        gameFrame.add(c);
 //       this.repainter();
    }
-//   public void addToFrame(TileMapGenerator gen)
-//   {
-//       gameFrame.add(gen);
-////       this.repainter();
-//   }
    public boolean frameNotInitialized()
    {
 //       boolean flag;
