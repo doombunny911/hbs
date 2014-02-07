@@ -77,7 +77,7 @@ public class Openingmenuscreen extends JFrame implements ActionListener
             //load the game, testButton for now
             tilePanel.remove(buttonPanel);
             Map gameMap=new Map(10);
-            gameMap.populateMap();
+            //gameMap.populateMap();
             gui = new GUI(gameFrame,gameMap,gameMap.gameMap,gameMap.tileWidth);
             gui.checkInitalization();
             gui.repainter();
