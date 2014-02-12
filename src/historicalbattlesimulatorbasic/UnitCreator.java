@@ -19,12 +19,14 @@ public class UnitCreator
     
     /**
      *
+     * @param args
+     * @throws java.io.IOException
      */
     //Tester
       public static void main(String[] args) throws IOException 
     {
-        UnitCreator tester = new UnitCreator();
-        tester.createUnit();
+        
+        UnitCreator.createUnit();
     }
       //This shall be used to create a unit. Multiple of this unit may be loaded for a battle.
     public static void createUnit() throws IOException

@@ -1,14 +1,14 @@
-||
-Hoplites
-Unit Type: 4
-DMG Dice: 3
-AtkBonus:3.0
-DMG Bonus:54.54
-HP:465.0
-AC:456.0
-Def:0.0
-Speed:3.0
-Range:642.0
-Charge Bonus:765.0
-Stamina:2.0
-Morale:45.0
+Hopltie
+2
+3
+4.0
+2.0
+4.0
+5.0
+0.0
+1.0
+4.0
+3.0
+5.0
+3.0
+40

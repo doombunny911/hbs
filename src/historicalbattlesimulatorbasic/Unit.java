@@ -164,22 +164,21 @@ if(!parent.exists() && !parent.mkdirs()){
 } 
         try {                      
             writer = new PrintWriter(file, "UTF-8");
-            writer.println("||");//
             writer.println(unitName);
-            writer.println("Unit Type:"+soldierType.unitType); 
-            writer.println("DMG Dice:"+soldierType.dmg); // the type of dice to be rolled for damage
-            writer.println("AtkBonus:"+soldierType.attack); // the bonus to the attack
-            writer.println("DMG Bonus:"+soldierType.dmgBonus); //bonus to damage
-            writer.println("HP:"+soldierType.hp); // a soldiers health points
-            writer.println("AC:"+soldierType.armorClass); //a soldiers basic armor class
-            writer.println("Def:"+soldierType.defense); // a soldiers defense bonus
-            writer.println("Speed:"+soldierType.speed); // the distance of which a soldier can travel
-            writer.println("Range:"+soldierType.range); // the range of a soldiers weapons
-            writer.println("Charge Bonus:"+soldierType.chargeBonus); //The bonus given to charging attack
-            writer.println("Stamina:"+soldierType.stamina); // The amount of stamina a soldier has
-            writer.println("Morale:"+soldierType.morale); // The amount of moral a soldier has
-      
-           System.out.println("Saved");
+            writer.println(soldierType.unitType); 
+            writer.println(soldierType.dmg); // the type of dice to be rolled for damage
+            writer.println(soldierType.attack); // the bonus to the attack
+            writer.println(soldierType.dmgBonus); //bonus to damage
+            writer.println(soldierType.hp); // a soldiers health points
+            writer.println(soldierType.armorClass); //a soldiers basic armor class
+            writer.println(soldierType.defense); // a soldiers defense bonus
+            writer.println(soldierType.speed); // the distance of which a soldier can travel
+            writer.println(soldierType.range); // the range of a soldiers weapons
+            writer.println(soldierType.chargeBonus); //The bonus given to charging attack
+            writer.println(soldierType.stamina); // The amount of stamina a soldier has
+            writer.println(soldierType.morale); // The amount of moral a soldier has
+            writer.println(this.unitSize);
+            System.out.println("Saved");
             writer.close();
              } 
         catch (FileNotFoundException ex)

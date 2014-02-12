@@ -29,49 +29,56 @@ public class UnitLoader
         System.out.println("File to load: ");
         Scanner scn = new Scanner(System.in);
         String name = scn.nextLine();
-        tester.loadUnits(name);
+        System.out.println("Unit to load: ");
+        String unitToLoad = scn.nextLine();
+        Unit loadedUnit = tester.loadUnit(name, unitToLoad);
+        
         
     }
-    public void loadUnits(String fileToLoad) 
+    public void loadAllUnits(String fileToLoad) 
     {
+       
+           //Load all units
+            //while 
+            //Show all unit Names
+        Unit unit = loadUnit(null, null);
+        
+            
+       
+    }
+    //Loads a singular unit. 
+    public static Unit loadUnit(String fileToLoad, String unitName)
+    {        
         try {
             String fileName=fileToLoad+".txt";
             File file = new File("Units\\"+fileName);
-            
             Scanner reader = new Scanner(new FileInputStream(file));
-            System.out.println(reader.next());
-            //Show all unit Names
-
-            loadUnit(reader,"Hoplites");
+            reader.findWithinHorizon(unitName, 0);
+            String nUnitName= reader.nextLine(); //0
+            System.out.println(nUnitName);
+            int nUnitType= Integer.parseInt(reader.nextLine()); //1
+            System.out.println("Unit Type " + nUnitType);
+            double nAttackBonus = Double.parseDouble(reader.nextLine()); //2
+            int nDMGDice = Integer.parseInt(reader.nextLine()); //3
+            double dmgBonus = Double.parseDouble(reader.nextLine());//4
+            double hp = Double.parseDouble(reader.nextLine()); //5
+            double ac = Double.parseDouble(reader.nextLine()); //6
+            double def =Double.parseDouble(reader.nextLine()); //7
+            double speed = Double.parseDouble(reader.nextLine()); //8
+            double range = Double.parseDouble(reader.nextLine()); //9
+            double chargeBonus = Double.parseDouble(reader.nextLine()); //10
+            double stamina = Double.parseDouble(reader.nextLine()); //11
+            double morale = Double.parseDouble(reader.nextLine()); //12
+            int unitSize = Integer.parseInt(reader.nextLine()); //13
+            
+            Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
+            Unit unit = new Unit(soldier,unitSize);
+            System.out.println(unit.unitName + "created");
+            return unit;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    //Loads a singular unit
-    public static Unit loadUnit(Scanner reader, String unitName)
-    {        
-            reader.findWithinHorizon(unitName, 0);
-            String nUnitName= unitName; //0
-            System.out.println(nUnitName);
-            int nUnitType= reader.nextInt(); //1
-            System.out.println(nUnitType);
-            double nAttackBonus = reader.nextDouble(); //2
-            int nDMGDice = reader.nextInt(); //3
-            double dmgBonus = reader.nextDouble();//4
-            double hp = reader.nextDouble();
-            double ac = reader.nextDouble();
-            double def = reader.nextDouble();
-            double speed = reader.nextDouble();
-            double range = reader.nextDouble();
-            double chargeBonus = reader.nextDouble();
-            double stamina = reader.nextDouble();
-            double morale = reader.nextDouble();
-            int unitSize = reader.nextInt();
-                   
-         Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
-         Unit unit = new Unit(soldier,unitSize);
-         System.out.println(unit.unitName);
-        return unit;
+        return null;
            
     }
     
