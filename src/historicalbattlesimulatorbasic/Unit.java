@@ -156,7 +156,7 @@ public class Unit extends Soldier
     public void saveUnit(String fileName2) throws IOException {
         PrintWriter writer = null;
         String fileName=fileName2+".txt";
-        File file = new File("Units\\"+fileName);
+        File file = new File("Units"+File.separator+fileName);
         File parent = file.getParentFile();
 
 if(!parent.exists() && !parent.mkdirs()){
