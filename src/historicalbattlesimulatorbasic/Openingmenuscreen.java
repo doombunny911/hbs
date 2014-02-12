@@ -113,20 +113,15 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         buttonPanel.add(b2);
         buttonPanel.add(b3);
         buttonPanel.add(b4);
-        buttonPanel.setBackground(Color.red);
-//        JPanel 
+        buttonPanel.setBackground(Color.red); 
         tilePanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
         gameFrame.validate();
-       
         tilePanel.add(buttonPanel,gbc);
 //         frame.add(overallPanel);
         gameFrame.add(tilePanel);
-
-
-        
         gameFrame.setVisible(true);
 //        gui.gameFrame=this.gameFrame;
    }

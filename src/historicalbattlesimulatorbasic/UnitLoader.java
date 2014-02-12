@@ -32,18 +32,14 @@ public class UnitLoader
         System.out.println("Unit to load: ");
         String unitToLoad = scn.nextLine();
         Unit loadedUnit = tester.loadUnit(name, unitToLoad);
-        
-        
     }
     public void loadAllUnits(String fileToLoad) 
     {
-       
            //Load all units
             //while 
             //Show all unit Names
         Unit unit = loadUnit(null, null);
-        
-            
+
        
     }
     //Loads a singular unit. 
@@ -70,12 +66,14 @@ public class UnitLoader
             double stamina = Double.parseDouble(reader.nextLine()); //11
             double morale = Double.parseDouble(reader.nextLine()); //12
             int unitSize = Integer.parseInt(reader.nextLine()); //13
-            
+       
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
             System.out.println(unit.unitName + "created");
             return unit;
-        } catch (FileNotFoundException ex) {
+        } 
+        catch (FileNotFoundException ex) 
+        {
             Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

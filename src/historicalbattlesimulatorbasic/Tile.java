@@ -31,9 +31,6 @@ public class Tile extends Rectangle
         this.yPosition=yPosition;
         this.xLength= xLength; 
         this.yLength= yLength; 
-        
-
-        
     }
     
     //set the height
@@ -86,11 +83,9 @@ public class Tile extends Rectangle
     {
         double distance = Math.sqrt((otherTile.yPosition-this.yPosition)+((otherTile.xPosition-this.xPosition)));
         return distance;
-      }
+     }
 
     //refers to if the tile has a neighbor[anotehr tile in the designated direction
-      
-    //
     boolean hasNorth() 
     {
         //true
@@ -112,7 +107,7 @@ public class Tile extends Rectangle
     boolean hasSouth()
     {
         return yPosition!=yLength-Openingmenuscreen.tilePanel.getHeight()-TileMapGenerator.remainderHeight;
-    }       //1030!=1046-10-6
+    }      
      boolean hasSouthWest()
     {
         return hasSouth()&&hasEast();
@@ -183,6 +178,7 @@ public class Tile extends Rectangle
            else
                return null;
        }
+     //have to set up the other directions.
     void setDirections(Tile north, Tile east, Tile south, Tile west)
     {
         tileNorth = north;

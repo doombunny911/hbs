@@ -16,17 +16,14 @@ import javax.swing.JPanel;
 
 public class TileMapGenerator extends JPanel
 {
-    
     Tile tiles[][];
     private int tileWidth;
     static double remainderHeight;
     static double remainderWidth;
     public TileMapGenerator(int widthf)
     {
-//        super.getSize(new Dimension(Openingmenuscreen.tilePanel.getHeight(),Openingmenuscreen.tilePanel.getWidth()));
         this.tileWidth=widthf;
         tiles=Map.gameMap;
-      
     }
 
 
@@ -39,7 +36,6 @@ public class TileMapGenerator extends JPanel
    {
         //this has clearing power, don't fully understand
 //      super.paintComponent(g);
-       
       Graphics2D g2=(Graphics2D)g;
        
       int width = Openingmenuscreen.tilePanel.getWidth();
