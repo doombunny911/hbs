@@ -6,7 +6,6 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import javax.swing.JPanel;
 
 /**
@@ -62,11 +61,7 @@ public class TileMapGenerator extends JPanel
          {
             tiles[i][j]= new Tile(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
             g2.draw(tiles[i][j]);
-//            System.out.println(tiles[i][j]);
          }
-    
        }
-      
-
     }
 }

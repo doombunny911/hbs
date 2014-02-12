@@ -18,7 +18,6 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 
 
 
@@ -77,7 +76,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
             //load the game, testButton for now
             tilePanel.remove(buttonPanel);
             Map gameMap=new Map(10);
-            //gameMap.populateMap();
             gui = new GUI(gameFrame,gameMap,gameMap.gameMap,gameMap.tileWidth);
             gui.checkInitalization();
             gui.repainter();
@@ -88,7 +86,8 @@ public class Openingmenuscreen extends JFrame implements ActionListener
 //            x=0;y=0;height=0;width=0;
             
             System.out.println(GUI.panel+"test");
-            GUI.gameFrame.add(new UnitDraw());
+            UnitDraw ud=new UnitDraw();
+    //            GUI.gameFrame.add(new UnitDraw());
             gui.repainter();
             
             
@@ -98,12 +97,8 @@ public class Openingmenuscreen extends JFrame implements ActionListener
 
    public Openingmenuscreen()
    {
-//       b1.addActionListener(this);
-//       GUI gui = new GUI();
+
        gameFrame= new JFrame("Historical Battle Simulator");
-       gameFrame.setUndecorated(true);
-       gameFrame.setResizable(false);
-       
         gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrame.setSize(new Dimension((int)Toolkit.
                 getDefaultToolkit().getScreenSize().getWidth(),
@@ -113,8 +108,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
                         getPreferredSize().getHeight());
        System.out.println(gameFrame.getSize());
 
-//        gameFrame.setBackground(Color.yellow);
-//        GridLayout gLayout= new GridLayout();
         buttonPanel = new JPanel(new GridLayout(4,1));
         buttonPanel.add(b1);
         buttonPanel.add(b2);
@@ -123,7 +116,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         buttonPanel.setBackground(Color.red);
 //        JPanel 
         tilePanel = new JPanel(new GridBagLayout());
-        tilePanel.setBackground(Color.orange);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
@@ -139,11 +131,22 @@ public class Openingmenuscreen extends JFrame implements ActionListener
 //        gui.gameFrame=this.gameFrame;
    }
   
+   //sets to fullscreen mode, more a hinderence atm 
+  public void setFullScreen()
+  {
+      
+      gameFrame.setUndecorated(true);
+      gameFrame.setResizable(false);
+  }
+   
+   
     @Override
     public void actionPerformed(ActionEvent e) 
     {
         
     }
+    
+    
     public static GUI getGUI()
     {
         return gui;

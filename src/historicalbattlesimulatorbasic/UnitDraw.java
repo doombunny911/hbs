@@ -15,18 +15,22 @@ import javax.swing.JPanel;
  */
 
 //Units at some level are rectangles holding soldiers.  Therefore, I will draw
-public class UnitDraw extends JPanel
+public class UnitDraw extends Rectangle
 {
    ///arbitrary height and width for the units at this point, may need to be
     //fluid at a later date
     int height = 30;
     int width = 50;
-    
-    @Override
+   public UnitDraw()
+   {
+        Rectangle rect[] = new Rectangle[2];
+        rect[0]= new Rectangle(30,50,width,height);
+        rect[1] = new Rectangle(80,90,width,height);
+   }
     public void paint(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
-        
+//        GUI.panel.
         //code to use once the file loading has been completed
         //this should work or if you want to split the units into team 1
         //and team 2, that should be easy to do as well
@@ -45,10 +49,10 @@ public class UnitDraw extends JPanel
         rect[0]= new Rectangle(30,50,width,height);
         rect[1] = new Rectangle(80,90,width,height);
         
-        for(int i=0;i<rect.length;i++)
-        {
-            g2.fill(rect[i]);
-        }
+        
+        for (Rectangle rect1 : rect) 
+            g2.fill(rect1);
+        
         
     }
 
