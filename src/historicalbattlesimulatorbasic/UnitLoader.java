@@ -47,15 +47,15 @@ public class UnitLoader
     {        
         try {
             String fileName=fileToLoad+".txt";
-            File file = new File("Units\\"+fileName);
+            File file = new File("Units"+File.separator+fileName);
             Scanner reader = new Scanner(new FileInputStream(file));
             reader.findWithinHorizon(unitName, 0);
             String nUnitName= reader.nextLine(); //0
             System.out.println(nUnitName);
             int nUnitType= Integer.parseInt(reader.nextLine()); //1
             System.out.println("Unit Type " + nUnitType);
-            double nAttackBonus = Double.parseDouble(reader.nextLine()); //2
             int nDMGDice = Integer.parseInt(reader.nextLine()); //3
+            double nAttackBonus = Double.parseDouble(reader.nextLine()); //2
             double dmgBonus = Double.parseDouble(reader.nextLine());//4
             double hp = Double.parseDouble(reader.nextLine()); //5
             double ac = Double.parseDouble(reader.nextLine()); //6
