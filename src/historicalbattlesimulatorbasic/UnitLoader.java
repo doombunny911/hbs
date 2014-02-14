@@ -35,10 +35,23 @@ public class UnitLoader
     }
     public void loadAllUnits(String fileToLoad) 
     {
-           //Load all units
-            //while 
+        try {
+            //Load all units
+            //while
+            String fileName=fileToLoad+".txt";
+            File file = new File("Units"+File.separator+fileName);
+            Scanner reader = new Scanner(new FileInputStream(file));
+         //   while(reader.ha)
             //Show all unit Names
-        Unit unit = loadUnit(null, null);
+            
+            Unit unit = loadUnit(null, null);
+            
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
        
     }

@@ -120,7 +120,16 @@ public void placeOnTile(Tile tile)
     
     tileOccupied.occupyBy(this); //hopefully this works... Don't know if it will though.
 }
-//The number based system. 1 is north, 2 is east, 3 is south, 4 is west
+/**The number based system. 
+ *  1 is north
+    2 is northeast
+    3 is east
+    4 is southeast
+    5 is south
+    6 is southwest
+    7 is west
+    8 is northwest
+    */
 public void moveDirection(int dir)
 {
     if(dir==1)
@@ -129,17 +138,42 @@ public void moveDirection(int dir)
     }
     if(dir==2)
     {
-        this.moveEast();
+        this.moveNorthEast();
     }
     if(dir==3)
     {
-        this.moveSouth();
+        this.moveEast();
     }
     if(dir==4)
     {
+        this.moveSouthEast();
+    }
+    if(dir==5)
+    {
+        this.moveSouth();
+    }
+    if(dir==6)
+    {
+        this.moveSouthWest();
+    }
+    if(dir==7)
+    {
         this.moveWest();
     }
+    if(dir==8)
+    {
+        this.moveNorthWest();
+    }
 }
+/* 1 is north
+    2 is northeast
+    3 is east
+    4 is southeast
+    5 is south
+    6 is southwest
+    7 is west
+    8 is northwest
+    */
 public boolean canMove(int dir)
 {
     if(dir==1)
@@ -148,15 +182,31 @@ public boolean canMove(int dir)
     }
     if(dir==2)
     {
-        return this.tileOccupied.hasEast();
+        return this.tileOccupied.hasNorthEast();
     }
     if(dir==3)
     {
-        return this.tileOccupied.hasSouth();
+        return this.tileOccupied.hasEast();
     }
     if(dir==4)
     {
-       return this.tileOccupied.hasWest();
+       return this.tileOccupied.hasSouthEast();
+    }
+    if(dir==5)
+    {
+        return this.tileOccupied.hasSouth();
+    }
+    if(dir==6)
+    {
+        return this.tileOccupied.hasSouthWest();
+    }
+    if(dir==7)
+    {
+        return this.tileOccupied.hasWest();
+    }
+    if(dir==8)
+    {
+        return this.tileOccupied.hasNorthWest();
     }
     else 
         return false;
@@ -168,11 +218,25 @@ public void moveNorth()
     tileOccupied = tileOccupied.tileNorth();
     }
 }
+public void moveNorthEast()
+{
+    if(tileOccupied.hasNorthEast()&&!tileOccupied.tileNorthEast.isOccupied)
+    {
+    tileOccupied = tileOccupied.tileNorthEast();
+    }
+}
 public void moveEast()
 {
     if(tileOccupied.hasEast()&&!tileOccupied.tileEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileEast();
+    }
+}
+public void moveSouthEast()
+{
+    if(tileOccupied.hasSouthEast()&&!tileOccupied.tileSouthEast.isOccupied)
+    {
+    tileOccupied = tileOccupied.tileSouthEast();
     }
 }
 public void moveSouth()
@@ -182,6 +246,13 @@ public void moveSouth()
     tileOccupied = tileOccupied.tileSouth();
     }
 }
+public void moveSouthWest()
+{
+    if(tileOccupied.hasSouthWest()&&!tileOccupied.tileSouthWest.isOccupied)
+    {
+    tileOccupied = tileOccupied.tileSouthWest();
+    }
+}
 public void moveWest()
 {
     if(tileOccupied.hasWest()&&!tileOccupied.tileWest.isOccupied)
@@ -189,7 +260,13 @@ public void moveWest()
     tileOccupied = tileOccupied.tileWest();
     }
 }
-
+public void moveNorthWest()
+{
+    if(tileOccupied.hasNorthWest()&&!tileOccupied.tileNorthWest.isOccupied)
+    {
+    tileOccupied = tileOccupied.tileNorthWest();
+    }
+}
 public Soldier()
 {
     

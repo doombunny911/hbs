@@ -119,9 +119,13 @@ public class Unit extends Soldier
     //used to move the entire unit in a direction. Sets the unit to be facing this direction.
     /*
     1 is north
-    2 is east
-    3 is west
-    4 is south
+    2 is northeast
+    3 is east
+    4 is southeast
+    5 is osuth
+    6 is southwest
+    7 is west
+    8 is northwest
     */
     public void moveDirection(int dir)
     {
