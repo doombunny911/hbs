@@ -88,7 +88,6 @@ public class Tile extends Rectangle
     //refers to if the tile has a neighbor[anotehr tile in the designated direction
     boolean hasNorth() 
     {
-        //true
         return yPosition!=0;
     }
     

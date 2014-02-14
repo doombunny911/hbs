@@ -59,5 +59,6 @@ public class TileMapGenerator extends JPanel
             g2.draw(tiles[i][j]);
          }
        }
+      GUI.tileGameMap=tiles;
     }
 }

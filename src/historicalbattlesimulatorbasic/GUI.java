@@ -5,6 +5,8 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -15,56 +17,34 @@ import javax.swing.JPanel;
 //the overall animation class of the project, every class regarding animation
 //should go through this in some degree
 //will be used for mouse listening too
-public class GUI extends JFrame
+public class GUI implements MouseListener
 {
-   static JFrame gameFrame;
+    static JFrame gameFrame;
     Map gameMap;
-    Tile[][] tileGameMap;
+    static Tile[][] tileGameMap;
     static int tileWidth;
     static JPanel panel;
    public GUI(JFrame gameFrame,Map gameMap,Tile[][] tileGameMap,int tileWidth)
    {
-       this.gameFrame=gameFrame;
+       GUI.gameFrame=gameFrame;
        this.gameMap=gameMap;
-       this.tileGameMap=tileGameMap;
-       this.tileWidth = tileWidth;
+       GUI.tileGameMap=tileGameMap;
+       GUI.tileWidth = tileWidth;
+       GUI.panel.addMouseListener(this);
+       MouseEvent me = new MouseEvent(panel,0,0,0,0,0,0,true,0);
+     
        
-       
-   }
-   public GUI()
-   {
-       //used for future GUI's to set equal to a properally initialized GUI
    }
    public void addToFrame(Component c)
    {
        gameFrame.add(c);
 //       this.repainter();
    }
-   public boolean frameNotInitialized()
+   public static void panelInitializer(JPanel panel)
    {
-//       boolean flag;
-//       if(gameFrame!=null)
-//           flag=false;
-//       else
-//           flag=true;
-//       System.out.println(flag);
-       return false;
+     
    }
-//    //create frame
-//    //call opening menu screen
-//
-//    private void startUp() 
-//    {
-//        if(frameNotInitialized())
-//       {
-//           gameFrame=new JFrame("Historical Battle Simulator");
-//           gameFrame.setSize(1000,1000);
-//           gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//           gameFrame.pack();
-//           gameFrame.setVisible(true);
-//       }    
-//    }
-//    
+   
     public JFrame getFrame(JFrame frame)
     {
         return gameFrame;
@@ -83,4 +63,35 @@ public class GUI extends JFrame
        }
        return true;
    }
+    @Override
+    public void mousePressed(MouseEvent me) 
+    {
+        double findTileX= Math.ceil(me.getX()/10);
+        double findTileY=Math.ceil(me.getY()/10);
+        
+        //this is the tile that was clicked on
+        Tile tile=GUI.tileGameMap[(int)findTileX][(int)findTileY];
+    }
+   
+   
+    @Override
+    public void mouseClicked(MouseEvent me) 
+    {
+    }
+
+   
+    @Override
+    public void mouseReleased(MouseEvent me) 
+    {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) 
+    {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me)
+    {
+    }
 }
