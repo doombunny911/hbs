@@ -53,19 +53,23 @@ public class UnitLoader
             String fileName=fileToLoad;
             File file = new File("Units"+File.separator+fileName);
             Scanner reader = new Scanner(new FileInputStream(file));
-         while(reader.hasNext("---"))
+         while(reader.hasNext())
+         {
+             if(reader.nextLine().equals("---"))
                  {
-                     reader.nextLine();
+                     
                      String name = reader.nextLine();
-                     Unit nUnit = loadUnit(file, name); //puts the unit in a temporary palce
+                     System.out.println("Name "+name);
+                     Unit nUnit = loadUnit(reader, name); //puts the unit in a temporary palce
                      allUnits.add(nUnit);                     
                  }
+             else reader.nextLine();
+         }
             //Show all unit Names
-            System.out.println("Printing all unit Names");
+            System.out.println("The following units have been added to the units list: ");
            for(Unit aUnit : allUnits)
             {
-                System.out.println("Looping");
-                System.out.println(aUnit.unitName);
+                 System.out.println(aUnit.unitName);
             }
             
             
@@ -78,14 +82,13 @@ public class UnitLoader
        
     }
     //Loads a singular unit. 
-    public static Unit loadUnit(File file, String unitName)
+    public static Unit loadUnit(Scanner reader, String unitName)
     {        
-        try {
+       
+            //Scanner reader = new Scanner(new FileInputStream(file));
+            //reader.findWithinHorizon(unitName, 0);
+            String nUnitName= unitName; //0
             
-            Scanner reader = new Scanner(new FileInputStream(file));
-            reader.findWithinHorizon(unitName, 0);
-            String nUnitName= reader.nextLine(); //0
-            System.out.println("Unit Name"+nUnitName);
                 int nUnitType= Integer.parseInt(reader.nextLine()); //1
                 int nDMGDice = Integer.parseInt(reader.nextLine()); //3
                 double nAttackBonus = Double.parseDouble(reader.nextLine()); //2
@@ -104,14 +107,11 @@ public class UnitLoader
             Unit unit = new Unit(soldier,unitSize);
             System.out.println(unit.unitName + "created");
             return unit;
-        } 
-        catch (FileNotFoundException ex) 
-        {
-            Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    } 
+       
+      
            
-    }
+    
     
     
     
