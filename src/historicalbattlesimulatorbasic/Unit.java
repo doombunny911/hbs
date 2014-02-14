@@ -4,8 +4,10 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -122,11 +124,12 @@ public class Unit extends Soldier
     2 is northeast
     3 is east
     4 is southeast
-    5 is osuth
+    5 is south
     6 is southwest
     7 is west
     8 is northwest
     */
+    @Override
     public void moveDirection(int dir)
     {
        boolean accessible=true; //the value for if every soldier can move
@@ -167,7 +170,8 @@ if(!parent.exists() && !parent.mkdirs()){
     throw new IllegalStateException("Couldn't create dir: " + parent);
 } 
         try {                      
-            writer = new PrintWriter(file, "UTF-8");
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+            writer.println("---"); //seperator 
             writer.println(unitName);
             writer.println(soldierType.unitType); 
             writer.println(soldierType.dmg); // the type of dice to be rolled for damage

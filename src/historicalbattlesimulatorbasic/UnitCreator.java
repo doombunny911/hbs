@@ -40,7 +40,7 @@ public class UnitCreator
 "     3 is Cavalry" +
 "     4 is Spearmen" +
 "     5 is 'other'";
-        prompt[2]="Enter the damage coefficient";
+        prompt[2]="Enter the damage range";
         prompt[3]="Enter the attack coefficient";   
         prompt[4]="Enter the dmgBonus coefficient";        
         prompt[5]="Enter the hp coefficient";       
@@ -51,7 +51,7 @@ public class UnitCreator
         prompt[10]="Enter the Chargebonus coefficient";
         prompt[11]="Enter the stamina coefficient";
         prompt[12]="Enter the morale coefficient";
-        prompt[13]="Enter the size of the Unit, enter 1 and I will construct"
+        prompt[13]="Enter the average size of the Unit, enter 1 and I will construct"
                 + " an individual soldier instead";
         prompt[14]="Enter the name of the file to save this to";
         System.out.println("Enter in your character information now");
