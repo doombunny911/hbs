@@ -105,15 +105,15 @@ public class Tile extends Rectangle
     }
     boolean hasSouth()
     {
-        return yPosition!=yLength-Openingmenuscreen.tilePanel.getHeight()-TileMapGenerator.remainderHeight;
+        return yPosition!=yLength-Openingmenuscreen.tilePanel.getHeight()-Painter.remainderHeight;
     }      
      boolean hasSouthWest()
     {
-        return hasSouth()&&hasEast();
+        return hasSouth()&&hasWest();
     }
     boolean hasEast()
     {
-        return xPosition!=xLength-Openingmenuscreen.tilePanel.getWidth()-TileMapGenerator.remainderWidth;
+        return xPosition!=xLength-Openingmenuscreen.tilePanel.getWidth()-Painter.remainderWidth;
     } 
     boolean hasNorthWest()
     {

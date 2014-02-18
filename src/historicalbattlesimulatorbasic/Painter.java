@@ -14,16 +14,16 @@ import javax.swing.JPanel;
  */
 //this class initalizes and draws the tiles for the game
 
-public class TileMapGenerator extends JPanel
+public class Painter extends JPanel
 {
     Tile tiles[][];
     private int tileWidth;
     static double remainderHeight;
     static double remainderWidth;
-    public TileMapGenerator(int widthf)
+    public Painter(int widthf)
     {
         this.tileWidth=widthf;
-        tiles=Map.gameMap;
+//        tiles=Map.gameMap;
     }
 
 
@@ -34,23 +34,21 @@ public class TileMapGenerator extends JPanel
    @Override
    public void paintComponent(Graphics g)
    {
-        //this has clearing power, don't fully understand
-//      super.paintComponent(g);
-      Graphics2D g2=(Graphics2D)g;
+             Graphics2D g2=(Graphics2D)g;
        
       int width = Openingmenuscreen.tilePanel.getWidth();
       int height = Openingmenuscreen.tilePanel.getHeight();
       
-      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
-      System.out.println(remainderHeight = Math.floor(height%tileWidth));
+//      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
+//      System.out.println(remainderHeight = Math.floor(height%tileWidth));
       
       double squareWidth = Math.floor(width/tileWidth);
       double squareHeight = Math.floor(height/tileWidth);
       tiles=new Tile[(int)squareHeight][(int)squareWidth];
-
-      System.out.println("squarewidth ="+ squareWidth + 
-               " tileWidth = " + tileWidth+ " height = " + height +
-               " width = " + width );
+//
+//      System.out.println("squarewidth ="+ squareWidth + 
+//               " tileWidth = " + tileWidth+ " height = " + height +
+//               " width = " + width );
       for(int i=0;i<squareHeight;i++)
       {
          for(int j=0;j<squareWidth;j++)
@@ -60,5 +58,7 @@ public class TileMapGenerator extends JPanel
          }
        }
       GUI.tileGameMap=tiles;
+      UnitDraw ud = new UnitDraw();
+      ud.paint(g);
     }
 }

@@ -74,33 +74,26 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         public void actionPerformed( ActionEvent e ) 
         {
             //load the game, testButton for now
+            System.out.println("test");
             tilePanel.remove(buttonPanel);
-            Map gameMap=new Map(10);
-            gui = new GUI(gameFrame,gameMap,gameMap.gameMap,gameMap.tileWidth);
-            gui.checkInitalization();
-            gui.repainter();
             gameFrame.remove(tilePanel);
-            //an array of units is loaded into memory via textfile and are stored
-            //than drawn from the array to be drawn
-//            int x,y,height,width;
-//            x=0;y=0;height=0;width=0;
-            
-            System.out.println(GUI.panel+"test");
-            UnitDraw ud=new UnitDraw();
-    //            GUI.gameFrame.add(new UnitDraw());
-            gui.repainter();
-            
-            
-
+           
+            GUI.gameFrame.repaint();
+            Map gameMap=new Map(10);
+            GUI.gameMap=gameMap;
+            GUI.buttonLoader();
+            GUI.gameFrame.revalidate();
         }
     });
 
    public Openingmenuscreen()
    {
-
+       
        gameFrame= new JFrame("Historical Battle Simulator");
-        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        gameFrame.setSize(new Dimension((int)Toolkit.
+       GUI.gameFrame=gameFrame;
+       
+       gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+       gameFrame.setSize(new Dimension((int)Toolkit.
                 getDefaultToolkit().getScreenSize().getWidth(),
                 (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
         System.out.println("gameFrame width = "+gameFrame.getPreferredSize()
@@ -115,6 +108,7 @@ public class Openingmenuscreen extends JFrame implements ActionListener
         buttonPanel.add(b4);
         buttonPanel.setBackground(Color.red); 
         tilePanel = new JPanel(new GridBagLayout());
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
@@ -123,6 +117,7 @@ public class Openingmenuscreen extends JFrame implements ActionListener
 //         frame.add(overallPanel);
         gameFrame.add(tilePanel);
         gameFrame.setVisible(true);
+//        GUI.gameFrame=gameFrame;
 //        gui.gameFrame=this.gameFrame;
    }
   

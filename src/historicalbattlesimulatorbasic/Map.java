@@ -28,11 +28,16 @@ public class Map
    //populates the gameMap with basic tiles with no features other than area.
     public Map(int xWidth)
     {
+        GUI.tileWidth=xWidth;
         tileWidth=xWidth;
-        TileMapGenerator gen = new TileMapGenerator(tileWidth);
+        Painter gen = new Painter(tileWidth);
         gameMap=gen.tiles;
-        GUI.panel=gen;
-        Openingmenuscreen.gameFrame.add(gen);
+        System.out.println("gameframe = " +GUI.gameFrame);
+//        System.out.println("here");
+        GUI gui = new GUI(gen); //initialzes mouselistener
+        GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
+        
+        GUI.gameFrame.add(gen);
     }
  
     //inserts a specific tile into a specific location
