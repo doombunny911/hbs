@@ -5,18 +5,13 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Component;
-import java.awt.LayoutManager;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Locale;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 
 /**
  *
@@ -25,7 +20,7 @@ import javax.swing.SpringLayout;
 //the overall animation class of the project, every class regarding animation
 //should go through this in some degree
 //will be used for mouse listening too
-public class GUI implements MouseListener,ActionListener
+public class GUI implements MouseListener
 {
     static JFrame gameFrame;
     static Map gameMap;
@@ -59,8 +54,12 @@ public class GUI implements MouseListener,ActionListener
        return GUI.gameMap != null && GUI.tileGameMap != null && GUI.tileWidth != 0;
    }
    
+   
+   //not in final spots, didn't want 
+//   to waste time finding the optimal spots atm
    public static void buttonLoader()
    {
+      
        JPanel buttonPanel = new JPanel();
        JButton attack=new JButton("Attack");
        JButton defend=new JButton("Defend");
@@ -68,15 +67,7 @@ public class GUI implements MouseListener,ActionListener
        JButton move = new JButton("Move");
        JButton specialAbility =new JButton("Special Ability");
        JButton cancel = new JButton("Cancel Selection");
-//       attack.setLocation(new Point(300,500));
-//       buttonPanel.add(attack);
-//       buttonPanel.add(defend);
-//       buttonPanel.add(checkStats);
-//       buttonPanel.add(move);
-//       buttonPanel.add(specialAbility);
-//       buttonPanel.add(cancel);
-//       buttonPanel.add(move);
-       //find center point;
+
        int frameHeight=GUI.panel.getHeight()-100;
        int frameWidth = GUI.panel.getWidth()/6-100;
        int frameHalfway = GUI.panel.getWidth()/2;
@@ -87,6 +78,59 @@ public class GUI implements MouseListener,ActionListener
        specialAbility.setBounds(frameWidth*5+100,frameHeight,150,30);
        cancel.setBounds(frameWidth*6+100,frameHeight,150,30);
        
+       attack.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               //attack the unit that is targeted next
+           }
+       });
+       
+       defend.addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent ae)
+           {
+               //switch unit into "defense"
+           }
+       });
+       
+       
+       checkStats.addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               //get the stats of the unit clicked
+               //print them on side of screen
+           }
+       });
+       move.addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               //move
+           }
+       });
+       specialAbility.addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               System.out.println("SpecialAbility Activate!");
+           }
+       });
+       cancel.addActionListener(new ActionListener() 
+       {
+
+           @Override
+           public void actionPerformed(ActionEvent ae)
+           {
+               //deselect Unit 
+               //make buttons disapear/click through or delete and remake
+           }
+       });
        
        GUI.panel.setLayout(null);
        GUI.panel.add(attack);
@@ -97,7 +141,6 @@ public class GUI implements MouseListener,ActionListener
        GUI.panel.add(cancel);
 //       SpringLayout layout=new Springlayout();
 //       buttonPanel.setLayout(layout);
-       LayoutManager lm= GUI.panel.getLayout();
 //       System.out.println(Openingmenuscreen.tilePanel);
 //       System.out.println(GUI.panel);
        System.out.println(GUI.panel.getHeight()+ "height");
@@ -157,10 +200,5 @@ public class GUI implements MouseListener,ActionListener
     public void mouseExited(MouseEvent me)
     {
     }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 }

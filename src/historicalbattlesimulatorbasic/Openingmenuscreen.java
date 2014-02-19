@@ -12,7 +12,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Scanner;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -25,7 +24,7 @@ import javax.swing.JPanel;
  *
  * @author Andrew
  */
-public class Openingmenuscreen extends JFrame implements ActionListener
+public class Openingmenuscreen extends JFrame
 {
     static JFrame gameFrame;
     static JPanel tilePanel;
@@ -77,7 +76,6 @@ public class Openingmenuscreen extends JFrame implements ActionListener
             System.out.println("test");
             tilePanel.remove(buttonPanel);
             gameFrame.remove(tilePanel);
-           
             GUI.gameFrame.repaint();
             Map gameMap=new Map(10);
             GUI.gameMap=gameMap;
@@ -128,15 +126,7 @@ public class Openingmenuscreen extends JFrame implements ActionListener
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);
   }
-   
-   
-    @Override
-    public void actionPerformed(ActionEvent e) 
-    {
-        
-    }
-    
-    
+
     public static GUI getGUI()
     {
         return gui;

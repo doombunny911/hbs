@@ -6,8 +6,6 @@
 
 package historicalbattlesimulatorbasic;
 
-import java.awt.Color;
-import java.awt.Graphics;
 
 /**
  *
@@ -32,11 +30,8 @@ public class Map
         tileWidth=xWidth;
         Painter gen = new Painter(tileWidth);
         gameMap=gen.tiles;
-        System.out.println("gameframe = " +GUI.gameFrame);
-//        System.out.println("here");
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
-        
         GUI.gameFrame.add(gen);
     }
  
