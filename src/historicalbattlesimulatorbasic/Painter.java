@@ -21,6 +21,7 @@ public class Painter extends JPanel
     static double remainderHeight;
     static double remainderWidth;
     int x,y;
+    Unit unit;
     public Painter(int widthf)
     {
         this.tileWidth=widthf;
@@ -31,6 +32,10 @@ public class Painter extends JPanel
     {
         x =locationX;
         y=locationY;
+    }
+    public Painter(Unit unit)
+    {
+        this.unit=unit;
     }
     /**
      *
@@ -70,7 +75,8 @@ public class Painter extends JPanel
              GUI.units.get(i).paint(g);
          }
       }
-      tiles[50][50].loadSprite(g,tiles[50][50]);
+      
+      tiles[50][50].loadSprite(g,tiles[50][50],u);
 //      GUI.gameFrame.validate();
 //      GUI.gameFrame.repaint();
     }

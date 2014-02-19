@@ -29,6 +29,7 @@ public class GUI implements MouseListener
     static int tileWidth;
     static JPanel panel;
     static ArrayList<UnitDraw> units=new ArrayList<>();
+    static Tile tileClicked;
    //initualize GUI whenever need to have a new Panel with mouselistener
    public GUI(JPanel panel)
    {
@@ -181,7 +182,7 @@ public class GUI implements MouseListener
 //        System.out.println("tileXSpot " +findTileX);
 //        System.out.println("fileYSpot " +findTileY);
         System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
-        Tile tile=GUI.tileGameMap[(int)findTileY][(int)findTileX];
+        tileClicked=GUI.tileGameMap[(int)findTileY][(int)findTileX];
     }
     @Override
     public void mouseClicked(MouseEvent me) 

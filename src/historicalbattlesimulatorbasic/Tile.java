@@ -197,10 +197,11 @@ public class Tile extends Rectangle
        
     }
 
-    public void loadSprite(Graphics g,Tile t) 
+    public void loadSprite(Graphics g,Tile t,Unit unit) 
     {
        BufferedImage img = null;
 //               new BufferedImage(xLength,yLength,1);
+       int numberOfSoldiers =unit.unitSoldiers.length;
        try 
        {
           img = ImageIO.read(new File("SoldierSprite.jpg"));
