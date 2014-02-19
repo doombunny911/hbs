@@ -120,7 +120,7 @@ public class UnitLoader
     
     
     
-    public static ArrayList getAllUnits()
+    public ArrayList getAllUnits()
     {
         return allUnits;
     }

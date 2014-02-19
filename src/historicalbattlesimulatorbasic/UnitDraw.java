@@ -18,10 +18,15 @@ import java.awt.Rectangle;
 public class UnitDraw extends Rectangle
 {
     //arbritary size of units atm
-    int heightY = 30;
-    int widthX = 50;
+   
     int xDraw,yDraw;
-    public UnitDraw(int x, int y)
+    public UnitDraw(Unit getUnit)
+    {
+        super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
+        this.xDraw=x;
+        this.yDraw=y;
+    }
+    public UnitDraw(int x, int y, int heightY, int widthX)
     {
         super.setBounds(x,y,heightY,widthX);
         this.xDraw=x;
