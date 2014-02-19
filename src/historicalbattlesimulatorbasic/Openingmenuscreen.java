@@ -30,7 +30,6 @@ public class Openingmenuscreen extends JFrame
     static JFrame gameFrame;
     static JPanel tilePanel;
     JPanel buttonPanel;
-    static GUI gui;
     JButton b1 = new JButton( new AbstractAction("Run Simulation") {
         @Override
         public void actionPerformed( ActionEvent e ) 
@@ -125,12 +124,4 @@ public class Openingmenuscreen extends JFrame
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);
   }
-
-    public static GUI getGUI()
-    {
-        return gui;
-    }
-    
-    
-    
 }

@@ -21,7 +21,7 @@ public class UnitDraw extends Rectangle
     int heightY = 30;
     int widthX = 50;
     int xDraw,yDraw;
-    public UnitDraw(int x, int y, Unit thisUnit)
+    public UnitDraw(int x, int y)
     {
         super.setBounds(x,y,heightY,widthX);
         this.xDraw=x;
