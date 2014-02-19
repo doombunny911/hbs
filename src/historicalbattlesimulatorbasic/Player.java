@@ -133,7 +133,7 @@ public class Player
     {
         for(int i=0; i<numOfUnits; i++)
         {
-            units[i].resetMovementPoints();
+            units[i].resetUnitPoints();
         }
     }
 
