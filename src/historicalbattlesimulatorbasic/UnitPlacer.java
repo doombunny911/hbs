@@ -10,6 +10,7 @@ package historicalbattlesimulatorbasic;
  *
  * @author Edward
  */
-public class UnitPlacer {
+public class UnitPlacer 
+{
     
 }
