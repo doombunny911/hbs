@@ -70,8 +70,8 @@ public class Painter extends JPanel
              GUI.units.get(i).paint(g);
          }
       }
-      tiles[50][50].loadSprite(g);
-      GUI.gameFrame.validate();
-      GUI.gameFrame.repaint();
+      tiles[50][50].loadSprite(g,tiles[50][50]);
+//      GUI.gameFrame.validate();
+//      GUI.gameFrame.repaint();
     }
 }
