@@ -27,7 +27,7 @@ public class GUI implements MouseListener
     static Tile[][] tileGameMap;
     static int tileWidth;
     static JPanel panel;
-    
+    static UnitDraw[] units;
    //initualize GUI whenever need to have a new Panel with mouselistener
    public GUI(JPanel panel)
    {

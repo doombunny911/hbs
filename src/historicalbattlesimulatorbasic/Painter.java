@@ -20,13 +20,18 @@ public class Painter extends JPanel
     private int tileWidth;
     static double remainderHeight;
     static double remainderWidth;
+    int x,y;
     public Painter(int widthf)
     {
         this.tileWidth=widthf;
 //        tiles=Map.gameMap;
     }
-
-
+    
+    public Painter(int locationX,int locationY)
+    {
+        x =locationX;
+        y=locationY;
+    }
     /**
      *
      * @param g
@@ -50,16 +55,29 @@ public class Painter extends JPanel
 //      System.out.println("squarewidth ="+ squareWidth + 
 //               " tileWidth = " + tileWidth+ " height = " + height +
 //               " width = " + width );
+      int a=0;
       for(int i=0;i<squareHeight;i++)
       {
          for(int j=0;j<squareWidth;j++)
          {
+//            if(a==456)
+//                tiles[i][j].loadSprite();
             tiles[i][j]= new Tile(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
+            a++;
             g2.draw(tiles[i][j]);
          }
        }
+      
       GUI.tileGameMap=tiles;
-      UnitDraw ud = new UnitDraw();
-      ud.paint(g);
+      
+      
+      if(UnitDraw.numberArray>0)
+      {
+          for(int i=0;i<UnitDraw.numberArray;i++)
+        {
+            GUI.units[i].paint(g);
+        }
+      }
+      
     }
 }

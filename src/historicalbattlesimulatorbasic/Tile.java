@@ -6,13 +6,19 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 /**
  * One tile can hold one unit. Each tile has a different effect. Each tile is a square
  * @author Schmalz
  */
 public class Tile extends Rectangle
 {
+  
     boolean tileBlocked;
     int xPosition, yPosition, zPosition;
     int terrainEffect; //terrain effects will be all categorized as ints to allow easy return access.
@@ -23,14 +29,17 @@ public class Tile extends Rectangle
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
+    
     public Tile(int xPosition, int yPosition, int xLength, int yLength)
     {
-       
+            
+        
         super.setBounds(xPosition, yPosition, xLength, yLength);
         this.xPosition=xPosition;
         this.yPosition=yPosition;
         this.xLength= xLength; 
         this.yLength= yLength; 
+       
     }
     
     //set the height
@@ -185,5 +194,18 @@ public class Tile extends Rectangle
         tileSouth = south;
         tileWest = west;
        
+    }
+
+    public void loadSprite() 
+    {
+       BufferedImage img = new BufferedImage(xLength,yLength,0);
+       try 
+       {
+          img = ImageIO.read(new File("SoldierSprite.jpg"));
+       } 
+       catch (IOException e) 
+       {
+           System.out.println("error loading file " + e);
+        }
     }
 }

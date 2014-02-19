@@ -26,6 +26,7 @@ import javax.swing.JPanel;
  */
 public class Openingmenuscreen extends JFrame
 {
+    
     static JFrame gameFrame;
     static JPanel tilePanel;
     JPanel buttonPanel;
@@ -112,17 +113,13 @@ public class Openingmenuscreen extends JFrame
         gbc.weighty=0;
         gameFrame.validate();
         tilePanel.add(buttonPanel,gbc);
-//         frame.add(overallPanel);
         gameFrame.add(tilePanel);
         gameFrame.setVisible(true);
-//        GUI.gameFrame=gameFrame;
-//        gui.gameFrame=this.gameFrame;
    }
   
    //sets to fullscreen mode, more a hinderence atm 
   public void setFullScreen()
   {
-      
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);
   }
