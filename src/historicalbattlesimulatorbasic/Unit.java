@@ -26,6 +26,7 @@ public class Unit extends Soldier
     int unitStartLocationY;
     boolean unitDefeat = false;
     int unitPoints=2;
+    int xPosition, yPosition;
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public Unit(Soldier soldierType, int unitSize,int x,int y)
@@ -71,8 +72,7 @@ public class Unit extends Soldier
             }//do nothing
             
         }
-       // System.out.println("The size of the unit is currently " + unitsAlive);
-        if(unitsAlive==0)
+       if(unitsAlive==0)
         {
             unitDefeat = true; //if there are 0 or less units alive in this unit, set the value of unit defeat to true
         }
@@ -89,7 +89,7 @@ public class Unit extends Soldier
     
     public void attack(Unit defender)
     {
-        //100
+       
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         
         //100
@@ -97,14 +97,14 @@ public class Unit extends Soldier
         
         if(this.unitDefeat==false)
         {
-            //aSize ==100
+            
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
             {
              int j = dSize-1; //the integer for the defenders unit size.
              if(j==0)
                 {
                     //if all the defenders are dead, bring them all back again?
-                    System.out.println("the attackers won, all defenders are dead");
+                    System.out.println("The attackers won, all defenders are dead");
                     break;
                     // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
                 }
@@ -118,8 +118,10 @@ public class Unit extends Soldier
         }
         
     }
-    //used to move the entire unit in a direction. Sets the unit to be facing this direction.
+    
     /*
+    Used to move the entire unit in a direction. Sets the unit to be facing this direction.
+    @dir - Direction:
     1 is north
     2 is northeast
     3 is east
@@ -149,12 +151,32 @@ public class Unit extends Soldier
             }
        }
     }
+    /*
+    Places a unit on a specific part of the map. Technically sets the unit's xposition and yposition
+    @xPosition - The x variable position of the unit
+    @yPosition - The y variable position of the unit
+    */
     public void placeUnit(int xPosition, int yPosition)
     {
-        
+        this.xPosition= xPosition;
+        this.yPosition= yPosition;
     }
-
-    public void resetMovementPoints() 
+    /*
+    Returns the x variable position
+    */
+    public int getXPosition()
+    {
+        return xPosition;
+    }
+    /*
+    Returns the y variable position
+    */
+    public int getYPosition()
+    {
+        return yPosition;
+    }
+    
+    public void resetUnitPoints() 
     {
         unitPoints=2;
     }

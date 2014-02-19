@@ -29,6 +29,11 @@ public class UnitLoader
       public static void main(String[] args) throws IOException 
     {
         UnitLoader tester = new UnitLoader();
+       tester.runLoader();
+    }
+      public void runLoader()
+      {
+          
         final JFileChooser fc = new JFileChooser();
         File dir = new File("Units"+File.separator+"anchor.txt");
         
@@ -43,8 +48,8 @@ public class UnitLoader
        
         String name = fc.getSelectedFile().getName();
         System.out.println("You have selected to load "+name);
-        tester.loadAllUnits(name);
-    }
+        this.loadAllUnits(name);
+      }
     public void loadAllUnits(String fileToLoad) 
     {
         try {

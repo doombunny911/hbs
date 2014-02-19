@@ -31,9 +31,19 @@ public class UnitDraw extends Rectangle
     }
     //just add where they need to be painted and this method will do it
     public void paint(Graphics g)
+<<<<<<< HEAD
     { 
         Graphics2D g2 = (Graphics2D) g;
         g2.fill(this);
+=======
+    {
+//   Graphics2D g2 = (Graphics2D) g;
+//        Rectangle rect[] = new Rectangle[2];
+//        
+//        for (Rectangle rect1 : rect) 
+//            g2.fill(rect1);
+//        
+>>>>>>> 054f44db2d71d5b4f42d28013470d9d0e598ae54
         
     }
 
