@@ -27,6 +27,8 @@ public class Unit extends Soldier
     boolean unitDefeat = false;
     int unitPoints=2;
     int xPosition, yPosition;
+    int yHeight=10;
+     int xWidth=10;
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public Unit(Soldier soldierType, int unitSize,int x,int y)
@@ -218,6 +220,12 @@ if(!parent.exists() && !parent.mkdirs()){
         finally {
             writer.close();
         }
+    }
+
+    public void setPosition(int x, int y) 
+    {
+        this.xPosition = x;
+        this.yPosition = y;
     }
             
             

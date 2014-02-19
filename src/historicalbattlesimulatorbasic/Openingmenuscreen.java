@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -70,14 +71,29 @@ public class Openingmenuscreen extends JFrame
     });
        JButton b4 = new JButton( new AbstractAction("Load Game") { 
         @Override
-        public void actionPerformed( ActionEvent e ) 
+        //This refers to when the loadGame button is clicked 
+       public void actionPerformed( ActionEvent e ) 
         {
             //load the game, testButton for now
             System.out.println("test");
             tilePanel.remove(buttonPanel);
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
-            GUI.units.add(new UnitDraw(50,5));
+            UnitLoader loader = new UnitLoader();
+            loader.runLoader();
+             ArrayList<Unit> allUnits = loader.getAllUnits();
+            //drawing unit, every unit is added via this, and thus drawn.
+             Scanner scn = new Scanner(System.in);
+            for(Unit selectedUnit: allUnits)
+            {
+                System.out.println("Enter x position: ");
+                int x = scn.nextInt();
+                System.out.println("Enter y position: ");
+                int y = scn.nextInt();
+                selectedUnit.setPosition(x,y);
+                GUI.units.add(new UnitDraw(selectedUnit));
+            }
+            
           System.out.println("here");
             Map gameMap=new Map(10);
             GUI.gameMap=gameMap;
