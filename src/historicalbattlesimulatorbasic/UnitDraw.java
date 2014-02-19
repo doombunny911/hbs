@@ -32,7 +32,6 @@ public class UnitDraw extends Rectangle
     { 
         Graphics2D g2 = (Graphics2D) g;
         g2.fill(this);
-
     }
 
 }

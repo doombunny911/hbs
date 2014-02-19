@@ -44,17 +44,15 @@ public class Painter extends JPanel
        
       int width = Openingmenuscreen.tilePanel.getWidth();
       int height = Openingmenuscreen.tilePanel.getHeight();
-      
 //      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
 //      System.out.println(remainderHeight = Math.floor(height%tileWidth));
-      
       double squareWidth = Math.floor(width/tileWidth);
       double squareHeight = Math.floor(height/tileWidth);
       tiles=new Tile[(int)squareHeight][(int)squareWidth];
 //
-//      System.out.println("squarewidth ="+ squareWidth + 
-//               " tileWidth = " + tileWidth+ " height = " + height +
-//               " width = " + width );
+      System.out.println("squarewidth ="+ squareWidth + 
+               " tileWidth = " + tileWidth+ " squareHeight = " + squareHeight +
+               " width = " + width );
       int a=0;
       for(int i=0;i<squareHeight;i++)
       {
@@ -65,12 +63,15 @@ public class Painter extends JPanel
          }
        }
       GUI.tileGameMap=tiles;
-      if(GUI.units.get(0)!=null)
+      if(GUI.units.isEmpty()!=true)
       {
          for(int i=0;i<GUI.units.size();i++)
          {
              GUI.units.get(i).paint(g);
          }
       }
+      tiles[50][50].loadSprite(g);
+      GUI.gameFrame.validate();
+      GUI.gameFrame.repaint();
     }
 }

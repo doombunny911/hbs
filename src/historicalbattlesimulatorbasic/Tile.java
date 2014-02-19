@@ -6,6 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -196,12 +197,16 @@ public class Tile extends Rectangle
        
     }
 
-    public void loadSprite() 
+    public void loadSprite(Graphics g) 
     {
-       BufferedImage img = new BufferedImage(xLength,yLength,0);
+       BufferedImage img = null;
+//               new BufferedImage(xLength,yLength,1);
        try 
        {
           img = ImageIO.read(new File("SoldierSprite.jpg"));
+//          g.drawImage(img, xLength, yLength, null);
+          g.drawImage(img, 50, 50, xLength, yLength, null);
+          
        } 
        catch (IOException e) 
        {
