@@ -60,24 +60,17 @@ public class Painter extends JPanel
       {
          for(int j=0;j<squareWidth;j++)
          {
-//            if(a==456)
-//                tiles[i][j].loadSprite();
             tiles[i][j]= new Tile(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
-            a++;
             g2.draw(tiles[i][j]);
          }
        }
-      
       GUI.tileGameMap=tiles;
-      
-      
-      if(UnitDraw.numberArray>0)
+      if(GUI.units.get(0)!=null)
       {
-          for(int i=0;i<UnitDraw.numberArray;i++)
-        {
-            GUI.units[i].paint(g);
-        }
+         for(int i=0;i<GUI.units.size();i++)
+         {
+             GUI.units.get(i).paint(g);
+         }
       }
-      
     }
 }

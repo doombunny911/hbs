@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,7 +28,7 @@ public class GUI implements MouseListener
     static Tile[][] tileGameMap;
     static int tileWidth;
     static JPanel panel;
-    static UnitDraw[] units;
+    static ArrayList<UnitDraw> units=new ArrayList<>();
    //initualize GUI whenever need to have a new Panel with mouselistener
    public GUI(JPanel panel)
    {
