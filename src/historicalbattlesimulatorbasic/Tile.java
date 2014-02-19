@@ -197,15 +197,14 @@ public class Tile extends Rectangle
        
     }
 
-    public void loadSprite(Graphics g) 
+    public void loadSprite(Graphics g,Tile t) 
     {
        BufferedImage img = null;
 //               new BufferedImage(xLength,yLength,1);
        try 
        {
           img = ImageIO.read(new File("SoldierSprite.jpg"));
-//          g.drawImage(img, xLength, yLength, null);
-          g.drawImage(img, 50, 50, xLength, yLength, null);
+          g.drawImage(img, t.xPosition, t.yPosition, t.xLength, t.yLength, null);
           
        } 
        catch (IOException e) 
