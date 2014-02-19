@@ -26,11 +26,11 @@ public static void unDefend(Soldier soldier)
 }
 public static void charge(Soldier soldier)
 {
-    soldier.attack=soldier.attack+soldier.chargeBonus;
+    soldier.dmgBonus=soldier.dmgBonus+soldier.dmgBonus;
 }
 public static void unCharge(Soldier soldier)
 {
-    soldier.attack= soldier.baseAttack;
+    soldier.dmgBonus= soldier.baseDmgBonus;
 }
 
 //Attack
