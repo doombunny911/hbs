@@ -30,6 +30,12 @@ public class GUI implements MouseListener
     static JPanel panel;
     static ArrayList<UnitDraw> units=new ArrayList<>();
     static Tile tileClicked;
+    
+    
+    static Tile getTileClicked() 
+    {
+        return GUI.tileClicked;
+    }
    //initualize GUI whenever need to have a new Panel with mouselistener
    public GUI(JPanel panel)
    {
@@ -171,6 +177,7 @@ public class GUI implements MouseListener
     @Override
     public void mousePressed(MouseEvent me) 
     {
+        
 //        System.out.println("Mouse pressed");
         double findTileX= Math.ceil(me.getX()/10);
         double findTileY=Math.ceil(me.getY()/10);

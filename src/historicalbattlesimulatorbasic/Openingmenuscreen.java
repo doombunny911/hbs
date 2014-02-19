@@ -14,6 +14,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -79,25 +81,49 @@ public class Openingmenuscreen extends JFrame
             tilePanel.remove(buttonPanel);
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
-            UnitLoader loader = new UnitLoader();
-            loader.runLoader();
-             ArrayList<Unit> allUnits = loader.getAllUnits();
-            //drawing unit, every unit is added via this, and thus drawn.
-             Scanner scn = new Scanner(System.in);
-            for(Unit selectedUnit: allUnits)
-            {
-                System.out.println("Enter x position: ");
-                int x = scn.nextInt();
-                System.out.println("Enter y position: ");
-                int y = scn.nextInt();
-                selectedUnit.setPosition(x,y);
-                GUI.units.add(new UnitDraw(selectedUnit));
-            }
-            
+         
           System.out.println("here");
             Map gameMap=new Map(10);
             GUI.gameMap=gameMap;
             GUI.buttonLoader();
+            
+            
+            GUI.gameFrame.revalidate();
+            UnitLoader loader = new UnitLoader();
+//            loader.runLoader();
+            ArrayList<Unit> allUnits = loader.getAllUnits();
+            //drawing unit, every unit is added via this, and thus drawn.
+//            synchronized(this)
+//            {
+//                System.out.println("here1");
+//                 while(GUI.tileClicked==null)
+//                 {
+//                     System.out.println("here2");
+//                     try{
+//                         System.out.println("here3");
+//                        this.wait();
+//                         System.out.println("here4");
+//                     }
+//                     catch(InterruptedException a)
+//                     {
+//                         System.out.println("GUI tile failed to load" +a);
+//                     }
+//                 }
+//                 notifyAll();
+//            }
+//  
+//          
+//            for(Unit selectedUnit: allUnits)
+//            {
+//                System.out.println("Enter x position: ");
+//                System.out.println(GUI.tileClicked);
+//                int x = clickedTile[i].xPosition;
+//                System.out.println("Enter y position: ");
+//                int y = clickedTile[i].yPosition;
+//                selectedUnit.setPosition(x,y);
+//                GUI.units.add(new UnitDraw(selectedUnit));
+//                i++;
+//            }
             GUI.gameFrame.revalidate();
         }
     });

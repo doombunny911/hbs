@@ -33,6 +33,7 @@ public class Painter extends JPanel
         x =locationX;
         y=locationY;
     }
+    //untested
     public Painter(Unit unit)
     {
         this.unit=unit;
@@ -75,8 +76,11 @@ public class Painter extends JPanel
              GUI.units.get(i).paint(g);
          }
       }
-      
-      tiles[50][50].loadSprite(g,tiles[50][50],u);
+      //untested
+      if(unit!=null)
+      {
+         tiles[50][50].loadSprite(g,tiles[50][50],unit);
+      }
 //      GUI.gameFrame.validate();
 //      GUI.gameFrame.repaint();
     }
