@@ -7,6 +7,7 @@ package historicalbattlesimulatorbasic;
 
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,30 +34,44 @@ public class UnitCreator
     {
         //What the scanner will say so that user knows what stat they are entering
         String[] prompt = new String[15];
-        
-        prompt[0]="Enter the name of the Unit";
-        prompt[1]="Enter the type of unit [1 is Melee" +
-"     2 is Ranged" +
-"     3 is Cavalry" +
-"     4 is Spearmen" +
-"     5 is 'other'";
-        prompt[2]="Enter the damage range";
-        prompt[3]="Enter the attack coefficient";   
-        prompt[4]="Enter the dmgBonus coefficient";        
-        prompt[5]="Enter the hp coefficient";       
-        prompt[6]="Enter the armorClass coefficient";        
-        prompt[7]="Enter the defense coefficient"; 
-        prompt[8]="Enter the speed coefficient";
-        prompt[9]="Enter the range coefficient";
-        prompt[10]="Enter the Chargebonus coefficient";
-        prompt[11]="Enter the stamina coefficient";
-        prompt[12]="Enter the morale coefficient";
+    
+        prompt[0]="Enter the unit name:\n"
+                + "This name should refer to its general name.\n"
+                + " It can also include adjective such as country or region names to denote\n "
+                + "what sort of unit it is.\n" +
+"Examples: Cretan Archers, Longbowmen, Spartan Hoplites, General's Bodyguard";
+        prompt[1]="Enter the type of unit \n 1 is Melee " +
+"\n 2 is Ranged" +
+"\n 3 is Cavalry" +
+"\n 4 is Spearmen" +
+"\n 5 is 'other'";
+        prompt[2]="Enter the damage 'dice'. This is the random number from which the damage \n"
+                + "shall be calculated. Some typical dice are 4,6,8,10,12";
+        prompt[3]="Enter the attack bonus. This the number that will be added to the units \n"
+                + "chance to hit. Typically between 1-5";   
+        prompt[4]="Enter the Damage Bonus coefficient. This is the number that will be added \n "
+                + "to the units damage";        
+        prompt[5]="Enter the units HP. 10 is the average";       
+        prompt[6]="Enter the units Armor Class. This is how hard they are to hit. \n "
+                + "The average is 10, but it can go up to 20";        
+        prompt[7]="Enter the defense value. This is the number added to a units AC when \n"
+                + "defending. Between 1-5"; 
+        prompt[8]="Enter the units speed. This is the amount of square it can travel in a turn. \n"
+                + "The average is 5";
+        prompt[9]="Enter the units range. If melee, this value is 1. If ranged, it can be up to 15\n"
+                + "but will typically be around 8.";
+        prompt[10]="Enter the units charge bonus. This is the damaged added when they charge. \n"
+                + "Average is 2";
+        prompt[11]="Enter the units stamina. This is how many times they can sprint.\n"
+                + " Average is 2";
+        prompt[12]="Enter the units morale";
         prompt[13]="Enter the average size of the Unit, enter 1 and I will construct"
                 + " an individual soldier instead";
         prompt[14]="Enter the name of the file to save this to";
+       
         System.out.println("Enter in your character information now");
         System.out.println("At any time, type in exit to leave creation menu");
-        Scanner in= new Scanner(System.in);
+       
         
         //The stat array, holds the stat.  I entered all information in as strings
         //because it was easy working with only 1 type, but thinking about it I don't
@@ -68,14 +83,12 @@ public class UnitCreator
         //loops through to get all the stat coefficient
         for(int i=0;i<stats.length;i++)
         {
-            System.out.println(prompt[i]);
-            stats[i]=in.next();
+            
+            stats[i]=JOptionPane.showInputDialog ( prompt[i] );
             //if user ever enters exit, it ends
                           
         }
-        
-       
-        
+                      
         {
             
             Soldier soldier = new Soldier(
