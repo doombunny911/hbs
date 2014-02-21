@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * This is the unit class
@@ -33,6 +35,38 @@ public class Unit extends Soldier
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
      {
+         UnitLoader ul = new UnitLoader();
+         ul.runLoader();
+         ArrayList allUnits = ul.unitPrepper();
+         Unit attacker =(Unit) allUnits.get(1);
+         Unit defender =(Unit) allUnits.get(2);
+        
+         Object[] options = {"Attack",
+                    "Defend",
+                    "Retreat"};
+         int n = JOptionPane.showOptionDialog(null,
+    "What do you "+attacker.unitName+" want to do? \n"
+            + "Attacker: "+attacker.unitName +"\n vs"
+         + "\n"+defender.unitName,
+    "Battle between "+attacker.unitName+" and "+defender.unitName,
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[2]);
+         if(n==0)
+         {
+            attacker.attack(defender);
+         }
+         else if(n==1)
+         {
+             attacker.defend();
+             
+         }
+         else
+         {
+            JOptionPane.showMessageDialog(null, "The "+attacker.unitName + "runs away");
+         }
          
      }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
@@ -97,11 +131,9 @@ public class Unit extends Soldier
     {
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
-        
-        //100
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
         
-        if(this.unitDefeat==false)
+        if(defender.unitDefeat==false)
         {
             
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
@@ -109,18 +141,21 @@ public class Unit extends Soldier
              int j = dSize-1; //the integer for the defenders unit size.
              if(j==0)
                 {
-                    //if all the defenders are dead, bring them all back again?
-                    System.out.println("The attackers won, all defenders are dead");
+                    
+                    JOptionPane.showMessageDialog(null, "The attackers won, all defenders are dead");
+                
                     break;
                     // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
                 }
-             defender.unitSoldiers[j]=this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
-             j--; //decrament j after every attack
+             else{               
+            defender.unitSoldiers[j]=this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
+                       j--;  } //decrament j after every attack
                         
              
             }
-            
-        System.out.println("After this round of attacks by the" + this.unitname + " against " + defender.unitname+ " "+ defender.getUnitsAlive() + " units of "+ defender.unitname + "remain.");
+            JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
+                    + this.unitName + " against " + defender.unitName+ " "+
+                    defender.getUnitsAlive() + " units of "+ defender.unitName + " remain.");
         }
         
     }
@@ -129,7 +164,7 @@ public class Unit extends Soldier
     {
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
-        
+   
         //100
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
         

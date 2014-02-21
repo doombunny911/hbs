@@ -114,7 +114,7 @@ public class UnitLoader
        
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
-            System.out.println(unit.unitName + "created");
+            System.out.println(unit.unitName + " created");
             return unit;
     } 
   
@@ -124,7 +124,7 @@ public class UnitLoader
        ArrayList<Unit> allPrepUnit = new ArrayList();
           for(Unit prep: allUnits)
           {
-            int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.unitName+"to create: ", "", JOptionPane.PLAIN_MESSAGE));
+            int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.unitName+" to create: ", "", JOptionPane.PLAIN_MESSAGE));
             String confirm = "Really create "+someNumber+" "+prep.unitName+" ?";
             JOptionPane.showConfirmDialog(null, confirm);
             for(int i=0; i<someNumber; i++)

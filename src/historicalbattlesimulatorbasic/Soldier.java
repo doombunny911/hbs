@@ -10,6 +10,7 @@ package historicalbattlesimulatorbasic;
  * @author schm1413
  */
 import java.util.Random;
+import javax.swing.JOptionPane;
 //This is the basic constructor class of the soldier
 public class Soldier 
 {
@@ -70,7 +71,7 @@ public class Soldier
  
 public static void main(String[] args)
 {
- Soldier s1 = new Soldier("Unit1",2,3,2,1,5,10,3,4,12,3,4,4);
+ Soldier s1 = new Soldier("Unit1",2,10,10,10,5,10,3,4,12,3,4,4);
  Tile t1 = new Tile(10, 10,10,10);
  s1.occupyTile(t1);
  t1.occupyBy(s1);
@@ -311,28 +312,28 @@ public void die()
     alive = false;
 }
 //the method for attacking another soldier(individually)
-public Soldier attack(Soldier opponent)
+public Soldier attack(Soldier defender)
 {
     //calculate the dice roll for the attack
     int diceRoll = dice.nextInt(20);
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
     
     {
-        if((diceRoll + this.attack) > (opponent.armorClass))
+        if((diceRoll + this.attack) > (defender.armorClass))
         {
-            opponent.hp= opponent.hp - dmgDice;
-            System.out.println("The attack hits and "+opponent.unitname +" takes " + dmgDice + " points of damage");
+            defender.hp= defender.hp - dmgDice;
+            JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitname +" takes " + dmgDice + " points of damage");
             
         }
         else
         {
-            System.out.println("The attack misses!");
+            JOptionPane.showMessageDialog(null,"The attack misses!");
         }
     }
    
-     opponent.update();
-     System.out.println(opponent.hp);
-     return opponent;
+     defender.update();
+     JOptionPane.showMessageDialog(null,defender.unitname+ "'s remaining HP: "+defender.hp);
+     return defender;
 }
 
 public Soldier rangeAttack(Soldier opponent)
@@ -364,9 +365,10 @@ public Soldier rangeAttack(Soldier opponent)
 }
 public void update()
 {
+    System.out.println("Update called");
         if (this.hp<=0)
         {
-            alive = false;
+            this.die();
             System.out.println(this.unitname + " died");
         }
         else
