@@ -5,6 +5,7 @@
 package historicalbattlesimulatorbasic;
 
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -29,7 +31,8 @@ public class UnitLoader
       public static void main(String[] args) throws IOException 
     {
         UnitLoader tester = new UnitLoader();
-       tester.runLoader();
+           tester.runLoader();
+           tester.unitPrepper();
     }
       public void runLoader()
       {
@@ -49,6 +52,7 @@ public class UnitLoader
         String name = fc.getSelectedFile().getName();
         System.out.println("You have selected to load "+name);
         this.loadAllUnits(name);
+        
       }
     public void loadAllUnits(String fileToLoad) 
     {
@@ -113,8 +117,25 @@ public class UnitLoader
             System.out.println(unit.unitName + "created");
             return unit;
     } 
-       
-      
+  
+      public ArrayList unitPrepper()
+      {
+       ArrayList<Unit> newAllUnits = new ArrayList();
+       ArrayList<Unit> allPrepUnit = new ArrayList();
+          for(Unit prep: allUnits)
+          {
+            int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.unitName+"to create: ", "", JOptionPane.PLAIN_MESSAGE));
+            String confirm = "Really create "+someNumber+" "+prep.unitName+" ?";
+            JOptionPane.showConfirmDialog(null, confirm);
+            for(int i=0; i<someNumber; i++)
+            {
+                allPrepUnit.add(prep);
+            }
+            newAllUnits.addAll(allPrepUnit);
+          }
+         allUnits = newAllUnits;
+         return allUnits;
+      }
            
     
     
