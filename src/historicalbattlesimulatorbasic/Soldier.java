@@ -68,6 +68,18 @@ public class Soldier
     public boolean isSprinting;
     public boolean isBracing;
  
+public static void main(String[] args)
+{
+ Soldier s1 = new Soldier("Unit1",2,3,2,1,5,10,3,4,12,3,4,4);
+ Tile t1 = new Tile(10, 10,10,10);
+ s1.occupyTile(t1);
+ t1.occupyBy(s1);
+ Soldier s2 = new Soldier("Unit1",2,3,2,1,5,10,3,4,4,3,4,4);
+ Tile t2 = new Tile(20, 12,10,10);
+ s2.occupyTile(t2);
+ t2.occupyBy(s2);
+ s1.rangeAttack(s2);
+}
 public Soldier(String unitname,
                 int unitType,
                 int dmg,
@@ -322,6 +334,34 @@ public Soldier attack(Soldier opponent)
      System.out.println(opponent.hp);
      return opponent;
 }
+
+public Soldier rangeAttack(Soldier opponent)
+{
+    if(lineOfSight(opponent)&&inRange(opponent))
+    {
+         int diceRoll = dice.nextInt(20);
+    double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
+    
+    {
+        if((diceRoll + this.attack) > (opponent.armorClass))
+        {
+            opponent.hp= opponent.hp - dmgDice;
+            System.out.println("The attack hits and "+opponent.unitname +" takes " + dmgDice + " points of damage");
+            
+        }
+        else
+        {
+            System.out.println("The attack misses!");
+        }
+    }
+   
+     opponent.update();
+     System.out.println(opponent.hp);
+     
+    }
+   return opponent;
+    
+}
 public void update()
 {
         if (this.hp<=0)
@@ -377,13 +417,51 @@ public void calculateModifiers(Soldier opponent)
         / 4 is Spearmen
         / 5 is 'other'
         */
-        if(this.unitType==3 && opponent.unitType==1) //cavalry vs ranged
+        if(this.unitType==4 && opponent.unitType==1) //pikeman vs cavalry
         {
             Modifier.setBalanceBonus(this);
         }
-        if(this.unitType==4 && opponent.unitType==3) //cavalry vs ranged
-        {
-            Modifier.setBalanceBonus(this);
-        }
+       
+    }
+
+    
+    private boolean lineOfSight(Soldier opponent)
+    {
+        //loops over tiles between the unit to make sure no obstruction is there
+        return true;
+    }
+
+    public double getDistance(Soldier opponent)
+    {
+        double x1 = this.tileOccupied.xPosition;
+        double y1 = this.tileOccupied.yPosition;
+        double x2 = opponent.tileOccupied.xPosition;
+        double y2 = opponent.tileOccupied.yPosition;
+        double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        return distance;
+    }
+    private boolean inRange(Soldier opponent) 
+    {
+       if(this.range >= this.getDistance(opponent))
+       {
+           return true;
+       }
+       else
+       {
+           System.out.println("OUT OF RANGE");
+           return false;
+       }
+       
+       
+    }
+
+    /*
+    Places a soldier on a tile
+    @Tile t - The tile to place the soldier
+    */
+    private void occupyTile(Tile t)
+    {
+         t.occupyBy(this);
+        this.tileOccupied=t;
     }
 }

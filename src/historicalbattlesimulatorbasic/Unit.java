@@ -31,6 +31,10 @@ public class Unit extends Soldier
      int xWidth=10;
 //    static Unit 
     //Create a unit, with position, on the battlefield
+    public static void main(String[] args)
+     {
+         
+     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
         unitName = soldierType.unitname;
@@ -111,6 +115,38 @@ public class Unit extends Soldier
                     // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
                 }
              defender.unitSoldiers[j]=this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
+             j--; //decrament j after every attack
+                        
+             
+            }
+            
+        System.out.println("After this round of attacks by the" + this.unitname + " against " + defender.unitname+ " "+ defender.getUnitsAlive() + " units of "+ defender.unitname + "remain.");
+        }
+        
+    }
+    
+      public void attackAtRange(Unit defender)
+    {
+       
+        int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
+        
+        //100
+        int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
+        
+        if(this.unitDefeat==false)
+        {
+            
+            for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
+            {
+             int j = dSize-1; //the integer for the defenders unit size.
+             if(j==0)
+                {
+                    //if all the defenders are dead, bring them all back again?
+                    System.out.println("The attackers won, all defenders are dead");
+                    break;
+                    // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
+                }
+             defender.unitSoldiers[j]=this.unitSoldiers[i].rangeAttack(defender.unitSoldiers[j]); //attacks the unit and edits the value
              j--; //decrament j after every attack
                         
              
