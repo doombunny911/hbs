@@ -53,7 +53,8 @@ public class Openingmenuscreen extends JFrame
         {
             System.out.println("test 2");
 //            UnitCreator.createUnit();
-//           
+//            UnitLoader loader = new UnitLoader();
+            
             //go to file and load in all units into a unit array to later be drawn
         }
     });
@@ -90,29 +91,15 @@ public class Openingmenuscreen extends JFrame
             
             GUI.gameFrame.revalidate();
             UnitLoader loader = new UnitLoader();
-//            loader.runLoader();
+            loader.runLoader();
             ArrayList<Unit> allUnits = loader.getAllUnits();
             //drawing unit, every unit is added via this, and thus drawn.
-//            synchronized(this)
-//            {
-//                System.out.println("here1");
-//                 while(GUI.tileClicked==null)
-//                 {
-//                     System.out.println("here2");
-//                     try{
-//                         System.out.println("here3");
-//                        this.wait();
-//                         System.out.println("here4");
-//                     }
-//                     catch(InterruptedException a)
-//                     {
-//                         System.out.println("GUI tile failed to load" +a);
-//                     }
-//                 }
-//                 notifyAll();
-//            }
-//  
-//          
+//            while(unitNum!=0)
+             GUI.unitNum=allUnits.size();
+//             getter();
+             
+//          UnitLoader loader = new UnitLoader();
+            
 //            for(Unit selectedUnit: allUnits)
 //            {
 //                System.out.println("Enter x position: ");
@@ -165,5 +152,22 @@ public class Openingmenuscreen extends JFrame
   {
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);
+  }
+  
+  synchronized  boolean getter()
+  {
+      if(GUI.tileClicked==null)
+      {
+          try{
+              wait();
+          }
+          catch(InterruptedException ex)
+          {
+              System.out.println(ex+"an Exception!!!!");
+          }
+          
+      }
+      notifyAll();
+      return true;
   }
 }

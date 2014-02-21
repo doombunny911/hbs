@@ -30,7 +30,8 @@ public class GUI implements MouseListener
     static JPanel panel;
     static ArrayList<UnitDraw> units=new ArrayList<>();
     static Tile tileClicked;
-    
+    static UnitLoader loader;
+    static int unitNum;
     
     static Tile getTileClicked() 
     {
@@ -40,6 +41,7 @@ public class GUI implements MouseListener
    public GUI(JPanel panel)
    {
        GUI.panel=panel;
+       System.out.println("mouseListener check");
        GUI.panel.addMouseListener(this);
    }
    public static void addToFrame(Component c)
@@ -177,10 +179,58 @@ public class GUI implements MouseListener
     @Override
     public void mousePressed(MouseEvent me) 
     {
-        
-//        System.out.println("Mouse pressed");
-        double findTileX= Math.ceil(me.getX()/10);
-        double findTileY=Math.ceil(me.getY()/10);
+    }
+    @Override
+    public void mouseClicked(MouseEvent mac) 
+    {
+        //while there are still units that need to be loaded, 
+        //wait for a tile to be clicked and than paint it
+        System.out.println("Mouse clicked");
+        double findTileX= Math.ceil(mac.getX()/10);
+        double findTileY=Math.ceil(mac.getY()/10);
+        GUI.tileClicked=GUI.tileGameMap[(int)findTileY][(int)findTileX];
+
+        Tile clickedTile;
+        System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
+        while(GUI.tileClicked!=null&&unitNum!=0)
+         {
+              
+//  
+
+             System.out.println("Unitnum!=0");
+//            
+             System.out.println(GUI.tileClicked+"Right before condition");
+             
+                 
+//                 System.out.println("GUI.tileClicked!=null");
+                 System.out.println(unitNum+ " Before anything happens ");
+                 Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
+//                 System.out.println(GUI.tileClicked);
+                 
+                 unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+                 System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
+                 GUI.units.add(new UnitDraw(unit));
+                 GUI.tileClicked=null;
+                 unitNum--;
+                 System.out.println("UnitNum after sub ="+ unitNum);
+                 GUI.panel.repaint();
+//             System.out.println("GUI.tileClicked after"); 
+
+         }
+             
+         
+//         for(Unit selectedUnit: allUnits)
+//            {
+//                System.out.println("Enter x position: ");
+//                System.out.println(GUI.tileClicked);
+//                int x = clickedTile[i].xPosition;
+//                System.out.println("Enter y position: ");
+//                int y = clickedTile[i].yPosition;
+//                selectedUnit.setPosition(x,y);
+//                GUI.units.add(new UnitDraw(selectedUnit));
+//                i++;
+//            }
+//       
         
         //may have to catch java.lang.ArrayIndexOutOfBoundsException, 
         //or actually probably better to round click to nearest tile
@@ -188,13 +238,9 @@ public class GUI implements MouseListener
         //this is the tile that was clicked on, currently doing nothing
 //        System.out.println("tileXSpot " +findTileX);
 //        System.out.println("fileYSpot " +findTileY);
-        System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
-        tileClicked=GUI.tileGameMap[(int)findTileY][(int)findTileX];
+       
     }
-    @Override
-    public void mouseClicked(MouseEvent me) 
-    {
-    }
+    
     @Override
     public void mouseReleased(MouseEvent me) 
     {

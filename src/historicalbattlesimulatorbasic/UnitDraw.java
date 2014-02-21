@@ -23,6 +23,7 @@ public class UnitDraw extends Rectangle
     public UnitDraw(Unit getUnit)
     {
         super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
+        System.out.println("unit width = " + getUnit.xWidth+ " unit height = " + getUnit.yHeight);
         this.xDraw=x;
         this.yDraw=y;
     }
