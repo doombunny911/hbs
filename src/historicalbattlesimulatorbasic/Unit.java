@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * This is the unit class
  * @author schm1413
  */
-public class Unit extends Soldier
+public class Unit extends Soldier 
 {
     String unitName;
     Soldier unitSoldiers[];
@@ -310,6 +310,6 @@ if(!parent.exists() && !parent.mkdirs()){
         this.xPosition = x;
         this.yPosition = y;
     }
-            
+
             
 }
