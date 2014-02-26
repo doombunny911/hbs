@@ -5,6 +5,8 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.awt.Frame;
+import java.awt.HeadlessException;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -27,7 +29,7 @@ public class UnitCreator
       public static void main(String[] args) throws IOException 
     {
         
-        UnitCreator.createUnit();
+      UnitCreator.createUnit();
     }
       //This shall be used to create a unit. Multiple of this unit may be loaded for a battle.
     public static void createUnit() throws IOException
@@ -68,9 +70,8 @@ public class UnitCreator
         prompt[13]="Enter the average size of the Unit, enter 1 and I will construct"
                 + " an individual soldier instead";
         prompt[14]="Enter the name of the file to save this to";
+       String exit="Create another unit?";
        
-        System.out.println("Enter in your character information now");
-        System.out.println("At any time, type in exit to leave creation menu");
        
         
         //The stat array, holds the stat.  I entered all information in as strings
@@ -88,7 +89,7 @@ public class UnitCreator
             //if user ever enters exit, it ends
                           
         }
-                      
+                            
         {
             
             Soldier soldier = new Soldier(
@@ -101,9 +102,32 @@ public class UnitCreator
             Unit unit = new Unit(soldier,Integer.parseInt(stats[13]));
             
             unit.saveUnit(stats[14]);
-            
-        }
+          Frame frame = JOptionPane.getRootFrame();
+            if(createMore(frame))
+            {
+                createUnit();
+            }
      
     }   
 
+}
+
+    private static boolean createMore(Frame frame) throws HeadlessException {
+        Object[] options = {"Yes",
+            "No."};
+        int n = JOptionPane.showConfirmDialog(
+                frame,
+                "Would you like to create more units?"," ",
+                JOptionPane.YES_NO_OPTION);
+       
+        if(n==0)
+        {
+            return true;
+        }
+        else if(n==1)
+        {
+            return false;
+        }
+          return false;
+    }
 }

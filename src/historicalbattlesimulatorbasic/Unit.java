@@ -41,7 +41,8 @@ public class Unit extends Soldier
          Unit attacker =(Unit) allUnits.get(1);
          Unit defender =(Unit) allUnits.get(2);
         
-         Object[] options = {"Attack",
+         Object[] options = {
+                    "Attack",
                     "Defend",
                     "Retreat"};
          int n = JOptionPane.showOptionDialog(null,
@@ -79,8 +80,9 @@ public class Unit extends Soldier
         this.soldierType = soldierType;
         for(int i=0; i<unitSize; i++)
         {
+           
             //make each unit a soldier
-            unitSoldiers[i]= soldierType;
+            unitSoldiers[i]= soldierType.clone();
         }
     }
     //Create a unit with out position.
@@ -89,11 +91,12 @@ public class Unit extends Soldier
         unitName = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
-        this.soldierType = soldierType;
+         this.soldierType = soldierType;
         for(int i=0; i<unitSize; i++)
         {
+           
             //make each unit a soldier
-            unitSoldiers[i]= soldierType;
+            unitSoldiers[i]= soldierType.clone();
         }
     }
     //this should determine how many units are still alive
@@ -139,32 +142,45 @@ public class Unit extends Soldier
         if(defender.unitDefeat==false)
         {
             
-            
+            int j=0;
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
-            {               
-                  System.out.println("Defending units alive:"+defender.getUnitsAlive());
-                
-                 Soldier s = this.unitSoldiers[i].attack(defender.unitSoldiers[i]); //attacks the unit and edits the value
+            {    
+               dSize = defender.getUnitsAlive();
+               if(j<dSize)
+               {  
+                   j++;
+               }
+               else
+               {
+                   j=0;
+               }
+               System.out.println("Defending units alive:"+defender.getUnitsAlive());
+                if(!this.unitSoldiers[i].isAlive()&&j!=0)
+                {
+                    i--;
+                }
+                 Soldier s = this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
                  if(!s.isAlive())
                  {
-                     
+                    
                  }
                  
-                 System.out.println(s.unitName+" "+i+" has been attacked");
-                 defender.unitSoldiers[i]=s;
+                 System.out.println(s.unitName+" "+j+" has been attacked");
+                 defender.unitSoldiers[j]=s;
                 
                 
                         
              
             }
+            
         }
-       /*  if(defender.getUnitsAlive()==0 && isUnitDefeated())
+        if(defender.getUnitsAlive()==0 && isUnitDefeated())
                 {
                     System.out.println("Remaining defender"+dSize);
                     JOptionPane.showMessageDialog(null, "The attackers won, all defenders are dead");
                 
-                    //resets j for the rest of the attackers to target.
-                }*/
+                    
+                }
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
                     + this.unitName + " against " + defender.unitName+ " "+
                     defender.getUnitsAlive() + " units of "+ defender.unitName + " remain.");
@@ -172,7 +188,7 @@ public class Unit extends Soldier
         
     
     
-    /*  public void attackAtRange(Unit defender)
+    public void attackAtRange(Unit defender)
     {
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
@@ -203,7 +219,7 @@ public class Unit extends Soldier
         }
         
     }
-    */
+    
     /*
     Used to move the entire unit in a direction. Sets the unit to be facing this direction.
     @dir - Direction:

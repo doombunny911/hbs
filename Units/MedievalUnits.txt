@@ -12,7 +12,7 @@ Knights Templars
 2.0
 5.0
 5.0
-10
+20
 ---
 Saracen Knight
 1
