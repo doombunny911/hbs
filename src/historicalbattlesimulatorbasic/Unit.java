@@ -89,6 +89,7 @@ public class Unit extends Soldier
             //make each unit a soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
+            unitSoldiers[i].placeOnTile(tileOccupied);
         }
        
     }
@@ -201,6 +202,9 @@ public class Unit extends Soldier
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
+        if (isInRange(aSize, dSize))
+        {
+           
         
         if(this.unitDefeat==false)
         {
@@ -225,7 +229,18 @@ public class Unit extends Soldier
             
         System.out.println("After this round of attacks by the" + this.unitName + " against " + defender.unitName+ " "+ defender.getUnitsAlive() + " units of "+ defender.unitName + "remain.");
         }
-        
+        }
+    }
+
+    private boolean isInRange(int aSize, int dSize) {
+        for (int i = 0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
+        {
+            int j = dSize-1; //the integer for the defenders unit size.
+            if (this.unitSoldiers[i].getDistance(soldierType)>range) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /*

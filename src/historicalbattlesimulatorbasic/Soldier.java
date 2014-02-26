@@ -240,6 +240,7 @@ public void moveNorth()
     if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     {
     tileOccupied = tileOccupied.tileNorth();
+    this.placeOnTile(tileOccupied);
     }
 }
 public void moveNorthEast()
@@ -247,6 +248,7 @@ public void moveNorthEast()
     if(tileOccupied.hasNorthEast()&&!tileOccupied.tileNorthEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileNorthEast();
+     this.placeOnTile(tileOccupied);
     }
 }
 public void moveEast()
@@ -254,6 +256,7 @@ public void moveEast()
     if(tileOccupied.hasEast()&&!tileOccupied.tileEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileEast();
+     this.placeOnTile(tileOccupied);
     }
 }
 public void moveSouthEast()
@@ -261,6 +264,7 @@ public void moveSouthEast()
     if(tileOccupied.hasSouthEast()&&!tileOccupied.tileSouthEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileSouthEast();
+     this.placeOnTile(tileOccupied);
     }
 }
 public void moveSouth()
@@ -268,6 +272,7 @@ public void moveSouth()
     if(tileOccupied.hasSouth()&&!tileOccupied.tileSouth.isOccupied)
     {
     tileOccupied = tileOccupied.tileSouth();
+     this.placeOnTile(tileOccupied);
     }
 }
 public void moveSouthWest()
@@ -275,6 +280,7 @@ public void moveSouthWest()
     if(tileOccupied.hasSouthWest()&&!tileOccupied.tileSouthWest.isOccupied)
     {
     tileOccupied = tileOccupied.tileSouthWest();
+     this.placeOnTile(tileOccupied);
     }
 }
 public void moveWest()
@@ -282,6 +288,7 @@ public void moveWest()
     if(tileOccupied.hasWest()&&!tileOccupied.tileWest.isOccupied)
     {
     tileOccupied = tileOccupied.tileWest();
+     this.placeOnTile(tileOccupied);
     }
 }
 public void moveNorthWest()
@@ -289,6 +296,7 @@ public void moveNorthWest()
     if(tileOccupied.hasNorthWest()&&!tileOccupied.tileNorthWest.isOccupied)
     {
     tileOccupied = tileOccupied.tileNorthWest();
+     this.placeOnTile(tileOccupied);
     }
 }
 public Soldier()
