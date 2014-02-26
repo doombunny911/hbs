@@ -138,11 +138,6 @@ public class UnitLoader
          allUnits = newAllUnits;
          return allUnits;
       }
-           
-    
-    
-    
-    
     public ArrayList getAllUnits()
     {
         return allUnits;

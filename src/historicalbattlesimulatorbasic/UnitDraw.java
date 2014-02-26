@@ -20,13 +20,16 @@ public class UnitDraw extends Rectangle
     
     //the position of the top left point of the unit
     int xDraw,yDraw;
+    Unit thisUnit;
     public UnitDraw(Unit getUnit)
     {
         super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
+        this.thisUnit=getUnit;
         System.out.println("unit width = " + getUnit.xWidth+ " unit height = " + getUnit.yHeight);
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
     }
+    //may have no need for this one, will keep for now
     public UnitDraw(int x, int y, int heightY, int widthX)
     {
         super.setBounds(x,y,heightY,widthX);
