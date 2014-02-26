@@ -59,7 +59,7 @@ public class Soldier
     boolean isWounded = false;
     boolean isWavering = false;
      
-    
+    int unitID;
 //Tile being occupied
     Tile tileOccupied;
 //basic dice to be used in combat
@@ -126,6 +126,17 @@ public Soldier(String unitName,
     
 }
 
+/*
+@int id - the identification number of the unit
+*/
+public void setUnitID(int id)
+{
+    this.unitID = id;
+}
+public int getUnitID()
+{
+    return this.unitID;
+}
 //MOVEMENT
 public void placeOnTile(Tile tile)
 {
@@ -285,7 +296,8 @@ public Soldier()
     
 }
 
-public Soldier clone()
+    @Override
+    public Soldier clone()
 {
     Soldier clone = new Soldier(this.unitName,
                 this.unitType,

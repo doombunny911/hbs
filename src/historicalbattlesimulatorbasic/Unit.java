@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Unit extends Soldier 
 {
+    int unitID;
     String unitName;
     Soldier unitSoldiers[];
     Soldier soldierType;
@@ -72,18 +74,23 @@ public class Unit extends Soldier
      }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
-        unitName = soldierType.unitName;
+        this.unitName = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
         this.unitStartLocationY=y;
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
+         //Creates a random Unit ID
+        Random rng = new Random();
+        this.unitID = rng.nextInt(10000);
         for(int i=0; i<unitSize; i++)
         {
            
             //make each unit a soldier
             unitSoldiers[i]= soldierType.clone();
+            unitSoldiers[i].setUnitID(this.unitID);
         }
+       
     }
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
@@ -97,6 +104,7 @@ public class Unit extends Soldier
            
             //make each unit a soldier
             unitSoldiers[i]= soldierType.clone();
+            unitSoldiers[i].setUnitID(this.unitID);
         }
     }
     //this should determine how many units are still alive
@@ -327,5 +335,9 @@ if(!parent.exists() && !parent.mkdirs()){
         this.yPosition = y;
     }
 
+        public int getUnitID()
+        {
+            return this.unitID;
+        }
             
 }
