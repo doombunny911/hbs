@@ -16,7 +16,7 @@ public class Soldier
 {
     //basic parts of the soldier
     boolean alive = true;
-    String unitname;
+    String unitName;
     int unitType; /*
     / 1 is Melee
     / 2 is Ranged
@@ -96,7 +96,7 @@ public Soldier(String unitname,
                 double morale)
 {
     
-     this.unitname = unitname;
+     this.unitName = unitname;
      facing=1;
      this.unitType = unitType;
      this.attack = attack;
@@ -318,21 +318,22 @@ public Soldier attack(Soldier defender)
     int diceRoll = dice.nextInt(20);
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
     
-    {
+    
+        System.out.println("Defender HP: "+defender.hp);
         if((diceRoll + this.attack) > (defender.armorClass))
         {
             defender.hp= defender.hp - dmgDice;
-            JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitname +" takes " + dmgDice + " points of damage");
+            JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
             
         }
         else
         {
             JOptionPane.showMessageDialog(null,"The attack misses!");
         }
-    }
+    
    
      defender.update();
-     JOptionPane.showMessageDialog(null,defender.unitname+ "'s remaining HP: "+defender.hp);
+     JOptionPane.showMessageDialog(null,defender.unitName+ "'s remaining HP: "+defender.hp);
      return defender;
 }
 
@@ -347,7 +348,7 @@ public Soldier rangeAttack(Soldier opponent)
         if((diceRoll + this.attack) > (opponent.armorClass))
         {
             opponent.hp= opponent.hp - dmgDice;
-            System.out.println("The attack hits and "+opponent.unitname +" takes " + dmgDice + " points of damage");
+            System.out.println("The attack hits and "+opponent.unitName +" takes " + dmgDice + " points of damage");
             
         }
         else
@@ -369,11 +370,11 @@ public void update()
         if (this.hp<=0)
         {
             this.die();
-            System.out.println(this.unitname + " died");
+            System.out.println(this.unitName + " died");
         }
         else
         {
-            System.out.println(this.unitname + " lives to fight another day");
+            System.out.println(this.unitName + " lives to fight another day");
             Modifier.resetValues(this);
         }
      
