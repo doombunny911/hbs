@@ -16,10 +16,10 @@ import javax.swing.JPanel;
 
 public class Painter extends JPanel
 {
-    Tile tiles[][];
     private int tileWidth;
     static double remainderHeight;
     static double remainderWidth;
+    private double sHeight,sWidth;
     int x,y;
     Unit unit;
     public Painter(int widthf)
@@ -27,7 +27,11 @@ public class Painter extends JPanel
         this.tileWidth=widthf;
 //        tiles=Map.gameMap;
     }
-    
+    public Painter(double sWidth,double sHeight)
+    {
+        this.sWidth=sWidth;
+        this.sHeight=sHeight;
+    }
     public Painter(int locationX,int locationY)
     {
         x =locationX;
@@ -48,28 +52,15 @@ public class Painter extends JPanel
        
       Graphics2D g2=(Graphics2D)g;
        
-      int width = Openingmenuscreen.tilePanel.getWidth();
-      int height = Openingmenuscreen.tilePanel.getHeight();
-//      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
-//      System.out.println(remainderHeight = Math.floor(height%tileWidth));
-      double squareWidth = Math.floor(width/tileWidth);
-      double squareHeight = Math.floor(height/tileWidth);
-      tiles=new Tile[(int)squareHeight][(int)squareWidth];
-//
-      System.out.println("squarewidth ="+ squareWidth + 
-               " tileWidth = " + tileWidth+ " squareHeight = " + squareHeight +
-               " width = " + width );
-      int a=0;
-      for(int i=0;i<squareHeight;i++)
+      
+      for(int i=0;i<sHeight;i++)
       {
-         for(int j=0;j<squareWidth;j++)
+         for(int j=0;j<sWidth;j++)
          {
-            tiles[i][j]= new Tile(j*tileWidth,i*tileWidth,tileWidth,tileWidth);
-            g2.draw(tiles[i][j]);
+            g2.draw(GUI.tileGameMap[i][j]);
          }
        }
-      GUI.tileGameMap=tiles;
-      if(GUI.units.isEmpty()!=true)
+      if(!GUI.units.isEmpty())
       {
          for(int i=0;i<GUI.units.size();i++)
          {
@@ -79,7 +70,7 @@ public class Painter extends JPanel
       //untested
       if(unit!=null)
       {
-         tiles[50][50].loadSprite(g,tiles[50][50],unit);
+         GUI.tileGameMap[50][50].loadSprite(g,GUI.tileGameMap[50][50],unit);
       }
 //      GUI.gameFrame.validate();
 //      GUI.gameFrame.repaint();

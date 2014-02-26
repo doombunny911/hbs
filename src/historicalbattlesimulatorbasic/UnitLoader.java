@@ -133,6 +133,8 @@ public class UnitLoader
             }
             newAllUnits.addAll(allPrepUnit);
           }
+          //shouldn't you be adding newAllUnits to allUnits?  
+          //what if I want to load more than one file?
          allUnits = newAllUnits;
          return allUnits;
       }

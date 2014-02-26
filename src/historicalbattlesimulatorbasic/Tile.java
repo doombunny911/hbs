@@ -224,4 +224,15 @@ public class Tile extends Rectangle
            System.out.println("error loading file " + e);
         }
     }
+    
+    public Unit checkUnitWithinBounds(Tile tile)
+    {
+//        //if a unit's x+width and y+height intersects with the tiles position
+//        //return which unit that is
+//        for(int i=0;i<GUI.units.size();i++)
+//        {
+//            if(GUI.units.get(i).xDraw)
+//        }
+        return null;
+    }
 }

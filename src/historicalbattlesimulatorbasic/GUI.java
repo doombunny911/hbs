@@ -249,8 +249,6 @@ public class GUI implements MouseListener
     {
         System.out.println("Unitnum!=0");
         System.out.println(GUI.tileClicked+"Right before condition");
-        
-        
         System.out.println(unitNum+ " Before anything happens ");
         Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
         
@@ -281,7 +279,12 @@ public class GUI implements MouseListener
         System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
         while(thereIsAUnitReadyToBeLoaded())
             loadUnit();
-        
+//       if(GUI.tileClicked!=null&&GUI.tileClicked.getIsOccupied())
+//       {
+//           System.out.println("tis true");
+//           System.out.println(GUI.tileClicked.getOccupier().getUnitID());
+//       }
+
        
     }
     //checks to see if someone clicked a tile and there are units in "queue"

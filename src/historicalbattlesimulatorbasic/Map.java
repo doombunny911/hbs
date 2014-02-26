@@ -14,8 +14,9 @@ package historicalbattlesimulatorbasic;
  */
 public class Map 
 {
-    static  Tile[][] gameMap;
-    static int tileWidth; 
+   
+   private double squareHeight;
+   private double squareWidth;
     
     public Map(int xHeight, int yHeight)
     {
@@ -27,63 +28,85 @@ public class Map
     public Map(int xWidth)
     {
         GUI.tileWidth=xWidth;
-        tileWidth=xWidth;
-        Painter gen = new Painter(tileWidth);
-        gameMap=gen.tiles;
+        this.generateTiles();
+        Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
         GUI.gameFrame.add(gen);
     }
  
+    
+    public final void generateTiles()
+    {
+      int width = Openingmenuscreen.tilePanel.getWidth();
+      int height = Openingmenuscreen.tilePanel.getHeight();
+//      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
+//      System.out.println(remainderHeight = Math.floor(height%tileWidth));
+       squareWidth = Math.floor(width/GUI.tileWidth);
+       squareHeight = Math.floor(height/GUI.tileWidth);
+      GUI.tileGameMap=new Tile[(int)squareHeight][(int)squareWidth];
+//
+      System.out.println("squarewidth ="+ squareWidth + 
+               " tileWidth = " + GUI.tileWidth+ " squareHeight = " + squareHeight +
+               " width = " + width );
+     
+      for(int i=0;i<squareHeight;i++)
+      {
+         for(int j=0;j<squareWidth;j++)
+         {
+            GUI.tileGameMap[i][j]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+         }
+       } 
+    }
     //inserts a specific tile into a specific location
     public void insertTile(Tile insertTile, int x,int y)
     {
-        gameMap[x][y]=insertTile;
+        GUI.tileGameMap[x][y]=insertTile;
     }
     
     //Sets the tile to have north, east, south, west
     public void setTileAllDirections()
     {
-         for(int x=0; x<gameMap.length ;x++)
+         for(int x=0; x<GUI.tileGameMap.length ;x++)
          {   
-            for(int y=0;y<gameMap[x].length;y++)
+            for(int y=0;y<GUI.tileGameMap[x].length;y++)
             {
                 Tile north=null, northeast=null, east=null, southeast=null, south=null, southwest = null, west=null, northwest=null;
-                if(gameMap[x][y].hasNorth())
+                if(GUI.tileGameMap[x][y].hasNorth())
                 {
-                    north=gameMap[x][y+1];
+                    north=GUI.tileGameMap[x][y+1];
                 }
-                if(gameMap[x][y].hasNorthEast())
+                if(GUI.tileGameMap[x][y].hasNorthEast())
                 {
-                    northeast=gameMap[x+1][y+1];
+                    northeast=GUI.tileGameMap[x+1][y+1];
                 }
-                if(gameMap[x][y].hasEast())
+                if(GUI.tileGameMap[x][y].hasEast())
                 {
-                    east= gameMap[x+1][y];
+                    east= GUI.tileGameMap[x+1][y];
                 }
-                if(gameMap[x][y].hasSouthEast())
+                if(GUI.tileGameMap[x][y].hasSouthEast())
                 {
-                    southeast=gameMap[x+1][y-1];
+                    southeast=GUI.tileGameMap[x+1][y-1];
                 }
-                 if(gameMap[x][y].hasSouth())
+                 if(GUI.tileGameMap[x][y].hasSouth())
                 {
-                    east= gameMap[x][y-1];
+                    east= GUI.tileGameMap[x][y-1];
                 }
-                 if(gameMap[x][y].hasSouthWest())
+                 if(GUI.tileGameMap[x][y].hasSouthWest())
                  {
-                     southwest=gameMap[x-1][y-1];
+                     southwest=GUI.tileGameMap[x-1][y-1];
                  }
-                  if(gameMap[x][y].hasWest())
+                  if(GUI.tileGameMap[x][y].hasWest())
                 {
-                    east= gameMap[x-1][y];
+                    east= GUI.tileGameMap[x-1][y];
                 }
-                  if(gameMap[x][y].hasNorthWest())
+                  if(GUI.tileGameMap[x][y].hasNorthWest())
                   {
-                     northwest= gameMap[x-1][y+1];
+                     northwest= GUI.tileGameMap[x-1][y+1];
                   }
 
              
-            gameMap[x][y].setDirections(north, east, south, west);
+            GUI.tileGameMap[x][y].setDirections(north, east, south, west);
              //populate the gameMap with tiles. NESW. Might need 
             
         }
