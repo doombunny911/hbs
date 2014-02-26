@@ -71,7 +71,7 @@ public class Unit extends Soldier
      }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
-        unitName = soldierType.unitname;
+        unitName = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
         this.unitStartLocationY=y;
@@ -86,7 +86,7 @@ public class Unit extends Soldier
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
-        unitName = soldierType.unitname;
+        unitName = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
@@ -132,40 +132,50 @@ public class Unit extends Soldier
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-        
+        System.out.println("Attacking units"+aSize);
+        System.out.println("Defending units"+dSize);
+      
+      
         if(defender.unitDefeat==false)
         {
             
+            
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
-            {
-             int j = dSize-1; //the integer for the defenders unit size.
-             if(j==0)
-                {
-                    
-                    JOptionPane.showMessageDialog(null, "The attackers won, all defenders are dead");
+            {               
+                  System.out.println("Defending units alive:"+defender.getUnitsAlive());
                 
-                    break;
-                    // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
-                }
-             else{               
-            defender.unitSoldiers[j]=this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
-                       j--;  } //decrament j after every attack
+                 Soldier s = this.unitSoldiers[i].attack(defender.unitSoldiers[i]); //attacks the unit and edits the value
+                 if(!s.isAlive())
+                 {
+                     
+                 }
+                 
+                 System.out.println(s.unitName+" "+i+" has been attacked");
+                 defender.unitSoldiers[i]=s;
+                
+                
                         
              
             }
+        }
+       /*  if(defender.getUnitsAlive()==0 && isUnitDefeated())
+                {
+                    System.out.println("Remaining defender"+dSize);
+                    JOptionPane.showMessageDialog(null, "The attackers won, all defenders are dead");
+                
+                    //resets j for the rest of the attackers to target.
+                }*/
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
                     + this.unitName + " against " + defender.unitName+ " "+
                     defender.getUnitsAlive() + " units of "+ defender.unitName + " remain.");
         }
         
-    }
     
-      public void attackAtRange(Unit defender)
+    
+    /*  public void attackAtRange(Unit defender)
     {
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
-   
-        //100
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
         
         if(this.unitDefeat==false)
@@ -174,24 +184,26 @@ public class Unit extends Soldier
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
             {
              int j = dSize-1; //the integer for the defenders unit size.
-             if(j==0)
+             if(defender.getUnitsAlive()==0)
                 {
                     //if all the defenders are dead, bring them all back again?
                     System.out.println("The attackers won, all defenders are dead");
                     break;
                     // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
                 }
+             else{
              defender.unitSoldiers[j]=this.unitSoldiers[i].rangeAttack(defender.unitSoldiers[j]); //attacks the unit and edits the value
-             j--; //decrament j after every attack
+             }
+             //decrament j after every attack
                         
              
             }
             
-        System.out.println("After this round of attacks by the" + this.unitname + " against " + defender.unitname+ " "+ defender.getUnitsAlive() + " units of "+ defender.unitname + "remain.");
+        System.out.println("After this round of attacks by the" + this.unitName + " against " + defender.unitName+ " "+ defender.getUnitsAlive() + " units of "+ defender.unitName + "remain.");
         }
         
     }
-    
+    */
     /*
     Used to move the entire unit in a direction. Sets the unit to be facing this direction.
     @dir - Direction:
@@ -204,7 +216,7 @@ public class Unit extends Soldier
     7 is west
     8 is northwest
     */
-    @Override
+  
     public void moveDirection(int dir)
     {
        boolean accessible=true; //the value for if every soldier can move
