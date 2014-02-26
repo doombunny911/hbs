@@ -355,8 +355,6 @@ public Soldier attack(Soldier defender)
     //calculate the dice roll for the attack
     int diceRoll = dice.nextInt(20);
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
-    
-    
         System.out.println("Defender HP before the hit: "+defender.hp);
         if((diceRoll + this.attack) > (defender.armorClass))
         {

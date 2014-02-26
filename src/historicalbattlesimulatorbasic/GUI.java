@@ -69,67 +69,38 @@ public class GUI implements MouseListener
     public static void addButtonsToPanel(JButton[] button,JPanel aPanel) {
        GUI.panel.setLayout(null);
        panel.setLayout(null);
-        GUI.panel.setLayout(null);
-        aPanel.setPreferredSize(new Dimension(500,300));
+       GUI.panel.setLayout(null);
+       aPanel.setPreferredSize(new Dimension(500,300));
        aPanel.setBounds(0, GUI.panel.getHeight()-150,GUI.panel.getWidth(), 150);
-       int frameHeight=GUI.panel.getHeight()-100;
-       int frameWidth = GUI.panel.getWidth()/6-100;
-       int frameHalfway = GUI.panel.getWidth()/2;
-//       button[0].setLocation(300,300);
        button[0].setBounds(aPanel.getWidth()/6-100,35,100,30);
        button[1].setBounds(aPanel.getWidth()/6*2-100,35,100,30);
        button[2].setBounds(aPanel.getWidth()/6*3-100,35,100,30);
        button[3].setBounds(aPanel.getWidth()/6*4-100,35,100,30);
        button[4].setBounds(aPanel.getWidth()/6*5-100,35,100,30);
        button[5].setBounds(aPanel.getWidth()/6*6-100,35,100,30);
-        aPanel.add(button[0]);
-        aPanel.add(button[1]);
-        aPanel.add(button[2]);
-        aPanel.add(button[3]);
-        aPanel.add(button[4]);
-        aPanel.add(button[5]);
-    
+       aPanel.add(button[0]);
+       aPanel.add(button[1]);
+       aPanel.add(button[2]);
+       aPanel.add(button[3]);
+       aPanel.add(button[4]);
+       aPanel.add(button[5]);
        
         GUI.panel.add(aPanel);
         GUI.panel.repaint();
         GUI.gameFrame.revalidate();
     }
    
+    
    //not in final spots, didn't want 
 //   to waste time finding the optimal spots atm
-   
    public static void buttonLoader()
    {
-       
        JButton[] button=new JButton[6];
        button=initializeButtons(button);
-    
-       int frameHeight=GUI.panel.getHeight()-100;
-       int frameWidth = GUI.panel.getWidth()/6-100;
-       int frameHalfway = GUI.panel.getWidth()/2;
-//       button[0].setLocation(300,300);
-//       button[0].setBounds(0,0,100,30);
-//       button[1].setBounds(frameWidth*2,frameHeight,100,30);
-//       button[2].setBounds(frameWidth*3,frameHeight,150,30);
-//       button[3].setBounds(frameWidth*4+100,frameHeight,100,30);
-//       button[4].setBounds(frameWidth*5+100,frameHeight,150,30);
-//       button[5].setBounds(frameWidth*6+100,frameHeight,150,30);
-//       
-//       
-//       GUI.panel.add(button[0]);
-//       GUI.panel.add(button[1]);
-//       GUI.panel.add(button[2]);
-//       GUI.panel.add(button[3]);
-//       GUI.panel.add(button[4]);
-//       GUI.panel.add(button[5]);
-//       
+
        JPanel buttonPanel = new JPanel();
        buttonPanel.setLayout(null);
        addButtonsToPanel(button,buttonPanel);
-       System.out.println(GUI.panel.getHeight()+ "height");
-       System.out.println(GUI.panel.getWidth()+ "width");
-//       buttonPanel.setBounds(0,GUI.panel.getHeight()-150, GUI.panel.getWidth()-1, 150);
-       
        
        button[0].addActionListener(new ActionListener() {
            @Override
@@ -220,10 +191,6 @@ public class GUI implements MouseListener
        });
    }
 
-   
-   
-   
-   
    public static JButton[] initializeButtons(JButton[] button)
    {
        button[0]=new JButton("Attack");
@@ -242,9 +209,6 @@ public class GUI implements MouseListener
 //       r.getBounds
 //       return r;
    }
-   
-   
-
     
     public void loadUnit() 
     {
@@ -273,7 +237,6 @@ public class GUI implements MouseListener
     {
         //while there are still units that need to be loaded, 
         //wait for a tile to be clicked and than paint it
-        System.out.println("Mouse clicked");
         double findTileX= Math.ceil(mac.getX()/10);
         double findTileY=Math.ceil(mac.getY()/10);
         GUI.tileClicked=GUI.tileGameMap[(int)findTileY][(int)findTileX];
@@ -285,12 +248,10 @@ public class GUI implements MouseListener
 //           System.out.println("tis true");
 //           System.out.println(GUI.tileClicked.getOccupier().getUnitID());
 //       }
-
+        
        
     }
     //checks to see if someone clicked a tile and there are units in "queue"
-    
-    
     public boolean thereIsAUnitReadyToBeLoaded() 
     {
         return GUI.tileClicked!=null&&unitNum!=0;

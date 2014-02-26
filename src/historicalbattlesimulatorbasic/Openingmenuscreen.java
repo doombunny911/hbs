@@ -96,21 +96,12 @@ public class Openingmenuscreen extends JFrame
             //drawing unit, every unit is added via this, and thus drawn.
 //            while(unitNum!=0)
              GUI.unitNum=allUnits.size();
-//             getter();
+             System.out.println("this happens here");
+             for(int i=0;i<GUI.units.size();i++)
+             {
+                 System.out.println(GUI.units.get(i).locationOfUnit+"tester");
+             }
              
-//          UnitLoader loader = new UnitLoader();
-            
-//            for(Unit selectedUnit: allUnits)
-//            {
-//                System.out.println("Enter x position: ");
-//                System.out.println(GUI.tileClicked);
-//                int x = clickedTile[i].xPosition;
-//                System.out.println("Enter y position: ");
-//                int y = clickedTile[i].yPosition;
-//                selectedUnit.setPosition(x,y);
-//                GUI.units.add(new UnitDraw(selectedUnit));
-//                i++;
-//            }
             GUI.gameFrame.revalidate();
         }
     });
