@@ -81,7 +81,7 @@ public static void main(String[] args)
  t2.occupyBy(s2);
  s1.rangeAttack(s2);
 }
-public Soldier(String unitname,
+public Soldier(String unitName,
                 int unitType,
                 int dmg,
                 double attack,
@@ -96,7 +96,7 @@ public Soldier(String unitname,
                 double morale)
 {
     
-     this.unitName = unitname;
+     this.unitName = unitName;
      facing=1;
      this.unitType = unitType;
      this.attack = attack;
@@ -284,6 +284,24 @@ public Soldier()
 {
     
 }
+
+public Soldier clone()
+{
+    Soldier clone = new Soldier(this.unitName,
+                this.unitType,
+                this.dmg,
+                this.attack,
+                this.dmgBonus,
+                this.hp,
+                this.armorClass,
+                this.defense,
+                this.speed,
+                this.range,
+                this.chargeBonus,
+                this.stamina,
+                this.morale);
+    return clone;
+}
 /* Actions Taken by the user. The following methods are actions taken by the user that modify values.*/
 public void defend()
 {
@@ -319,12 +337,12 @@ public Soldier attack(Soldier defender)
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
     
     
-        System.out.println("Defender HP: "+defender.hp);
+        System.out.println("Defender HP before the hit: "+defender.hp);
         if((diceRoll + this.attack) > (defender.armorClass))
         {
             defender.hp= defender.hp - dmgDice;
             JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
-            
+             System.out.println("Defender HP after the hit: "+defender.hp);
         }
         else
         {
