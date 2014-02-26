@@ -17,15 +17,15 @@ import java.awt.Rectangle;
 //Units at some level are rectangles holding soldiers.  Therefore, I will draw
 public class UnitDraw extends Rectangle
 {
-    //arbritary size of units atm
-   
+    
+    //the position of the top left point of the unit
     int xDraw,yDraw;
     public UnitDraw(Unit getUnit)
     {
         super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
         System.out.println("unit width = " + getUnit.xWidth+ " unit height = " + getUnit.yHeight);
-        this.xDraw=x;
-        this.yDraw=y;
+        this.xDraw=getUnit.xPosition;
+        this.yDraw=getUnit.yPosition;
     }
     public UnitDraw(int x, int y, int heightY, int widthX)
     {

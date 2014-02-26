@@ -5,11 +5,14 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -69,26 +72,38 @@ public class GUI implements MouseListener
 //   to waste time finding the optimal spots atm
    public static void buttonLoader()
    {
-      
-       JPanel buttonPanel = new JPanel();
-       JButton attack=new JButton("Attack");
-       JButton defend=new JButton("Defend");
-       JButton checkStats = new JButton("Check Stats");
-       JButton move = new JButton("Move");
-       JButton specialAbility =new JButton("Special Ability");
-       JButton cancel = new JButton("Cancel Selection");
-
+       
+       JButton[] button=new JButton[6];
+       button=initializeButtons(button);
+    
        int frameHeight=GUI.panel.getHeight()-100;
        int frameWidth = GUI.panel.getWidth()/6-100;
        int frameHalfway = GUI.panel.getWidth()/2;
-       attack.setBounds(frameWidth,frameHeight,100,30);
-       defend.setBounds(frameWidth*2,frameHeight,100,30);
-       checkStats.setBounds(frameWidth*3,frameHeight,150,30);
-       move.setBounds(frameWidth*4+100,frameHeight,100,30);
-       specialAbility.setBounds(frameWidth*5+100,frameHeight,150,30);
-       cancel.setBounds(frameWidth*6+100,frameHeight,150,30);
+//       button[0].setLocation(300,300);
+       button[0].setBounds(0,0,100,30);
+       button[1].setBounds(frameWidth*2,frameHeight,100,30);
+       button[2].setBounds(frameWidth*3,frameHeight,150,30);
+       button[3].setBounds(frameWidth*4+100,frameHeight,100,30);
+       button[4].setBounds(frameWidth*5+100,frameHeight,150,30);
+       button[5].setBounds(frameWidth*6+100,frameHeight,150,30);
        
-       attack.addActionListener(new ActionListener() {
+       
+       GUI.panel.add(button[0]);
+       GUI.panel.add(button[1]);
+       GUI.panel.add(button[2]);
+       GUI.panel.add(button[3]);
+       GUI.panel.add(button[4]);
+       GUI.panel.add(button[5]);
+       
+//       JPanel buttonPanel = new JPanel();
+//       buttonPanel.setLayout(null);
+//       addButtonsToPanel(button,buttonPanel);
+       System.out.println(GUI.panel.getHeight()+ "height");
+       System.out.println(GUI.panel.getWidth()+ "width");
+//       buttonPanel.setBounds(0,GUI.panel.getHeight()-150, GUI.panel.getWidth()-1, 150);
+       
+       
+       button[0].addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
@@ -96,7 +111,7 @@ public class GUI implements MouseListener
            }
        });
        
-       defend.addActionListener(new ActionListener() {
+       button[1].addActionListener(new ActionListener() {
 
            @Override
            public void actionPerformed(ActionEvent ae)
@@ -106,7 +121,7 @@ public class GUI implements MouseListener
        });
        
        
-       checkStats.addActionListener(new ActionListener() {
+       button[2].addActionListener(new ActionListener() {
 
            @Override
            public void actionPerformed(ActionEvent ae) 
@@ -115,15 +130,49 @@ public class GUI implements MouseListener
                //print them on side of screen
            }
        });
-       move.addActionListener(new ActionListener() {
+       button[3].addActionListener(new ActionListener() {
 
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-               //move
+               
+               
+               
+               System.out.println("please click the tile that you wish to move to");
+               
+               //get unit that is being clicked on to move
+                    
+               //get tile Clicked 
+                    //wait for mouseEvent to happen
+                   
+               //find previous unit spot, delete it
+//                    //loop through the arrayList until you find a unit with the same x,y starting point (xDraw,yDraw)
+//                for(int i=0;i<units.size();i++)
+//                {
+//                    if(units.get(i).xDraw=thecurrentlytargetUnit.xPosition&&units.get(i).yDraw=thecurrentlytargetUnit.yPosition)
+//                    {
+//                        units.remove(i);
+//                        break;
+//                    }
+//                        
+//                    //should never leave loop without deleting the unit
+//                }
+//               
+//               //put new unit into array
+//                    units.add(new UnitDraw(moveXPosition,moveYPosition));
+//               
+//               Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
+//        
+//                unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+//            System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
+//            GUI.units.add(new UnitDraw(unit));
+//            GUI.tileClicked=null;
+//            unitNum--;
+//            System.out.println("UnitNum after sub ="+ unitNum);
+//            GUI.panel.repaint();
            }
        });
-       specialAbility.addActionListener(new ActionListener() {
+       button[4].addActionListener(new ActionListener() {
 
            @Override
            public void actionPerformed(ActionEvent ae) 
@@ -131,7 +180,7 @@ public class GUI implements MouseListener
                System.out.println("SpecialAbility Activate!");
            }
        });
-       cancel.addActionListener(new ActionListener() 
+       button[5].addActionListener(new ActionListener() 
        {
 
            @Override
@@ -141,40 +190,80 @@ public class GUI implements MouseListener
                //make buttons disapear/click through or delete and remake
            }
        });
-       
-       GUI.panel.setLayout(null);
-       GUI.panel.add(attack);
-       GUI.panel.add(defend);
-       GUI.panel.add(checkStats);
-       GUI.panel.add(move);
-       GUI.panel.add(specialAbility);
-       GUI.panel.add(cancel);
-//       SpringLayout layout=new Springlayout();
-//       buttonPanel.setLayout(layout);
-//       System.out.println(Openingmenuscreen.tilePanel);
-//       System.out.println(GUI.panel);
-       System.out.println(GUI.panel.getHeight()+ "height");
-       System.out.println(GUI.panel.getWidth()+ "width");
-       buttonPanel.setBounds(0,GUI.panel.getHeight()-150, GUI.panel.getWidth()-1, 150);
-//       buttonPanel.setBounds(300,400,350,350);
-//       buttonPanel.setLocation(300,500);
-//       GUI.panel.add(buttonPanel);
-//       GUI.panel.setLayout(lm);
    }
-   //puts the buttons on a panel instead of directly on the tilePanel
-   public void buttonsOnPanel(JButton[] button)
-   {
+
+   
+   
+    public static void addButtonsToPanel(JButton[] button,JPanel aPanel) {
+//       GUI.panel.setLayout(null);
+//       panel.setLayout(null);
+        GUI.panel.setLayout(null);
+        aPanel.setPreferredSize(new Dimension(500,300));
+       aPanel.setBounds(0, 0, 500, 200);
+//       int frameHeight=GUI.panel.getHeight()-100;
+//       int frameWidth = GUI.panel.getWidth()/6-100;
+//       int frameHalfway = GUI.panel.getWidth()/2;
+////       button[0].setLocation(300,300);
+//       button[0].setBounds(0,0,100,30);
+//       button[1].setBounds(frameWidth*2,frameHeight,100,30);
+//       button[2].setBounds(frameWidth*3,frameHeight,150,30);
+//       button[3].setBounds(frameWidth*4+100,frameHeight,100,30);
+//       button[4].setBounds(frameWidth*5+100,frameHeight,150,30);
+//       button[5].setBounds(frameWidth*6+100,frameHeight,150,30);
+//        aPanel.add(button[0]);
+//        aPanel.add(button[1]);
+//        aPanel.add(button[2]);
+//        aPanel.add(button[3]);
+//        aPanel.add(button[4]);
+//        aPanel.add(button[5]);
+    
        
+//        GUI.panel.add(aPanel);
+        GUI.panel.repaint();
+        GUI.gameFrame.revalidate();
+    }
+   
+   public static JButton[] initializeButtons(JButton[] button)
+   {
+       button[0]=new JButton("Attack");
+       button[1]=new JButton("Defend");
+       button[2]=new JButton("Check Stats");
+       button[3]=new JButton("Move");
+       button[4]=new JButton("Special Ability");
+       button[5]=new JButton("Cancel Selection");
+       return button;
    }
    
    public static void copy(Component c,Component d)
    {
        
        d.setBounds(0, 0,c.getWidth(),c.getHeight());
-       
 //       r.getBounds
 //       return r;
    }
+   
+   
+
+    
+    public void loadUnit() 
+    {
+        System.out.println("Unitnum!=0");
+        System.out.println(GUI.tileClicked+"Right before condition");
+        
+        
+        System.out.println(unitNum+ " Before anything happens ");
+        Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
+        
+        unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+        System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
+        GUI.units.add(new UnitDraw(unit));
+        GUI.tileClicked=null;
+        unitNum--;
+        System.out.println("UnitNum after sub ="+ unitNum);
+        GUI.panel.repaint();
+    }
+    
+   
    
     @Override
     public void mousePressed(MouseEvent me) 
@@ -189,58 +278,19 @@ public class GUI implements MouseListener
         double findTileX= Math.ceil(mac.getX()/10);
         double findTileY=Math.ceil(mac.getY()/10);
         GUI.tileClicked=GUI.tileGameMap[(int)findTileY][(int)findTileX];
-
-        Tile clickedTile;
         System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
-        while(GUI.tileClicked!=null&&unitNum!=0)
-         {
-              
-//  
-
-             System.out.println("Unitnum!=0");
-//            
-             System.out.println(GUI.tileClicked+"Right before condition");
-             
-                 
-//                 System.out.println("GUI.tileClicked!=null");
-                 System.out.println(unitNum+ " Before anything happens ");
-                 Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
-//                 System.out.println(GUI.tileClicked);
-                 
-                 unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-                 System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
-                 GUI.units.add(new UnitDraw(unit));
-                 GUI.tileClicked=null;
-                 unitNum--;
-                 System.out.println("UnitNum after sub ="+ unitNum);
-                 GUI.panel.repaint();
-//             System.out.println("GUI.tileClicked after"); 
-
-         }
-             
-         
-//         for(Unit selectedUnit: allUnits)
-//            {
-//                System.out.println("Enter x position: ");
-//                System.out.println(GUI.tileClicked);
-//                int x = clickedTile[i].xPosition;
-//                System.out.println("Enter y position: ");
-//                int y = clickedTile[i].yPosition;
-//                selectedUnit.setPosition(x,y);
-//                GUI.units.add(new UnitDraw(selectedUnit));
-//                i++;
-//            }
-//       
+        while(thereIsAUnitReadyToBeLoaded())
+            loadUnit();
         
-        //may have to catch java.lang.ArrayIndexOutOfBoundsException, 
-        //or actually probably better to round click to nearest tile
-        
-        //this is the tile that was clicked on, currently doing nothing
-//        System.out.println("tileXSpot " +findTileX);
-//        System.out.println("fileYSpot " +findTileY);
        
     }
+    //checks to see if someone clicked a tile and there are units in "queue"
     
+    
+    public boolean thereIsAUnitReadyToBeLoaded() 
+    {
+        return GUI.tileClicked!=null&&unitNum!=0;
+    }
     @Override
     public void mouseReleased(MouseEvent me) 
     {
