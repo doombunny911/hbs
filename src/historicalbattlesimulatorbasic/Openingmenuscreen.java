@@ -42,8 +42,8 @@ public class Openingmenuscreen extends JFrame
             Scanner scan = new Scanner(System.in);
             System.out.println("Enter number of players: ");
             int numPlayers = scan.nextInt();
-            simulation.setUp(numPlayers);
-            simulation.playGame();
+//            simulation.setUp(numPlayers);
+//            simulation.playGame();
         }
     });
 
@@ -97,11 +97,6 @@ public class Openingmenuscreen extends JFrame
 //            while(unitNum!=0)
              GUI.unitNum=allUnits.size();
              System.out.println("this happens here");
-             for(int i=0;i<GUI.units.size();i++)
-             {
-                 System.out.println(GUI.units.get(i).locationOfUnit+"tester");
-             }
-             
             GUI.gameFrame.revalidate();
         }
     });

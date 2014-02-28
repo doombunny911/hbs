@@ -6,13 +6,11 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,6 +33,8 @@ public class GUI implements MouseListener
     static Tile tileClicked;
     static UnitLoader loader;
     static int unitNum;
+    static int moveInt;
+    static int indexToRemove;
     
     static Tile getTileClicked() 
     {
@@ -138,27 +138,9 @@ public class GUI implements MouseListener
                
                
                System.out.println("please click the tile that you wish to move to");
+               moveInt+=2;
                
-               //get unit that is being clicked on to move
-                    
-               //get tile Clicked 
-                    //wait for mouseEvent to happen
-                   
-               //find previous unit spot, delete it
-//                    //loop through the arrayList until you find a unit with the same x,y starting point (xDraw,yDraw)
-//                for(int i=0;i<units.size();i++)
-//                {
-//                    if(units.get(i).xDraw=thecurrentlytargetUnit.xPosition&&units.get(i).yDraw=thecurrentlytargetUnit.yPosition)
-//                    {
-//                        units.remove(i);
-//                        break;
-//                    }
-//                        
-//                    //should never leave loop without deleting the unit
-//                }
-//               
-//               //put new unit into array
-//                    units.add(new UnitDraw(moveXPosition,moveYPosition));
+              
 //               
 //               Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
 //        
@@ -191,6 +173,56 @@ public class GUI implements MouseListener
        });
    }
 
+   private void moveUnit() 
+   {
+       System.out.println("in moveUnit");
+       if(moveInt%2==0)
+       {
+             System.out.println("mod 2 =0");
+
+           //this is a unit being selected
+            for(int i=0;i<GUI.units.size();i++)
+           {
+               if(GUI.tileClicked.getOccupier().unitName==GUI.units.get(i).thisUnit.unitName)
+               {
+                   System.out.println(GUI.tileClicked.getOccupier().unitName);
+                   System.out.println(GUI.units.get(i).thisUnit.unitName);
+//                   System.out.println(GUI.units.get(i).thisUnit.unitID);
+//                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
+                   //found the unit to delete
+//                   System.out.println(GUI.units.get(i).xDraw);
+                   GUI.indexToRemove=i;
+                   System.out.println("indexToRemove " +GUI.indexToRemove);
+                   break;
+               }
+           }
+       }
+       
+       else
+       {
+             System.out.println("mod 2 =1");
+
+          UnitDraw draw =GUI.units.get(GUI.indexToRemove);
+          Unit unit =draw.thisUnit;
+//          draw.xDraw = GUI.tileClicked.xPosition;
+//          draw.yDraw= GUI.tileClicked.yPosition;
+          
+          unit.xPosition=GUI.tileClicked.xPosition;
+          unit.yPosition = GUI.tileClicked.yPosition;
+          
+          UnitDraw draw2=new UnitDraw(unit);
+          GUI.units.remove(GUI.units.get(GUI.indexToRemove));
+
+          GUI.units.add(draw2);
+          GUI.indexToRemove=0;
+          GUI.gameFrame.revalidate();
+          GUI.panel.repaint();
+          GUI.gameFrame.repaint();
+       }
+         GUI.moveInt--;
+         GUI.tileClicked=null;
+         
+   }
    public static JButton[] initializeButtons(JButton[] button)
    {
        button[0]=new JButton("Attack");
@@ -215,7 +247,9 @@ public class GUI implements MouseListener
         System.out.println("Unitnum!=0");
         System.out.println(GUI.tileClicked+"Right before condition");
         System.out.println(unitNum+ " Before anything happens ");
-        Unit unit=  UnitLoader.allUnits.get(GUI.unitNum-1);
+        Unit unit= 
+                UnitLoader.allUnits.get(GUI.unitNum-1);
+        
         
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
         System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
@@ -248,8 +282,13 @@ public class GUI implements MouseListener
 //           System.out.println("tis true");
 //           System.out.println(GUI.tileClicked.getOccupier().getUnitID());
 //       }
-        
-       
+        if(GUI.moveInt>0&&tileClicked!=null)
+        {
+            System.out.println("moveUnit>0");
+             moveUnit();
+            
+        }
+       GUI.panel.repaint();
     }
     //checks to see if someone clicked a tile and there are units in "queue"
     public boolean thereIsAUnitReadyToBeLoaded() 
@@ -270,5 +309,7 @@ public class GUI implements MouseListener
     public void mouseExited(MouseEvent me)
     {
     }
+
+    
   
 }

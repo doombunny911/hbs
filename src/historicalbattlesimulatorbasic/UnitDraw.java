@@ -21,19 +21,23 @@ public class UnitDraw extends Rectangle
     //the position of the top left point of the unit
     int xDraw,yDraw;
     Unit thisUnit;
-    Tile locationOfUnit;
+    Tile tileLocationOfUnit;
     public UnitDraw(Unit getUnit)
     {
         super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
         this.thisUnit=getUnit;
+        System.out.println("unitName = " +getUnit.unitName);
         System.out.println("unit width = " + getUnit.xWidth+ " unit height = " + getUnit.yHeight);
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        this.locationOfUnit=GUI.tileClicked;
+                System.out.println("xDraw = " + xDraw + " yDraw = " + yDraw);
+
+        this.tileLocationOfUnit=GUI.tileClicked;
         for(int i=0;i<this.thisUnit.unitSoldiers.length;i++)
         {
             //setting all soldiers to occupy a single tile
             this.thisUnit.unitSoldiers[i].tileOccupied=GUI.tileClicked;
+            GUI.tileClicked.occupyBy(thisUnit.unitSoldiers[i]);
         }
         
         
@@ -42,7 +46,7 @@ public class UnitDraw extends Rectangle
     public UnitDraw(int x, int y, int heightY, int widthX)
     {
         super.setBounds(x,y,heightY,widthX);
-        this.locationOfUnit=GUI.tileClicked;
+        this.tileLocationOfUnit=GUI.tileClicked;
         this.xDraw=x;
         this.yDraw=y;
     }
