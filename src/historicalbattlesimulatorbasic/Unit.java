@@ -39,38 +39,38 @@ public class Unit extends Soldier
      {
          UnitLoader ul = new UnitLoader();
          ul.runLoader();
-         ArrayList allUnits = ul.unitPrepper();
-         Unit attacker =(Unit) allUnits.get(1);
-         Unit defender =(Unit) allUnits.get(2);
-        
-         Object[] options = {
-                    "Attack",
-                    "Defend",
-                    "Retreat"};
-         int n = JOptionPane.showOptionDialog(null,
-    "What do you "+attacker.unitName+" want to do? \n"
-            + "Attacker: "+attacker.unitName +"\n vs"
-         + "\n"+defender.unitName,
-    "Battle between "+attacker.unitName+" and "+defender.unitName,
-    JOptionPane.YES_NO_CANCEL_OPTION,
-    JOptionPane.QUESTION_MESSAGE,
-    null,
-    options,
-    options[2]);
-         if(n==0)
-         {
-            attacker.attack(defender);
-         }
-         else if(n==1)
-         {
-             attacker.defend();
-             
-         }
-         else
-         {
-            JOptionPane.showMessageDialog(null, "The "+attacker.unitName + "runs away");
-         }
-         
+//         ArrayList allUnits = ul.unitPrepper();
+//         Unit attacker =(Unit) allUnits.get(1);
+//         Unit defender =(Unit) allUnits.get(2);
+//        
+//         Object[] options = {
+//                    "Attack",
+//                    "Defend",
+//                    "Retreat"};
+//         int n = JOptionPane.showOptionDialog(null,
+//    "What do you "+attacker.unitName+" want to do? \n"
+//            + "Attacker: "+attacker.unitName +"\n vs"
+//         + "\n"+defender.unitName,
+//    "Battle between "+attacker.unitName+" and "+defender.unitName,
+//    JOptionPane.YES_NO_CANCEL_OPTION,
+//    JOptionPane.QUESTION_MESSAGE,
+//    null,
+//    options,
+//    options[2]);
+//         if(n==0)
+//         {
+//            attacker.attack(defender);
+//         }
+//         else if(n==1)
+//         {
+//             attacker.defend();
+//             
+//         }
+//         else
+//         {
+//            JOptionPane.showMessageDialog(null, "The "+attacker.unitName + "runs away");
+//         }
+//         
      }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
@@ -83,6 +83,7 @@ public class Unit extends Soldier
          //Creates a random Unit ID
         Random rng = new Random();
         this.unitID = rng.nextInt(10000);
+        System.out.println(unitID);
         for(int i=0; i<unitSize; i++)
         {
            
@@ -100,6 +101,7 @@ public class Unit extends Soldier
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
          this.soldierType = soldierType;
+         
         for(int i=0; i<unitSize; i++)
         {
            

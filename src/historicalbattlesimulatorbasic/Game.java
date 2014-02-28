@@ -6,7 +6,11 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Frame;
+import java.awt.HeadlessException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,30 +18,55 @@ import java.util.Scanner;
  */
 public class Game 
 {
-    
-int numOfPlayers;
+
+  
+Frame frame = JOptionPane.getRootFrame();    
+
 Player players[];
 Map gameMap;
 boolean hasWinner=false;
 Player winner=null;
-int gameSize=10; //determines how many units each side has. Variable. Should likely be removed and changed
-      
+
+public static ArrayList<Player> playersForDemo;
+static int numOfPlayers;
+
 Scanner scan = new Scanner(System.in);
 public Game()
 {
 }
-
-public void setUp(int num)
+public static void main(String[] args)
 {
+Game game = new Game();
+game.setUp();
+game.playersForDemo = game.playerCreator(numOfPlayers);
+for(Player p : playersForDemo)
+  {
+      System.out.println("Player name: "+ p.playerName);
+  }
+  //game begin
+ System.out.println("The game between"+ playersForDemo.get(0)+" and "+playersForDemo.get(1)+" has begun");
+ game.playGame(playersForDemo);
+  
+  
+   }
 
- this.setNumPlayers(num);
- for(int i=0; i<numOfPlayers; i++)
- {
-     this.addPlayer(new Player(gameSize),i);
-     System.out.println("Enter player 1's name: ");
-     String name = scan.nextLine();
-     players[i].setPlayerName(name);
- }
+ public void playGame(ArrayList<Player> playersForDemo)
+{
+   boolean hasWinner = false;
+   while(!hasWinner)
+   {
+       for(Player p : playersForDemo)
+       {
+           JOptionPane.showMessageDialog(null,"Player "+p.playerName+"'s turn.");
+           hasWinner = takeTurn(p);
+       }
+   }
+}
+public void setUp()
+{
+JOptionPane.showMessageDialog(frame, "Welcome to the Historical Battle Simulator! ");
+int pcount = Integer.parseInt(JOptionPane.showInputDialog(frame, "How many players shall be participating?","0"));
+this.setNumPlayers(pcount);
 }
 //sets how many people are playing
 public void setNumPlayers(int numOfPlayers)
@@ -45,37 +74,28 @@ public void setNumPlayers(int numOfPlayers)
     this.numOfPlayers=numOfPlayers;
     
 }
-//adds a player and number
-public void addPlayer(Player player, int num)
-{
-    players[num]=player;
-}
-public void playGame()
-{
-    while(hasWinner==false)
+public static ArrayList playerCreator(int numPlay)
     {
-        for(int i=0; i<numOfPlayers; i++)
-        {
-            this.takeTurn(players[i]);
+     
+       ArrayList<Player> players = new ArrayList();     
+       
+      
+       for(int i=0; i<numPlay; i++)
+        {           
+            
+            Player.singlePlayerDialog(players); 
+            
         }
-        
+        return players;
     }
-    //implement later. Will
-    
-}
 
-    private boolean takeTurn(Player player)
-    {
-        
-       //Should be a loop, allows things to cycle through. Return true
-        hasWinner=false;
-        //player options.
-        //Select Unit
-        //Save
-        //End Turn
-        return hasWinner;
-    }
 
     
     //need win conditions
+
+    private boolean takeTurn(Player p)
+    {
+      boolean hasWinner =  p.takeTurn();
+      return hasWinner;
+           }
 }

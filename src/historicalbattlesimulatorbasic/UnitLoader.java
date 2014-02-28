@@ -31,10 +31,14 @@ public class UnitLoader
       public static void main(String[] args) throws IOException 
     {
         UnitLoader tester = new UnitLoader();
-           tester.runLoader();
-           tester.unitPrepper();
+        ArrayList<Unit> testUnits = tester.runLoader();
+        testUnits =  tester.unitPrepper(testUnits);
+        for(Unit u: testUnits)
+        {
+            System.out.println("Loaded "+u.unitName);
+        }
     }
-      public void runLoader()
+      public ArrayList<Unit> runLoader()
       {
           
         final JFileChooser fc = new JFileChooser();
@@ -51,12 +55,13 @@ public class UnitLoader
        
         String name = fc.getSelectedFile().getName();
         System.out.println("You have selected to load "+name);
-        this.loadAllUnits(name);
+       ArrayList<Unit> returnUnit = this.loadAllUnits(name);
+        return returnUnit;
         
         
         
       }
-    public void loadAllUnits(String fileToLoad) 
+    public ArrayList<Unit> loadAllUnits(String fileToLoad) 
     {
         try {
             //Load all units
@@ -89,7 +94,7 @@ public class UnitLoader
             Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-
+        return allUnits;
        
     }
     //Loads a singular unit. 
@@ -120,11 +125,11 @@ public class UnitLoader
             return unit;
     } 
   
-      public ArrayList unitPrepper()
+  public ArrayList<Unit> unitPrepper(ArrayList<Unit> playerUnits)
       {
-       ArrayList<Unit> newAllUnits = new ArrayList();
+       ArrayList<Unit> newPlayerUnits = new ArrayList();
        ArrayList<Unit> allPrepUnit = new ArrayList();
-          for(Unit prep: allUnits)
+          for(Unit prep: playerUnits)
           {
             int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.unitName+" to create: ", "", JOptionPane.PLAIN_MESSAGE));
             String confirm = "Really create "+someNumber+" "+prep.unitName+" ?";
@@ -133,11 +138,10 @@ public class UnitLoader
             {
                 allPrepUnit.add(prep);
             }
-            newAllUnits.addAll(allPrepUnit);
+            newPlayerUnits.addAll(allPrepUnit);
           }
-          //shouldn't you be adding newAllUnits to allUnits?  
-          //what if I want to load more than one file?
-         allUnits = newAllUnits;
+         
+         allUnits = newPlayerUnits;
          
          return allUnits;
       }

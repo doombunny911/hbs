@@ -18,68 +18,42 @@ import javax.swing.JOptionPane;
  */
 public class Player{
 
-    String playerName; //the players actual name
-    String nameOfArmy; //The name of the army
-    int unitLimit, unitsRemaning;
-    ArrayList allUnits; //all of a players units
-      UnitLoader playerUnits = new UnitLoader();
-    public static ArrayList<Player> playersForDemo = new ArrayList();
+   
+Frame frame = JOptionPane.getRootFrame();
+String playerName; //the players actual name
+String nameOfArmy; //The name of the army
+int unitLimit, unitsRemaning;
+boolean isWinner = false;
+ArrayList <Unit> allUnits; //all of a players units
+    UnitLoader playerUnits = new UnitLoader();
+   
 public static void main(String[] args)
 {
- playersForDemo = playerCreator();
-  for(Player p : playersForDemo)
-  {
-      System.out.println("Player name: "+ p.playerName);
-  }
-        
-     }
-private static boolean createMore(Frame frame) throws HeadlessException {
-      
-        int n = JOptionPane.showConfirmDialog(
-                frame,
-                "Would you like to add another player?"," ",
-                JOptionPane.YES_NO_OPTION);
-       
-        if(n==0)
-        {
-            return true;
-        }
-        else if(n==1)
-        {
-            return false;
-        }
-          return false;
-    }
-    private static ArrayList playerCreator()
-    {
-     
-       Frame frame = JOptionPane.getRootFrame();
-          
-       ArrayList<Player> players = new ArrayList();     
-       
-      
-       boolean createMorePlayers = true;
-       while(createMorePlayers)
-        {           
-            Player playHolder = new Player(); 
-            singlePlayerCreator(playHolder, players); 
-            createMorePlayers = createMore(frame);
-        }
-        return players;
+    Player newPlayer = new Player();
+    newPlayer.takeTurn();
+    
+}
+
+//LOADING Player problems
+    public static void singlePlayerDialog(ArrayList<Player> players) throws HeadlessException, NumberFormatException {
+    Player playHolder   = new Player();   
+    playHolder.playerName = JOptionPane.showInputDialog ( "Enter player name: " );
+        //playHolder.nameOfArmy = JOptionPane.showInputDialog ( "Enter army name:\n 'Mars Fury', 'The 13th Legion of Rome', 'Ryan's Raiders' " );
+        playHolder.unitLimit = Integer.parseInt(JOptionPane.showInputDialog ( "Set the max number of Units to be deployed in this army: " ));
+        singlePlayerLoader(playHolder, players);
     }
 
-    private static void singlePlayerCreator(Player playHolder, ArrayList<Player> players) throws HeadlessException, NumberFormatException {
-        playHolder.playerName = JOptionPane.showInputDialog ( "Enter player name: " );
-        playHolder.nameOfArmy = JOptionPane.showInputDialog ( "Enter army name:\n 'Mars Fury', 'The 13th Legion of Rome', 'Ryan's Raiders' " );
-        playHolder.unitLimit = Integer.parseInt(JOptionPane.showInputDialog ( "Set the max number of Units to be deployed in this army: " ));
-        JOptionPane.showMessageDialog(null,"Select a unit list to choose your army from");
-        playHolder.playerUnits = new UnitLoader();
-        playHolder.playerUnits.runLoader();
-        ArrayList<Unit> allUnitsLocal = playHolder.playerUnits.unitPrepper();
+    private static void singlePlayerLoader(Player playHolder, ArrayList<Player> players) throws HeadlessException {
+      
+    JOptionPane.showMessageDialog(null,"Select a unit list to choose your army from");
+        UnitLoader loader = new UnitLoader();
+        ArrayList<Unit> allUnitsLocal = loader.runLoader();
+        allUnitsLocal = loader.unitPrepper(allUnitsLocal);
         playHolder.allUnits = allUnitsLocal;
         players.add(playHolder);
+        
     }
-    Scanner scan = new Scanner(System.in);
+   
    
 
     public Player()
@@ -87,22 +61,36 @@ private static boolean createMore(Frame frame) throws HeadlessException {
        
     
     }
+    
+    /*
+    Provides the basic options for the player
+    @selectedUnit - The unit being targeted 
+    */
+    public void menuOptions(Unit selectedUnit)
+    {
+        
+    }
     //sets the players name
     public void setPlayerName(String playerName)
     {
         this.playerName=playerName;
     }
     //adds unit to the army
-    public void addUnitToArmy(Unit unit)
-    {
-        allUnits.add(unit);
-    }
+
     public int getUnitCount()
     {
         return allUnits.size();
     }
+    //Select a unit
+    public Unit unitSelector(Player play)
+    {
+        return null;
+
+
+
+    }
     //Each player gets to do 2 things with each unit
-    public void selectUnit(Unit unit)
+ /*   public void selectUnit(Unit unit)
     {
         //the following are all options that can be selected    
         System.out.println("Select what you want to do with the unit. "
@@ -140,7 +128,8 @@ private static boolean createMore(Frame frame) throws HeadlessException {
             }
             
         }
-    }
+    }*/
+
     
     public void openMoveMenu(Unit unit)
     {
@@ -149,7 +138,7 @@ private static boolean createMore(Frame frame) throws HeadlessException {
         System.out.println("2.Charge");
         System.out.println("3.Regular");
         System.out.println("4.Rest");
-        int selection = scan.nextInt();
+int selection =1;
             if(selection==1)
             {
                 this.setUnitSprinting(unit);
@@ -178,7 +167,7 @@ private static boolean createMore(Frame frame) throws HeadlessException {
     {
        int selection;
        System.out.println("Select an opponent to attack!");
-       selection= scan.nextInt(); //
+//  selection= scan.nextInt(); //
        //this needs work, must allow the player to select a unit and attack it.
               
     }
@@ -219,8 +208,10 @@ private static boolean createMore(Frame frame) throws HeadlessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    void takeTurn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   public boolean takeTurn() 
+    {
+       this.unitSelector(this);
+       return isWinner;
     }
 }
 
