@@ -54,6 +54,7 @@ public class UnitLoader
         this.loadAllUnits(name);
         
         
+        
       }
     public void loadAllUnits(String fileToLoad) 
     {
@@ -137,6 +138,7 @@ public class UnitLoader
           //shouldn't you be adding newAllUnits to allUnits?  
           //what if I want to load more than one file?
          allUnits = newAllUnits;
+         
          return allUnits;
       }
     public ArrayList getAllUnits()

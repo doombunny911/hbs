@@ -22,18 +22,19 @@ public class Player{
     String nameOfArmy; //The name of the army
     int unitLimit, unitsRemaning;
     ArrayList allUnits; //all of a players units
-    
-    ArrayList player1Units, player2Units;
+      UnitLoader playerUnits = new UnitLoader();
     public static ArrayList<Player> playersForDemo = new ArrayList();
 public static void main(String[] args)
 {
  playersForDemo = playerCreator();
-  
+  for(Player p : playersForDemo)
+  {
+      System.out.println("Player name: "+ p.playerName);
+  }
         
      }
 private static boolean createMore(Frame frame) throws HeadlessException {
-        Object[] options = {"Yes",
-            "No."};
+      
         int n = JOptionPane.showConfirmDialog(
                 frame,
                 "Would you like to add another player?"," ",
@@ -51,15 +52,16 @@ private static boolean createMore(Frame frame) throws HeadlessException {
     }
     private static ArrayList playerCreator()
     {
-       boolean first = true;
+     
        Frame frame = JOptionPane.getRootFrame();
           
        ArrayList<Player> players = new ArrayList();     
-       Player playHolder = new Player(); 
+       
       
        boolean createMorePlayers = true;
        while(createMorePlayers)
         {           
+            Player playHolder = new Player(); 
             singlePlayerCreator(playHolder, players); 
             createMorePlayers = createMore(frame);
         }
@@ -71,9 +73,9 @@ private static boolean createMore(Frame frame) throws HeadlessException {
         playHolder.nameOfArmy = JOptionPane.showInputDialog ( "Enter army name:\n 'Mars Fury', 'The 13th Legion of Rome', 'Ryan's Raiders' " );
         playHolder.unitLimit = Integer.parseInt(JOptionPane.showInputDialog ( "Set the max number of Units to be deployed in this army: " ));
         JOptionPane.showMessageDialog(null,"Select a unit list to choose your army from");
-        UnitLoader playerUnits = new UnitLoader();
-        playerUnits.runLoader();
-        ArrayList<Unit> allUnitsLocal = playerUnits.unitPrepper();
+        playHolder.playerUnits = new UnitLoader();
+        playHolder.playerUnits.runLoader();
+        ArrayList<Unit> allUnitsLocal = playHolder.playerUnits.unitPrepper();
         playHolder.allUnits = allUnitsLocal;
         players.add(playHolder);
     }
