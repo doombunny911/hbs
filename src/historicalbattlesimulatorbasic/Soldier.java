@@ -59,7 +59,7 @@ public class Soldier
     boolean isWounded = false;
     boolean isWavering = false;
      
-    int unitID;
+    int idOfUnit;
 //Tile being occupied
     Tile tileOccupied;
 //basic dice to be used in combat
@@ -131,11 +131,11 @@ public Soldier(String unitName,
 */
 public void setUnitID(int id)
 {
-    this.unitID = id;
+    this.idOfUnit = id;
 }
 public int getUnitID()
 {
-    return this.unitID;
+    return this.idOfUnit;
 }
 //MOVEMENT
 public void placeOnTile(Tile tile)

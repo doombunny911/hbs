@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Unit extends Soldier 
 {
+    static int unitIDGen =0;
     int unitID;
     String unitName;
     Soldier unitSoldiers[];
@@ -74,6 +75,7 @@ public class Unit extends Soldier
      }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
+        System.out.println("Authentic unit created");
         this.unitName = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
@@ -81,9 +83,11 @@ public class Unit extends Soldier
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
          //Creates a random Unit ID
-        Random rng = new Random();
-        this.unitID = rng.nextInt(10000);
-        System.out.println(unitID);
+//        Random rng = new Random();
+//        this.unitID = rng.nextInt(10000);
+        this.unitID=Unit.unitIDGen;
+        Unit.unitIDGen++;
+        System.out.println(this.unitID);
         for(int i=0; i<unitSize; i++)
         {
            
@@ -97,14 +101,18 @@ public class Unit extends Soldier
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
+       System.out.println("Authentic unit created");
+
         unitName = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
-         this.soldierType = soldierType;
-         
+        this.soldierType = soldierType;
+        this.unitID=Unit.unitIDGen;     
+        Unit.unitIDGen++;
+        System.out.println(this.unitID);
+
         for(int i=0; i<unitSize; i++)
         {
-           
             //make each unit a soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
@@ -139,8 +147,6 @@ public class Unit extends Soldier
     {
         return unitDefeat;
     }
-    
-    
     public void attack(Unit defender)
     {
        
@@ -356,5 +362,19 @@ if(!parent.exists() && !parent.mkdirs()){
         {
             return this.unitID;
         }
-            
+   
+        
+  //if unit is not properally initialized (Unit unit = new Unit(parameters)), 
+ //call this ONLY once.  can also set a boolean whenever ID is set the first time
+  public void setUnitUnitID()
+  {
+      this.unitID=Unit.unitIDGen;
+      Unit.unitIDGen++;
+      for(int i=0; i<unitSize; i++)
+      {
+            //make each unit a soldier
+            unitSoldiers[i]= soldierType.clone();
+            unitSoldiers[i].setUnitID(this.unitID);
+     }
+  }
 }

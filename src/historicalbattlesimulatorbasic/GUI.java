@@ -183,12 +183,14 @@ public class GUI implements MouseListener
            //this is a unit being selected
             for(int i=0;i<GUI.units.size();i++)
            {
-               if(GUI.tileClicked.getOccupier().unitName==GUI.units.get(i).thisUnit.unitName)
+//               if(GUI.tileClicked.getOccupier().unitName==GUI.units.get(i).thisUnit.unitName)
+//               {
+               if(GUI.tileClicked.getOccupier().getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
                {
                    System.out.println(GUI.tileClicked.getOccupier().unitName);
                    System.out.println(GUI.units.get(i).thisUnit.unitName);
-//                   System.out.println(GUI.units.get(i).thisUnit.unitID);
-//                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
+                   System.out.println(GUI.units.get(i).thisUnit.unitID);
+                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
                    //found the unit to delete
 //                   System.out.println(GUI.units.get(i).xDraw);
                    GUI.indexToRemove=i;
@@ -245,23 +247,15 @@ public class GUI implements MouseListener
     public void loadUnit() 
     {
         System.out.println("Unitnum!=0");
-        System.out.println(GUI.tileClicked+"Right before condition");
-        System.out.println(unitNum+ " Before anything happens ");
-        Unit unit= 
-                UnitLoader.allUnits.get(GUI.unitNum-1);
-        
-        
+        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
+//        unit.setUnitUnitID();
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
+//        System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
         GUI.units.add(new UnitDraw(unit));
         GUI.tileClicked=null;
         unitNum--;
-        System.out.println("UnitNum after sub ="+ unitNum);
         GUI.panel.repaint();
     }
-    
-   
-   
     @Override
     public void mousePressed(MouseEvent me) 
     {

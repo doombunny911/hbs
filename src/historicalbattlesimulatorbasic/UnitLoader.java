@@ -55,7 +55,7 @@ public class UnitLoader
        
         String name = fc.getSelectedFile().getName();
         System.out.println("You have selected to load "+name);
-       ArrayList<Unit> returnUnit = this.loadAllUnits(name);
+        ArrayList<Unit> returnUnit = this.loadAllUnits(name);
         return returnUnit;
         
         
@@ -76,7 +76,8 @@ public class UnitLoader
                      
                      String name = reader.nextLine();
                      System.out.println("Name "+name);
-                     Unit nUnit = loadUnit(reader, name); //puts the unit in a temporary palce
+                     Unit nUnit = loadUnit(reader, name); //puts the unit in a temporary place
+//                     nUnit.setUnitUnitID();
                      allUnits.add(nUnit);                     
                  }
              else reader.nextLine();

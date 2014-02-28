@@ -26,12 +26,10 @@ public class UnitDraw extends Rectangle
     {
         super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
         this.thisUnit=getUnit;
-        System.out.println("unitName = " +getUnit.unitName);
-        System.out.println("unit width = " + getUnit.xWidth+ " unit height = " + getUnit.yHeight);
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-                System.out.println("xDraw = " + xDraw + " yDraw = " + yDraw);
 
+        System.out.println("unit id = " +this.thisUnit.getUnitID());
         this.tileLocationOfUnit=GUI.tileClicked;
         for(int i=0;i<this.thisUnit.unitSoldiers.length;i++)
         {

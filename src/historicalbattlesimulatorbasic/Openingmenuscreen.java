@@ -131,6 +131,7 @@ public class Openingmenuscreen extends JFrame
         tilePanel.add(buttonPanel,gbc);
         gameFrame.add(tilePanel);
         gameFrame.setVisible(true);
+//        Unit unit = new Unit(new Soldier(),4);
    }
   
    //sets to fullscreen mode, more a hinderence atm 
@@ -140,20 +141,5 @@ public class Openingmenuscreen extends JFrame
       gameFrame.setResizable(false);
   }
   
-  synchronized  boolean getter()
-  {
-      if(GUI.tileClicked==null)
-      {
-          try{
-              wait();
-          }
-          catch(InterruptedException ex)
-          {
-              System.out.println(ex+"an Exception!!!!");
-          }
-          
-      }
-      notifyAll();
-      return true;
-  }
+  
 }
