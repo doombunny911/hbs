@@ -70,7 +70,7 @@ public class UnitCreator
         prompt[13]="Enter the average size of the Unit, enter 1 and I will construct"
                 + " an individual soldier instead";
         prompt[14]="Enter the name of the file to save this to";
-       String exit="Create another unit?";
+    
        
        
         

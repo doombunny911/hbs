@@ -53,6 +53,7 @@ public class UnitLoader
         System.out.println("You have selected to load "+name);
         this.loadAllUnits(name);
         
+        
       }
     public void loadAllUnits(String fileToLoad) 
     {

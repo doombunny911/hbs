@@ -6,39 +6,98 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Frame;
+import java.awt.HeadlessException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Schmalz
  */
+public class Player{
 
-public class Player
-{
-    Scanner scan = new Scanner(System.in);
+    String playerName; //the players actual name
+    String nameOfArmy; //The name of the army
+    int unitLimit, unitsRemaning;
+    ArrayList allUnits; //all of a players units
     
-    int numOfUnits;//the number of units under a player control.
-    Unit units[];//units under control
-    String playername;
-    public Player(int numOfUnits)
+    ArrayList player1Units, player2Units;
+    public static ArrayList<Player> playersForDemo = new ArrayList();
+public static void main(String[] args)
+{
+ playersForDemo = playerCreator();
+  
+        
+     }
+private static boolean createMore(Frame frame) throws HeadlessException {
+        Object[] options = {"Yes",
+            "No."};
+        int n = JOptionPane.showConfirmDialog(
+                frame,
+                "Would you like to add another player?"," ",
+                JOptionPane.YES_NO_OPTION);
+       
+        if(n==0)
+        {
+            return true;
+        }
+        else if(n==1)
+        {
+            return false;
+        }
+          return false;
+    }
+    private static ArrayList playerCreator()
     {
-        this.numOfUnits=numOfUnits;
-    Unit tunits[] = new Unit[numOfUnits];
+       boolean first = true;
+       Frame frame = JOptionPane.getRootFrame();
+          
+       ArrayList<Player> players = new ArrayList();     
+       Player playHolder = new Player(); 
+      
+       boolean createMorePlayers = true;
+       while(createMorePlayers)
+        {           
+            singlePlayerCreator(playHolder, players); 
+            createMorePlayers = createMore(frame);
+        }
+        return players;
+    }
+
+    private static void singlePlayerCreator(Player playHolder, ArrayList<Player> players) throws HeadlessException, NumberFormatException {
+        playHolder.playerName = JOptionPane.showInputDialog ( "Enter player name: " );
+        playHolder.nameOfArmy = JOptionPane.showInputDialog ( "Enter army name:\n 'Mars Fury', 'The 13th Legion of Rome', 'Ryan's Raiders' " );
+        playHolder.unitLimit = Integer.parseInt(JOptionPane.showInputDialog ( "Set the max number of Units to be deployed in this army: " ));
+        JOptionPane.showMessageDialog(null,"Select a unit list to choose your army from");
+        UnitLoader playerUnits = new UnitLoader();
+        playerUnits.runLoader();
+        ArrayList<Unit> allUnitsLocal = playerUnits.unitPrepper();
+        playHolder.allUnits = allUnitsLocal;
+        players.add(playHolder);
+    }
+    Scanner scan = new Scanner(System.in);
+   
+
+    public Player()
+    {
+       
     
     }
     //sets the players name
     public void setPlayerName(String playerName)
     {
-        this.playername=playerName;
+        this.playerName=playerName;
     }
-    //adds unit at designated index point.
-    public void addUnitToArmy(Unit unit, int i)
+    //adds unit to the army
+    public void addUnitToArmy(Unit unit)
     {
-        units[i]=unit;
+        allUnits.add(unit);
     }
     public int getUnitCount()
     {
-        return numOfUnits;
+        return allUnits.size();
     }
     //Each player gets to do 2 things with each unit
     public void selectUnit(Unit unit)
@@ -131,9 +190,10 @@ public class Player
     }
     public void endTurn()
     {
-        for(int i=0; i<numOfUnits; i++)
+        for(int i=0; i<allUnits.size(); i++)
         {
-            units[i].resetUnitPoints();
+            Unit s = (Unit)allUnits.get(i);
+                    s.resetUnitPoints();
         }
     }
 
