@@ -40,6 +40,7 @@ public class Tile extends Rectangle
         this.yPosition=yPosition;
         this.xLength= xLength; 
         this.yLength= yLength; 
+        this.isOccupied=false; 
        
     }
     

@@ -4,6 +4,8 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +36,9 @@ public class Unit extends Soldier
     int unitPoints=2;
     int xPosition, yPosition;
     int yHeight=10;
-     int xWidth=10;
+    int xWidth=10;
+    UnitFormations currentFormation;
+     
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -377,4 +382,39 @@ if(!parent.exists() && !parent.mkdirs()){
             unitSoldiers[i].setUnitID(this.unitID);
      }
   }
+  
+  
+   public void loadSprite(Graphics g,Tile t,Unit unit) 
+    {
+        
+        //ONLY EVEN NUMBER OF SOLDIERS ATM PLZ
+       BufferedImage img = null;
+//               new BufferedImage(xLength,yLength,1);
+       int numberOfSoldiers =unit.unitSoldiers.length;
+       
+       try 
+       {
+          img = ImageIO.read(new File("SoldierSprite.jpg"));
+          for(int i=0;i<unit.unitSoldiers.length/2;i++)
+          {
+              for(int j=0;j<numberOfSoldiers/2;j++)
+              {
+                   g.drawImage(img, t.xPosition+j*t.xLength, t.yPosition+i*t.yLength, t.xLength, t.yLength, null);
+              }
+             
+          }
+          
+          
+       } 
+       catch (IOException e) 
+       {
+           System.out.println("error loading file " + e);
+        }
+    }
+    
+  public void setFormation(UnitFormations form)
+  {
+      this.currentFormation=form;
+  }
+  
 }

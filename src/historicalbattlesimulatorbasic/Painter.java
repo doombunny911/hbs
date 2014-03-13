@@ -29,9 +29,12 @@ public class Painter extends JPanel
     }
     public Painter(double sWidth,double sHeight)
     {
+        
         this.sWidth=sWidth;
         this.sHeight=sHeight;
     }
+    
+    //don't think this contructor is used
     public Painter(int locationX,int locationY)
     {
         x =locationX;
@@ -52,7 +55,7 @@ public class Painter extends JPanel
        
       Graphics2D g2=(Graphics2D)g;
        
-      
+      //tileMap
       for(int i=0;i<sHeight;i++)
       {
          for(int j=0;j<sWidth;j++)
@@ -60,18 +63,22 @@ public class Painter extends JPanel
             g2.draw(GUI.tileGameMap[i][j]);
          }
        }
+      
+      //units and sprites
       if(!GUI.units.isEmpty())
       {
          for(int i=0;i<GUI.units.size();i++)
          {
              GUI.units.get(i).paint(g);
+             GUI.units.get(i).thisUnit.currentFormation.paintFormation(g);
          }
       }
-      //untested
-      if(unit!=null)
-      {
-         GUI.tileGameMap[50][50].loadSprite(g,GUI.tileGameMap[50][50],unit);
-      }
+      
+      //sprites 
+//      if(unit!=null)
+//      {
+//         GUI.tileGameMap[50][50].loadSprite(g,GUI.tileGameMap[50][50],unit);
+//      }
 //      GUI.gameFrame.validate();
 //      GUI.gameFrame.repaint();
     }

@@ -38,25 +38,22 @@ public class Map
     
     public final void generateTiles()
     {
-      int width = Openingmenuscreen.tilePanel.getWidth();
-      int height = Openingmenuscreen.tilePanel.getHeight();
-//      System.out.println(remainderWidth = Math.floor(width%tileWidth)) ;
-//      System.out.println(remainderHeight = Math.floor(height%tileWidth));
-       squareWidth = Math.floor(width/GUI.tileWidth);
-       squareHeight = Math.floor(height/GUI.tileWidth);
-      GUI.tileGameMap=new Tile[(int)squareHeight][(int)squareWidth];
-//
-      System.out.println("squarewidth ="+ squareWidth + 
+        int width = Openingmenuscreen.tilePanel.getWidth();
+        int height = Openingmenuscreen.tilePanel.getHeight();
+        squareWidth = Math.floor(width/GUI.tileWidth);
+        squareHeight = Math.floor(height/GUI.tileWidth);
+        GUI.tileGameMap=new Tile[(int)squareHeight][(int)squareWidth];
+        System.out.println("squarewidth ="+ squareWidth + 
                " tileWidth = " + GUI.tileWidth+ " squareHeight = " + squareHeight +
                " width = " + width );
      
-      for(int i=0;i<squareHeight;i++)
-      {
-         for(int j=0;j<squareWidth;j++)
-         {
-            GUI.tileGameMap[i][j]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
-         }
-       } 
+         for(int i=0;i<squareHeight;i++)
+        {
+            for(int j=0;j<squareWidth;j++)
+            {
+                GUI.tileGameMap[i][j]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+            }
+        } 
     }
     //inserts a specific tile into a specific location
     public void insertTile(Tile insertTile, int x,int y)

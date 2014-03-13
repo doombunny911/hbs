@@ -35,6 +35,7 @@ public class GUI implements MouseListener
     static int unitNum;
     static int moveInt;
     static int indexToRemove;
+    static JPanel buttonPanel = new JPanel();
     
     static Tile getTileClicked() 
     {
@@ -78,16 +79,16 @@ public class GUI implements MouseListener
        button[3].setBounds(aPanel.getWidth()/6*4-100,35,100,30);
        button[4].setBounds(aPanel.getWidth()/6*5-100,35,100,30);
        button[5].setBounds(aPanel.getWidth()/6*6-100,35,100,30);
-       aPanel.add(button[0]);
-       aPanel.add(button[1]);
-       aPanel.add(button[2]);
-       aPanel.add(button[3]);
-       aPanel.add(button[4]);
-       aPanel.add(button[5]);
-       
-        GUI.panel.add(aPanel);
-        GUI.panel.repaint();
-        GUI.gameFrame.revalidate();
+       buttonPanel.add(button[0]);
+       buttonPanel.add(button[1]);
+       buttonPanel.add(button[2]);
+       buttonPanel.add(button[3]);
+       buttonPanel.add(button[4]);
+       buttonPanel.add(button[5]);
+       buttonPanel.setVisible(false);
+       GUI.panel.add(aPanel);
+       GUI.panel.repaint();
+       GUI.gameFrame.revalidate();
     }
    
     
@@ -97,10 +98,9 @@ public class GUI implements MouseListener
    {
        JButton[] button=new JButton[6];
        button=initializeButtons(button);
-
-       JPanel buttonPanel = new JPanel();
-       buttonPanel.setLayout(null);
-       addButtonsToPanel(button,buttonPanel);
+       
+       GUI.buttonPanel.setLayout(null);
+       addButtonsToPanel(button,GUI.buttonPanel);
        
        button[0].addActionListener(new ActionListener() {
            @Override
@@ -244,10 +244,13 @@ public class GUI implements MouseListener
 //       return r;
    }
     
+   //need to set a direction when unit is placed on board
     public void loadUnit() 
     {
         System.out.println("Unitnum!=0");
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
+        UnitFormations form  = new UnitFormations(unit,0,GUI.tileClicked);
+        unit.setFormation(form);
 //        unit.setUnitUnitID();
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
 //        System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
@@ -265,23 +268,35 @@ public class GUI implements MouseListener
     {
         //while there are still units that need to be loaded, 
         //wait for a tile to be clicked and than paint it
-        double findTileX= Math.ceil(mac.getX()/10);
-        double findTileY=Math.ceil(mac.getY()/10);
+        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
+        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
         GUI.tileClicked=GUI.tileGameMap[(int)findTileY][(int)findTileX];
-        System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
-        while(thereIsAUnitReadyToBeLoaded())
+//        System.out.println(GUI.tileGameMap[(int)findTileY][(int)findTileX]);
+        if(thereIsAUnitReadyToBeLoaded())
             loadUnit();
-//       if(GUI.tileClicked!=null&&GUI.tileClicked.getIsOccupied())
-//       {
-//           System.out.println("tis true");
-//           System.out.println(GUI.tileClicked.getOccupier().getUnitID());
-//       }
+
         if(GUI.moveInt>0&&tileClicked!=null)
         {
             System.out.println("moveUnit>0");
              moveUnit();
             
         }
+        
+        
+        
+        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied)
+        {
+            
+             toggleButtons(true);
+             GUI.gameFrame.revalidate();
+//             GUI.gameFrame.repaint();
+//             GUI.panel.repaint();
+             System.out.println(GUI.tileClicked.isOccupied);
+
+        }
+        else if(GUI.tileClicked!=null&&!GUI.tileClicked.isOccupied)
+            toggleButtons(false);
+            
        GUI.panel.repaint();
     }
     //checks to see if someone clicked a tile and there are units in "queue"
@@ -304,6 +319,19 @@ public class GUI implements MouseListener
     {
     }
 
-    
-  
+    //toggles whether buttons are seen or not seen
+    //gets buttons by checking to see components on the 
+    //panel
+    private void toggleButtons(boolean b) 
+    {
+        //sets the buttonPanel to b, 
+        GUI.buttonPanel.setVisible(b);
+        
+        //the number of components in the panel
+        int bNum =GUI.buttonPanel.getComponentCount();
+        for(int i=0;i<bNum;i++)
+           GUI.buttonPanel.getComponent(i).setVisible(b);
+        GUI.gameFrame.revalidate();
+        GUI.gameFrame.repaint();
+    }
 }

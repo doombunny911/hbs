@@ -25,20 +25,24 @@ public class UnitDraw extends Rectangle
     public UnitDraw(Unit getUnit)
     {
         super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
-        this.thisUnit=getUnit;
+        
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-
-        System.out.println("unit id = " +this.thisUnit.getUnitID());
+        Graphics g = GUI.panel.getGraphics();
+//        System.out.println("unit id = " +this.thisUnit.getUnitID());
+        System.out.println(getUnit);
+        getUnit.currentFormation = new UnitFormations(getUnit,0,GUI.tileClicked);
+        
+        //set location for soldiers
+////        for(int i=0;i<this.thisUnit.unitSoldiers.length;i++)
+////        {
+////            //setting all soldiers to occupy a single tile
+////            this.thisUnit.unitSoldiers[i].tileOccupied=GUI.tileClicked;
+////            GUI.tileClicked.occupyBy(thisUnit.unitSoldiers[i]);
+////        }
+        
         this.tileLocationOfUnit=GUI.tileClicked;
-        for(int i=0;i<this.thisUnit.unitSoldiers.length;i++)
-        {
-            //setting all soldiers to occupy a single tile
-            this.thisUnit.unitSoldiers[i].tileOccupied=GUI.tileClicked;
-            GUI.tileClicked.occupyBy(thisUnit.unitSoldiers[i]);
-        }
-        
-        
+        this.thisUnit=getUnit;
     }
     //may have no need for this one, will keep for now
     public UnitDraw(int x, int y, int heightY, int widthX)
