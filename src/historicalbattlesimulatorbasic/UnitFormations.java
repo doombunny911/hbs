@@ -21,12 +21,12 @@ import javax.imageio.ImageIO;
 public class UnitFormations 
 {
     private Unit unit;
-    private Tile[][] spriteLocations;
+    private Tile[] spriteLocations;
     private int index;
     public UnitFormations(Unit unit, int dir,Tile tile)
     {
         index=0;
-        spriteLocations = new Tile[50][50];
+        spriteLocations = new Tile[50];
         //set default formation
         this.unit = unit;
         defaultFormation(tile,dir);
@@ -37,6 +37,7 @@ public class UnitFormations
     }
     
     //the default formation for a unit
+    //need to check to see if tile is occupied
     public UnitFormations defaultFormation(Tile tile,int dir)
     {
         //start at the unit start tile
@@ -49,19 +50,64 @@ public class UnitFormations
 //       int numberOfSoldiers =this.unit.unitSoldiers.length;
        try 
        { 
-          for(int i=0;i<numberOfSoldiers;i=i+5)
-          {
-            //draw a sprite i to the right of the first tile
-              img = ImageIO.read(new File("SoldierSprite.jpg"));
-              spriteLocations[this.index][0]= 
-              GUI.tileGameMap[tile.yPosition/GUI.tileWidth][tile.xPosition/GUI.tileWidth+this.index];
-//              GUI.panel.getGraphics().drawImage(img,tile.xPosition+
-//                      i*tile.xLength, tile.yPosition+
-//                      i*tile.yLength, tile.xLength,
-//                      tile.yLength, null);
-          
-           this.index++;
-          }
+           img = ImageIO.read(new File("SoldierSprite.jpg"));
+            switch(dir)
+           {
+               case 0: //north
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                  {
+           
+                        spriteLocations[this.index]= 
+                        GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index][tile.yPosition/GUI.tileWidth];
+                        this.unit.unitSoldiers[0].tileOccupied=tile;
+                        GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);
+                        this.index++;
+                  }
+                    
+                    break;
+               }
+               case 1: //east
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                  {
+                    spriteLocations[this.index]= 
+                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth+this.index];
+                    this.unit.unitSoldiers[0].tileOccupied=tile;
+                    GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);
+                    this.index++;
+                   
+
+                    }
+                    break;
+               }
+               case 2: //south
+               {
+                   System.out.println("case 2");
+                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                  {
+                    spriteLocations[this.index]= 
+                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth-this.index][tile.yPosition/GUI.tileWidth];
+                    this.unit.unitSoldiers[0].tileOccupied=tile;
+                    GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);  
+                    this.index++;
+                  }
+                   break;
+               }
+               case 3: //west
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                  {
+                    spriteLocations[this.index]= 
+                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth-this.index];
+                    this.unit.unitSoldiers[0].tileOccupied=tile;
+                    GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);
+                    this.index++;
+                  }
+                   break;
+               }
+           }
+           
        }
        
        
@@ -86,10 +132,10 @@ public class UnitFormations
 //           System.out.println("spriteLocations.length " + this.spriteLocations.length );
             for(int i=this.index-1;i>=0;i--)
             {
-                System.out.println("spriteLocation at ["+i+"][0] = " +this.spriteLocations[i][0]);
-                g.drawImage(img, spriteLocations[i][0].xPosition,
-                spriteLocations[i][0].yPosition, spriteLocations[i][0].xLength,
-                spriteLocations[i][0].yLength,null);
+//                System.out.println("spriteLocation at ["+i+"][0] = " +this.spriteLocations[i][0]);
+                g.drawImage(img, spriteLocations[i].xPosition,
+                spriteLocations[i].yPosition, spriteLocations[i].xLength,
+                spriteLocations[i].yLength,null);
             }
         }
         catch (IOException e)

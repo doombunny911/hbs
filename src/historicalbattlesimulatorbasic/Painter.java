@@ -60,7 +60,7 @@ public class Painter extends JPanel
       {
          for(int j=0;j<sWidth;j++)
          {
-            g2.draw(GUI.tileGameMap[i][j]);
+            g2.draw(GUI.tileGameMap[j][i]);
          }
        }
       

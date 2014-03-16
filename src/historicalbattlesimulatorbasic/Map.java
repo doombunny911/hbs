@@ -42,16 +42,18 @@ public class Map
         int height = Openingmenuscreen.tilePanel.getHeight();
         squareWidth = Math.floor(width/GUI.tileWidth);
         squareHeight = Math.floor(height/GUI.tileWidth);
-        GUI.tileGameMap=new Tile[(int)squareHeight][(int)squareWidth];
-        System.out.println("squarewidth ="+ squareWidth + 
-               " tileWidth = " + GUI.tileWidth+ " squareHeight = " + squareHeight +
-               " width = " + width );
-     
+        GUI.numberOfTilesWidth=squareWidth;
+        GUI.numberOfTilesHeight=squareHeight;
+        GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
+//        System.out.println("squarewidth ="+ squareWidth + 
+//               " tileWidth = " + GUI.tileWidth+ " squareHeight = " + squareHeight +
+//               " width = " + width );
+     System.out.println(width);
          for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth;j++)
             {
-                GUI.tileGameMap[i][j]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+                GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
             }
         } 
     }

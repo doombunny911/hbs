@@ -83,7 +83,7 @@ public class Openingmenuscreen extends JFrame
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
          
-          System.out.println("here");
+            System.out.println("here");
             Map gameMap=new Map(10);
             GUI.gameMap=gameMap;
             GUI.buttonLoader();

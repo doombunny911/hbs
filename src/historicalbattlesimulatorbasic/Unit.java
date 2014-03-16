@@ -35,7 +35,7 @@ public class Unit extends Soldier
     boolean unitDefeat = false;
     int unitPoints=2;
     int xPosition, yPosition;
-    int yHeight=10;
+    int yHeight=40;
     int xWidth=10;
     UnitFormations currentFormation;
      

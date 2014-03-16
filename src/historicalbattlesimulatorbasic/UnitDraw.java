@@ -24,14 +24,13 @@ public class UnitDraw extends Rectangle
     Tile tileLocationOfUnit;
     public UnitDraw(Unit getUnit)
     {
-        super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
+//        super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
         
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        Graphics g = GUI.panel.getGraphics();
 //        System.out.println("unit id = " +this.thisUnit.getUnitID());
         System.out.println(getUnit);
-        getUnit.currentFormation = new UnitFormations(getUnit,0,GUI.tileClicked);
+        getUnit.currentFormation = new UnitFormations(getUnit,getUnit.unitSoldiers[0].facing,GUI.tileClicked);
         
         //set location for soldiers
 ////        for(int i=0;i<this.thisUnit.unitSoldiers.length;i++)
