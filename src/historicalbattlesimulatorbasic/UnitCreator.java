@@ -113,8 +113,7 @@ public class UnitCreator
 }
 
     private static boolean createMore(Frame frame) throws HeadlessException {
-        Object[] options = {"Yes",
-            "No."};
+      
         int n = JOptionPane.showConfirmDialog(
                 frame,
                 "Would you like to create more units?"," ",

@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -33,6 +34,7 @@ public class Openingmenuscreen extends JFrame
     static JFrame gameFrame;
     static JPanel tilePanel;
     JPanel buttonPanel;
+    
     JButton b1 = new JButton( new AbstractAction("Run Simulation") {
         @Override
         public void actionPerformed( ActionEvent e ) 
@@ -51,11 +53,14 @@ public class Openingmenuscreen extends JFrame
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
-            System.out.println("test 2");
-//            UnitCreator.createUnit();
+            try {
+                UnitCreator.createUnit();
 //            UnitLoader loader = new UnitLoader();
-            
-            //go to file and load in all units into a unit array to later be drawn
+                
+                //go to file and load in all units into a unit array to later be drawn
+            } catch (IOException ex) {
+                Logger.getLogger(Openingmenuscreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     });
     JButton b3 = new JButton( new AbstractAction("Create Map") { 
@@ -63,13 +68,8 @@ public class Openingmenuscreen extends JFrame
         public void actionPerformed( ActionEvent e ) 
         {
 //needs a lot of fiddling
-            Scanner scan = new Scanner(System.in);
-            int width, height;
-            System.out.println("Enter the width[East to West] of the map");
-            width=scan.nextInt();
-            System.out.println("Enter the height[North to South of the map");
-            height=scan.nextInt();
-            Map gameMap= new Map(width,height);
+            
+         Map  gameMap = MapCreator.createMap();
         }
     });
        JButton b4 = new JButton( new AbstractAction("Load Game") { 
@@ -84,7 +84,7 @@ public class Openingmenuscreen extends JFrame
             GUI.gameFrame.repaint();
          
             System.out.println("here");
-            Map gameMap=new Map(10);
+           Map gameMap = new Map(10);
             GUI.gameMap=gameMap;
             GUI.buttonLoader();
             

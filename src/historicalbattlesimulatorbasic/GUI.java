@@ -351,7 +351,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
               
-               System.out.println("please click the tile that you wish to move to");
+               System.out.println("Please click the tile that you wish to move to");
                moveInt+=2;
            }
        });
@@ -411,19 +411,60 @@ public class GUI implements MouseListener
        
        else
        {
-             System.out.println("mod 2 =1");
+         //So this the space that unit is being moved too   
 
           UnitDraw draw =GUI.units.get(GUI.indexToRemove);
           Unit unit =draw.thisUnit;
 //          draw.xDraw = GUI.tileClicked.xPosition;
 //          draw.yDraw= GUI.tileClicked.yPosition;
           
+          //this is the movement redraw
+          double originalXPosition = unit.xPosition;
+          double originalYPosition = unit.yPosition;
+          
           unit.xPosition=GUI.tileClicked.xPosition;
           unit.yPosition = GUI.tileClicked.yPosition;
-          
+          //get them in relation
+          double xVal = (unit.xPosition - originalXPosition);
+          double yVal = (unit.yPosition-originalYPosition);
+     
+          //This should allow stuff
+          if(xVal==0&&yVal>0)
+          {
+              unit.moveNorth();
+   
+          }
+          else if(xVal>0&&yVal>0)
+          {
+              unit.moveNorthEast();
+          }
+          else if(xVal==1&&yVal==0)
+          {
+              unit.moveEast();
+          }
+          else if(xVal>0&&yVal<0)
+          {
+              unit.moveSouthEast();
+          }
+          else if(xVal==0&&yVal<0)
+          {
+              unit.moveSouth();
+          }
+          else if(xVal<0&&yVal<0)
+          {
+              unit.moveSouthWest();
+          }
+          else if(xVal==0&&yVal<0)
+          {
+              unit.moveWest();
+          }
+          else if(xVal<0&&yVal>0)
+          {
+              unit.moveNorthWest();
+          }
           UnitDraw draw2=new UnitDraw(unit);
           GUI.units.remove(GUI.units.get(GUI.indexToRemove));
-
+         // unit.moveDirection(unitNum);
           GUI.units.add(draw2);
           GUI.indexToRemove=0;
           GUI.gameFrame.revalidate();

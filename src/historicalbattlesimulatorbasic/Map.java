@@ -17,6 +17,7 @@ public class Map
    
    private double squareHeight;
    private double squareWidth;
+   private String name;
     
     public Map(int xHeight, int yHeight)
     {
@@ -25,8 +26,9 @@ public class Map
        
     }
    //populates the gameMap with basic tiles with no features other than area.
-    public Map(int xWidth)
+    public Map( int xWidth)
     {
+        //this.name = name;
         GUI.tileWidth=xWidth;
         this.generateTiles();
         Painter gen = new Painter(squareWidth,squareHeight);
