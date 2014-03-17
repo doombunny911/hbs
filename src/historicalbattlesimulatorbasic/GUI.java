@@ -7,6 +7,8 @@ package historicalbattlesimulatorbasic;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -100,82 +102,155 @@ public class GUI implements MouseListener
         GUI.gameFrame.repaint();
     }
 
-    private static void paintRange(Unit unitSelected) 
+    public static void paintRange(Unit unitSelected,Graphics g) 
     {
-////        double range = unitSelected.unitSoldiers[0].range;
-////        boolean flag = false;
-////        find which tiles have soldiers on them in the area with the same unitID
-////        ArrayList listOfIndices = new ArrayList<>();
-////        
-////        brute force method ftw
-////        Tile tiles[][] = new Tile[(int)numberOfTilesWidth][(int)numberOfTilesHeight];
-////        int iMin = Integer.MAX_VALUE;
-////        int iMax = Integer.MIN_VALUE;
-////        int jMin = Integer.MAX_VALUE;
-////        int jMax = Integer.MIN_VALUE;
-////        for(int i=0;i<GUI.numberOfTilesHeight;i++)
-////        {
-////            for(int j=0;j<GUI.numberOfTilesWidth;i++)
-////            {
-////               int unitID=GUI.tileGameMap[j][i].getOccupier().getUnitID();
-////               if(unitID==unitSelected.getUnitID())//the unit belongs to the selected unit
-////               {
-////                   check to see if index changes in
-////                   if(i<iMin)
-////                       iMin=i;
-////                   if(i>iMax)
-////                       iMax=i;
-////                   if(j<jMin)
-////                       jMin=j;
-////                   if(j>jMax)
-////                       jMax=j;
-////                   
-////                   
-////                   
-////                   
-////                   tiles[j][i]=GUI.tileGameMap[j][i];
-////                   
-////                  
-////                   
-////               }
-////
-////            }
-////        }
-////       for(int i=iMin;i<iMax;i++)
-////       {
-////           for(int j=jMin;j<jMax;j++)
-////           {
-////               if(tiles[j][i].isOccupied)
-////               {
-////                   if(i==iMin)
-////                    {
-////                        color the three tiles to the north if they are there
-////                    }
-////                    if(i==iMax)
-////                    {
-////                        color the three times to the south if they are there
-////                    }
-////                    if(j==jMin)
-////                    {
-////                        color the three tiles to the west if they are there
-////                    }
-////                    if(j==jMax)
-////                    {
-////                        color the three tiles to the east
-////                    }
-////               }
-////               
-////               
-////           }
-////       }
+        Graphics2D g2=(Graphics2D)g;
+        System.out.println("in paintRange");
+        double range = unitSelected.unitSoldiers[0].range;
+//        find which tiles have soldiers on them in the area with the same unitID
+        
+//        brute force method ftw
+        Tile tiles[][] = new Tile[(int)numberOfTilesWidth][(int)numberOfTilesHeight];
+        int iMin = Integer.MAX_VALUE;
+        int iMax = Integer.MIN_VALUE;
+        int jMin = Integer.MAX_VALUE;
+        int jMax = Integer.MIN_VALUE;
+        for(int i=0;i<GUI.numberOfTilesHeight;i++)
+        {
+            for(int j=0;j<GUI.numberOfTilesWidth;j++)
+            {
+               if(GUI.tileGameMap[j][i].isOccupied)
+               {
+                   
+                   if(GUI.tileGameMap[j][i].getOccupier().getUnitID()==unitSelected.getUnitID())//the unit belongs to the selected unit
+                   {
+                       System.out.println("unit id of parameter = " +unitSelected.getUnitID() );
+                       System.out.println("unit id of tileOccupier = " +GUI.tileGameMap[j][i].getOccupier().getUnitID() );
+                       System.out.println("this is an occupied tile");
+                    System.out.println("tile located at i= "+i+ " j = " + j );
+//                   check to see if index changes in
+                   if(i<iMin)
+                   {
+                      iMin=i;
+                      System.out.println("new imin");
+                   }
+                   if(i>iMax)
+                   {
+                       iMax=i;
+                        System.out.println("new imax");
+                   }
+                       
+                   if(j<jMin)
+                   {
+                       jMin=j;
+                        System.out.println("new jmin");
+                   }
+                   if(j>jMax)
+                   {
+                      jMax=j; 
+                      System.out.println("new jmax");
+                   }
+                       
+                   
+                   
+                   
+                   
+                   tiles[j][i]=GUI.tileGameMap[j][i];
+                   
+                  
+                   
+                     }
+               }
+               
+
+            }
+        }
+       Color temp= g2.getColor();
+       g2.setColor(Color.yellow);
+       
+       for(int i=iMin;i<=iMax;i++)
+       {
+           for(int j=jMin;j<=jMax;j++)
+           {
+               System.out.println("j = " + j + " i = " + i);
+               if(tiles[j][i].isOccupied)
+               {
+                    if(i==iMin)
+                    {
+                        for(int k=1;k<=range;k++)
+                        {
+                             if(GUI.tileGameMap[j][i-k].hasNorth())
+                             {
+//                                  System.out.println("north");
+                                    g2.fill(GUI.tileGameMap[j][i-k]);
+                             }
+                             else
+                                 break;
+                        }
+ 
+                    }
+                    if(i==iMax)
+                    {
+                        
+                         for(int k=1;k<=range;k++)
+                         {
+                             if(GUI.tileGameMap[j][i+k].hasSouth())
+                             {
+//                                   System.out.println("south");
+                                  g2.fill(GUI.tileGameMap[j][i+k]);
+
+                             }
+                             else
+                                 break;
+
+                         }
+//                        color the three times to the south if they are there
+                    }
+                    if(j==jMin)
+                    {
+                         for(int k=1;k<=range;k++)
+                         {
+                            if(GUI.tileGameMap[j-k][i].hasWest())
+                            {
+//                                 System.out.println("west");
+                                g2.fill(GUI.tileGameMap[j-k][i]);
+
+                            }
+                            else
+                                break;
+
+                         }
+//                        color the three tiles to the west if they are there
+                    }
+                    if(j==jMax)
+                    {
+                         for(int k=1;k<=range;k++)
+                         {
+                             if(GUI.tileGameMap[j+k][i].hasEast())
+                             {                                 
+//                                 System.out.println("east");
+                                g2.fill(GUI.tileGameMap[j+k][i]);
+
+                             }
+                             else
+                                 break;
+                         }
+                            
+//                        color the three tiles to the east
+                    }
+               }
+               
+               
+           }
+       }
         //paint range from the first tile
         //paint 3 up (according to direction) from each tile after that
         //on the last tile, paint range to the right
         //check to see if it is the last 
         //find the outside tiles
         
-        
-        
+     //not sure if necessary, i dont think it is but doesn't hurt   
+    g2.setColor(temp);
     }
    //initualize GUI whenever need to have a new Panel with mouselistener
    public GUI(JPanel panel)
@@ -414,8 +489,7 @@ public class GUI implements MouseListener
            GUI.unitSelected=GUI.units.get(GUI.tileClicked.getOccupier().getUnitID()).thisUnit;
 
            //paint the range that the unit can move
-            GUI.paintRange(GUI.unitSelected);
-            
+                //call to the painter is happening
             
              toggleButtons(true);
              System.out.println(GUI.tileClicked.isOccupied);
