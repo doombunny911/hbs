@@ -72,7 +72,13 @@ public class Openingmenuscreen extends JFrame
          Map  gameMap = MapCreator.createMap();
         }
     });
-       JButton b4 = new JButton( new AbstractAction("Load Game") { 
+       JButton b4 = new JButton ( new AbstractAction("Create Scenario"){
+       @Override
+       public void actionPerformed ( ActionEvent e )
+       {
+           Scenario scenario = ScenarioCreator.createScenario();
+       }});
+       JButton b5 = new JButton( new AbstractAction("Load Game") { 
         @Override
         //This refers to when the loadGame button is clicked 
        public void actionPerformed( ActionEvent e ) 
@@ -82,12 +88,11 @@ public class Openingmenuscreen extends JFrame
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
          
-<<<<<<< HEAD
+
             System.out.println("here");
            Map gameMap = new Map(10);
-=======
-            Map gameMap=new Map(10);
->>>>>>> c582879fad87938bc2a71df4c973f646ce87e1f0
+
+
             GUI.gameMap=gameMap;
             GUI.buttonLoader();
             
@@ -120,11 +125,12 @@ public class Openingmenuscreen extends JFrame
                         getPreferredSize().getHeight());
        System.out.println(gameFrame.getSize());
 
-        buttonPanel = new JPanel(new GridLayout(4,1));
+        buttonPanel = new JPanel(new GridLayout(5,1));
         buttonPanel.add(b1);
         buttonPanel.add(b2);
         buttonPanel.add(b3);
         buttonPanel.add(b4);
+        buttonPanel.add(b5);
         buttonPanel.setBackground(Color.red); 
         tilePanel = new JPanel(new GridBagLayout());
         

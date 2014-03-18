@@ -393,11 +393,10 @@ public class GUI implements MouseListener
                   GUI.moveBoolean=true; 
               }
               
-<<<<<<< HEAD
+
                System.out.println("Please click the tile that you wish to move to");
-               moveInt+=2;
-=======
->>>>>>> c582879fad87938bc2a71df4c973f646ce87e1f0
+               
+
            }
        });
        button[4].addActionListener(new ActionListener() {
@@ -482,7 +481,7 @@ public class GUI implements MouseListener
        int index = Integer.MAX_VALUE;
        for(int i=0;i<units.size();i++)
        {
-<<<<<<< HEAD
+
          //So this the space that unit is being moved too   
 
           UnitDraw draw =GUI.units.get(GUI.indexToRemove);
@@ -539,7 +538,7 @@ public class GUI implements MouseListener
          // unit.moveDirection(unitNum);
           GUI.units.add(draw2);
           GUI.indexToRemove=0;
-=======
+
            if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
            {
              System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
@@ -556,7 +555,7 @@ public class GUI implements MouseListener
           GUI.units.remove((index));
           moveBoolean=false;
           GUI.tileClicked=null;
->>>>>>> c582879fad87938bc2a71df4c973f646ce87e1f0
+
           GUI.gameFrame.revalidate();
           GUI.panel.repaint();
           GUI.gameFrame.repaint();
