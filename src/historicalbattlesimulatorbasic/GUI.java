@@ -122,48 +122,38 @@ public class GUI implements MouseListener
             {
                if(GUI.tileGameMap[j][i].isOccupied)
                {
-                   
+//                   System.out.println("tile at ("+j+","+i+") is occupied");
                    if(GUI.tileGameMap[j][i].getOccupier().getUnitID()==unitSelected.getUnitID())//the unit belongs to the selected unit
                    {
                        System.out.println("unit id of parameter = " +unitSelected.getUnitID() );
                        System.out.println("unit id of tileOccupier = " +GUI.tileGameMap[j][i].getOccupier().getUnitID() );
                        System.out.println("this is an occupied tile");
-                    System.out.println("tile located at i= "+i+ " j = " + j );
+                         System.out.println("tile located at i= "+i+ " j = " + j );
 //                   check to see if index changes in
-                   if(i<iMin)
-                   {
-                      iMin=i;
-                      System.out.println("new imin");
-                   }
-                   if(i>iMax)
-                   {
-                       iMax=i;
-                        System.out.println("new imax");
-                   }
-                       
-                   if(j<jMin)
-                   {
-                       jMin=j;
-                        System.out.println("new jmin");
-                   }
-                   if(j>jMax)
-                   {
-                      jMax=j; 
-                      System.out.println("new jmax");
-                   }
-                       
-                   
-                   
-                   
-                   
-                   tiles[j][i]=GUI.tileGameMap[j][i];
-                   
-                  
-                   
-                   }
-               }
-               
+                        if(i<iMin)
+                        {
+                           iMin=i;
+//                           System.out.println("new imin = " + i);
+                        }
+                        if(i>iMax)
+                        {
+                            iMax=i;
+//                             System.out.println("new imax = " + i );
+                        }
 
+                        if(j<jMin)
+                        {
+                            jMin=j;
+//                             System.out.println("new jmin = " + j);
+                        }
+                        if(j>jMax)
+                        {
+                           jMax=j; 
+//                           System.out.println("new jmax = " + j);
+                        }
+                   tiles[j][i]=GUI.tileGameMap[j][i];
+                   }
+               }  
             }
         }
        Color temp= g2.getColor();
@@ -173,10 +163,61 @@ public class GUI implements MouseListener
        {
            for(int j=jMin;j<=jMax;j++)
            {
-               System.out.println("j = " + j + " i = " + i);
                if(tiles[j][i].isOccupied)
                {
-                    if(i==iMin)
+                   
+                   if(i==iMin&&j==jMax) //northEast
+                   {
+                       for(int k=1;k<=range;k++)
+                       {
+                           if(GUI.tileGameMap[j+k][i-k].hasNorthEast())
+                             {
+                                  System.out.println("northWest at ("+(j+k)+","+(i-k)+")");
+                                 g2.fill(GUI.tileGameMap[j+k][i-k]);
+                             }
+                       }    
+                   }
+                   if(i==iMin&&j==jMin) //northWest
+                   {
+                     for(int k=1;k<=range;k++)
+                     {
+                         if(GUI.tileGameMap[j-k][i-k].hasNorthWest())
+                         {
+                                  System.out.println("northEast at ("+(j+k)+","+(i-k)+")");
+                                    g2.fill(GUI.tileGameMap[j-k][i-k]);
+                         }
+                     }
+                   }
+                   if(i==iMax&&j==jMin) //southWest
+                   {
+                      for(int k=1;k<=range;k++)
+                      {
+                          if(GUI.tileGameMap[j-k][i+k].hasSouthWest())
+                          {
+                                  System.out.println("SouthEast at ("+(j+k)+","+(i+k)+")");
+                                    g2.fill(GUI.tileGameMap[j-k][i+k]);
+                          }
+                      } 
+                   }
+                   if(i==iMax&&j==jMax) //southWest
+                   {
+                      for(int k=1;k<=range;k++)
+                      {
+                          if(GUI.tileGameMap[j+k][i+k].hasSouthEast())
+                          {
+                                  System.out.println("SouthWest at ("+(j-k)+","+(i+k)+")");
+                                    g2.fill(GUI.tileGameMap[j+k][i+k]);
+                          }
+                      }
+                   }
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                    if(i==iMin) //paint north
                     {
                         for(int k=1;k<=range;k++)
                         {
@@ -188,11 +229,9 @@ public class GUI implements MouseListener
                              else
                                  break;
                         }
- 
                     }
-                    if(i==iMax)
+                    if(i==iMax) //paint south
                     {
-                        
                          for(int k=1;k<=range;k++)
                          {
                              if(GUI.tileGameMap[j][i+k].hasSouth())
@@ -203,11 +242,10 @@ public class GUI implements MouseListener
                              }
                              else
                                  break;
-
                          }
 //                        color the three times to the south if they are there
                     }
-                    if(j==jMin)
+                    if(j==jMin) //paint west
                     {
                          for(int k=1;k<=range;k++)
                          {
@@ -219,11 +257,10 @@ public class GUI implements MouseListener
                             }
                             else
                                 break;
-
                          }
 //                        color the three tiles to the west if they are there
                     }
-                    if(j==jMax)
+                    if(j==jMax) //paint east
                     {
                          for(int k=1;k<=range;k++)
                          {
@@ -250,7 +287,7 @@ public class GUI implements MouseListener
 //        //find the outside tiles
 //        
 //     //not sure if necessary, i dont think it is but doesn't hurt   
-//    g2.setColor(temp);
+    g2.setColor(temp);
     }
    //initualize GUI whenever need to have a new Panel with mouselistener
    public GUI(JPanel panel)

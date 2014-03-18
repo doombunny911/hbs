@@ -4,6 +4,7 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -60,7 +61,18 @@ public class Painter extends JPanel
       {
          for(int j=0;j<sWidth;j++)
          {
-            g2.draw(GUI.tileGameMap[j][i]);
+            if(j%10==0)
+            {
+                g2.fill(GUI.tileGameMap[j][i]);
+            }
+            if(i%10==0)
+            {
+                g2.fill(GUI.tileGameMap[j][i]);
+            }
+            else
+            {
+                 g2.draw(GUI.tileGameMap[j][i]);
+            }
          }
        }
       
