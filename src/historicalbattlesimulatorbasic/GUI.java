@@ -105,144 +105,144 @@ public class GUI implements MouseListener
 
     public static void paintRange(Unit unitSelected,Graphics g) 
     {
-//        Graphics2D g2=(Graphics2D)g;
-//        System.out.println("in paintRange");
-//        double range = unitSelected.unitSoldiers[0].range;
-////        find which tiles have soldiers on them in the area with the same unitID
-//        
-////        brute force method ftw
-//        Tile tiles[][] = new Tile[(int)numberOfTilesWidth][(int)numberOfTilesHeight];
-//        int iMin = Integer.MAX_VALUE;
-//        int iMax = Integer.MIN_VALUE;
-//        int jMin = Integer.MAX_VALUE;
-//        int jMax = Integer.MIN_VALUE;
-//        for(int i=0;i<GUI.numberOfTilesHeight;i++)
-//        {
-//            for(int j=0;j<GUI.numberOfTilesWidth;j++)
-//            {
-//               if(GUI.tileGameMap[j][i].isOccupied)
-//               {
-//                   
-//                   if(GUI.tileGameMap[j][i].getOccupier().getUnitID()==unitSelected.getUnitID())//the unit belongs to the selected unit
-//                   {
-//                       System.out.println("unit id of parameter = " +unitSelected.getUnitID() );
-//                       System.out.println("unit id of tileOccupier = " +GUI.tileGameMap[j][i].getOccupier().getUnitID() );
-//                       System.out.println("this is an occupied tile");
-//                    System.out.println("tile located at i= "+i+ " j = " + j );
-////                   check to see if index changes in
-//                   if(i<iMin)
-//                   {
-//                      iMin=i;
-//                      System.out.println("new imin");
-//                   }
-//                   if(i>iMax)
-//                   {
-//                       iMax=i;
-//                        System.out.println("new imax");
-//                   }
-//                       
-//                   if(j<jMin)
-//                   {
-//                       jMin=j;
-//                        System.out.println("new jmin");
-//                   }
-//                   if(j>jMax)
-//                   {
-//                      jMax=j; 
-//                      System.out.println("new jmax");
-//                   }
-//                       
-//                   
-//                   
-//                   
-//                   
-//                   tiles[j][i]=GUI.tileGameMap[j][i];
-//                   
-//                  
-//                   
-//                   }
-//               }
-//               
-//
-//            }
-//        }
-//       Color temp= g2.getColor();
-//       g2.setColor(Color.yellow);
-//       
-//       for(int i=iMin;i<=iMax;i++)
-//       {
-//           for(int j=jMin;j<=jMax;j++)
-//           {
-//               System.out.println("j = " + j + " i = " + i);
-//               if(tiles[j][i].isOccupied)
-//               {
-//                    if(i==iMin)
-//                    {
-//                        for(int k=1;k<=range;k++)
-//                        {
-//                             if(GUI.tileGameMap[j][i-k].hasNorth())
-//                             {
-////                                  System.out.println("north");
-//                                    g2.fill(GUI.tileGameMap[j][i-k]);
-//                             }
-//                             else
-//                                 break;
-//                        }
-// 
-//                    }
-//                    if(i==iMax)
-//                    {
-//                        
-//                         for(int k=1;k<=range;k++)
-//                         {
-//                             if(GUI.tileGameMap[j][i+k].hasSouth())
-//                             {
-////                                   System.out.println("south");
-//                                  g2.fill(GUI.tileGameMap[j][i+k]);
-//
-//                             }
-//                             else
-//                                 break;
-//
-//                         }
-////                        color the three times to the south if they are there
-//                    }
-//                    if(j==jMin)
-//                    {
-//                         for(int k=1;k<=range;k++)
-//                         {
-//                            if(GUI.tileGameMap[j-k][i].hasWest())
-//                            {
-////                                 System.out.println("west");
-//                                g2.fill(GUI.tileGameMap[j-k][i]);
-//
-//                            }
-//                            else
-//                                break;
-//
-//                         }
-////                        color the three tiles to the west if they are there
-//                    }
-//                    if(j==jMax)
-//                    {
-//                         for(int k=1;k<=range;k++)
-//                         {
-//                             if(GUI.tileGameMap[j+k][i].hasEast())
-//                             {                                 
-////                                 System.out.println("east");
-//                                g2.fill(GUI.tileGameMap[j+k][i]);
-//                             }
-//                             else
-//                                 break;
-//                         }
-//                            
-////                        color the three tiles to the east
-//                    }
-//               }
-//               
-//               
-//           }
-//       }
+        Graphics2D g2=(Graphics2D)g;
+        System.out.println("in paintRange");
+        double range = unitSelected.unitSoldiers[0].range;
+//        find which tiles have soldiers on them in the area with the same unitID
+        
+//        brute force method ftw
+        Tile tiles[][] = new Tile[(int)numberOfTilesWidth][(int)numberOfTilesHeight];
+        int iMin = Integer.MAX_VALUE;
+        int iMax = Integer.MIN_VALUE;
+        int jMin = Integer.MAX_VALUE;
+        int jMax = Integer.MIN_VALUE;
+        for(int i=0;i<GUI.numberOfTilesHeight;i++)
+        {
+            for(int j=0;j<GUI.numberOfTilesWidth;j++)
+            {
+               if(GUI.tileGameMap[j][i].isOccupied)
+               {
+                   
+                   if(GUI.tileGameMap[j][i].getOccupier().getUnitID()==unitSelected.getUnitID())//the unit belongs to the selected unit
+                   {
+                       System.out.println("unit id of parameter = " +unitSelected.getUnitID() );
+                       System.out.println("unit id of tileOccupier = " +GUI.tileGameMap[j][i].getOccupier().getUnitID() );
+                       System.out.println("this is an occupied tile");
+                    System.out.println("tile located at i= "+i+ " j = " + j );
+//                   check to see if index changes in
+                   if(i<iMin)
+                   {
+                      iMin=i;
+                      System.out.println("new imin");
+                   }
+                   if(i>iMax)
+                   {
+                       iMax=i;
+                        System.out.println("new imax");
+                   }
+                       
+                   if(j<jMin)
+                   {
+                       jMin=j;
+                        System.out.println("new jmin");
+                   }
+                   if(j>jMax)
+                   {
+                      jMax=j; 
+                      System.out.println("new jmax");
+                   }
+                       
+                   
+                   
+                   
+                   
+                   tiles[j][i]=GUI.tileGameMap[j][i];
+                   
+                  
+                   
+                   }
+               }
+               
+
+            }
+        }
+       Color temp= g2.getColor();
+       g2.setColor(Color.yellow);
+       
+       for(int i=iMin;i<=iMax;i++)
+       {
+           for(int j=jMin;j<=jMax;j++)
+           {
+               System.out.println("j = " + j + " i = " + i);
+               if(tiles[j][i].isOccupied)
+               {
+                    if(i==iMin)
+                    {
+                        for(int k=1;k<=range;k++)
+                        {
+                             if(GUI.tileGameMap[j][i-k].hasNorth())
+                             {
+//                                  System.out.println("north");
+                                    g2.fill(GUI.tileGameMap[j][i-k]);
+                             }
+                             else
+                                 break;
+                        }
+ 
+                    }
+                    if(i==iMax)
+                    {
+                        
+                         for(int k=1;k<=range;k++)
+                         {
+                             if(GUI.tileGameMap[j][i+k].hasSouth())
+                             {
+//                                   System.out.println("south");
+                                  g2.fill(GUI.tileGameMap[j][i+k]);
+
+                             }
+                             else
+                                 break;
+
+                         }
+//                        color the three times to the south if they are there
+                    }
+                    if(j==jMin)
+                    {
+                         for(int k=1;k<=range;k++)
+                         {
+                            if(GUI.tileGameMap[j-k][i].hasWest())
+                            {
+//                                 System.out.println("west");
+                                g2.fill(GUI.tileGameMap[j-k][i]);
+
+                            }
+                            else
+                                break;
+
+                         }
+//                        color the three tiles to the west if they are there
+                    }
+                    if(j==jMax)
+                    {
+                         for(int k=1;k<=range;k++)
+                         {
+                             if(GUI.tileGameMap[j+k][i].hasEast())
+                             {                                 
+//                                 System.out.println("east");
+                                g2.fill(GUI.tileGameMap[j+k][i]);
+                             }
+                             else
+                                 break;
+                         }
+                            
+//                        color the three tiles to the east
+                    }
+               }
+               
+               
+           }
+       }
 //        //paint range from the first tile
 //        //paint 3 up (according to direction) from each tile after that
 //        //on the last tile, paint range to the right
@@ -454,14 +454,11 @@ public class GUI implements MouseListener
           UnitDraw draw = new UnitDraw(GUI.unitSelected);
           GUI.units.add(draw);
           GUI.units.remove((index));
-         moveBoolean=false;
-         GUI.tileClicked=null;
-        GUI.gameFrame.revalidate();
+          moveBoolean=false;
+          GUI.tileClicked=null;
+          GUI.gameFrame.revalidate();
           GUI.panel.repaint();
           GUI.gameFrame.repaint();
-//          System.out.println("unitID of unitSelected after = " +draw.thisUnit.unitID);
-         
-         
    }
    public static JButton[] initializeButtons(JButton[] button)
    {
