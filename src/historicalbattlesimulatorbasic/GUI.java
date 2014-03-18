@@ -40,7 +40,7 @@ public class GUI implements MouseListener
     static Tile tileClicked;
     static UnitLoader loader;
     static int unitNum;
-    static int moveInt;
+    static int move;
     static int indexToRemove;
     static JPanel buttonPanel = new JPanel();
     static JPanel statPanel= new JPanel();
@@ -48,6 +48,7 @@ public class GUI implements MouseListener
     static Unit attackUnit;
     static Unit defendUnit;
     static boolean impendingAttack=false;
+    static boolean moveBoolean;
     static Tile getTileClicked() 
     {
         return GUI.tileClicked;
@@ -68,18 +69,18 @@ public class GUI implements MouseListener
         double stamina = unitSelected.unitSoldiers[0].stamina;
         switch(facingInt)
         {
-            case 0: //north
+            case 1: //north
             {
                 facing="North";
                 break;
 
             }
-            case 1: //East
+            case 2: //East
             {
                 facing="East";
                 break;
             }
-            case 2: //south
+            case 3: //south
             {
                 facing = "South";
                 break;
@@ -121,48 +122,38 @@ public class GUI implements MouseListener
             {
                if(GUI.tileGameMap[j][i].isOccupied)
                {
-                   
+//                   System.out.println("tile at ("+j+","+i+") is occupied");
                    if(GUI.tileGameMap[j][i].getOccupier().getUnitID()==unitSelected.getUnitID())//the unit belongs to the selected unit
                    {
                        System.out.println("unit id of parameter = " +unitSelected.getUnitID() );
                        System.out.println("unit id of tileOccupier = " +GUI.tileGameMap[j][i].getOccupier().getUnitID() );
                        System.out.println("this is an occupied tile");
-                    System.out.println("tile located at i= "+i+ " j = " + j );
+                         System.out.println("tile located at i= "+i+ " j = " + j );
 //                   check to see if index changes in
-                   if(i<iMin)
-                   {
-                      iMin=i;
-                      System.out.println("new imin");
-                   }
-                   if(i>iMax)
-                   {
-                       iMax=i;
-                        System.out.println("new imax");
-                   }
-                       
-                   if(j<jMin)
-                   {
-                       jMin=j;
-                        System.out.println("new jmin");
-                   }
-                   if(j>jMax)
-                   {
-                      jMax=j; 
-                      System.out.println("new jmax");
-                   }
-                       
-                   
-                   
-                   
-                   
-                   tiles[j][i]=GUI.tileGameMap[j][i];
-                   
-                  
-                   
-                     }
-               }
-               
+                        if(i<iMin)
+                        {
+                           iMin=i;
+//                           System.out.println("new imin = " + i);
+                        }
+                        if(i>iMax)
+                        {
+                            iMax=i;
+//                             System.out.println("new imax = " + i );
+                        }
 
+                        if(j<jMin)
+                        {
+                            jMin=j;
+//                             System.out.println("new jmin = " + j);
+                        }
+                        if(j>jMax)
+                        {
+                           jMax=j; 
+//                           System.out.println("new jmax = " + j);
+                        }
+                   tiles[j][i]=GUI.tileGameMap[j][i];
+                   }
+               }  
             }
         }
        Color temp= g2.getColor();
@@ -172,10 +163,61 @@ public class GUI implements MouseListener
        {
            for(int j=jMin;j<=jMax;j++)
            {
-               System.out.println("j = " + j + " i = " + i);
                if(tiles[j][i].isOccupied)
                {
-                    if(i==iMin)
+                   
+                   if(i==iMin&&j==jMax) //northEast
+                   {
+                       for(int k=1;k<=range;k++)
+                       {
+                           if(GUI.tileGameMap[j+k][i-k].hasNorthEast())
+                             {
+                                  System.out.println("northWest at ("+(j+k)+","+(i-k)+")");
+                                 g2.fill(GUI.tileGameMap[j+k][i-k]);
+                             }
+                       }    
+                   }
+                   if(i==iMin&&j==jMin) //northWest
+                   {
+                     for(int k=1;k<=range;k++)
+                     {
+                         if(GUI.tileGameMap[j-k][i-k].hasNorthWest())
+                         {
+                                  System.out.println("northEast at ("+(j+k)+","+(i-k)+")");
+                                    g2.fill(GUI.tileGameMap[j-k][i-k]);
+                         }
+                     }
+                   }
+                   if(i==iMax&&j==jMin) //southWest
+                   {
+                      for(int k=1;k<=range;k++)
+                      {
+                          if(GUI.tileGameMap[j-k][i+k].hasSouthWest())
+                          {
+                                  System.out.println("SouthEast at ("+(j+k)+","+(i+k)+")");
+                                    g2.fill(GUI.tileGameMap[j-k][i+k]);
+                          }
+                      } 
+                   }
+                   if(i==iMax&&j==jMax) //southWest
+                   {
+                      for(int k=1;k<=range;k++)
+                      {
+                          if(GUI.tileGameMap[j+k][i+k].hasSouthEast())
+                          {
+                                  System.out.println("SouthWest at ("+(j-k)+","+(i+k)+")");
+                                    g2.fill(GUI.tileGameMap[j+k][i+k]);
+                          }
+                      }
+                   }
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                    if(i==iMin) //paint north
                     {
                         for(int k=1;k<=range;k++)
                         {
@@ -187,11 +229,9 @@ public class GUI implements MouseListener
                              else
                                  break;
                         }
- 
                     }
-                    if(i==iMax)
+                    if(i==iMax) //paint south
                     {
-                        
                          for(int k=1;k<=range;k++)
                          {
                              if(GUI.tileGameMap[j][i+k].hasSouth())
@@ -202,11 +242,10 @@ public class GUI implements MouseListener
                              }
                              else
                                  break;
-
                          }
 //                        color the three times to the south if they are there
                     }
-                    if(j==jMin)
+                    if(j==jMin) //paint west
                     {
                          for(int k=1;k<=range;k++)
                          {
@@ -218,11 +257,10 @@ public class GUI implements MouseListener
                             }
                             else
                                 break;
-
                          }
 //                        color the three tiles to the west if they are there
                     }
-                    if(j==jMax)
+                    if(j==jMax) //paint east
                     {
                          for(int k=1;k<=range;k++)
                          {
@@ -230,7 +268,6 @@ public class GUI implements MouseListener
                              {                                 
 //                                 System.out.println("east");
                                 g2.fill(GUI.tileGameMap[j+k][i]);
-
                              }
                              else
                                  break;
@@ -243,13 +280,13 @@ public class GUI implements MouseListener
                
            }
        }
-        //paint range from the first tile
-        //paint 3 up (according to direction) from each tile after that
-        //on the last tile, paint range to the right
-        //check to see if it is the last 
-        //find the outside tiles
-        
-     //not sure if necessary, i dont think it is but doesn't hurt   
+//        //paint range from the first tile
+//        //paint 3 up (according to direction) from each tile after that
+//        //on the last tile, paint range to the right
+//        //check to see if it is the last 
+//        //find the outside tiles
+//        
+//     //not sure if necessary, i dont think it is but doesn't hurt   
     g2.setColor(temp);
     }
    //initualize GUI whenever need to have a new Panel with mouselistener
@@ -318,7 +355,6 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
                
-               //need to wait until a mouse click is given, than call attack
                
                GUI.attackUnit=GUI.unitSelected;
            }
@@ -350,9 +386,18 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
+              if(moveBoolean==false)
+              {
+                  System.out.println("please click the tile that you wish to move to");
+                  GUI.move=2;
+                  GUI.moveBoolean=true; 
+              }
               
+<<<<<<< HEAD
                System.out.println("Please click the tile that you wish to move to");
                moveInt+=2;
+=======
+>>>>>>> c582879fad87938bc2a71df4c973f646ce87e1f0
            }
        });
        button[4].addActionListener(new ActionListener() {
@@ -384,33 +429,60 @@ public class GUI implements MouseListener
 
    private void moveUnit() 
    {
-       System.out.println("in moveUnit");
-       if(moveInt%2==0)
-       {
-             System.out.println("mod 2 =0");
-
-           //this is a unit being selected
-            for(int i=0;i<GUI.units.size();i++)
-           {
-//               if(GUI.tileClicked.getOccupier().unitName==GUI.units.get(i).thisUnit.unitName)
+     
+//       if(move%2==0)
+//       {
+//         //this is a unit being selected
+//            for(int i=0;i<GUI.units.size();i++)
+//           {
+////               
+//               if(GUI.tileClicked.getOccupier().getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
 //               {
-               if(GUI.tileClicked.getOccupier().getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
-               {
-                   System.out.println(GUI.tileClicked.getOccupier().unitName);
-                   System.out.println(GUI.units.get(i).thisUnit.unitName);
-                   System.out.println(GUI.units.get(i).thisUnit.unitID);
-                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
-                   //found the unit to delete
-//                   System.out.println(GUI.units.get(i).xDraw);
-                   GUI.indexToRemove=i;
-                   System.out.println("indexToRemove " +GUI.indexToRemove);
-                   break;
-               }
-           }
-       }
+//                   System.out.println(GUI.tileClicked.getOccupier().unitName);
+//                   System.out.println(GUI.units.get(i).thisUnit.unitName);
+//                   System.out.println(GUI.units.get(i).thisUnit.unitID);
+//                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
+////                   found the unit to delete
+//                   GUI.indexToRemove=i;
+//                   System.out.println("indexToRemove " +GUI.indexToRemove);
+//                   break;
+//               }
+//           }  
+//       }
+//       else if(move%2==1)
+//       {
+//           UnitDraw draw =GUI.units.get(GUI.indexToRemove);
+//          Unit unit =draw.thisUnit;
+//          unit.xPosition=GUI.tileClicked.xPosition;
+//          unit.yPosition = GUI.tileClicked.yPosition;
+//          System.out.println("unitId of unitSelected before = " +  GUI.unitSelected.unitID);
+//          UnitDraw draw2=new UnitDraw(unit);
+//          GUI.units.remove(GUI.units.get(GUI.indexToRemove));
+//             GUI.units.add(draw2);
+//             GUI.indexToRemove=0;
+//          GUI.gameFrame.revalidate();
+//          GUI.panel.repaint();
+//          GUI.gameFrame.repaint();
+//          int check =0;
+//         for(int i=0;i<units.size();i++)
+//         {
+//             check++;
+//             
+//         }
+//         System.out.println("there are " + check + " units in the arraylist");
+//          
+////         GUI.move=0;
+//         GUI.tileClicked=null;
+//       }
+//         move--;
+         
        
-       else
+       
+           //locate the unitDraw whose unit = GUI.selectedUnit;
+       int index = Integer.MAX_VALUE;
+       for(int i=0;i<units.size();i++)
        {
+<<<<<<< HEAD
          //So this the space that unit is being moved too   
 
           UnitDraw draw =GUI.units.get(GUI.indexToRemove);
@@ -467,13 +539,27 @@ public class GUI implements MouseListener
          // unit.moveDirection(unitNum);
           GUI.units.add(draw2);
           GUI.indexToRemove=0;
+=======
+           if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
+           {
+             System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
+             System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.unitName);
+
+               index=i;
+//               break;
+           }
+       }
+          GUI.unitSelected.xPosition=GUI.tileClicked.xPosition;
+          GUI.unitSelected.yPosition=GUI.tileClicked.yPosition;
+          UnitDraw draw = new UnitDraw(GUI.unitSelected);
+          GUI.units.add(draw);
+          GUI.units.remove((index));
+          moveBoolean=false;
+          GUI.tileClicked=null;
+>>>>>>> c582879fad87938bc2a71df4c973f646ce87e1f0
           GUI.gameFrame.revalidate();
           GUI.panel.repaint();
           GUI.gameFrame.repaint();
-       }
-         GUI.moveInt--;
-         GUI.tileClicked=null;
-         
    }
    public static JButton[] initializeButtons(JButton[] button)
    {
@@ -497,11 +583,8 @@ public class GUI implements MouseListener
    //need to set a direction when unit is placed on board
     public void loadUnit() 
     {
-        System.out.println("Unitnum!=0");
+//        System.out.println("Unitnum!=0");
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
-//        UnitFormations form  = new UnitFormations(unit,0,GUI.tileClicked);
-//        unit.setFormation(form);
-//        unit.setUnitUnitID();
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
 //        System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
         GUI.units.add(new UnitDraw(unit));
@@ -519,33 +602,47 @@ public class GUI implements MouseListener
         double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
         double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
         GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY];
-        
+        System.out.println("just clicked on tile (" + (int)findTileX +","+ (int)findTileY+")");
         if(thereIsAUnitReadyToBeLoaded())
             loadUnit();
-
-        
-        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack)
+        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null)
         {
             
-           GUI.unitSelected=GUI.units.get(GUI.tileClicked.getOccupier().getUnitID()).thisUnit;
+           
+            //get the unit that has the same thisUnit inside arrayList units by getting the soldier occupying the tile
+           for(int i =0;i<units.size();i++)
+           {
+               System.out.println("unitID of getOccupier on tile  = " + GUI.tileClicked.getOccupier().getUnitID());
+              if(GUI.units.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
+              {
+                  
+                  GUI.unitSelected=GUI.units.get(i).thisUnit;
+                  System.out.println("the unitID of unit " + GUI.unitSelected.unitName + " is = to " +GUI.unitSelected.unitID);
+              }
+
+           }
 
            //paint the range that the unit can move
                 //call to the painter is happening
             
              toggleButtons(true);
-             System.out.println(GUI.tileClicked.isOccupied);
+//             System.out.println(GUI.tileClicked.isOccupied);
              //get the unit selected
         }
+
+
+        
+
+        
+       
         else if(GUI.tileClicked!=null&&!GUI.tileClicked.isOccupied&&!GUI.impendingAttack)
         {
 //           toggleButtons(false);
         }
             
-        if(GUI.moveInt>0&&tileClicked!=null)
+        if(GUI.moveBoolean&&tileClicked!=null)
         {
-            System.out.println("moveUnit>0");
              moveUnit();
-            
         }
         
         if(GUI.attackUnit!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied)

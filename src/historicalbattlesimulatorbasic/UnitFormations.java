@@ -41,82 +41,74 @@ public class UnitFormations
     public UnitFormations defaultFormation(Tile tile,int dir)
     {
         //start at the unit start tile
-        //for every 5 soldiers, draw a sprite
         //depending on the direction, draw to the "right" tile
         //less than hundred, just a stright line
-       int numberOfSoldiers = 50;
-       BufferedImage img;
-       System.out.println(tile);
-//       int numberOfSoldiers =this.unit.unitSoldiers.length;
-       try 
-       { 
-           img = ImageIO.read(new File("SoldierSprite.jpg"));
+       int numberOfSoldiers= unit.unitSoldiers.length;
+      
+     //TO DO: 
+     //      add a new row if number of soldiers> X
+     //      add paint in diagonals
+       
+       
+       
+      int soldiersPerSprite = 5; //each sprite represents this many soldiers
             switch(dir)
            {
-               case 0: //north
+               case 1: //north
                {
-                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
-           
+                       //store the location of the sprites for later painting
                         spriteLocations[this.index]= 
-                        GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index][tile.yPosition/GUI.tileWidth];
-                        this.unit.unitSoldiers[0].tileOccupied=tile;
-                        GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);
+                        GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
+                                 [tile.yPosition/GUI.tileWidth];
+                        
+                        //put the soldier into the tile
+                        this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                        spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
                         this.index++;
                   }
                     
                     break;
                }
-               case 1: //east
+               case 2: //east
                {
-                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
                     GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth+this.index];
-                    this.unit.unitSoldiers[0].tileOccupied=tile;
-                    GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);
+                    this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                    spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
-                   
-
                     }
                     break;
                }
-               case 2: //south
+               case 3: //south
                {
                    System.out.println("case 2");
-                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
                     GUI.tileGameMap[tile.xPosition/GUI.tileWidth-this.index][tile.yPosition/GUI.tileWidth];
-                    this.unit.unitSoldiers[0].tileOccupied=tile;
-                    GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);  
+                    this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                    spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
                   }
                    break;
                }
-               case 3: //west
+               case 4: //west
                {
-                   for(int i=0;i<numberOfSoldiers;i=i+5)
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
                     GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth-this.index];
-                    this.unit.unitSoldiers[0].tileOccupied=tile;
-                    GUI.tileClicked.occupyBy(unit.unitSoldiers[0]);
+                    this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                    spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
                   }
                    break;
                }
            }
-           
-       }
-       
-       
-       catch (IOException e) 
-       {
-          System.out.println("error loading file " + e);
-       }
-       
-       
        return this;
     
     }
@@ -124,15 +116,13 @@ public class UnitFormations
     public void paintFormation(Graphics g)
     {
         
-        BufferedImage img;
+      
         int temp = this.index;
         try
         {
-           img = ImageIO.read(new File("SoldierSprite.jpg"));
-//           System.out.println("spriteLocations.length " + this.spriteLocations.length );
+           BufferedImage  img = ImageIO.read(new File("SoldierSprite.jpg"));
             for(int i=this.index-1;i>=0;i--)
             {
-//                System.out.println("spriteLocation at ["+i+"][0] = " +this.spriteLocations[i][0]);
                 g.drawImage(img, spriteLocations[i].xPosition,
                 spriteLocations[i].yPosition, spriteLocations[i].xLength,
                 spriteLocations[i].yLength,null);
