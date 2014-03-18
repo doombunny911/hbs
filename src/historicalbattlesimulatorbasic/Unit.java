@@ -80,6 +80,7 @@ public class Unit extends Soldier
      }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
+         System.out.println("unitIDGEN = " + Unit.unitIDGen);
         System.out.println("Authentic unit created");
         this.unitName = soldierType.unitName;
         this.unitSize = unitSize;
@@ -88,11 +89,10 @@ public class Unit extends Soldier
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
          //Creates a random Unit ID
-//        Random rng = new Random();
-//        this.unitID = rng.nextInt(10000);
+
         this.unitID=Unit.unitIDGen;
+        
         Unit.unitIDGen++;
-        System.out.println(this.unitID);
         for(int i=0; i<unitSize; i++)
         {
            
@@ -101,20 +101,22 @@ public class Unit extends Soldier
             unitSoldiers[i].setUnitID(this.unitID);
             unitSoldiers[i].placeOnTile(tileOccupied);
         }
-       
+       System.out.println("unitID of " + this.unitName + " = " +this.unitID);
     }
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
+        System.out.println("unitIDGEN = " + Unit.unitIDGen);
        System.out.println("Authentic unit created");
 
         unitName = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
-        this.unitID=Unit.unitIDGen;     
+        this.unitID=Unit.unitIDGen;
+
+     
         Unit.unitIDGen++;
-        System.out.println(this.unitID);
 
         for(int i=0; i<unitSize; i++)
         {
@@ -122,6 +124,8 @@ public class Unit extends Soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
         }
+          System.out.println("unitID of " + this.unitName + " = " +this.unitID);
+
     }
     //this should determine how many units are still alive
     public int getUnitsAlive()

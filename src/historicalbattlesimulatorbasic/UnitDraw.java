@@ -29,7 +29,7 @@ public class UnitDraw extends Rectangle
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
 //        System.out.println("unit id = " +this.thisUnit.getUnitID());
-        System.out.println(getUnit);
+//        System.out.println(getUnit);
         getUnit.currentFormation = new UnitFormations(getUnit,getUnit.unitSoldiers[0].facing,GUI.tileClicked);
         
         //set location for soldiers
@@ -39,7 +39,8 @@ public class UnitDraw extends Rectangle
 ////            this.thisUnit.unitSoldiers[i].tileOccupied=GUI.tileClicked;
 ////            GUI.tileClicked.occupyBy(thisUnit.unitSoldiers[i]);
 ////        }
-        
+//        System.out.println(getUnit.unitID);
+//        System.out.println(getUnit.unitName);
         this.tileLocationOfUnit=GUI.tileClicked;
         this.thisUnit=getUnit;
     }

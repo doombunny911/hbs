@@ -78,12 +78,10 @@ public class Openingmenuscreen extends JFrame
        public void actionPerformed( ActionEvent e ) 
         {
             //load the game, testButton for now
-            System.out.println("test");
             tilePanel.remove(buttonPanel);
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
          
-            System.out.println("here");
             Map gameMap=new Map(10);
             GUI.gameMap=gameMap;
             GUI.buttonLoader();
@@ -96,7 +94,8 @@ public class Openingmenuscreen extends JFrame
             //drawing unit, every unit is added via this, and thus drawn.
 //            while(unitNum!=0)
              GUI.unitNum=allUnits.size();
-             System.out.println("this happens here");
+            GUI.panel.repaint();
+            GUI.gameFrame.repaint();
             GUI.gameFrame.revalidate();
         }
     });

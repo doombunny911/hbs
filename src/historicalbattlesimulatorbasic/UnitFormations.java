@@ -46,18 +46,17 @@ public class UnitFormations
         //less than hundred, just a stright line
        int numberOfSoldiers = 50;
        BufferedImage img;
-       System.out.println(tile);
+//       System.out.println(tile);
 //       int numberOfSoldiers =this.unit.unitSoldiers.length;
        try 
        { 
            img = ImageIO.read(new File("SoldierSprite.jpg"));
             switch(dir)
            {
-               case 0: //north
+               case 1: //north
                {
                    for(int i=0;i<numberOfSoldiers;i=i+5)
                   {
-           
                         spriteLocations[this.index]= 
                         GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index][tile.yPosition/GUI.tileWidth];
                         this.unit.unitSoldiers[0].tileOccupied=tile;
@@ -67,7 +66,7 @@ public class UnitFormations
                     
                     break;
                }
-               case 1: //east
+               case 2: //east
                {
                    for(int i=0;i<numberOfSoldiers;i=i+5)
                   {
@@ -81,7 +80,7 @@ public class UnitFormations
                     }
                     break;
                }
-               case 2: //south
+               case 3: //south
                {
                    System.out.println("case 2");
                    for(int i=0;i<numberOfSoldiers;i=i+5)
@@ -94,7 +93,7 @@ public class UnitFormations
                   }
                    break;
                }
-               case 3: //west
+               case 4: //west
                {
                    for(int i=0;i<numberOfSoldiers;i=i+5)
                   {
