@@ -28,13 +28,19 @@ public class Game
     boolean hasWinner=false;
     Player winner=null;
 
+<<<<<<< HEAD
     public static ArrayList<Player> playersForDemo;
     static int numOfPlayers; //number of players playing
 
 //    Scanner scan = new Scanner(System.in);
+=======
+    public static ArrayList<Player> playersForDemo = new ArrayList<Player>();
+    static int numOfPlayers;
+>>>>>>> b377efe660778ed50aa8790ca67c2c05b0270ee5
 
 public static void main(String[] args)
 {
+<<<<<<< HEAD
     Game game = new Game();
     game.setUp();
     game.playersForDemo = Game.playerCreator(numOfPlayers);
@@ -48,6 +54,29 @@ public static void main(String[] args)
   
   
    }
+=======
+Game game = new Game();
+Player p1 = new Player();
+p1.setPlayerName("Player One");
+Player p2 = new Player();
+p2.setPlayerName("Player Two");
+playersForDemo.add(p1);
+playersForDemo.add(p2);
+JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
+UnitLoader ul1 = new UnitLoader();
+
+UnitLoader ul2 = new UnitLoader();
+p1.allUnits = ul1.runLoader();
+
+JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
+p2.allUnits = ul1.runLoader();
+
+  //game begin
+ game.playGame(playersForDemo);
+ }
+
+
+>>>>>>> b377efe660778ed50aa8790ca67c2c05b0270ee5
 
  public void playGame(ArrayList<Player> playersForDemo)
 {
@@ -61,15 +90,8 @@ public static void main(String[] args)
        }
    }
 }
-public void setUp()
-{
-    //gets the number of players
-    JOptionPane.showMessageDialog(frame, "Welcome to the Historical Battle Simulator! ");
-    int pcount = Integer.parseInt(JOptionPane.showInputDialog
-        (frame, "How many players shall be participating?","0"));
-    this.setNumPlayers(pcount);
-}
 //sets how many people are playing
+<<<<<<< HEAD
 public void setNumPlayers(int numOfPlayers)
 {
     Game.numOfPlayers=numOfPlayers;
@@ -88,6 +110,9 @@ public static ArrayList playerCreator(int numPlay)
         }
         return players;
     }
+=======
+
+>>>>>>> b377efe660778ed50aa8790ca67c2c05b0270ee5
 
 
     
@@ -97,7 +122,7 @@ public static ArrayList playerCreator(int numPlay)
 
     private boolean takeTurn(Player p)
     {
-      boolean hasWinner =  p.takeTurn();
+      hasWinner =  p.takeTurn();
       return hasWinner;
            }
 }

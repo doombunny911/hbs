@@ -43,7 +43,7 @@ public class Openingmenuscreen extends JFrame
         {
             
             Game game = new Game();
-            game.setUp();
+         //   game.setUp();
             
             //get the units they want and initialize them
             //than allow them to place them somewhere
