@@ -6,6 +6,13 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 /**
  *
@@ -18,7 +25,12 @@ public class Map
    private double squareHeight;
    private double squareWidth;
    private String name;
-    
+    public static void main(String[] args) throws IOException
+    {
+        Map m = MapCreator.createMap();
+        m.saveMap("file");
+        
+    }
     public Map(int xHeight, int yHeight)
     {
 //        gameMap = new Tile[xHeight][yHeight]; Not sure what you were going for here
@@ -113,9 +125,35 @@ public class Map
         }
     }
     }
+    
+    public void saveMap(String fileName2) throws IOException
+    {
+        PrintWriter writer = null;
+        String fileName=fileName2+".txt";
+        File file = new File("Maps"+File.separator+fileName);
+        File parent = file.getParentFile();
 
+if(!parent.exists() && !parent.mkdirs()){
+    throw new IllegalStateException("Couldn't create dir: " + parent);
+} 
+        try {                      
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+            writer.println("---"); //seperator 
+            writer.println(this.squareWidth);
+            System.out.println("Saved");
+            writer.close();
+             } 
+        catch (FileNotFoundException ex)
+             {
+            System.out.println("Unable to save file");
+        } 
+        finally {
+            writer.close();
+        }
+    }
+ }
    
-}
+
     
     
    

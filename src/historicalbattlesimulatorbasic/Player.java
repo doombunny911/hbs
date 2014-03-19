@@ -38,9 +38,8 @@ public static void main(String[] args)
     public static void singlePlayerDialog(ArrayList<Player> players) throws HeadlessException, NumberFormatException {
     Player playHolder   = new Player();   
     playHolder.playerName = JOptionPane.showInputDialog ( "Enter player name: " );
-        //playHolder.nameOfArmy = JOptionPane.showInputDialog ( "Enter army name:\n 'Mars Fury', 'The 13th Legion of Rome', 'Ryan's Raiders' " );
-        playHolder.unitLimit = Integer.parseInt(JOptionPane.showInputDialog ( "Set the max number of Units to be deployed in this army: " ));
-        singlePlayerLoader(playHolder, players);
+    playHolder.unitLimit = Integer.parseInt(JOptionPane.showInputDialog ( "Set the max number of Units to be deployed in this army: " ));
+    singlePlayerLoader(playHolder, players);
     }
 
     private static void singlePlayerLoader(Player playHolder, ArrayList<Player> players) throws HeadlessException {

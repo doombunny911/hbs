@@ -338,6 +338,33 @@ public class GUI implements MouseListener
        GUI.panel.repaint();
        GUI.gameFrame.revalidate();
     }
+    public static void addCompassToPanel(JButton[] button,JPanel aPanel) {
+       GUI.panel.setLayout(null );
+       panel.setLayout(null);
+       GUI.panel.setLayout(null);
+       aPanel.setPreferredSize(new Dimension(250,250));
+       aPanel.setBounds(0, GUI.panel.getHeight()-150,GUI.panel.getWidth(), 150);
+       button[0].setBounds(aPanel.getWidth()/6-100,35,100,30);
+       button[1].setBounds(aPanel.getWidth()/6*2-100,35,100,30);
+       button[2].setBounds(aPanel.getWidth()/6*3-100,35,100,30);
+       button[3].setBounds(aPanel.getWidth()/6*4-100,35,100,30);
+       button[4].setBounds(aPanel.getWidth()/6*5-100,35,100,30);
+       button[5].setBounds(aPanel.getWidth()/6*6-100,35,100,30);
+       button[6].setBounds(aPanel.getWidth()/6*7-100,35,100,30);
+       button[7].setBounds(aPanel.getWidth()/6*8-100,35,100,30);
+       buttonPanel.add(button[0]);
+       buttonPanel.add(button[1]);
+       buttonPanel.add(button[2]);
+       buttonPanel.add(button[3]);
+       buttonPanel.add(button[4]);
+       buttonPanel.add(button[5]);
+       buttonPanel.add(button[6]);
+       buttonPanel.add(button[7]);
+       buttonPanel.setVisible(false);
+       GUI.panel.add(aPanel);
+       GUI.panel.repaint();
+       GUI.gameFrame.revalidate();
+    }
    
     
    //not in final spots, didn't want 
