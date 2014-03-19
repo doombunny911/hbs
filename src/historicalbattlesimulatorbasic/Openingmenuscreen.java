@@ -38,13 +38,17 @@ public class Openingmenuscreen extends JFrame
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
-//           
-            Game simulation = new Game(); 
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Enter number of players: ");
-            int numPlayers = scan.nextInt();
-//            simulation.setUp(numPlayers);
-//            simulation.playGame();
+            Game game = new Game();
+            game.setUp();
+            Game.playersForDemo = Game.playerCreator(Game.numOfPlayers);
+            for(Player p : Game.playersForDemo)
+              {
+                  System.out.println("Player name: "+ p.playerName);
+              }
+              //game begin
+             System.out.println("The game between"+ Game.playersForDemo.get(0)+" and "+Game.playersForDemo.get(1)+" has begun");
+             game.playGame(Game.playersForDemo);
+  
         }
     });
 
@@ -120,7 +124,7 @@ public class Openingmenuscreen extends JFrame
         gameFrame.setVisible(true);
    }
   
-   //sets to fullscreen mode, more a hinderence atm 
+   //sets to fullscreen mode, more a hinderence atm but good for final product
   public void setFullScreen()
   {
       gameFrame.setUndecorated(true);
@@ -159,7 +163,7 @@ public class Openingmenuscreen extends JFrame
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
-       tilePanel.add(buttonPanel,gbc);
+        tilePanel.add(buttonPanel,gbc);
 
     }
   

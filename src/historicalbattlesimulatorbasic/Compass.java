@@ -30,11 +30,10 @@ import javax.swing.JPanel;
  *
  * @author Edward
  */
-public final class Compass extends Applet implements ActionListener
+public final class Compass extends JPanel
 {
      
 //The resizing here is a bit interesting
-        public JButton[] buttonArray = new JButton[8];
         ImageIcon northImage = new ImageIcon("Sprites/Compass/North.png");
             Image img = northImage.getImage();
             Image newimg = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); 
@@ -89,8 +88,6 @@ public final class Compass extends Applet implements ActionListener
             Image newimg9 = img9.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon holderImage2 = new ImageIcon(newimg9);
         JButton holder = new JButton(holderImage2);
-        JPanel compassPanel = new JPanel(new BorderLayout());
-        Compass comp;
        
         
     public static void main(String[] args)
@@ -142,7 +139,7 @@ public final class Compass extends Applet implements ActionListener
       // comp.setLayout(new GridLayout(3,3));
       // this.setUpVisuals();
     }
-        @Override
+        
     public void init() {
          setLayout(new GridLayout(3,3));
          add(northWest);
@@ -175,12 +172,6 @@ public final class Compass extends Applet implements ActionListener
                   GUI.unitSelected.moveWest();
                 }});
          add(holder);
-                holder.addActionListener(new ActionListener() {
-                    @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                  //DISPLAY SOMETHING ELSE HERE
-                }});
          add(east);
                 east.addActionListener(new ActionListener() {
                     @Override
@@ -211,11 +202,6 @@ public final class Compass extends Applet implements ActionListener
                  }});
      }
 
-    @Override
-    public void actionPerformed(ActionEvent e) 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
   
     
