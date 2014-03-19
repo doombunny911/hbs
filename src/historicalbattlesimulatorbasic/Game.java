@@ -28,7 +28,7 @@ public class Game
     boolean hasWinner=false;
     Player winner=null;
 
-    public static ArrayList<Player> playersForDemo;
+    public static ArrayList<Player> playersForDemo = new ArrayList<>();
     static int numOfPlayers; //number of players playing
 
 //    Scanner scan = new Scanner(System.in);
@@ -77,14 +77,14 @@ p2.allUnits = ul1.runLoader();
  public void playGame(ArrayList<Player> playersForDemo)
 {
    boolean hasWinner = false;
-   while(!hasWinner)
-   {
+//   while(!hasWinner)
+//   {
        for(Player p : playersForDemo)
        {
            JOptionPane.showMessageDialog(null,"Player "+p.playerName+"'s turn.");
            hasWinner = takeTurn(p);
        }
-   }
+//   }
 }
 //sets how many people are playing
 
