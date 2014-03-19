@@ -5,7 +5,10 @@
 package historicalbattlesimulatorbasic;
 
 
+import static historicalbattlesimulatorbasic.Unit.getUnitPic;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -121,8 +125,14 @@ public class UnitLoader
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
             unit.setSprite(spriteName);
-            System.out.println("The Units sprite is "+unit.spriteName);
-            //System.out.println(unit.nameOfUnit + " created");
+           
+             BufferedImage ic = getUnitPic(unit);
+             Graphics g = ic.createGraphics();
+
+//...
+            ImageIcon icon = new ImageIcon();
+            icon.setImage(ic);
+            JOptionPane.showMessageDialog(null, icon);
             return unit;
     } 
   
