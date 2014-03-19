@@ -141,6 +141,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveNorthWest();
+                    System.out.println("northWest");
                   moveDirection=8;
                   moveLogic();
                 }});
@@ -150,6 +151,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveNorth();
+                     System.out.println("north");
                   moveDirection=1;
                   moveLogic();
                 }});
@@ -159,6 +161,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveNorthEast();
+                   System.out.println("northEast");
                   moveDirection=2;
                   moveLogic();
                 }});
@@ -169,6 +172,8 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.
+                System.out.println("west");
+
 //                  GUI.unitSelected.moveWest();
                   moveDirection=7;
                   moveLogic();
@@ -180,6 +185,8 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveEast();
+                  System.out.println("east");
+
                   moveDirection=3;
                   moveLogic();
                 }});
@@ -189,6 +196,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveSouthWest();
+                 System.out.println("southWest");
                   moveDirection=6;
                   moveLogic();
                 }});       
@@ -198,6 +206,8 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveSouth();
+                System.out.println("south");
+
                   moveDirection=5;
                   moveLogic();
                   
@@ -207,6 +217,8 @@ public final class Compass extends JPanel
                      @Override
                  public void actionPerformed(ActionEvent e)
                  {
+                     System.out.println("southEast");
+
 //                   GUI.unitSelected.moveSouthEast();
                    moveDirection=4;
                    moveLogic();
@@ -240,43 +252,53 @@ public final class Compass extends JPanel
            }
            case 2: //northEast
            {
+               System.out.println("northEast");
                GUI.unitSelected.xPosition+=GUI.tileWidth;
                GUI.unitSelected.yPosition-=GUI.tileWidth;
            }
            case 3: //East
            {
+                System.out.println("east");
                GUI.unitSelected.xPosition+=GUI.tileWidth;
            }
            case 4: //southEast
            {
+                System.out.println("southEast");
                GUI.unitSelected.xPosition+=GUI.tileWidth;
                GUI.unitSelected.yPosition+=GUI.tileWidth;
            }
            case 5: //South
            {
+                System.out.println("south");
                GUI.unitSelected.yPosition+=GUI.tileWidth;
            }
            case 6://southWest
            {
+                System.out.println("southWest");
                GUI.unitSelected.xPosition-=GUI.tileWidth;
                GUI.unitSelected.yPosition+=GUI.tileWidth;
            }
            case 7://West
            {
+                System.out.println("west");
                GUI.unitSelected.xPosition-=GUI.tileWidth;
            }
            case 8://NorthWest
            {
+                System.out.println("northWest");
                GUI.unitSelected.xPosition-=GUI.tileWidth;
                GUI.unitSelected.yPosition-=GUI.tileWidth;
            }
        }
+          GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
 
-            UnitDraw draw = new UnitDraw(GUI.unitSelected,GUI.units.get(index).tileLocationOfUnit);
-            GUI.units.add(draw);
+            UnitDraw draw = new UnitDraw(GUI.unitSelected);
+            
             GUI.units.remove(index);
-            GUI.moveBoolean=false;
-            GUI.tileClicked=null;
+            GUI.units.add(draw);
+//            GUI.unitSelected=draw.thisUnit;
+//            GUI.moveBoolean=false;
+//            GUI.tileClicked=null;
             moveDirection=0; //no direction
             GUI.gameFrame.revalidate();
             GUI.panel.repaint();

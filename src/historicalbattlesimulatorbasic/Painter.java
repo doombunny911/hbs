@@ -80,6 +80,7 @@ public class Painter extends JPanel
       {
          for(int i=0;i<GUI.units.size();i++)
          {
+             System.out.println("in painter painting things");
              GUI.units.get(i).paint(g);
              GUI.units.get(i).thisUnit.currentFormation.paintFormation(g);
          }
