@@ -229,11 +229,11 @@ public final class Compass extends JPanel
        int index=Integer.MAX_VALUE;
                       
        //find the index of the unitDraw that needs to be removed
-       for(int i=0;i<GUI.units.size();i++)
+       for(int i=0;i<GUI.unitDraws.size();i++)
        {
-          if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
+          if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
           {
-              System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
+              System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.unitDraws.get(i).thisUnit.getUnitID());
 //              System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.nameOfUnit);
 
               index=i;
@@ -302,8 +302,8 @@ public final class Compass extends JPanel
 
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             
-            GUI.units.remove(index);
-            GUI.units.add(draw);
+            GUI.unitDraws.remove(index);
+            GUI.unitDraws.add(draw);
             moveDirection=0; //no direction
             GUI.gameFrame.revalidate();
             GUI.panel.repaint();

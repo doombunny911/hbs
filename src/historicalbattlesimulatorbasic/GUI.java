@@ -37,7 +37,7 @@ public class GUI implements MouseListener
     static Tile[][] tileGameMap;
     static int tileWidth;
     static JPanel panel;
-    static ArrayList<UnitDraw> units=new ArrayList<>();
+    static ArrayList<UnitDraw> unitDraws=new ArrayList<>();
     static Tile tileClicked;
     static UnitLoader loader;
     static int unitNum;
@@ -549,7 +549,7 @@ public class GUI implements MouseListener
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
 //        System.out.println("place unit " +unit.nameOfUnit + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
-        GUI.units.add(new UnitDraw(unit));
+        GUI.unitDraws.add(new UnitDraw(unit));
         GUI.tileClicked=null;
         unitNum--;
         GUI.panel.repaint();
@@ -577,13 +577,13 @@ public class GUI implements MouseListener
             System.out.println("in the unitThingPlace");
            
             //get the unit that has the same thisUnit inside arrayList units by getting the soldier occupying the tile
-           for(int i =0;i<units.size();i++)
+           for(int i =0;i<unitDraws.size();i++)
            {
      //          System.out.println("unitID of getOccupier on tile  = " + GUI.tileClicked.getOccupier().getUnitID());
-              if(GUI.units.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
+              if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
               {
                   
-                  GUI.unitSelected=GUI.units.get(i).thisUnit;
+                  GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
         //          System.out.println("the unitID of unit " + GUI.unitSelected.nameOfUnit + " is = to " +GUI.unitSelected.unitID);
               }
 
@@ -667,7 +667,7 @@ public class GUI implements MouseListener
         Unit unit=player1AllUnits.get(num-1);
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
 //        System.out.println("place unit " +unit.nameOfUnit + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
-        GUI.units.add(new UnitDraw(unit));
+        GUI.unitDraws.add(new UnitDraw(unit));
         GUI.tileClicked=null;
         num--;
         GUI.panel.repaint();

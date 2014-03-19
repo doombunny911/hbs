@@ -27,7 +27,7 @@ public class Tile extends Rectangle
 //   BufferedImage  grass = grassLoader();
 //   BufferedImage dirt = dirtLoader();
 //   BufferedImage rocks = rockLoader() ;
-  BufferedImage tree = treeLoader();
+ // BufferedImage tree = treeLoader();
 //    boolean repaint = true;
 
     
@@ -195,14 +195,11 @@ public class Tile extends Rectangle
       Graphics2D g2=(Graphics2D)g;
        g2.setColor(Color.LIGHT_GRAY);
 //        g2.drawImage(grass, null, this.xPosition, this.yPosition);
-         if(rng.nextInt()<13)
-        {
-            g2.drawImage(tree,null, this.xPosition, this.yPosition);
-       }
-         else
-         {
-             g2.fill(this);
-         }
+//         if(rng.nextInt()<13)
+//        {
+//            g2.drawImage(tree,null, this.xPosition, this.yPosition);
+//       }
+         
     Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
       GUI.panel.repaint(tileR);
 //        

@@ -33,6 +33,13 @@ public class UnitDraw extends Rectangle
         this.tileLocationOfUnit=GUI.tileClicked;
         this.thisUnit=getUnit;
     }
+    /*
+    Returns the specific unit
+    */
+    public Unit getThisUnit()
+    {
+        return thisUnit;
+    }
     //may have no need for this one, will keep for now
     public UnitDraw(int x, int y, int heightY, int widthX)
     {

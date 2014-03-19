@@ -24,7 +24,7 @@ public final class UnitFormations
     private Unit unit;
     private Tile[] spriteLocations;
     private int index;
-    String graphicK = "blackKnight.png";
+    BufferedImage img;
     public UnitFormations(Unit unit, int dir,Tile tile)
     {
         index=0;
@@ -144,23 +144,14 @@ public final class UnitFormations
         
       
         int temp = this.index;
-        try
+        Unit u =  GUI.unitDraws.get(0).getThisUnit();
+        BufferedImage  img = Unit.getUnitPic(u);
+        
+        for(int i=this.index-1;i>=0;i--)
         {
-           BufferedImage  img = ImageIO.read(new File(graphicK));
-           if(GUI.unitSelected!=null)
-           {
-               graphicK = GUI.unitSelected.spriteName;
-           }
-            for(int i=this.index-1;i>=0;i--)
-            {
-                g.drawImage(img, spriteLocations[i].xPosition,
-                spriteLocations[i].yPosition, spriteLocations[i].xLength,
-                spriteLocations[i].yLength,null);
-            }
-        }
-        catch (IOException e)
-        {
-            System.out.println("error in paintFormation " + e );
+            g.drawImage(img, spriteLocations[i].xPosition,
+                    spriteLocations[i].yPosition, spriteLocations[i].xLength,
+                    spriteLocations[i].yLength,null);
         }
         
         this.index=temp;

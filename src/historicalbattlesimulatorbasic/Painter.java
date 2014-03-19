@@ -88,14 +88,14 @@ public class Painter extends JPanel
      GUI.panel.repaint();
       
       //units and sprites
-      if(!GUI.units.isEmpty())
+      if(!GUI.unitDraws.isEmpty())
       {
-         for(int i=0;i<GUI.units.size();i++)
+         for(int i=0;i<GUI.unitDraws.size();i++)
          {
 //             System.out.println("in painter painting things");
              
-             GUI.units.get(i).paint(g);
-             GUI.units.get(i).thisUnit.currentFormation.paintFormation(g);
+             GUI.unitDraws.get(i).paint(g);
+             GUI.unitDraws.get(i).thisUnit.currentFormation.paintFormation(g);
          }
       }
       //not currently used
