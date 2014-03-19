@@ -29,24 +29,22 @@ public class Game
     Player winner=null;
 
     public static ArrayList<Player> playersForDemo;
-    static int numOfPlayers;
+    static int numOfPlayers; //number of players playing
 
-    Scanner scan = new Scanner(System.in);
-public Game()
-{
-}
+//    Scanner scan = new Scanner(System.in);
+
 public static void main(String[] args)
 {
-Game game = new Game();
-game.setUp();
-game.playersForDemo = Game.playerCreator(numOfPlayers);
-    for (Player p : playersForDemo)
-    {
-        System.out.println("Player name: "+ p.playerName);
-    }
-  //game begin
- System.out.println("The game between"+ playersForDemo.get(0)+" and "+playersForDemo.get(1)+" has begun");
- game.playGame(playersForDemo);
+    Game game = new Game();
+    game.setUp();
+    game.playersForDemo = Game.playerCreator(numOfPlayers);
+        for (Player p : playersForDemo)
+        {
+            System.out.println("Player name: "+ p.playerName);
+        }
+      //game begin
+     System.out.println("The game between"+ playersForDemo.get(0)+" and "+playersForDemo.get(1)+" has begun");
+     game.playGame(playersForDemo);
   
   
    }
@@ -84,6 +82,7 @@ public static ArrayList playerCreator(int numPlay)
        
       
        for(int i=0; i<numPlay; i++)
+           
         {           
             Player.singlePlayerDialog(players);   
         }

@@ -8,7 +8,6 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,11 +23,11 @@ import javax.swing.RepaintManager;
  */
 public class Tile extends Rectangle
 {
-   BufferedImage  grass = grassLoader();
-   BufferedImage dirt = dirtLoader();
-   BufferedImage rocks = rockLoader() ;
-   BufferedImage tree = treeLoader();
-    boolean repaint = true;
+//   BufferedImage  grass = grassLoader();
+//   BufferedImage dirt = dirtLoader();
+//   BufferedImage rocks = rockLoader() ;
+//   BufferedImage tree = treeLoader();
+//    boolean repaint = true;
 
     
     boolean tileBlocked;
@@ -39,48 +38,48 @@ public class Tile extends Rectangle
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
-    public static BufferedImage grassLoader() 
-    {
-       BufferedImage grass1=null;
-       try {
-           grass1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"greenGround.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return grass1;
-    }
-      public static BufferedImage rockLoader() 
-    {
-       BufferedImage rock1=null;
-       try {
-           rock1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"rocksGround.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return rock1;
-    }
-        public static BufferedImage treeLoader() 
-    {
-       BufferedImage tree1=null;
-       try {
-           tree1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"tree.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return tree1;
-    }
-    
-    
-      public static BufferedImage dirtLoader() 
-    {
-       BufferedImage brown1=null;
-       try {
-           brown1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"brownGround.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return brown1;
-    }
+//    public static BufferedImage grassLoader() 
+//    {
+//       BufferedImage grass1=null;
+//       try {
+//           grass1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"greenGround.png"));
+//       } catch (IOException ex) {
+//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+//       }
+//       return grass1;
+//    }
+//      public static BufferedImage rockLoader() 
+//    {
+//       BufferedImage rock1=null;
+//       try {
+//           rock1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"rocksGround.png"));
+//       } catch (IOException ex) {
+//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+//       }
+//       return rock1;
+//    }
+//        public static BufferedImage treeLoader() 
+//    {
+//       BufferedImage tree1=null;
+//       try {
+//           tree1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"tree.png"));
+//       } catch (IOException ex) {
+//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+//       }
+//       return tree1;
+//    }
+//    
+//    
+//      public static BufferedImage dirtLoader() 
+//    {
+//       BufferedImage brown1=null;
+//       try {
+//           brown1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"brownGround.png"));
+//       } catch (IOException ex) {
+//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+//       }
+//       return brown1;
+//    }
     
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
@@ -189,17 +188,17 @@ public class Tile extends Rectangle
     
     protected void colorTile(Graphics g) throws IOException
     {
-        Random rng = new Random(100);
-       
-        Graphics2D g2=(Graphics2D)g;
-        g2.drawImage(grass, null, this.xPosition, this.yPosition);
-         if(rng.nextInt()==13)
-        {
-            g2.drawImage(tree,null, this.xPosition, this.yPosition);
-        }
-        Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
-        GUI.panel.repaint(tileR);
-        
+//        Random rng = new Random(100);
+//       
+//        Graphics2D g2=(Graphics2D)g;
+//        g2.drawImage(grass, null, this.xPosition, this.yPosition);
+//         if(rng.nextInt()==13)
+//        {
+//            g2.drawImage(tree,null, this.xPosition, this.yPosition);
+//        }
+//        Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
+//        GUI.panel.repaint(tileR);
+//        
        
         
     }
@@ -275,7 +274,7 @@ public class Tile extends Rectangle
         //ONLY EVEN NUMBER OF SOLDIERS ATM PLZ
        BufferedImage img = null;
 //               new BufferedImage(xLength,yLength,1);
-       int numberOfSoldiers =unit.unitSoldiers.length;
+       int numberOfSoldiers =unit.unitSize;
        
        try 
        {

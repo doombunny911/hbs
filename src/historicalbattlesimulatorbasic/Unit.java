@@ -25,6 +25,7 @@ public class Unit extends Soldier
 {
     static int unitIDGen =0;
     int unitID;
+    double moveMentCounter =super.speed; //for now, very basic
     String nameOfUnit = super.unitName;
     Soldier unitSoldiers[];
     Soldier soldierType;

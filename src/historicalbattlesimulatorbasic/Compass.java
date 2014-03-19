@@ -140,7 +140,7 @@ public final class Compass extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveNorthWest();
+//                  GUI.unitSelected.moveNorthWest();
                     System.out.println("northWest");
                   moveDirection=8;
                   moveLogic();
@@ -240,9 +240,10 @@ public final class Compass extends JPanel
           }
        }
                 //which direction was unit moved in
-       
-       switch(moveDirection)
-       {
+      if(GUI.unitSelected.moveMentCounter>-8)
+      {
+         switch(moveDirection)
+         {
            case 1: //north
            {
                System.out.println(GUI.unitSelected.yPosition);
@@ -307,7 +308,10 @@ public final class Compass extends JPanel
             GUI.gameFrame.revalidate();
             GUI.panel.repaint();
             GUI.gameFrame.repaint();
-      }
+            GUI.unitSelected.moveMentCounter--;
+      } 
+        }
+       
 }
 
 
