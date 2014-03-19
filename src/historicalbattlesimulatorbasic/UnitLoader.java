@@ -35,7 +35,7 @@ public class UnitLoader
         testUnits =  tester.unitPrepper(testUnits);
         for(Unit u: testUnits)
         {
-            System.out.println("Loaded "+u.unitName);
+            System.out.println("Loaded "+u.nameOfUnit);
         }
     }
       public ArrayList<Unit> runLoader()
@@ -86,7 +86,7 @@ public class UnitLoader
             System.out.println("The following units have been added to the units list: ");
            for(Unit aUnit : allUnits)
             {
-                 System.out.println(aUnit.unitName);
+                 System.out.println(aUnit.nameOfUnit);
             }
             
             
@@ -103,7 +103,7 @@ public class UnitLoader
     {        
        
             //Scanner reader = new Scanner(new FileInputStream(file));
-            //reader.findWithinHorizon(unitName, 0);
+            //reader.findWithinHorizon(nameOfUnit, 0);
             String nUnitName= unitName; //0
             
                 int nUnitType= Integer.parseInt(reader.nextLine()); //1
@@ -122,7 +122,7 @@ public class UnitLoader
        
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
-            System.out.println(unit.unitName + " created");
+            System.out.println(unit.nameOfUnit + " created");
             return unit;
     } 
   
@@ -132,8 +132,8 @@ public class UnitLoader
        ArrayList<Unit> allPrepUnit = new ArrayList();
           for(Unit prep: playerUnits)
           {
-            int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.unitName+" to create: ", "", JOptionPane.PLAIN_MESSAGE));
-            String confirm = "Really create "+someNumber+" "+prep.unitName+" ?";
+            int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.nameOfUnit+" to create: ", "", JOptionPane.PLAIN_MESSAGE));
+            String confirm = "Really create "+someNumber+" "+prep.nameOfUnit+" ?";
             JOptionPane.showConfirmDialog(null, confirm);
             for(int i=0; i<someNumber; i++)
             {

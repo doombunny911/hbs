@@ -25,7 +25,7 @@ public class Unit extends Soldier
 {
     static int unitIDGen =0;
     int unitID;
-    String unitName;
+    String nameOfUnit = super.unitName;
     Soldier unitSoldiers[];
     Soldier soldierType;
     int unitSize; 
@@ -37,6 +37,7 @@ public class Unit extends Soldier
     int xPosition, yPosition;
     int yHeight=40;
     int xWidth=10;
+    int unitFacing = super.facing;
     UnitFormations currentFormation;
      
 //    static Unit 
@@ -54,10 +55,10 @@ public class Unit extends Soldier
 //                    "Defend",
 //                    "Retreat"};
 //         int n = JOptionPane.showOptionDialog(null,
-//    "What do you "+attacker.unitName+" want to do? \n"
-//            + "Attacker: "+attacker.unitName +"\n vs"
-//         + "\n"+defender.unitName,
-//    "Battle between "+attacker.unitName+" and "+defender.unitName,
+//    "What do you "+attacker.nameOfUnit+" want to do? \n"
+//            + "Attacker: "+attacker.nameOfUnit +"\n vs"
+//         + "\n"+defender.nameOfUnit,
+//    "Battle between "+attacker.nameOfUnit+" and "+defender.nameOfUnit,
 //    JOptionPane.YES_NO_CANCEL_OPTION,
 //    JOptionPane.QUESTION_MESSAGE,
 //    null,
@@ -74,7 +75,7 @@ public class Unit extends Soldier
 //         }
 //         else
 //         {
-//            JOptionPane.showMessageDialog(null, "The "+attacker.unitName + "runs away");
+//            JOptionPane.showMessageDialog(null, "The "+attacker.nameOfUnit + "runs away");
 //         }
 //         
      }
@@ -82,7 +83,7 @@ public class Unit extends Soldier
     {
          System.out.println("unitIDGEN = " + Unit.unitIDGen);
         System.out.println("Authentic unit created");
-        this.unitName = soldierType.unitName;
+        this.nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
         this.unitStartLocationY=y;
@@ -101,7 +102,10 @@ public class Unit extends Soldier
             unitSoldiers[i].setUnitID(this.unitID);
             unitSoldiers[i].placeOnTile(tileOccupied);
         }
-       System.out.println("unitID of " + this.unitName + " = " +this.unitID);
+        
+        
+        
+       System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
     }
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
@@ -109,7 +113,7 @@ public class Unit extends Soldier
         System.out.println("unitIDGEN = " + Unit.unitIDGen);
        System.out.println("Authentic unit created");
 
-        unitName = soldierType.unitName;
+        nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
@@ -124,7 +128,7 @@ public class Unit extends Soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
         }
-          System.out.println("unitID of " + this.unitName + " = " +this.unitID);
+          System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
 
     }
     //this should determine how many units are still alive
@@ -208,8 +212,8 @@ public class Unit extends Soldier
                     
                 }
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
-                    + this.unitName + " against " + defender.unitName+ " "+
-                    defender.getUnitsAlive() + " units of "+ defender.unitName + " remain.");
+                    + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+
+                    defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + " remain.");
         }
         
     
@@ -244,7 +248,7 @@ public class Unit extends Soldier
              
             }
             
-        System.out.println("After this round of attacks by the" + this.unitName + " against " + defender.unitName+ " "+ defender.getUnitsAlive() + " units of "+ defender.unitName + "remain.");
+        System.out.println("After this round of attacks by the" + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+ defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + "remain.");
         }
         }
     }
@@ -335,7 +339,7 @@ if(!parent.exists() && !parent.mkdirs()){
         try {                      
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
             writer.println("---"); //seperator 
-            writer.println(unitName);
+            writer.println(nameOfUnit);
             writer.println(soldierType.unitType); 
             writer.println(soldierType.dmg); // the type of dice to be rolled for damage
             writer.println(soldierType.attack); // the bonus to the attack
