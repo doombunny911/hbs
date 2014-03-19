@@ -7,19 +7,28 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.RepaintManager;
 /**
  * One tile can hold one unit. Each tile has a different effect. Each tile is a square
  * @author Schmalz
  */
 public class Tile extends Rectangle
 {
-  
+   BufferedImage  grass = grassLoader();
+           BufferedImage dirt, rocks ;
+    boolean repaint = true;
+
+    
     boolean tileBlocked;
     int xPosition, yPosition, zPosition;
     int terrainEffect; //terrain effects will be all categorized as ints to allow easy return access.
@@ -28,9 +37,19 @@ public class Tile extends Rectangle
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
+    public static BufferedImage grassLoader() 
+    {
+       BufferedImage grass1=null;
+       try {
+           grass1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"greenGround.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return grass1;
+    }
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
-    
+    //load tiles of buffered the images 
     public Tile(int xPosition, int yPosition, int xLength, int yLength)
     {
             
@@ -132,6 +151,17 @@ public class Tile extends Rectangle
     }
     
     //returns the designated tile, if they exist.
+    
+    protected void colorTile(Graphics g) throws IOException
+    {
+      
+        Graphics2D g2=(Graphics2D)g;
+        g2.drawImage(grass, null, this.xPosition, this.yPosition);
+        Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
+        GUI.panel.repaint(tileR);
+       
+        
+    }
     Tile tileNorth()
     {
         if(hasNorth())
