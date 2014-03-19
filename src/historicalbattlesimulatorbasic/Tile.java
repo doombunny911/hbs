@@ -6,6 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -26,7 +27,7 @@ public class Tile extends Rectangle
 //   BufferedImage  grass = grassLoader();
 //   BufferedImage dirt = dirtLoader();
 //   BufferedImage rocks = rockLoader() ;
-//   BufferedImage tree = treeLoader();
+  BufferedImage tree = treeLoader();
 //    boolean repaint = true;
 
     
@@ -58,17 +59,17 @@ public class Tile extends Rectangle
 //       }
 //       return rock1;
 //    }
-//        public static BufferedImage treeLoader() 
-//    {
-//       BufferedImage tree1=null;
-//       try {
-//           tree1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"tree.png"));
-//       } catch (IOException ex) {
-//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-//       }
-//       return tree1;
-//    }
-//    
+        public static BufferedImage treeLoader() 
+   {
+      BufferedImage tree1=null;
+       try {
+           tree1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"tree.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return tree1;
+    }
+    
 //    
 //      public static BufferedImage dirtLoader() 
 //    {
@@ -188,16 +189,22 @@ public class Tile extends Rectangle
     
     protected void colorTile(Graphics g) throws IOException
     {
-//        Random rng = new Random(100);
+        Random rng = new Random(100);
 //       
-//        Graphics2D g2=(Graphics2D)g;
+       
+      Graphics2D g2=(Graphics2D)g;
+       g2.setColor(Color.LIGHT_GRAY);
 //        g2.drawImage(grass, null, this.xPosition, this.yPosition);
-//         if(rng.nextInt()==13)
-//        {
-//            g2.drawImage(tree,null, this.xPosition, this.yPosition);
-//        }
-//        Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
-//        GUI.panel.repaint(tileR);
+         if(rng.nextInt()<13)
+        {
+            g2.drawImage(tree,null, this.xPosition, this.yPosition);
+       }
+         else
+         {
+             g2.fill(this);
+         }
+    Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
+      GUI.panel.repaint(tileR);
 //        
        
         
