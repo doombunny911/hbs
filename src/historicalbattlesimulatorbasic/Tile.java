@@ -25,7 +25,9 @@ import javax.swing.RepaintManager;
 public class Tile extends Rectangle
 {
    BufferedImage  grass = grassLoader();
-           BufferedImage dirt, rocks ;
+   BufferedImage dirt = dirtLoader();
+   BufferedImage rocks = rockLoader() ;
+   BufferedImage tree = treeLoader();
     boolean repaint = true;
 
     
@@ -47,6 +49,39 @@ public class Tile extends Rectangle
        }
        return grass1;
     }
+      public static BufferedImage rockLoader() 
+    {
+       BufferedImage rock1=null;
+       try {
+           rock1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"rocksGround.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return rock1;
+    }
+        public static BufferedImage treeLoader() 
+    {
+       BufferedImage tree1=null;
+       try {
+           tree1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"tree.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return tree1;
+    }
+    
+    
+      public static BufferedImage dirtLoader() 
+    {
+       BufferedImage brown1=null;
+       try {
+           brown1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"brownGround.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return brown1;
+    }
+    
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
     //load tiles of buffered the images 
@@ -154,11 +189,17 @@ public class Tile extends Rectangle
     
     protected void colorTile(Graphics g) throws IOException
     {
-      
+        Random rng = new Random(100);
+       
         Graphics2D g2=(Graphics2D)g;
         g2.drawImage(grass, null, this.xPosition, this.yPosition);
+         if(rng.nextInt()==13)
+        {
+            g2.drawImage(tree,null, this.xPosition, this.yPosition);
+        }
         Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
         GUI.panel.repaint(tileR);
+        
        
         
     }
@@ -228,7 +269,7 @@ public class Tile extends Rectangle
        
     }
 
-    public void loadSprite(Graphics g,Tile t,Unit unit) 
+    public void loadSprite(Graphics g,Tile t,Unit unit, String unitSprite) 
     {
         
         //ONLY EVEN NUMBER OF SOLDIERS ATM PLZ
@@ -238,7 +279,7 @@ public class Tile extends Rectangle
        
        try 
        {
-          img = ImageIO.read(new File("SoldierSprite.jpg"));
+          img = ImageIO.read(new File("Sprites"+File.separator+"UnitSprites"+File.separator+ unitSprite));
           for(int i=0;i<unit.unitSoldiers.length/2;i++)
           {
               for(int j=0;j<numberOfSoldiers/2;j++)
