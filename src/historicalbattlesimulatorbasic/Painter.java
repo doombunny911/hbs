@@ -4,7 +4,6 @@
  */
 package historicalbattlesimulatorbasic;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -90,12 +89,5 @@ public class Painter extends JPanel
       {
           GUI.paintRange(GUI.unitSelected,g);
       }
-      //sprites 
-//      if(unit!=null)
-//      {
-//         GUI.tileGameMap[50][50].loadSprite(g,GUI.tileGameMap[50][50],unit);
-//      }
-//      GUI.gameFrame.validate();
-//      GUI.gameFrame.repaint();
     }
 }

@@ -26,20 +26,10 @@ public class UnitDraw extends Rectangle
     {
         //no longer drawing little black squares
 //        super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
-        
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        getUnit.currentFormation = new UnitFormations(getUnit,getUnit.unitSoldiers[0].facing,GUI.tileClicked);
-        
-        //set location for soldiers
-////        for(int i=0;i<this.thisUnit.unitSoldiers.length;i++)
-////        {
-////            //setting all soldiers to occupy a single tile
-////            this.thisUnit.unitSoldiers[i].tileOccupied=GUI.tileClicked;
-////            GUI.tileClicked.occupyBy(thisUnit.unitSoldiers[i]);
-////        }
-//        System.out.println(getUnit.unitID);
-//        System.out.println(getUnit.nameOfUnit);
+        getUnit.currentFormation = new UnitFormations
+                (getUnit,getUnit.unitSoldiers[0].facing,GUI.tileClicked);
         this.tileLocationOfUnit=GUI.tileClicked;
         this.thisUnit=getUnit;
     }
