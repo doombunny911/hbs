@@ -64,7 +64,7 @@ for(Player p : playersForDemo)
 }
 public void setUp()
 {
-    //gets the number of players playing
+    //gets the number of players
 JOptionPane.showMessageDialog(frame, "Welcome to the Historical Battle Simulator! ");
 int pcount = Integer.parseInt(JOptionPane.showInputDialog(frame, "How many players shall be participating?","0"));
 this.setNumPlayers(pcount);

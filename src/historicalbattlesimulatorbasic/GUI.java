@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -50,6 +51,9 @@ public class GUI implements MouseListener
     static Unit defendUnit;
     static boolean impendingAttack=false;
     static boolean moveBoolean;
+    static Compass moveC;
+
+   
     
   //initualize GUI whenever need to have a new Panel with mouselistener
 
@@ -60,6 +64,15 @@ public class GUI implements MouseListener
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
    }
+    
+     private static void initializeCompass()
+     {
+           GUI.moveC=new Compass();
+           moveC.init();
+           GUI.moveC.setBounds(GUI.gameFrame.getWidth()-200,GUI.gameFrame.getHeight()-300,200,200);
+           GUI.moveC.setVisible(true);
+           GUI.panel.add(GUI.moveC);
+    }
     
     static Tile getTileClicked() 
     {
@@ -451,6 +464,16 @@ public class GUI implements MouseListener
               {
                   System.out.println("please click the tile that you wish to move to");
                   GUI.moveBoolean=true; 
+                  if(GUI.moveC==null)
+                  {
+                     GUI.initializeCompass();
+                  }
+                  if(!GUI.moveC.isVisible())
+                        GUI.moveC.setVisible(true);
+                  
+                  GUI.panel.repaint();
+                  GUI.gameFrame.repaint();
+                  GUI.gameFrame.revalidate();
               }
               else
               {
@@ -481,6 +504,7 @@ public class GUI implements MouseListener
                    GUI.unitSelected=null;
                    GUI.toggleButtons(false);
                    GUI.statPanel.setVisible(false);
+                   GUI.moveC.setVisible(false);
                    
                }
                //make buttons disapear/click through or delete and remake
@@ -501,6 +525,10 @@ public class GUI implements MouseListener
 
    private void moveUnit() 
    {
+       
+
+       
+       
            //locate the unitDraw whose unit = GUI.selectedUnit;
        int index = Integer.MAX_VALUE;
        for(int i=0;i<units.size();i++)

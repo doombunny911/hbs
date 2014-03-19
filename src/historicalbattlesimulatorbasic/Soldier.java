@@ -295,8 +295,8 @@ public void moveNorthWest()
 {
     if(tileOccupied.hasNorthWest()&&!tileOccupied.tileNorthWest.isOccupied)
     {
-    tileOccupied = tileOccupied.tileNorthWest();
-     this.placeOnTile(tileOccupied);
+       tileOccupied = tileOccupied.tileNorthWest();
+         this.placeOnTile(tileOccupied);
     }
 }
 public Soldier()
