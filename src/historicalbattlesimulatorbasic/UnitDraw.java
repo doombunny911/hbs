@@ -24,12 +24,11 @@ public class UnitDraw extends Rectangle
     Tile tileLocationOfUnit;
     public UnitDraw(Unit getUnit)
     {
+        //no longer drawing little black squares
 //        super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
         
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-//        System.out.println("unit id = " +this.thisUnit.getUnitID());
-//        System.out.println(getUnit);
         getUnit.currentFormation = new UnitFormations(getUnit,getUnit.unitSoldiers[0].facing,GUI.tileClicked);
         
         //set location for soldiers

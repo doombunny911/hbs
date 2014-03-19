@@ -50,6 +50,8 @@ public class GUI implements MouseListener
     static boolean impendingAttack=false;
     static boolean moveBoolean;
     
+  //initualize GUI whenever need to have a new Panel with mouselistener
+
     public GUI(JPanel panel)
    {
        GUI.panel=panel;
@@ -299,7 +301,6 @@ public class GUI implements MouseListener
 ////     //not sure if necessary, i dont think it is but doesn't hurt   
 //    g2.setColor(temp);
     }
-   //initualize GUI whenever need to have a new Panel with mouselistener
    
    public static void addToFrame(Component c)
    {
@@ -322,13 +323,14 @@ public class GUI implements MouseListener
    }
     public static void addButtonsToPanel(JButton[] button,JPanel aPanel) {
        GUI.panel.setLayout(null);
-       panel.setLayout(null);
        GUI.panel.setLayout(null);
-       aPanel.setPreferredSize(new Dimension(500,300));
-       aPanel.setBounds(0, GUI.panel.getHeight()-150,GUI.panel.getWidth(), 150);
-       button[0].setBounds(aPanel.getWidth()/6-100,35,100,30);
-       button[1].setBounds(aPanel.getWidth()/6*2-100,35,100,30);
-       button[2].setBounds(aPanel.getWidth()/6*3-100,35,100,30);
+//       aPanel.setPreferredSize(new Dimension(500,300));
+       aPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
+       aPanel.setEnabled(false);
+       aPanel.setOpaque(false);
+       button[0].setBounds(aPanel.getWidth()/6-30-100,35,100,30);
+       button[1].setBounds(aPanel.getWidth()/6*2-30-100,35,100,30);
+       button[2].setBounds(aPanel.getWidth()/6*3-30-100,35,100,30);
        button[3].setBounds(aPanel.getWidth()/6*4-100,35,100,30);
        button[4].setBounds(aPanel.getWidth()/6*5-100,35,100,30);
        button[5].setBounds(aPanel.getWidth()/6*6-100,35,100,30);
