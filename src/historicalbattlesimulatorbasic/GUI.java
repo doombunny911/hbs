@@ -69,7 +69,7 @@ public class GUI implements MouseListener
      {
            GUI.moveC=new Compass();
            moveC.init();
-           GUI.moveC.setBounds(GUI.gameFrame.getWidth()-200,GUI.gameFrame.getHeight()-300,200,200);
+           GUI.moveC.setBounds(GUI.gameFrame.getWidth()-200,GUI.gameFrame.getHeight()-500,200,200);
            GUI.moveC.setVisible(true);
            GUI.panel.add(GUI.moveC);
     }
