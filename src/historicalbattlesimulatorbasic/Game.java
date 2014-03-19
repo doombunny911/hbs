@@ -49,6 +49,10 @@ JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
 UnitLoader ul1 = new UnitLoader();
 
 UnitLoader ul2 = new UnitLoader();
+GUI.player1UnitNum=ul1.getAllUnits().size();
+GUI.player2UnitNum=ul2.getAllUnits().size();
+GUI.player1AllUnits=ul1.getAllUnits();
+GUI.player2AllUnits=ul2.getAllUnits();
 p1.allUnits = ul1.runLoader();
 
 
