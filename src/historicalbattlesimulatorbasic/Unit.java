@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,43 +49,31 @@ public class Unit extends Soldier
     public static void main(String[] args)
      {
          UnitLoader ul = new UnitLoader();
-         ul.runLoader();
-//         ArrayList allUnits = ul.unitPrepper();
-//         Unit attacker =(Unit) allUnits.get(1);
-//         Unit defender =(Unit) allUnits.get(2);
-//        
-//         Object[] options = {
-//                    "Attack",
-//                    "Defend",
-//                    "Retreat"};
-//         int n = JOptionPane.showOptionDialog(null,
-//    "What do you "+attacker.nameOfUnit+" want to do? \n"
-//            + "Attacker: "+attacker.nameOfUnit +"\n vs"
-//         + "\n"+defender.nameOfUnit,
-//    "Battle between "+attacker.nameOfUnit+" and "+defender.nameOfUnit,
-//    JOptionPane.YES_NO_CANCEL_OPTION,
-//    JOptionPane.QUESTION_MESSAGE,
-//    null,
-//    options,
-//    options[2]);
-//         if(n==0)
-//         {
-//            attacker.attack(defender);
-//         }
-//         else if(n==1)
-//         {
-//             attacker.defend();
-//             
-//         }
-//         else
-//         {
-//            JOptionPane.showMessageDialog(null, "The "+attacker.nameOfUnit + "runs away");
-//         }
-//         
+         ArrayList<Unit> uA = ul.runLoader();
+         Unit u = uA.get(0);
+         BufferedImage ic = getUnitPic(u);
+         Graphics g = ic.createGraphics();
+
+//...
+            ImageIcon icon = new ImageIcon();
+            icon.setImage(ic);
+            JOptionPane.showMessageDialog(null, icon);
      }
     public void setSprite(String sprite)
     {
         this.spriteName = sprite;
+    }
+    
+    public static BufferedImage getUnitPic(Unit unit)
+    {
+        BufferedImage img = new BufferedImage(unit.xWidth, unit.yHeight, 4);
+        try {
+             img = ImageIO.read(new File(unit.spriteName));
+        } catch (IOException ex) {
+            Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return img;
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
@@ -133,8 +124,7 @@ public class Unit extends Soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
         }
-     //     System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
-
+    
     }
     //this should determine how many units are still alive
     public int getUnitsAlive()
@@ -170,9 +160,12 @@ public class Unit extends Soldier
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
+       
         System.out.println("Attacking units"+aSize);
         System.out.println("Defending units"+dSize);
       
+       if (isInRange(aSize, dSize))
+        {
       
         if(defender.unitDefeat==false)
         {
@@ -207,6 +200,7 @@ public class Unit extends Soldier
                         
              
             }
+        }
             
         }
         if(defender.getUnitsAlive()==0 && isUnitDefeated())

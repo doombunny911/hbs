@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +19,7 @@ import javax.imageio.ImageIO;
  * This class contains the details of all different unit formations.
  * Setting a unit to be in one of these formation will change the unit layout to be as follows.
  */
-public class UnitFormations 
+public final class UnitFormations 
 {
     private Unit unit;
     private Tile[] spriteLocations;
@@ -32,7 +33,13 @@ public class UnitFormations
         this.unit = unit;
         defaultFormation(tile,dir);
     }
+    
     public static void setPikeWall(Unit unit)
+    {
+        
+    }
+    
+    public static void setSquare(Unit unit)
     {
         
     }
@@ -70,7 +77,7 @@ public class UnitFormations
        
        
        
-      int soldiersPerSprite =  2; //each sprite represents this many soldiers
+      int soldiersPerSprite =  1; //each sprite represents this many soldiers
             switch(dir)
            {
                case 1: //north
