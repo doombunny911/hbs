@@ -6,6 +6,9 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -17,6 +20,7 @@ import javax.swing.JPanel;
 public class Painter extends JPanel
 {
     private int tileWidth;
+   
     static double remainderHeight;
     static double remainderWidth;
     private double sHeight,sWidth;
@@ -62,6 +66,7 @@ public class Painter extends JPanel
          {
             if(j%10==0)
             {
+                
                 g2.fill(GUI.tileGameMap[j][i]);
             }
             if(i%10==0)
@@ -70,10 +75,17 @@ public class Painter extends JPanel
             }
             else
             {
+                
                  g2.draw(GUI.tileGameMap[j][i]);
+                try {
+                    GUI.tileGameMap[j][i].colorTile(g);
+                } catch (IOException ex) {
+                    Logger.getLogger(Painter.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
          }
        }
+     GUI.panel.repaint();
       
       //units and sprites
       if(!GUI.units.isEmpty())
