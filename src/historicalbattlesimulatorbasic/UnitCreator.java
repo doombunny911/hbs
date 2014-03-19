@@ -7,8 +7,11 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Frame;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,7 +38,7 @@ public class UnitCreator
     public static void createUnit() throws IOException
     {
         //What the scanner will say so that user knows what stat they are entering
-        String[] prompt = new String[15];
+        String[] prompt = new String[16];
     
         prompt[0]="Enter the unit name:\n"
                 + "This name should refer to its general name.\n"
@@ -47,29 +50,30 @@ public class UnitCreator
 "\n 3 is Cavalry" +
 "\n 4 is Spearmen" +
 "\n 5 is 'other'";
-        prompt[2]="Enter the damage 'dice'. This is the random number from which the damage \n"
+        prompt[2]="Select an image";
+        prompt[3]="Enter the damage 'dice'. This is the random number from which the damage \n"
                 + "shall be calculated. Some typical dice are 4,6,8,10,12";
-        prompt[3]="Enter the attack bonus. This the number that will be added to the units \n"
+        prompt[4]="Enter the attack bonus. This the number that will be added to the units \n"
                 + "chance to hit. Typically between 1-5";   
-        prompt[4]="Enter the Damage Bonus coefficient. This is the number that will be added \n "
+        prompt[5]="Enter the Damage Bonus coefficient. This is the number that will be added \n "
                 + "to the units damage";        
-        prompt[5]="Enter the units HP. 10 is the average";       
-        prompt[6]="Enter the units Armor Class. This is how hard they are to hit. \n "
+        prompt[6]="Enter the units HP. 10 is the average";       
+        prompt[7]="Enter the units Armor Class. This is how hard they are to hit. \n "
                 + "The average is 10, but it can go up to 20";        
-        prompt[7]="Enter the defense value. This is the number added to a units AC when \n"
+        prompt[8]="Enter the defense value. This is the number added to a units AC when \n"
                 + "defending. Between 1-5"; 
-        prompt[8]="Enter the units speed. This is the amount of square it can travel in a turn. \n"
+        prompt[9]="Enter the units speed. This is the amount of square it can travel in a turn. \n"
                 + "The average is 5";
-        prompt[9]="Enter the units range. If melee, this value is 1. If ranged, it can be up to 15\n"
+        prompt[10]="Enter the units range. If melee, this value is 1. If ranged, it can be up to 15\n"
                 + "but will typically be around 8.";
-        prompt[10]="Enter the units charge bonus. This is the damaged added when they charge. \n"
+        prompt[11]="Enter the units charge bonus. This is the damaged added when they charge. \n"
                 + "Average is 2";
-        prompt[11]="Enter the units stamina. This is how many times they can sprint.\n"
+        prompt[12]="Enter the units stamina. This is how many times they can sprint.\n"
                 + " Average is 2";
-        prompt[12]="Enter the units morale";
-        prompt[13]="Enter the average size of the Unit, enter 1 and I will construct"
+        prompt[13]="Enter the units morale";
+        prompt[14]="Enter the average size of the Unit, enter 1 and I will construct"
                 + " an individual soldier instead";
-        prompt[14]="Enter the name of the file to save this to";
+        prompt[15]="Enter the name of the file to save this to";
     
        
        
@@ -79,13 +83,27 @@ public class UnitCreator
         //think we need ints/doubles unless you plan on adding/subtracting the values
         //later on for some reason.  At the moment, i am just typecasting to integer/double
         //Regardless, This should work for the moment 
-        String[] stats = new String[15];
+        String[] stats = new String[16];
         
         //loops through to get all the stat coefficient
         for(int i=0;i<stats.length;i++)
         {
-            
-            stats[i]=JOptionPane.showInputDialog ( prompt[i] );
+            if(i!=2)
+            {stats[i]=JOptionPane.showInputDialog ( prompt[i] );}
+            else if(i==2)
+            {
+                 final JFileChooser fc = new JFileChooser();
+                 File dir = new File("Sprites"+File.separator+"anchor.txt");
+                 System.out.println(dir);
+                 fc.setCurrentDirectory(dir);
+                 File  current = fc.getCurrentDirectory();
+        
+                System.out.println(current);
+                fc.showOpenDialog(null);
+                String name = fc.getSelectedFile().getName();
+                stats[2] = name;
+        
+            }
             //if user ever enters exit, it ends
                           
         }
@@ -93,15 +111,15 @@ public class UnitCreator
         {
             
             Soldier soldier = new Soldier(
-                stats[0],Integer.parseInt(stats[1]),Integer.parseInt(stats[2]),Double.parseDouble
-                (stats[3]),Double.parseDouble(stats[4]),Double.parseDouble(stats[5]),
-                Double.parseDouble(stats[6]),Double.parseDouble(stats[7]),
-                Double.parseDouble(stats[8]),Double.parseDouble(stats[9]),
-                Double.parseDouble(stats[10]),Double.parseDouble(stats[11]),
-                Double.parseDouble(stats[12]));
-            Unit unit = new Unit(soldier,Integer.parseInt(stats[13]));
-            
-            unit.saveUnit(stats[14]);
+                stats[0],Integer.parseInt(stats[1]),Integer.parseInt(stats[3]),Double.parseDouble
+                (stats[4]),Double.parseDouble(stats[5]),Double.parseDouble(stats[6]),
+                Double.parseDouble(stats[7]),Double.parseDouble(stats[8]),
+                Double.parseDouble(stats[9]),Double.parseDouble(stats[10]),
+                Double.parseDouble(stats[11]),Double.parseDouble(stats[12]),
+                Double.parseDouble(stats[13]));
+            Unit unit = new Unit(soldier,Integer.parseInt(stats[14]));
+            unit.setSprite(stats[2]);
+            unit.saveUnit(stats[15]);
           Frame frame = JOptionPane.getRootFrame();
             if(createMore(frame))
             {

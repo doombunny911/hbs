@@ -107,7 +107,9 @@ public class UnitLoader
             String nUnitName= unitName; //0
             
                 int nUnitType= Integer.parseInt(reader.nextLine()); //1
+                
                 int nDMGDice = Integer.parseInt(reader.nextLine()); //3
+                
                 double nAttackBonus = Double.parseDouble(reader.nextLine()); //2
                 double dmgBonus = Double.parseDouble(reader.nextLine());//4
                 double hp = Double.parseDouble(reader.nextLine()); //5
@@ -119,7 +121,8 @@ public class UnitLoader
                 double stamina = Double.parseDouble(reader.nextLine()); //11
                 double morale = Double.parseDouble(reader.nextLine()); //12
                 int unitSize = Integer.parseInt(reader.nextLine()); //13
-       
+                String spriteName = reader.nextLine();
+                System.out.println(spriteName);
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
             System.out.println(unit.nameOfUnit + " created");

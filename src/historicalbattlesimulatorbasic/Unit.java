@@ -39,7 +39,7 @@ public class Unit extends Soldier
     int xWidth=10;
     int unitFacing = super.facing;
     UnitFormations currentFormation;
-     
+    String spriteName; 
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -79,6 +79,10 @@ public class Unit extends Soldier
 //         }
 //         
      }
+    public void setSprite(String sprite)
+    {
+        this.spriteName = sprite;
+    }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
          System.out.println("unitIDGEN = " + Unit.unitIDGen);
@@ -353,6 +357,7 @@ if(!parent.exists() && !parent.mkdirs()){
             writer.println(soldierType.stamina); // The amount of stamina a soldier has
             writer.println(soldierType.morale); // The amount of moral a soldier has
             writer.println(this.unitSize);
+            writer.println(this.spriteName);
             System.out.println("Saved");
             writer.close();
              } 
