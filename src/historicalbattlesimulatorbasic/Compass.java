@@ -248,54 +248,61 @@ public final class Compass extends JPanel
                System.out.println(GUI.unitSelected.yPosition);
                GUI.unitSelected.yPosition-=GUI.tileWidth;
                System.out.println(GUI.unitSelected.yPosition);
-
+               break;
            }
            case 2: //northEast
            {
                System.out.println("northEast");
                GUI.unitSelected.xPosition+=GUI.tileWidth;
                GUI.unitSelected.yPosition-=GUI.tileWidth;
+               break;
            }
            case 3: //East
            {
                 System.out.println("east");
                GUI.unitSelected.xPosition+=GUI.tileWidth;
+               break;
            }
            case 4: //southEast
            {
                 System.out.println("southEast");
                GUI.unitSelected.xPosition+=GUI.tileWidth;
                GUI.unitSelected.yPosition+=GUI.tileWidth;
+               break;
            }
            case 5: //South
            {
                 System.out.println("south");
                GUI.unitSelected.yPosition+=GUI.tileWidth;
+               break;
            }
            case 6://southWest
            {
                 System.out.println("southWest");
                GUI.unitSelected.xPosition-=GUI.tileWidth;
                GUI.unitSelected.yPosition+=GUI.tileWidth;
+               break;
            }
            case 7://West
            {
                 System.out.println("west");
                GUI.unitSelected.xPosition-=GUI.tileWidth;
+               break;
            }
            case 8://NorthWest
            {
                 System.out.println("northWest");
                GUI.unitSelected.xPosition-=GUI.tileWidth;
                GUI.unitSelected.yPosition-=GUI.tileWidth;
+               break;
            }
        }
           GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
 
-            UnitDraw draw = new UnitDraw(GUI.unitSelected);
+            UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             
             GUI.units.remove(index);
-//            GUI.units.add(draw,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
+            GUI.units.add(draw);
 //            GUI.unitSelected=draw.thisUnit;
 //            GUI.moveBoolean=false;
 //            GUI.tileClicked=null;
