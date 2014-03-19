@@ -239,8 +239,8 @@ public void moveNorth()
 {
     if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     {
-    tileOccupied = tileOccupied.tileNorth();
-    this.placeOnTile(tileOccupied);
+        tileOccupied = tileOccupied.tileNorth();
+        this.placeOnTile(tileOccupied);
     }
 }
 public void moveNorthEast()
@@ -285,6 +285,7 @@ public void moveSouthWest()
 }
 public void moveWest()
 {
+    System.out.println(this);
     if(tileOccupied.hasWest()&&!tileOccupied.tileWest.isOccupied)
     {
     tileOccupied = tileOccupied.tileWest();

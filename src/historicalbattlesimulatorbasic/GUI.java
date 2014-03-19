@@ -462,8 +462,6 @@ public class GUI implements MouseListener
            {
               if(moveBoolean==false)
               {
-                  System.out.println("please click the tile that you wish to move to");
-                  GUI.moveBoolean=true; 
                   if(GUI.moveC==null)
                   {
                      GUI.initializeCompass();
@@ -475,12 +473,7 @@ public class GUI implements MouseListener
                   GUI.gameFrame.repaint();
                   GUI.gameFrame.revalidate();
               }
-              else
-              {
-                  System.out.println("You are already in the process of moving "
-                          + "click a direction to move to");
-                  
-              }
+              
            }
        });
        button[4].addActionListener(new ActionListener() {
@@ -505,7 +498,7 @@ public class GUI implements MouseListener
                    GUI.toggleButtons(false);
                    GUI.statPanel.setVisible(false);
                    GUI.moveC.setVisible(false);
-                   
+                 
                }
                //make buttons disapear/click through or delete and remake
            }
@@ -526,88 +519,62 @@ public class GUI implements MouseListener
    private void moveUnit() 
    {
        
-
        
        
            //locate the unitDraw whose unit = GUI.selectedUnit;
-       int index = Integer.MAX_VALUE;
-       for(int i=0;i<units.size();i++)
-       {
-         //So this the space that unit is being moved too   
-          UnitDraw draw =GUI.units.get(GUI.indexToRemove);
-          Unit unit =draw.thisUnit;
-//          draw.xDraw = GUI.tileClicked.xPosition;
-//          draw.yDraw= GUI.tileClicked.yPosition;
-          //this is the movement redraw
-          double originalXPosition = unit.xPosition;
-          double originalYPosition = unit.yPosition;
-          
-          unit.xPosition=GUI.tileClicked.xPosition;
-          unit.yPosition = GUI.tileClicked.yPosition;
-          //get them in relation
-          double xVal = (unit.xPosition - originalXPosition);
-          double yVal = (unit.yPosition-originalYPosition);
-     
-          //This should allow stuff
-          if(xVal==0&&yVal>0)
-          {
-              unit.moveNorth();
-   
-          }
-          else if(xVal>0&&yVal>0)
-          {
-              unit.moveNorthEast();
-          }
-          else if(xVal==1&&yVal==0)
-          {
-              unit.moveEast();
-          }
-          else if(xVal>0&&yVal<0)
-          {
-              unit.moveSouthEast();
-          }
-          else if(xVal==0&&yVal<0)
-          {
-              unit.moveSouth();
-          }
-          else if(xVal<0&&yVal<0)
-          {
-              unit.moveSouthWest();
-          }
-          else if(xVal==0&&yVal<0)
-          {
-              unit.moveWest();
-          }
-          else if(xVal<0&&yVal>0)
-          {
-              unit.moveNorthWest();
-          }
-          UnitDraw draw2=new UnitDraw(unit);
-          GUI.units.remove(GUI.units.get(GUI.indexToRemove));
-         // unit.moveDirection(unitNum);
-          GUI.units.add(draw2);
-          GUI.indexToRemove=0;
-
-           if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
-           {
-             System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
-             System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.nameOfUnit);
-
-               index=i;
-//               break;
-           }
-       }
-          GUI.unitSelected.xPosition=GUI.tileClicked.xPosition;
-          GUI.unitSelected.yPosition=GUI.tileClicked.yPosition;
-          UnitDraw draw = new UnitDraw(GUI.unitSelected);
-          GUI.units.add(draw);
-          GUI.units.remove((index));
-          moveBoolean=false;
-          GUI.tileClicked=null;
-
-          GUI.gameFrame.revalidate();
-          GUI.panel.repaint();
-          GUI.gameFrame.repaint();
+//       int index = Integer.MAX_VALUE;
+//       for(int i=0;i<units.size();i++)
+//       {
+//         //So this the space that unit is being moved too   
+//          UnitDraw draw =GUI.units.get(GUI.indexToRemove);
+//          Unit unit =draw.thisUnit;
+////          draw.xDraw = GUI.tileClicked.xPosition;
+////          draw.yDraw= GUI.tileClicked.yPosition;
+//          //this is the movement redraw
+//          double originalXPosition = unit.xPosition;
+//          double originalYPosition = unit.yPosition;
+//          
+//          unit.xPosition=GUI.tileClicked.xPosition;
+//          unit.yPosition = GUI.tileClicked.yPosition;
+//          //get them in relation
+//          double xVal = (unit.xPosition - originalXPosition);
+//          double yVal = (unit.yPosition-originalYPosition);
+//     
+//          //This should allow stuff
+//          if(xVal==0&&yVal>0)
+//          {
+//              unit.moveNorth();
+//   
+//          }
+//          else if(xVal>0&&yVal>0)
+//          {
+//              unit.moveNorthEast();
+//          }
+//          else if(xVal==1&&yVal==0)
+//          {
+//              unit.moveEast();
+//          }
+//          else if(xVal>0&&yVal<0)
+//          {
+//              unit.moveSouthEast();
+//          }
+//          else if(xVal==0&&yVal<0)
+//          {
+//              unit.moveSouth();
+//          }
+//          else if(xVal<0&&yVal<0)
+//          {
+//              unit.moveSouthWest();
+//          }
+//          else if(xVal==0&&yVal<0)
+//          {
+//              unit.moveWest();
+//          }
+//          else if(xVal<0&&yVal>0)
+//          {
+//              unit.moveNorthWest();
+//          }
+//       }
    }
    public static JButton[] initializeButtons(JButton[] button)
    {

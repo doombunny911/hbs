@@ -41,6 +41,15 @@ public class UnitDraw extends Rectangle
         this.xDraw=x;
         this.yDraw=y;
     }
+    public UnitDraw(Unit getUnit,Tile tile)
+    {
+        this.xDraw=getUnit.xPosition;
+        this.yDraw=getUnit.yPosition;
+        getUnit.currentFormation = new UnitFormations
+                (getUnit,getUnit.unitSoldiers[0].facing,tile);
+        this.tileLocationOfUnit=tile;
+        this.thisUnit=getUnit;
+    }
     //just add where they need to be painted and this method will do it
     public void paint(Graphics g)
     { 

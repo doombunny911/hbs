@@ -5,7 +5,9 @@
 package historicalbattlesimulatorbasic;
 
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -19,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -33,21 +36,17 @@ public class Openingmenuscreen extends JFrame
     static JFrame gameFrame;
     static JPanel tilePanel;
     JPanel buttonPanel;
-    
+    JPanel welcomePanel;
     JButton b1 = new JButton( new AbstractAction("Run Simulation") {
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
+            
             Game game = new Game();
             game.setUp();
-            Game.playersForDemo = Game.playerCreator(Game.numOfPlayers);
-            for(Player p : Game.playersForDemo)
-              {
-                  System.out.println("Player name: "+ p.playerName);
-              }
-              //game begin
-             System.out.println("The game between"+ Game.playersForDemo.get(0)+" and "+Game.playersForDemo.get(1)+" has begun");
-             game.playGame(Game.playersForDemo);
+            
+            //get the units they want and initialize them
+            //than allow them to place them somewhere
   
         }
     });
@@ -87,6 +86,7 @@ public class Openingmenuscreen extends JFrame
        public void actionPerformed( ActionEvent e ) 
         {
             //load the game, testButton for now
+            gameFrame.remove(welcomePanel);
             tilePanel.remove(buttonPanel);
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
@@ -119,9 +119,25 @@ public class Openingmenuscreen extends JFrame
         
        initializeTilePanel();
         
+       //create a Panel that welcomes them to the game
+        welcomePanel = new JPanel();
+        welcomePanel.setBounds(0,0,gameFrame.getWidth(),200);
+        JLabel welcomeLabel = new JLabel();
+        welcomeLabel.setHorizontalAlignment(JLabel.HEIGHT);
+        welcomeLabel.setText("Welcome to the Historical Battle Simulator");
+        Font originalFont = welcomeLabel.getFont();
+        welcomeLabel.setFont(new Font("Serif",Font.BOLD,75));
+        welcomeLabel.setFont(originalFont);
+        
+        welcomePanel.add(welcomeLabel);
+        
         gameFrame.repaint();
+        gameFrame.revalidate();
+        gameFrame.add(welcomePanel);
+
         gameFrame.add(tilePanel);
         gameFrame.setVisible(true);
+        GUI.gameFrame=gameFrame;
    }
   
    //sets to fullscreen mode, more a hinderence atm but good for final product
@@ -133,8 +149,7 @@ public class Openingmenuscreen extends JFrame
 
     private void initializeFrame()
     {
-        this.gameFrame= new JFrame("Historical Battle Simulator");
-        GUI.gameFrame=gameFrame;
+       this.gameFrame= new JFrame("Historical Battle Simulator");
        
        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
        gameFrame.setSize(new Dimension((int)Toolkit.
@@ -144,6 +159,7 @@ public class Openingmenuscreen extends JFrame
                 .getWidth()+" gameFrame Height = "+ gameFrame.
                         getPreferredSize().getHeight());
        System.out.println(gameFrame.getSize());
+        
 
     }
 

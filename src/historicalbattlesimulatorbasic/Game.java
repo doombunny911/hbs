@@ -9,6 +9,7 @@ package historicalbattlesimulatorbasic;
 import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -20,17 +21,17 @@ public class Game
 {
 
   
-Frame frame = JOptionPane.getRootFrame();    
+    Frame frame = JOptionPane.getRootFrame();    
 
-Player players[];
-Map gameMap;
-boolean hasWinner=false;
-Player winner=null;
+    Player players[];
+    Map gameMap;
+    boolean hasWinner=false;
+    Player winner=null;
 
-public static ArrayList<Player> playersForDemo;
-static int numOfPlayers;
+    public static ArrayList<Player> playersForDemo;
+    static int numOfPlayers;
 
-Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);
 public Game()
 {
 }
@@ -39,10 +40,10 @@ public static void main(String[] args)
 Game game = new Game();
 game.setUp();
 game.playersForDemo = Game.playerCreator(numOfPlayers);
-for(Player p : playersForDemo)
-  {
-      System.out.println("Player name: "+ p.playerName);
-  }
+    for (Player p : playersForDemo)
+    {
+        System.out.println("Player name: "+ p.playerName);
+    }
   //game begin
  System.out.println("The game between"+ playersForDemo.get(0)+" and "+playersForDemo.get(1)+" has begun");
  game.playGame(playersForDemo);
@@ -65,9 +66,10 @@ for(Player p : playersForDemo)
 public void setUp()
 {
     //gets the number of players
-JOptionPane.showMessageDialog(frame, "Welcome to the Historical Battle Simulator! ");
-int pcount = Integer.parseInt(JOptionPane.showInputDialog(frame, "How many players shall be participating?","0"));
-this.setNumPlayers(pcount);
+    JOptionPane.showMessageDialog(frame, "Welcome to the Historical Battle Simulator! ");
+    int pcount = Integer.parseInt(JOptionPane.showInputDialog
+        (frame, "How many players shall be participating?","0"));
+    this.setNumPlayers(pcount);
 }
 //sets how many people are playing
 public void setNumPlayers(int numOfPlayers)
@@ -83,9 +85,7 @@ public static ArrayList playerCreator(int numPlay)
       
        for(int i=0; i<numPlay; i++)
         {           
-            
-            Player.singlePlayerDialog(players); 
-            
+            Player.singlePlayerDialog(players);   
         }
         return players;
     }

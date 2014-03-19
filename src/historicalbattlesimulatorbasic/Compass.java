@@ -1,13 +1,5 @@
 package historicalbattlesimulatorbasic;
 
-import static historicalbattlesimulatorbasic.Openingmenuscreen.gameFrame;
-import java.applet.Applet;
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -89,6 +81,7 @@ public final class Compass extends JPanel
             ImageIcon holderImage2 = new ImageIcon(newimg9);
         JButton holder = new JButton(holderImage2);
        
+        int moveDirection;
         
     public static void main(String[] args)
     {  
@@ -147,21 +140,27 @@ public final class Compass extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveNorthWest();
+//                  GUI.unitSelected.moveNorthWest();
+                  moveDirection=8;
+                  moveLogic();
                 }});
          add(north);
                 north.addActionListener(new ActionListener() {
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveNorth();
+//                  GUI.unitSelected.moveNorth();
+                  moveDirection=1;
+                  moveLogic();
                 }});
          add(northEast);
                 northEast.addActionListener(new ActionListener() {
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveNorthEast();
+//                  GUI.unitSelected.moveNorthEast();
+                  moveDirection=2;
+                  moveLogic();
                 }});
                   
          add(west);
@@ -169,7 +168,10 @@ public final class Compass extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveWest();
+//                  GUI.unitSelected.
+//                  GUI.unitSelected.moveWest();
+                  moveDirection=7;
+                  moveLogic();
                 }});
          add(holder);
          add(east);
@@ -177,30 +179,110 @@ public final class Compass extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveEast();
+//                  GUI.unitSelected.moveEast();
+                  moveDirection=3;
+                  moveLogic();
                 }});
          add(southWest);
                 southWest.addActionListener(new ActionListener() {
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveSouthWest();
+//                  GUI.unitSelected.moveSouthWest();
+                  moveDirection=6;
+                  moveLogic();
                 }});       
          add(south);
                 south.addActionListener(new ActionListener() {
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  GUI.unitSelected.moveSouth();
+//                  GUI.unitSelected.moveSouth();
+                  moveDirection=5;
+                  moveLogic();
+                  
                 }});
          add(southEast);
                  southEast.addActionListener(new ActionListener() {
                      @Override
                  public void actionPerformed(ActionEvent e)
                  {
-                   GUI.unitSelected.moveSouthEast();
+//                   GUI.unitSelected.moveSouthEast();
+                   moveDirection=4;
+                   moveLogic();
                  }});
      }
+    public void moveLogic()
+    {
+       int index=Integer.MAX_VALUE;
+                      
+       //find the index of the unitDraw that needs to be removed
+       for(int i=0;i<GUI.units.size();i++)
+       {
+          if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
+          {
+              System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
+//              System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.nameOfUnit);
+
+              index=i;
+          }
+       }
+                //which direction was unit moved in
+       
+       switch(moveDirection)
+       {
+           case 1: //north
+           {
+               System.out.println(GUI.unitSelected.yPosition);
+               GUI.unitSelected.yPosition-=GUI.tileWidth;
+               System.out.println(GUI.unitSelected.yPosition);
+
+           }
+           case 2: //northEast
+           {
+               GUI.unitSelected.xPosition+=GUI.tileWidth;
+               GUI.unitSelected.yPosition-=GUI.tileWidth;
+           }
+           case 3: //East
+           {
+               GUI.unitSelected.xPosition+=GUI.tileWidth;
+           }
+           case 4: //southEast
+           {
+               GUI.unitSelected.xPosition+=GUI.tileWidth;
+               GUI.unitSelected.yPosition+=GUI.tileWidth;
+           }
+           case 5: //South
+           {
+               GUI.unitSelected.yPosition+=GUI.tileWidth;
+           }
+           case 6://southWest
+           {
+               GUI.unitSelected.xPosition-=GUI.tileWidth;
+               GUI.unitSelected.yPosition+=GUI.tileWidth;
+           }
+           case 7://West
+           {
+               GUI.unitSelected.xPosition-=GUI.tileWidth;
+           }
+           case 8://NorthWest
+           {
+               GUI.unitSelected.xPosition-=GUI.tileWidth;
+               GUI.unitSelected.yPosition-=GUI.tileWidth;
+           }
+       }
+
+            UnitDraw draw = new UnitDraw(GUI.unitSelected,GUI.units.get(index).tileLocationOfUnit);
+            GUI.units.add(draw);
+            GUI.units.remove(index);
+            GUI.moveBoolean=false;
+            GUI.tileClicked=null;
+            moveDirection=0; //no direction
+            GUI.gameFrame.revalidate();
+            GUI.panel.repaint();
+            GUI.gameFrame.repaint();
+      }
+}
 
 
   
@@ -208,4 +290,3 @@ public final class Compass extends JPanel
     
     
     
-}
