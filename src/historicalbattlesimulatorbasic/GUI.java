@@ -60,7 +60,7 @@ public class GUI implements MouseListener
     public GUI(JPanel panel)
    {
        GUI.panel=panel;
-       System.out.println("mouseListener check");
+       //System.out.println("mouseListener check");
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
    }
@@ -462,6 +462,9 @@ public class GUI implements MouseListener
            {
               if(moveBoolean==false)
               {
+
+                 // System.out.println("please click the tile that you wish to move to");
+                  GUI.moveBoolean=true; 
                   if(GUI.moveC==null)
                   {
                      GUI.initializeCompass();
@@ -482,7 +485,8 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
                //set formation button, not done
-               System.out.println("this button does not do anything atm");
+          //
+              //System.out.println("this button does not do anything atm");
            }
        });
        button[5].addActionListener(new ActionListener() 
@@ -575,6 +579,85 @@ public class GUI implements MouseListener
 //              unit.moveNorthWest();
 //          }
 //       }
+       int index = Integer.MAX_VALUE;
+       for(int i=0;i<units.size();i++)
+       {
+         //So this the space that unit is being moved too   
+          UnitDraw draw =GUI.units.get(GUI.indexToRemove);
+          Unit unit =draw.thisUnit;
+//          draw.xDraw = GUI.tileClicked.xPosition;
+//          draw.yDraw= GUI.tileClicked.yPosition;
+          //this is the movement redraw
+          double originalXPosition = unit.xPosition;
+          double originalYPosition = unit.yPosition;
+          
+          unit.xPosition=GUI.tileClicked.xPosition;
+          unit.yPosition = GUI.tileClicked.yPosition;
+          //get them in relation
+          double xVal = (unit.xPosition - originalXPosition);
+          double yVal = (unit.yPosition-originalYPosition);
+     
+          //This should allow stuff
+          if(xVal==0&&yVal>0)
+          {
+              unit.moveNorth();
+   
+          }
+          else if(xVal>0&&yVal>0)
+          {
+              unit.moveNorthEast();
+          }
+          else if(xVal==1&&yVal==0)
+          {
+              unit.moveEast();
+          }
+          else if(xVal>0&&yVal<0)
+          {
+              unit.moveSouthEast();
+          }
+          else if(xVal==0&&yVal<0)
+          {
+              unit.moveSouth();
+          }
+          else if(xVal<0&&yVal<0)
+          {
+              unit.moveSouthWest();
+          }
+          else if(xVal==0&&yVal<0)
+          {
+              unit.moveWest();
+          }
+          else if(xVal<0&&yVal>0)
+          {
+              unit.moveNorthWest();
+          }
+          UnitDraw draw2=new UnitDraw(unit);
+          GUI.units.remove(GUI.units.get(GUI.indexToRemove));
+         // unit.moveDirection(unitNum);
+          GUI.units.add(draw2);
+          GUI.indexToRemove=0;
+
+           if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
+           {
+      //       System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
+        //     System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.nameOfUnit);
+//
+               index=i;
+//               break;
+           }
+       }
+          GUI.unitSelected.xPosition=GUI.tileClicked.xPosition;
+          GUI.unitSelected.yPosition=GUI.tileClicked.yPosition;
+          UnitDraw draw = new UnitDraw(GUI.unitSelected);
+          GUI.units.add(draw);
+          GUI.units.remove((index));
+          moveBoolean=false;
+          GUI.tileClicked=null;
+
+          GUI.gameFrame.revalidate();
+          GUI.panel.repaint();
+          GUI.gameFrame.repaint();
+
    }
    public static JButton[] initializeButtons(JButton[] button)
    {
@@ -617,7 +700,7 @@ public class GUI implements MouseListener
         double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
         double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
         GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY];
-        System.out.println("just clicked on tile (" + (int)findTileX +","+ (int)findTileY+")");
+     //   System.out.println("just clicked on tile (" + (int)findTileX +","+ (int)findTileY+")");
         if(thereIsAUnitReadyToBeLoaded())
             loadUnit();
         if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null)
@@ -627,12 +710,12 @@ public class GUI implements MouseListener
             //get the unit that has the same thisUnit inside arrayList units by getting the soldier occupying the tile
            for(int i =0;i<units.size();i++)
            {
-               System.out.println("unitID of getOccupier on tile  = " + GUI.tileClicked.getOccupier().getUnitID());
+     //          System.out.println("unitID of getOccupier on tile  = " + GUI.tileClicked.getOccupier().getUnitID());
               if(GUI.units.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
               {
                   
                   GUI.unitSelected=GUI.units.get(i).thisUnit;
-                  System.out.println("the unitID of unit " + GUI.unitSelected.nameOfUnit + " is = to " +GUI.unitSelected.unitID);
+        //          System.out.println("the unitID of unit " + GUI.unitSelected.nameOfUnit + " is = to " +GUI.unitSelected.unitID);
               }
 
            }

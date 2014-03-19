@@ -82,13 +82,7 @@ public class UnitLoader
                  }
              else reader.nextLine();
          }
-            //Show all unit Names
-            System.out.println("The following units have been added to the units list: ");
-           for(Unit aUnit : allUnits)
-            {
-                 System.out.println(aUnit.nameOfUnit);
-            }
-            
+         
             
             
         } catch (FileNotFoundException ex) {
@@ -122,10 +116,13 @@ public class UnitLoader
                 double morale = Double.parseDouble(reader.nextLine()); //12
                 int unitSize = Integer.parseInt(reader.nextLine()); //13
                 String spriteName = reader.nextLine();
-                System.out.println(spriteName);
+               
+                
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
-            System.out.println(unit.nameOfUnit + " created");
+            unit.setSprite(spriteName);
+            System.out.println("The Units sprite is "+unit.spriteName);
+            //System.out.println(unit.nameOfUnit + " created");
             return unit;
     } 
   

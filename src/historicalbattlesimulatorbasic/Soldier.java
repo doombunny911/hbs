@@ -237,7 +237,7 @@ public boolean canMove(int dir)
 }
 public void moveNorth()
 {
-    if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
+if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     {
         tileOccupied = tileOccupied.tileNorth();
         this.placeOnTile(tileOccupied);

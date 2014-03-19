@@ -39,7 +39,7 @@ public class Unit extends Soldier
     int xWidth=10;
     int unitFacing = super.facing;
     UnitFormations currentFormation;
-    String spriteName; 
+    String spriteName = "blackKnight.png"; 
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -85,8 +85,8 @@ public class Unit extends Soldier
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
-         System.out.println("unitIDGEN = " + Unit.unitIDGen);
-        System.out.println("Authentic unit created");
+      //   System.out.println("unitIDGEN = " + Unit.unitIDGen);
+      //  System.out.println("Authentic unit created");
         this.nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
@@ -114,8 +114,8 @@ public class Unit extends Soldier
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
-        System.out.println("unitIDGEN = " + Unit.unitIDGen);
-       System.out.println("Authentic unit created");
+     //   System.out.println("unitIDGEN = " + Unit.unitIDGen);
+     //  System.out.println("Authentic unit created");
 
         nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
@@ -132,7 +132,7 @@ public class Unit extends Soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
         }
-          System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
+     //     System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
 
     }
     //this should determine how many units are still alive
@@ -370,6 +370,11 @@ if(!parent.exists() && !parent.mkdirs()){
         }
     }
 
+    public String getSpriteName()
+    {
+        System.out.println("getSpriteName called");
+        return this.spriteName;
+    }
     public void setPosition(int x, int y) 
     {
         this.xPosition = x;
