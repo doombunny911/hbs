@@ -28,39 +28,16 @@ public class Game
     boolean hasWinner=false;
     Player winner=null;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     public static ArrayList<Player> playersForDemo;
     static int numOfPlayers; //number of players playing
 
 //    Scanner scan = new Scanner(System.in);
-=======
->>>>>>> 3b08d9cb9cef79dd0c402418baa54c37ca98d3fb
-    public static ArrayList<Player> playersForDemo = new ArrayList<Player>();
-    static int numOfPlayers;
->>>>>>> b377efe660778ed50aa8790ca67c2c05b0270ee5
+
+    
 
 public static void main(String[] args)
 {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    Game game = new Game();
-    game.setUp();
-    game.playersForDemo = Game.playerCreator(numOfPlayers);
-        for (Player p : playersForDemo)
-        {
-            System.out.println("Player name: "+ p.playerName);
-        }
-      //game begin
-     System.out.println("The game between"+ playersForDemo.get(0)+" and "+playersForDemo.get(1)+" has begun");
-     game.playGame(playersForDemo);
-  
-  
-   }
-=======
->>>>>>> 3b08d9cb9cef79dd0c402418baa54c37ca98d3fb
+   
 Game game = new Game();
 Player p1 = new Player();
 p1.setPlayerName("Player One");
@@ -74,25 +51,24 @@ UnitLoader ul1 = new UnitLoader();
 UnitLoader ul2 = new UnitLoader();
 p1.allUnits = ul1.runLoader();
 
-JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
-<<<<<<< HEAD
+
+
 p2.allUnits = ul2.runLoader();
 
 game.setUp(p1);
+JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
 game.setUp(p2);
-=======
+
 p2.allUnits = ul1.runLoader();
->>>>>>> 3b08d9cb9cef79dd0c402418baa54c37ca98d3fb
+
+p2.allUnits = ul1.runLoader();
+
 
   //game begin
  game.playGame(playersForDemo);
  }
 
 
-<<<<<<< HEAD
-=======
->>>>>>> b377efe660778ed50aa8790ca67c2c05b0270ee5
->>>>>>> 3b08d9cb9cef79dd0c402418baa54c37ca98d3fb
 
  public void playGame(ArrayList<Player> playersForDemo)
 {
@@ -107,10 +83,7 @@ p2.allUnits = ul1.runLoader();
    }
 }
 //sets how many people are playing
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 public void setNumPlayers(int numOfPlayers)
 {
     Game.numOfPlayers=numOfPlayers;
@@ -129,10 +102,6 @@ public static ArrayList playerCreator(int numPlay)
         }
         return players;
     }
-=======
-
->>>>>>> b377efe660778ed50aa8790ca67c2c05b0270ee5
->>>>>>> 3b08d9cb9cef79dd0c402418baa54c37ca98d3fb
 
 
     
