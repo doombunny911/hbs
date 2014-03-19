@@ -52,7 +52,10 @@ public class GUI implements MouseListener
     static boolean impendingAttack=false;
     static boolean moveBoolean;
     static Compass moveC;
-
+    static ArrayList<Unit> player1AllUnits;
+    static ArrayList<Unit> player2AllUnits;
+    static int player1UnitNum;
+    static int player2UnitNum;
    
     
   //initualize GUI whenever need to have a new Panel with mouselistener
@@ -541,6 +544,7 @@ public class GUI implements MouseListener
    //need to set a direction when unit is placed on board
     public void loadUnit() 
     {
+        
 //        System.out.println("Unitnum!=0");
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
@@ -563,6 +567,11 @@ public class GUI implements MouseListener
      //   System.out.println("just clicked on tile (" + (int)findTileX +","+ (int)findTileY+")");
         if(thereIsAUnitReadyToBeLoaded())
             loadUnit();
+        if(playerOneLoadUnits())
+            loadUnit(player1AllUnits,GUI.player1UnitNum);
+        if(playerTwoLoadUnits())
+            loadUnit(player2AllUnits,GUI.player2UnitNum);
+            
         if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null)
         {
             System.out.println("in the unitThingPlace");
@@ -617,6 +626,11 @@ public class GUI implements MouseListener
         System.out.println("in there is a unit ready to be loaded");
         return GUI.tileClicked!=null&&unitNum!=0;
     }
+    
+    public boolean playerOneLoadUnits()
+    {
+        return GUI.tileClicked!=null&&player1UnitNum!=0;
+    }
     @Override
     public void mouseReleased(MouseEvent me) 
     {
@@ -646,5 +660,21 @@ public class GUI implements MouseListener
            GUI.buttonPanel.getComponent(i).setVisible(b);
         GUI.gameFrame.revalidate();
         GUI.gameFrame.repaint();
+    }
+
+    private void loadUnit(ArrayList<Unit> player1AllUnits,int num) 
+    {
+        Unit unit=player1AllUnits.get(num-1);
+        unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+//        System.out.println("place unit " +unit.nameOfUnit + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
+        GUI.units.add(new UnitDraw(unit));
+        GUI.tileClicked=null;
+        num--;
+        GUI.panel.repaint();
+    }
+
+    private boolean playerTwoLoadUnits() 
+    {
+         return GUI.tileClicked!=null&&player2UnitNum!=0;
     }
 }
