@@ -38,7 +38,7 @@ public static void main(String[] args)
 {
 Game game = new Game();
 game.setUp();
-game.playersForDemo = game.playerCreator(numOfPlayers);
+game.playersForDemo = Game.playerCreator(numOfPlayers);
 for(Player p : playersForDemo)
   {
       System.out.println("Player name: "+ p.playerName);
@@ -64,6 +64,7 @@ for(Player p : playersForDemo)
 }
 public void setUp()
 {
+    //gets the number of players playing
 JOptionPane.showMessageDialog(frame, "Welcome to the Historical Battle Simulator! ");
 int pcount = Integer.parseInt(JOptionPane.showInputDialog(frame, "How many players shall be participating?","0"));
 this.setNumPlayers(pcount);
@@ -71,7 +72,7 @@ this.setNumPlayers(pcount);
 //sets how many people are playing
 public void setNumPlayers(int numOfPlayers)
 {
-    this.numOfPlayers=numOfPlayers;
+    Game.numOfPlayers=numOfPlayers;
     
 }
 public static ArrayList playerCreator(int numPlay)
@@ -92,6 +93,8 @@ public static ArrayList playerCreator(int numPlay)
 
     
     //need win conditions
+   //if player surrenders or out of units
+
 
     private boolean takeTurn(Player p)
     {
