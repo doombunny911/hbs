@@ -64,26 +64,26 @@ public class Painter extends JPanel
       {
          for(int j=0;j<sWidth;j++)
          {
-            if(j%10==0)
-            {
-                
-                g2.fill(GUI.tileGameMap[j][i]);
-            }
-            if(i%10==0)
-            {
-                g2.fill(GUI.tileGameMap[j][i]);
-            }
-            else
-            {
+//            if(j%10==0)
+//            {
+//                
+//                g2.fill(GUI.tileGameMap[j][i]);
+//            }
+//            if(i%10==0)
+//            {
+//                g2.fill(GUI.tileGameMap[j][i]);
+//            }
+//            else
+//            {
                 
                  g2.draw(GUI.tileGameMap[j][i]);
-                try {
-                    GUI.tileGameMap[j][i].colorTile(g);
-                } catch (IOException ex) {
-                    Logger.getLogger(Painter.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                try {
+//                    GUI.tileGameMap[j][i].colorTile(g);
+//                } catch (IOException ex) {
+//                    Logger.getLogger(Painter.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
-         }
+         
        }
      GUI.panel.repaint();
       
@@ -92,7 +92,7 @@ public class Painter extends JPanel
       {
          for(int i=0;i<GUI.units.size();i++)
          {
-             System.out.println("in painter painting things");
+//             System.out.println("in painter painting things");
              GUI.units.get(i).paint(g);
              GUI.units.get(i).thisUnit.currentFormation.paintFormation(g);
          }

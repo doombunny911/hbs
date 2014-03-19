@@ -125,12 +125,10 @@ public class Openingmenuscreen extends JFrame
         JLabel welcomeLabel = new JLabel();
         welcomeLabel.setHorizontalAlignment(JLabel.HEIGHT);
         welcomeLabel.setText("Welcome to the Historical Battle Simulator");
-        Font originalFont = welcomeLabel.getFont();
         welcomeLabel.setFont(new Font("Serif",Font.BOLD,75));
-        welcomeLabel.setFont(originalFont);
         
         welcomePanel.add(welcomeLabel);
-        
+
         gameFrame.repaint();
         gameFrame.revalidate();
         gameFrame.add(welcomePanel);

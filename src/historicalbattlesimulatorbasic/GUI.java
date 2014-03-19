@@ -461,7 +461,8 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
               
-
+               if(GUI.tileClicked!=null)
+                   GUI.tileClicked=null;
                  // System.out.println("please click the tile that you wish to move to");
                   if(GUI.moveC==null)
                   {

@@ -295,7 +295,7 @@ public final class Compass extends JPanel
             UnitDraw draw = new UnitDraw(GUI.unitSelected);
             
             GUI.units.remove(index);
-            GUI.units.add(draw);
+//            GUI.units.add(draw,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
 //            GUI.unitSelected=draw.thisUnit;
 //            GUI.moveBoolean=false;
 //            GUI.tileClicked=null;
