@@ -5,7 +5,6 @@
 package historicalbattlesimulatorbasic;
 
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -88,9 +87,7 @@ public class Openingmenuscreen extends JFrame
             gameFrame.remove(tilePanel);
             GUI.gameFrame.repaint();
          
-
-            System.out.println("here");
-           Map gameMap = new Map(10);
+           Map gameMap = new Map(10); //the width of the tiles
 
 
             GUI.gameMap=gameMap;
@@ -103,7 +100,7 @@ public class Openingmenuscreen extends JFrame
             ArrayList<Unit> allUnits = loader.getAllUnits();
             //drawing unit, every unit is added via this, and thus drawn.
 //            while(unitNum!=0)
-             GUI.unitNum=allUnits.size();
+            GUI.unitNum=allUnits.size();
             GUI.panel.repaint();
             GUI.gameFrame.repaint();
             GUI.gameFrame.revalidate();
@@ -111,10 +108,29 @@ public class Openingmenuscreen extends JFrame
     });
 
    public Openingmenuscreen()
-   {
+   {       
+       initializeFrame();
        
-       gameFrame= new JFrame("Historical Battle Simulator");
-       GUI.gameFrame=gameFrame;
+       initializeButtonPanel();
+        
+       initializeTilePanel();
+        
+        gameFrame.repaint();
+        gameFrame.add(tilePanel);
+        gameFrame.setVisible(true);
+   }
+  
+   //sets to fullscreen mode, more a hinderence atm 
+  public void setFullScreen()
+  {
+      gameFrame.setUndecorated(true);
+      gameFrame.setResizable(false);
+  }
+
+    private void initializeFrame()
+    {
+        this.gameFrame= new JFrame("Historical Battle Simulator");
+        GUI.gameFrame=gameFrame;
        
        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
        gameFrame.setSize(new Dimension((int)Toolkit.
@@ -125,31 +141,27 @@ public class Openingmenuscreen extends JFrame
                         getPreferredSize().getHeight());
        System.out.println(gameFrame.getSize());
 
+    }
+
+    private void initializeButtonPanel() 
+    {
         buttonPanel = new JPanel(new GridLayout(5,1));
         buttonPanel.add(b1);
         buttonPanel.add(b2);
         buttonPanel.add(b3);
         buttonPanel.add(b4);
         buttonPanel.add(b5);
-        buttonPanel.setBackground(Color.red); 
+    }    
+
+    private void initializeTilePanel()
+    {
         tilePanel = new JPanel(new GridBagLayout());
-        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
-        gameFrame.validate();
-        tilePanel.add(buttonPanel,gbc);
-        gameFrame.add(tilePanel);
-        gameFrame.setVisible(true);
-//        Unit unit = new Unit(new Soldier(),4);
-   }
-  
-   //sets to fullscreen mode, more a hinderence atm 
-  public void setFullScreen()
-  {
-      gameFrame.setUndecorated(true);
-      gameFrame.setResizable(false);
-  }
+       tilePanel.add(buttonPanel,gbc);
+
+    }
   
   
 }

@@ -67,7 +67,6 @@ public class GUI implements MouseListener
 
     private static void printStats(Unit unitSelected) 
     {
-        
         int unitNumLocal=unitSelected.getUnitsAlive();
         double unitAttack=unitSelected.unitSoldiers[0].attack;
         double unitDefense = unitSelected.unitSoldiers[0].defense;
@@ -302,6 +301,7 @@ public class GUI implements MouseListener
 //    g2.setColor(temp);
     }
    
+    //not currently used
    public static void addToFrame(Component c)
    {
        gameFrame.add(c);
@@ -321,19 +321,19 @@ public class GUI implements MouseListener
    {
        return GUI.gameMap != null && GUI.tileGameMap != null && GUI.tileWidth != 0;
    }
-    public static void addButtonsToPanel(JButton[] button,JPanel aPanel) {
-       GUI.panel.setLayout(null);
+    public static void addButtonsToPanel(JButton[] button) 
+    {
        GUI.panel.setLayout(null);
 //       aPanel.setPreferredSize(new Dimension(500,300));
-       aPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
-       aPanel.setEnabled(false);
-       aPanel.setOpaque(false);
-       button[0].setBounds(aPanel.getWidth()/6-30-100,35,100,30);
-       button[1].setBounds(aPanel.getWidth()/6*2-30-100,35,100,30);
-       button[2].setBounds(aPanel.getWidth()/6*3-30-100,35,100,30);
-       button[3].setBounds(aPanel.getWidth()/6*4-100,35,100,30);
-       button[4].setBounds(aPanel.getWidth()/6*5-100,35,100,30);
-       button[5].setBounds(aPanel.getWidth()/6*6-100,35,100,30);
+       buttonPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
+       buttonPanel.setEnabled(false);
+       buttonPanel.setOpaque(false);
+       button[0].setBounds(buttonPanel.getWidth()/6-30-100,35,100,30);
+       button[1].setBounds(buttonPanel.getWidth()/6*2-30-100,35,100,30);
+       button[2].setBounds(buttonPanel.getWidth()/6*3-30-100,35,125,30);
+       button[3].setBounds(buttonPanel.getWidth()/6*4-30-100,35,100,30);
+       button[4].setBounds(buttonPanel.getWidth()/6*5-45-100,35,150,30);
+       button[5].setBounds(buttonPanel.getWidth()/6*6-45-100,35,150,30);
        buttonPanel.add(button[0]);
        buttonPanel.add(button[1]);
        buttonPanel.add(button[2]);
@@ -341,7 +341,7 @@ public class GUI implements MouseListener
        buttonPanel.add(button[4]);
        buttonPanel.add(button[5]);
        buttonPanel.setVisible(false);
-       GUI.panel.add(aPanel);
+       GUI.panel.add(buttonPanel);
        GUI.panel.repaint();
        GUI.gameFrame.revalidate();
     }
@@ -379,7 +379,6 @@ public class GUI implements MouseListener
    {
        if(GUI.statPanel!=null&&GUI.statPanel.isVisible())
        {
-           
            GUI.printStats(unit); //should be equal to GUI.unitSelected
        }
    }
@@ -393,13 +392,12 @@ public class GUI implements MouseListener
        button=initializeButtons(button);
        
        GUI.buttonPanel.setLayout(null);
-       addButtonsToPanel(button,GUI.buttonPanel);
+       addButtonsToPanel(button);
        
        button[0].addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-               
                
                GUI.attackUnit=GUI.unitSelected;
            }
@@ -410,8 +408,11 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae)
            {
-               GUI.unitSelected.brace();
-               
+               //can't prepare to defend if attacking
+               if(GUI.attackUnit==null)
+               {
+                   GUI.unitSelected.brace();
+               }
            }
        });
        
@@ -435,14 +436,14 @@ public class GUI implements MouseListener
               if(moveBoolean==false)
               {
                   System.out.println("please click the tile that you wish to move to");
-                  GUI.move=2;
                   GUI.moveBoolean=true; 
               }
-              
-
-               System.out.println("Please click the tile that you wish to move to");
-               
-
+              else
+              {
+                  System.out.println("You are already in the process of moving "
+                          + "click a direction to move to");
+                  
+              }
            }
        });
        button[4].addActionListener(new ActionListener() {
@@ -450,7 +451,8 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-               System.out.println("SpecialAbility Activate!");
+               //set formation button, not done
+               System.out.println("this button does not do anything atm");
            }
        });
        button[5].addActionListener(new ActionListener() 
@@ -474,67 +476,15 @@ public class GUI implements MouseListener
 
    private void moveUnit() 
    {
-     
-//       if(move%2==0)
-//       {
-//         //this is a unit being selected
-//            for(int i=0;i<GUI.units.size();i++)
-//           {
-////               
-//               if(GUI.tileClicked.getOccupier().getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
-//               {
-//                   System.out.println(GUI.tileClicked.getOccupier().nameOfUnit);
-//                   System.out.println(GUI.units.get(i).thisUnit.nameOfUnit);
-//                   System.out.println(GUI.units.get(i).thisUnit.unitID);
-//                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
-////                   found the unit to delete
-//                   GUI.indexToRemove=i;
-//                   System.out.println("indexToRemove " +GUI.indexToRemove);
-//                   break;
-//               }
-//           }  
-//       }
-//       else if(move%2==1)
-//       {
-//           UnitDraw draw =GUI.units.get(GUI.indexToRemove);
-//          Unit unit =draw.thisUnit;
-//          unit.xPosition=GUI.tileClicked.xPosition;
-//          unit.yPosition = GUI.tileClicked.yPosition;
-//          System.out.println("unitId of unitSelected before = " +  GUI.unitSelected.unitID);
-//          UnitDraw draw2=new UnitDraw(unit);
-//          GUI.units.remove(GUI.units.get(GUI.indexToRemove));
-//             GUI.units.add(draw2);
-//             GUI.indexToRemove=0;
-//          GUI.gameFrame.revalidate();
-//          GUI.panel.repaint();
-//          GUI.gameFrame.repaint();
-//          int check =0;
-//         for(int i=0;i<units.size();i++)
-//         {
-//             check++;
-//             
-//         }
-//         System.out.println("there are " + check + " units in the arraylist");
-//          
-////         GUI.move=0;
-//         GUI.tileClicked=null;
-//       }
-//         move--;
-         
-       
-       
            //locate the unitDraw whose unit = GUI.selectedUnit;
        int index = Integer.MAX_VALUE;
        for(int i=0;i<units.size();i++)
        {
-
          //So this the space that unit is being moved too   
-
           UnitDraw draw =GUI.units.get(GUI.indexToRemove);
           Unit unit =draw.thisUnit;
 //          draw.xDraw = GUI.tileClicked.xPosition;
 //          draw.yDraw= GUI.tileClicked.yPosition;
-          
           //this is the movement redraw
           double originalXPosition = unit.xPosition;
           double originalYPosition = unit.yPosition;
