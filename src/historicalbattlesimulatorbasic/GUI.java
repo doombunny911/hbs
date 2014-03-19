@@ -41,6 +41,7 @@ public class GUI implements MouseListener
     static UnitLoader loader;
     static int unitNum;
     static int move;
+    static JButton endTurn;
     static int indexToRemove;
     static JPanel buttonPanel = new JPanel();
     static JPanel statPanel= new JPanel();
@@ -382,15 +383,28 @@ public class GUI implements MouseListener
            GUI.printStats(unit); //should be equal to GUI.unitSelected
        }
    }
-
+//
     
    //not in final spots, didn't want 
 //   to waste time finding the optimal spots atm
    public static void buttonLoader()
    {
-       JButton[] button=new JButton[6];
+       GUI.panel.setLayout(null);
+       JButton[] button=new JButton[7];
        button=initializeButtons(button);
-       
+       GUI.endTurn=new JButton("End Turn");
+//       GUI.endTurn.setBounds(GUI.gameFrame.getWidth()/2,0,100,35);
+//       JPanel endTurnPanel = new JPanel();
+//       endTurnPanel.setLayout(null);
+//       endTurnPanel.setVisible(true);
+       endTurn.setVisible(true);
+//       endTurnPanel.setBounds(GUI.gameFrame.getWidth()/2,0,100,35);
+       endTurn.setBounds(GUI.panel.getWidth()/2,0,100,35);
+//       endTurnPanel.setOpaque(false);
+//       endTurnPanel.setEnabled(false);
+//       endTurnPanel.add(endTurn);
+//       GUI.panel.add(endTurnPanel);
+       GUI.panel.add(endTurn);
        GUI.buttonPanel.setLayout(null);
        addButtonsToPanel(button);
        
@@ -471,6 +485,17 @@ public class GUI implements MouseListener
                }
                //make buttons disapear/click through or delete and remake
            }
+       });
+       endTurn.addActionListener(new ActionListener()
+       {
+             @Override
+             public void actionPerformed(ActionEvent ae)
+             {
+                //this button will end the turn of the player and go to next player's turn
+//                 System.out.println("test for end Turn Button");
+                 
+             }
+        
        });
    }
 
