@@ -40,7 +40,7 @@ public class UnitDraw extends Rectangle
 ////            GUI.tileClicked.occupyBy(thisUnit.unitSoldiers[i]);
 ////        }
 //        System.out.println(getUnit.unitID);
-//        System.out.println(getUnit.unitName);
+//        System.out.println(getUnit.nameOfUnit);
         this.tileLocationOfUnit=GUI.tileClicked;
         this.thisUnit=getUnit;
     }

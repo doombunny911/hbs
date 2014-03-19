@@ -450,8 +450,8 @@ public class GUI implements MouseListener
 ////               
 //               if(GUI.tileClicked.getOccupier().getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
 //               {
-//                   System.out.println(GUI.tileClicked.getOccupier().unitName);
-//                   System.out.println(GUI.units.get(i).thisUnit.unitName);
+//                   System.out.println(GUI.tileClicked.getOccupier().nameOfUnit);
+//                   System.out.println(GUI.units.get(i).thisUnit.nameOfUnit);
 //                   System.out.println(GUI.units.get(i).thisUnit.unitID);
 //                   System.out.println(GUI.tileClicked.getOccupier().getUnitID());
 ////                   found the unit to delete
@@ -555,7 +555,7 @@ public class GUI implements MouseListener
            if(GUI.unitSelected.getUnitID()==GUI.units.get(i).thisUnit.getUnitID())
            {
              System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.units.get(i).thisUnit.getUnitID());
-             System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.unitName);
+             System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.nameOfUnit);
 
                index=i;
 //               break;
@@ -598,7 +598,7 @@ public class GUI implements MouseListener
 //        System.out.println("Unitnum!=0");
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-//        System.out.println("place unit " +unit.unitName + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
+//        System.out.println("place unit " +unit.nameOfUnit + " at (" +GUI.tileClicked.xPosition+","+GUI.tileClicked.yPosition+") ");
         GUI.units.add(new UnitDraw(unit));
         GUI.tileClicked=null;
         unitNum--;
@@ -629,7 +629,7 @@ public class GUI implements MouseListener
               {
                   
                   GUI.unitSelected=GUI.units.get(i).thisUnit;
-                  System.out.println("the unitID of unit " + GUI.unitSelected.unitName + " is = to " +GUI.unitSelected.unitID);
+                  System.out.println("the unitID of unit " + GUI.unitSelected.nameOfUnit + " is = to " +GUI.unitSelected.unitID);
               }
 
            }
