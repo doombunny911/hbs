@@ -35,7 +35,25 @@ public class UnitFormations
     {
         
     }
-    
+    public UnitFormations locateLocationOfSprites(Unit unit)
+    {
+        //locate all the location of soldiers
+        
+        for(int i=0;i<GUI.numberOfTilesHeight;i++)
+        {
+            for(int j=0;j<GUI.numberOfTilesWidth;j++)
+            {
+                if(unit.unitID==GUI.tileGameMap[j][i].getOccupier().getUnitID())
+                {
+                    
+                }
+            }
+        }
+        
+        
+        
+        return this;
+    }
     //the default formation for a unit
     //need to check to see if tile is occupied
     public UnitFormations defaultFormation(Tile tile,int dir)

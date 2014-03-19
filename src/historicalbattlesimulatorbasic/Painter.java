@@ -85,7 +85,7 @@ public class Painter extends JPanel
              GUI.units.get(i).thisUnit.currentFormation.paintFormation(g);
          }
       }
-      if(GUI.unitSelected!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack)
+      if(GUI.unitSelected!=null&&GUI.tileClicked!=null&&!GUI.impendingAttack)
       {
           GUI.paintRange(GUI.unitSelected,g);
       }
