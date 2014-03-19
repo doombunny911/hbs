@@ -23,6 +23,7 @@ public class UnitFormations
     private Unit unit;
     private Tile[] spriteLocations;
     private int index;
+    String graphicK = "blackKnight.png";
     public UnitFormations(Unit unit, int dir,Tile tile)
     {
         index=0;
@@ -69,7 +70,7 @@ public class UnitFormations
        
        
        
-      int soldiersPerSprite = 5; //each sprite represents this many soldiers
+      int soldiersPerSprite =  2; //each sprite represents this many soldiers
             switch(dir)
            {
                case 1: //north
@@ -138,7 +139,11 @@ public class UnitFormations
         int temp = this.index;
         try
         {
-           BufferedImage  img = ImageIO.read(new File("SoldierSprite.jpg"));
+           BufferedImage  img = ImageIO.read(new File(graphicK));
+           if(GUI.unitSelected!=null)
+           {
+               graphicK = GUI.unitSelected.spriteName;
+           }
             for(int i=this.index-1;i>=0;i--)
             {
                 g.drawImage(img, spriteLocations[i].xPosition,

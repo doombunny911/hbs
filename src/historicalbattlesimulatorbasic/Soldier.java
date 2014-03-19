@@ -360,12 +360,12 @@ public Soldier attack(Soldier defender)
         if((diceRoll + this.attack) > (defender.armorClass))
         {
             defender.hp= defender.hp - dmgDice;
-            JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
+            //JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
              System.out.println("Defender HP after the hit: "+defender.hp);
         }
         else
         {
-            JOptionPane.showMessageDialog(null,"The attack misses!");
+          // JOptionPane.showMessageDialog(null,"The attack misses!");
         }
     
    
