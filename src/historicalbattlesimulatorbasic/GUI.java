@@ -343,7 +343,7 @@ public class GUI implements MouseListener
        GUI.panel.repaint();
        GUI.gameFrame.revalidate();
     }
-<<<<<<< HEAD
+
     public static void addCompassToPanel(JButton[] button,JPanel aPanel) {
        GUI.panel.setLayout(null );
        panel.setLayout(null);
@@ -372,7 +372,7 @@ public class GUI implements MouseListener
        GUI.gameFrame.revalidate();
     }
    
-=======
+
     public static void printStatsUpdater(Unit unit)
    {
        if(GUI.statPanel!=null&&GUI.statPanel.isVisible())
@@ -381,7 +381,7 @@ public class GUI implements MouseListener
            GUI.printStats(unit); //should be equal to GUI.unitSelected
        }
    }
->>>>>>> c33a2163368e378f0a4fcd3bc24fff4f0b22b7b9
+
     
    //not in final spots, didn't want 
 //   to waste time finding the optimal spots atm
