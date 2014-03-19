@@ -240,7 +240,7 @@ public final class Compass extends JPanel
           }
        }
                 //which direction was unit moved in
-      if(GUI.unitSelected.moveMentCounter>-8)
+      if(GUI.unitSelected.moveMentCounter>0)
       {
          switch(moveDirection)
          {

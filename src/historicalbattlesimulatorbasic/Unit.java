@@ -401,35 +401,6 @@ if(!parent.exists() && !parent.mkdirs()){
             unitSoldiers[i].setUnitID(this.unitID);
      }
   }
-  
-  
-   public void loadSprite(Graphics g,Tile t,Unit unit) 
-    {
-        
-        //ONLY EVEN NUMBER OF SOLDIERS ATM PLZ
-       BufferedImage img = null;
-//               new BufferedImage(xLength,yLength,1);
-       int numberOfSoldiers =unit.unitSoldiers.length;
-       
-       try 
-       {
-          img = ImageIO.read(new File("SoldierSprite.jpg"));
-          for(int i=0;i<unit.unitSoldiers.length/2;i++)
-          {
-              for(int j=0;j<numberOfSoldiers/2;j++)
-              {
-                   g.drawImage(img, t.xPosition+j*t.xLength, t.yPosition+i*t.yLength, t.xLength, t.yLength, null);
-              }
-             
-          }
-          
-       } 
-       catch (IOException e) 
-       {
-           System.out.println("error loading file " + e);
-        }
-    }
-    
   public void setFormation(UnitFormations form)
   {
       this.currentFormation=form;
