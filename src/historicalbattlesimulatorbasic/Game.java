@@ -51,7 +51,10 @@ UnitLoader ul2 = new UnitLoader();
 p1.allUnits = ul1.runLoader();
 
 JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
-p2.allUnits = ul1.runLoader();
+p2.allUnits = ul2.runLoader();
+
+game.setUp(p1);
+game.setUp(p2);
 
   //game begin
  game.playGame(playersForDemo);
@@ -85,4 +88,9 @@ p2.allUnits = ul1.runLoader();
       hasWinner =  p.takeTurn();
       return hasWinner;
            }
+
+    private void setUp(Player p1) 
+    {
+       JOptionPane.showMessageDialog(null, p1.playerName+" place your units!");
+    }
 }
