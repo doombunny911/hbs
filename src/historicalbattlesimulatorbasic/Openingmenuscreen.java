@@ -45,7 +45,7 @@ public class Openingmenuscreen extends JFrame
             Game game = new Game();
          //   game.setUp();
             
-            //get the units they want and initialize them
+            //get the unitDraws they want and initialize them
             //than allow them to place them somewhere
   
         }
@@ -59,7 +59,7 @@ public class Openingmenuscreen extends JFrame
                 UnitCreator.createUnit();
 //            UnitLoader loader = new UnitLoader();
                 
-                //go to file and load in all units into a unit array to later be drawn
+                //go to file and load in all unitDraws into a unit array to later be drawn
             } catch (IOException ex) {
                 Logger.getLogger(Openingmenuscreen.class.getName()).log(Level.SEVERE, null, ex);
             }

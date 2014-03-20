@@ -234,7 +234,7 @@ public final class Compass extends JPanel
           if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
           {
               System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.unitDraws.get(i).thisUnit.getUnitID());
-//              System.out.println("the name of the unit at " + i + " = " + GUI.units.get(i).thisUnit.nameOfUnit);
+//              System.out.println("the name of the unit at " + i + " = " + GUI.unitDraws.get(i).thisUnit.nameOfUnit);
 
               index=i;
           }

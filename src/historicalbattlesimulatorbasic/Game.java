@@ -110,7 +110,7 @@ public static ArrayList playerCreator(int numPlay)
 
     
     //need win conditions
-   //if player surrenders or out of units
+   //if player surrenders or out of unitDraws
 
 
     private boolean takeTurn(Player p)
