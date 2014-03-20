@@ -226,6 +226,7 @@ public final class Compass extends JPanel
      }
     public void moveLogic()
     {
+       double mCount = GUI.unitSelected.moveMentCounter;
        int index=Integer.MAX_VALUE;
                       
        //find the index of the unitDraw that needs to be removed
@@ -234,81 +235,80 @@ public final class Compass extends JPanel
           if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
           {
               System.out.println("unitID of unitDraw at "+ i+ " = "+GUI.unitDraws.get(i).thisUnit.getUnitID());
-//              System.out.println("the name of the unit at " + i + " = " + GUI.unitDraws.get(i).thisUnit.nameOfUnit);
 
               index=i;
           }
        }
                 //which direction was unit moved in
-      if(GUI.unitSelected.moveMentCounter>0)
+      if(mCount>0)
       {
          switch(moveDirection)
          {
            case 1: //north
            {
-               System.out.println(GUI.unitSelected.yPosition);
-               GUI.unitSelected.yPosition-=GUI.tileWidth;
-               System.out.println(GUI.unitSelected.yPosition);
+               GUI.unitSelected.yPosition-=GUI.tileWidth; //yPosition - 10 = 1 tile north
                break;
            }
            case 2: //northEast
            {
                System.out.println("northEast");
-               GUI.unitSelected.xPosition+=GUI.tileWidth;
-               GUI.unitSelected.yPosition-=GUI.tileWidth;
+               GUI.unitSelected.xPosition+=GUI.tileWidth; //xPosition + 10 = 1 tile east
+               GUI.unitSelected.yPosition-=GUI.tileWidth; //yPosition - 10 = 1 tile north
                break;
            }
            case 3: //East
            {
                 System.out.println("east");
-               GUI.unitSelected.xPosition+=GUI.tileWidth;
+               GUI.unitSelected.xPosition+=GUI.tileWidth;//xPosition + 10 = 1 tile east
                break;
            }
            case 4: //southEast
            {
                 System.out.println("southEast");
-               GUI.unitSelected.xPosition+=GUI.tileWidth;
-               GUI.unitSelected.yPosition+=GUI.tileWidth;
+               GUI.unitSelected.xPosition+=GUI.tileWidth;//xPosition + 10 = 1 tile east
+               GUI.unitSelected.yPosition+=GUI.tileWidth;//yPosition + 10 = 1 tile South
                break;
            }
            case 5: //South
            {
                 System.out.println("south");
-               GUI.unitSelected.yPosition+=GUI.tileWidth;
+               GUI.unitSelected.yPosition+=GUI.tileWidth;//yPosition + 10 = 1 tile South
                break;
            }
            case 6://southWest
            {
                 System.out.println("southWest");
-               GUI.unitSelected.xPosition-=GUI.tileWidth;
-               GUI.unitSelected.yPosition+=GUI.tileWidth;
+               GUI.unitSelected.xPosition-=GUI.tileWidth;//xPosition -10 = 1 tile West
+               GUI.unitSelected.yPosition+=GUI.tileWidth;//yPosition + 10 = 1 tile South
                break;
            }
            case 7://West
            {
                 System.out.println("west");
-               GUI.unitSelected.xPosition-=GUI.tileWidth;
+               GUI.unitSelected.xPosition-=GUI.tileWidth;//xPosition -10 = 1 tile West
                break;
            }
            case 8://NorthWest
            {
                 System.out.println("northWest");
-               GUI.unitSelected.xPosition-=GUI.tileWidth;
-               GUI.unitSelected.yPosition-=GUI.tileWidth;
+               GUI.unitSelected.xPosition-=GUI.tileWidth;//xPosition -10 = 1 tile West
+               GUI.unitSelected.yPosition-=GUI.tileWidth;//yPosition -10 = 1 tile North
                break;
            }
        }
+         //this set the unit onto the tile
           GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
 
+          //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             
-            GUI.unitDraws.remove(index);
-            GUI.unitDraws.add(draw);
+           
+            GUI.unitDraws.remove(index); //removes the previous unit
+            GUI.unitDraws.add(draw);//adds the new unit
             moveDirection=0; //no direction
-            GUI.gameFrame.revalidate();
-            GUI.panel.repaint();
-            GUI.gameFrame.repaint();
-            GUI.unitSelected.moveMentCounter--;
+             GUI.repainter();
+            mCount--; //removes one move counter from the unit 
+            
       } 
         }
        

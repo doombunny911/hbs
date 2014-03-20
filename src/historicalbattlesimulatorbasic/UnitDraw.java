@@ -15,21 +15,21 @@ import java.awt.Rectangle;
  */
 
 //Units at some level are rectangles holding soldiers.  Therefore, I will draw
-public class UnitDraw extends Rectangle
+public class UnitDraw
 {
     
     //the position of the top left point of the unit
-    int xDraw,yDraw;
-    Unit thisUnit;
-    Tile tileLocationOfUnit;
+    int xDraw,yDraw; //x and y position
+    Unit thisUnit; //the unit being drawn
+    Tile tileLocationOfUnit; //tile location of where the unit is at
+    
+    //this constructor should be used when first loading in the units
     public UnitDraw(Unit getUnit)
     {
-        //no longer drawing little black squares
-//        super.setBounds(getUnit.xPosition,getUnit.yPosition,getUnit.yHeight,getUnit.xWidth);
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
         getUnit.currentFormation = new UnitFormations
-                (getUnit,getUnit.unitSoldiers[0].facing,GUI.tileClicked);
+                (getUnit,GUI.tileClicked);
         this.tileLocationOfUnit=GUI.tileClicked;
         this.thisUnit=getUnit;
     }
@@ -40,28 +40,19 @@ public class UnitDraw extends Rectangle
     {
         return thisUnit;
     }
-    //may have no need for this one, will keep for now
-    public UnitDraw(int x, int y, int heightY, int widthX)
-    {
-        super.setBounds(x,y,heightY,widthX);
-        this.tileLocationOfUnit=GUI.tileClicked;
-        this.xDraw=x;
-        this.yDraw=y;
-    }
+
+    
+    //this constructor should be used for future updates to the unit location
     public UnitDraw(Unit getUnit,Tile tile)
     {
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
         getUnit.currentFormation = new UnitFormations
-                (getUnit,getUnit.unitSoldiers[0].facing,tile);
+                (getUnit,tile);
         this.tileLocationOfUnit=tile;
         this.thisUnit=getUnit;
     }
     //just add where they need to be painted and this method will do it
-    public void paint(Graphics g)
-    { 
-        Graphics2D g2 = (Graphics2D) g;
-        g2.fill(this);
-    }
+
 
 }

@@ -70,12 +70,6 @@ public class GUI implements MouseListener
        else
            return null;
     }
-
-   
-   
-
-     
-    
     
    //buttonLoader, used for button action listening
    public static void buttonLoader()
@@ -420,14 +414,17 @@ public class GUI implements MouseListener
       
    
        //this will clean up the code a little, instead of doing these all the time, can just make one call
-   public static void repainter()
+   public static boolean repainter()
    {
       if(GUI.panel!=null&&GUI.gameFrame!=null)
       {
          GUI.panel.repaint();
          GUI.gameFrame.repaint();
          GUI.gameFrame.revalidate(); 
+         return true;
       }
+      else
+          return false;
    }
 
     //sets up the compass if it hasn't been initalized yet

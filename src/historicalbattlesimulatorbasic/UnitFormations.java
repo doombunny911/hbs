@@ -25,13 +25,13 @@ public final class UnitFormations
     private Tile[] spriteLocations;
     private int index;
     BufferedImage img;
-    public UnitFormations(Unit unit, int dir,Tile tile)
+    public UnitFormations(Unit unit,Tile tile)
     {
         index=0;
         spriteLocations = new Tile[50];
         //set default formation
         this.unit = unit;
-        defaultFormation(tile,dir);
+        defaultFormation(tile);
     }
     
     public static void setPikeWall(Unit unit)
@@ -64,32 +64,33 @@ public final class UnitFormations
     }
     //the default formation for a unit
     //need to check to see if tile is occupied
-    public UnitFormations defaultFormation(Tile tile,int dir)
+    public UnitFormations defaultFormation(Tile tile)
     {
         //start at the unit start tile
-        //depending on the direction, draw to the "right" tile
-        //less than hundred, just a stright line
        int numberOfSoldiers= unit.unitSoldiers.length;
       
-     //TO DO: 
-     //      add a new row if number of soldiers> X
-     //      add paint in diagonals
-       
+     
+     //this class has a lot of work to allow it to be used for more complex formations 
        
        
       int soldiersPerSprite =  1; //each sprite represents this many soldiers
-            switch(dir)
+            switch(unit.unitFacing)
            {
                case 1: //north
                {
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                        //store the location of the sprites for later painting
+                    //this works by getting base tile of unit start location and 
+                      //adjusting index amount of tiles over
+                      //so first will be at start tile and each subsuquent 
+                      //soldier will be +1 tile to the "right"
                         spriteLocations[this.index]= 
                         GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
-                                 [tile.yPosition/GUI.tileWidth];
+                                 [tile.yPosition/GUI.tileWidth]; 
                         
-                        //put the soldier into the tile
+                        
+                        //put the soldier onto the tile
                         this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                         spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
                         this.index++;
@@ -144,6 +145,8 @@ public final class UnitFormations
         
       
         int temp = this.index;
+        
+        //need to loop over the unitDraws to find which unitDraw you are looking for to paint the right ones
         Unit u =  GUI.unitDraws.get(0).getThisUnit();
         BufferedImage  img = Unit.getUnitPic(u);
         

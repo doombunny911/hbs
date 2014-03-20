@@ -5,7 +5,6 @@
 package historicalbattlesimulatorbasic;
 
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -15,7 +14,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -32,22 +30,15 @@ import javax.swing.JPanel;
  */
 public class Openingmenuscreen extends JFrame
 {
-    
-    static JFrame gameFrame;
-    static JPanel tilePanel;
+    static JPanel tilePanel;//becomes obselete after GUI is initialized
+    JFrame gameFrame; //become obsolete after GUI is initialized
     JPanel buttonPanel;
     JPanel welcomePanel;
     JButton b1 = new JButton( new AbstractAction("Run Simulation") {
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
-            
-            Game game = new Game();
-         //   game.setUp();
-            
-            //get the unitDraws they want and initialize them
-            //than allow them to place them somewhere
-  
+            Game game = new Game();  
         }
     });
 
@@ -86,19 +77,18 @@ public class Openingmenuscreen extends JFrame
        public void actionPerformed( ActionEvent e ) 
         {
             //load the game, testButton for now
-            gameFrame.remove(welcomePanel);
-            tilePanel.remove(buttonPanel);
-            gameFrame.remove(tilePanel);
-            GUI.gameFrame.repaint();
+            
+            //remove all panels
+            removePanels();
+            
          
-           Map gameMap = new Map(10); //the width of the tiles
+            Map gameMap = new Map(10); //the width of the tiles
 
 
             GUI.gameMap=gameMap;
             GUI.buttonLoader();
             
             
-            GUI.gameFrame.revalidate();
             UnitLoader loader = new UnitLoader();
             loader.runLoader();
             ArrayList<Unit> allUnits = loader.getAllUnits();
@@ -113,29 +103,17 @@ public class Openingmenuscreen extends JFrame
 
    public Openingmenuscreen()
    {       
-       initializeFrame();
+       initFrame();
        
-       initializeButtonPanel();
+       initButtonPanel();
         
-       initializeTilePanel();
-        
-       //create a Panel that welcomes them to the game
-        welcomePanel = new JPanel();
-        welcomePanel.setBounds(0,0,gameFrame.getWidth(),200);
-        JLabel welcomeLabel = new JLabel();
-        welcomeLabel.setHorizontalAlignment(JLabel.HEIGHT);
-        welcomeLabel.setText("Welcome to the Historical Battle Simulator");
-        welcomeLabel.setFont(new Font("Serif",Font.BOLD,65));
-        
-        welcomePanel.add(welcomeLabel);
-
-        gameFrame.repaint();
-        gameFrame.revalidate();
-        gameFrame.add(welcomePanel);
-
-        gameFrame.add(tilePanel);
-        gameFrame.setVisible(true);
-        GUI.gameFrame=gameFrame;
+       initTilePanel();
+               
+       initWelcomePanel();
+               
+       gameFrame.add(tilePanel);
+       gameFrame.setVisible(true);
+       GUI.gameFrame=gameFrame;
    }
   
    //sets to fullscreen mode, more a hinderence atm but good for final product
@@ -145,23 +123,24 @@ public class Openingmenuscreen extends JFrame
       gameFrame.setResizable(false);
   }
 
-    private void initializeFrame()
+    private void initFrame()
     {
        this.gameFrame= new JFrame("Historical Battle Simulator");
        
-       gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+       gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE); //program stops if frame is close
+       
+       //sets size of gameFrame to that of your screen
        gameFrame.setSize(new Dimension((int)Toolkit.
                 getDefaultToolkit().getScreenSize().getWidth(),
                 (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
-        System.out.println("gameFrame width = "+gameFrame.getPreferredSize()
-                .getWidth()+" gameFrame Height = "+ gameFrame.
-                        getPreferredSize().getHeight());
-       System.out.println(gameFrame.getSize());
-        
-
+       
+//        System.out.println("gameFrame width = "+gameFrame.getPreferredSize()
+//                .getWidth()+" gameFrame Height = "+ gameFrame.
+//                        getPreferredSize().getHeight());
+//       System.out.println(gameFrame.getSize());
     }
 
-    private void initializeButtonPanel() 
+    private void initButtonPanel() 
     {
         buttonPanel = new JPanel(new GridLayout(5,1));
         buttonPanel.add(b1);
@@ -171,15 +150,34 @@ public class Openingmenuscreen extends JFrame
         buttonPanel.add(b5);
     }    
 
-    private void initializeTilePanel()
+   
+    private void initTilePanel()
     {
         tilePanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
         tilePanel.add(buttonPanel,gbc);
+       
+    }
+   private void removePanels()
+   {
+       gameFrame.remove(welcomePanel);
+       tilePanel.remove(buttonPanel);
+       gameFrame.remove(tilePanel);
+   }
+
+    private void initWelcomePanel() 
+    {
+        welcomePanel = new JPanel();
+        welcomePanel.setBounds(0,0,gameFrame.getWidth(),200);
+        JLabel welcomeLabel = new JLabel();
+        welcomeLabel.setHorizontalAlignment(JLabel.HEIGHT);
+        welcomeLabel.setText("Welcome to the Historical Battle Simulator");
+        welcomeLabel.setFont(new Font("Serif",Font.BOLD,65));
+        welcomePanel.add(welcomeLabel);    
+       gameFrame.add(welcomePanel);
 
     }
-  
   
 }
