@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class Painter extends JPanel
 {
     private int tileWidth;
-   
+  
     static double remainderHeight;
     static double remainderWidth;
     private double sHeight,sWidth;
@@ -64,35 +64,31 @@ public class Painter extends JPanel
       {
          for(int j=0;j<sWidth;j++)
          {
-//            if(j%10==0)
-//            {
-//                
-//                g2.fill(GUI.tileGameMap[j][i]);
-//            }
-//            if(i%10==0)
-//            {
-//                g2.fill(GUI.tileGameMap[j][i]);
-//            }
-//            else
-//            {
+            if(j%10==0)
+          {
                 
-                 g2.draw(GUI.tileGameMap[j][i]);
-//                try {
-//                    GUI.tileGameMap[j][i].colorTile(g);
-//                } catch (IOException ex) {
-//                    Logger.getLogger(Painter.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                g2.fill(GUI.tileGameMap[j][i]);
             }
-         
-       }
+            if(i%10==0)
+            {
+                g2.fill(GUI.tileGameMap[j][i]);
+            }
+            else
+            {
+                
+                g2.draw(GUI.tileGameMap[j][i]);
+                 GUI.tileGameMap[j][i].paintTile((g2));
+                  
+                 
+             }
      GUI.panel.repaint();
       
       //sprites
       if(!GUI.unitDraws.isEmpty())
       {
-         for(int i=0;i<GUI.unitDraws.size();i++)
+         for(int p=0;p<GUI.unitDraws.size();p++)
          {             
-             GUI.unitDraws.get(i).thisUnit.currentFormation.paintFormation(g);
+             GUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g);
          }
       }
       //not currently used
@@ -101,4 +97,7 @@ public class Painter extends JPanel
           GUI.paintRange(GUI.unitSelected,g);
       }
     }
+   }
+   }
 }
+

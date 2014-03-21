@@ -11,13 +11,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.RepaintManager;
 /**
  * One tile can hold one unit. Each tile has a different effect. Each tile is a square
  * @author Schmalz
@@ -35,21 +30,13 @@ public class Tile extends Rectangle
     int xPosition, yPosition, zPosition;
     int terrainEffect; //terrain effects will be all categorized as ints to allow easy return access.
     int levelOfCover; // 0 is none, 1 is light, 2 is full
-    int  xLength, yLength;
+    int  xLength, yHeight;
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
+    BufferedImage image;
 
-        public static BufferedImage treeLoader() 
-   {
-      BufferedImage tree1=null;
-       try {
-           tree1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"tree.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return tree1;
-    }
+   
     
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
@@ -62,7 +49,7 @@ public class Tile extends Rectangle
         this.xPosition=xPosition;
         this.yPosition=yPosition;
         this.xLength= xLength; 
-        this.yLength= yLength; 
+        this.yHeight= yLength; 
         this.isOccupied=false; 
        
     }
@@ -127,7 +114,7 @@ public class Tile extends Rectangle
     
     boolean hasNorthEast()
     {
-        return yPosition!=0 &&  xPosition!=yLength;
+        return yPosition!=0 &&  xPosition!=yHeight;
     }
     boolean hasWest()
     {
@@ -139,7 +126,7 @@ public class Tile extends Rectangle
     }
     boolean hasSouth()
     {
-        return yPosition!=yLength-Openingmenuscreen.tilePanel.getHeight()-Painter.remainderHeight;
+        return yPosition!=yHeight-Openingmenuscreen.tilePanel.getHeight()-Painter.remainderHeight;
     }      
      boolean hasSouthWest()
     {
@@ -169,7 +156,7 @@ public class Tile extends Rectangle
 //            g2.drawImage(tree,null, this.xPosition, this.yPosition);
 //       }
          
-    Rectangle tileR = new Rectangle(this.xLength, this.yLength, this.xPosition, this.yPosition);
+    Rectangle tileR = new Rectangle(this.xLength, this.yHeight, this.xPosition, this.yPosition);
       GUI.panel.repaint(tileR);
 //        
        
@@ -240,34 +227,14 @@ public class Tile extends Rectangle
         tileWest = west;
        
     }
-
-    public void loadSprite(Graphics g,Tile t,Unit unit, String unitSprite) 
-    {
-        
-        //ONLY EVEN NUMBER OF SOLDIERS ATM PLZ
-       BufferedImage img = null;
-//               new BufferedImage(xLength,yLength,1);
-       int numberOfSoldiers =unit.unitSize;
-       
-       try 
-       {
-          img = ImageIO.read(new File("Sprites"+File.separator+"UnitSprites"+File.separator+ unitSprite));
-          for(int i=0;i<unit.unitSoldiers.length/2;i++)
-          {
-              for(int j=0;j<numberOfSoldiers/2;j++)
-              {
-                   g.drawImage(img, t.xPosition+j*t.xLength, t.yPosition+i*t.yLength, t.xLength, t.yLength, null);
-              }
-             
-          }
-          
-          
-       } 
-       catch (IOException e) 
-       {
-           System.out.println("error loading file " + e);
-        }
-    }
+ public void setImage(BufferedImage img)
+ {
+     this.image = img;
+ }
+   public BufferedImage getImage()
+   {
+       return image;
+   }
     
     public Unit checkUnitWithinBounds(Tile tile)
     {
@@ -279,4 +246,13 @@ public class Tile extends Rectangle
 //        }
         return null;
     }
+
+    public void paintTile(Graphics2D g)
+    {
+        g.drawImage(image, this.xPosition,
+                    this.yPosition, 10,
+                    10,null);
+      
+    }
+    
 }

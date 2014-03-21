@@ -19,7 +19,19 @@ import javax.imageio.ImageIO;
  * @author Edward
  * This class loads all different buffered images. All methods are static and can be called from any other class
  */
-public class BufferedImageLoaders {
+public class BufferedImageLoaders 
+{
+    BufferedImage grass = grassLoader();
+    BufferedImage tree, dirt, rock, vikingGreen, vikingGray, vikingPurple, vikingRed, knightBlack, knightGray, knightBlue;
+    public void loadAllImages()
+    {
+       
+        
+    }
+    public BufferedImage getGrass()
+    {
+        return grass;
+    }
        public static BufferedImage grassLoader() 
     {
        BufferedImage grass1=null;
@@ -52,4 +64,35 @@ public class BufferedImageLoaders {
        }
        return brown1;
     }
+      public static BufferedImage blackKnightLoader() 
+    {
+       BufferedImage brown1=null;
+       try {
+           brown1 = ImageIO.read(new File("Sprites"+File.separator+"Unit Sprites"+File.separator+"blackKnight.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return brown1;
+    }
+       public static BufferedImage redKnightLoader() 
+    {
+       BufferedImage brown1=null;
+       try {
+           brown1 = ImageIO.read(new File("Sprites"+File.separator+"Unit Sprites"+File.separator+"redKnight.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return brown1;
+    }
+       public static BufferedImage unitPicLoader(Unit unit)
+       {
+       BufferedImage img = new BufferedImage(unit.xWidth, unit.yHeight, 4);
+        try {
+             img = ImageIO.read(new File(unit.spriteName));
+        } catch (IOException ex) {
+            Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return img;
+       }
 }

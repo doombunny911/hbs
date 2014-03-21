@@ -2,10 +2,6 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -148,13 +144,14 @@ public final class UnitFormations
         
         //need to loop over the unitDraws to find which unitDraw you are looking for to paint the right ones
         Unit u =  GUI.unitDraws.get(0).getThisUnit();
-        BufferedImage  img = Unit.getUnitPic(u);
+        BufferedImage  unImg = Unit.getUnitPic(u);
         
         for(int i=this.index-1;i>=0;i--)
         {
-            g.drawImage(img, spriteLocations[i].xPosition,
+            System.out.println("WHY ARE YOU NOT DRAWING");
+            g.drawImage(unImg, spriteLocations[i].xPosition,
                     spriteLocations[i].yPosition, spriteLocations[i].xLength,
-                    spriteLocations[i].yLength,null);
+                    spriteLocations[i].yHeight,null);
         }
         
         this.index=temp;

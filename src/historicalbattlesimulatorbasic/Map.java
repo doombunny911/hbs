@@ -13,9 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 
 /**
@@ -25,7 +22,7 @@ import javax.imageio.ImageIO;
  */
 public class Map 
 {
-   
+   BufferedImageLoaders bil = new BufferedImageLoaders();
    private double squareHeight;
    private double squareWidth;
    private String name;
@@ -35,14 +32,12 @@ public class Map
     public static void main(String[] args) throws IOException
     {
         Map m = MapCreator.createMap();
-        m.saveMap("file");
+       // m.saveMap("file");
         
     }
     public Map(int xHeight, int yHeight)
     {
-//        gameMap = new Tile[xHeight][yHeight]; Not sure what you were going for here
-        //if gameMap = the grid of Tiles as it appears to be, setting it equal 
-       
+     
     }
    //populates the gameMap with basic tiles with no features other than area.
     public Map( int xWidth)
@@ -73,6 +68,13 @@ public class Map
             for(int j=0;j<squareWidth;j++)
             {
                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+                if(j>i)
+                {
+                GUI.tileGameMap[j][i].setImage(grass);}
+                else
+                {
+                    GUI.tileGameMap[j][i].setImage(dirt);
+                }
             }
         } 
     }
@@ -81,6 +83,8 @@ public class Map
     {
         GUI.tileGameMap[x][y]=insertTile;
     }
+    
+    
     
     //Sets the tile to have north, east, south, west
     public void setTileAllDirections()
@@ -131,6 +135,10 @@ public class Map
     }
     }
     
+    public void setTileTerrain(Tile t, BufferedImage img)
+    {
+        t.image = img;
+    }
     public void saveMap(String fileName2) throws IOException
     {
         PrintWriter writer = null;
