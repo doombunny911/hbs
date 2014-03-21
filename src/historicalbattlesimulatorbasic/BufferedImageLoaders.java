@@ -6,6 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
+import historicalbattlesimulatorbasic.Tile;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.imageio.ImageIO;
 /**
  *
  * @author Edward
+ * This class loads all different buffered images. All methods are static and can be called from any other class
  */
 public class BufferedImageLoaders {
        public static BufferedImage grassLoader() 
