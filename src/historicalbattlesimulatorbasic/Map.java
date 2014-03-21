@@ -6,12 +6,16 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -25,6 +29,9 @@ public class Map
    private double squareHeight;
    private double squareWidth;
    private String name;
+   BufferedImage dirt = BufferedImageLoaders.dirtLoader();
+   BufferedImage rock = BufferedImageLoaders.rockLoader();
+   BufferedImage grass =  BufferedImageLoaders.grassLoader();
     public static void main(String[] args) throws IOException
     {
         Map m = MapCreator.createMap();
@@ -59,9 +66,7 @@ public class Map
         GUI.numberOfTilesWidth=squareWidth;
         GUI.numberOfTilesHeight=squareHeight;
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-//        System.out.println("squarewidth ="+ squareWidth + 
-//               " tileWidth = " + GUI.tileWidth+ " squareHeight = " + squareHeight +
-//               " width = " + width );
+
      System.out.println(width);
          for(int i=0;i<squareHeight;i++)
         {
@@ -151,6 +156,9 @@ if(!parent.exists() && !parent.mkdirs()){
             writer.close();
         }
     }
+    
+     
+    
  }
    
 
