@@ -138,8 +138,7 @@ public final class UnitFormations
     
     public void paintFormation(Graphics g)
     {
-        
-      
+       
         int temp = this.index;
         
         //need to loop over the unitDraws to find which unitDraw you are looking for to paint the right ones
@@ -148,7 +147,7 @@ public final class UnitFormations
         
         for(int i=this.index-1;i>=0;i--)
         {
-            System.out.println("WHY ARE YOU NOT DRAWING");
+          
             g.drawImage(unImg, spriteLocations[i].xPosition,
                     spriteLocations[i].yPosition, spriteLocations[i].xLength,
                     spriteLocations[i].yHeight,null);

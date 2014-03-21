@@ -132,7 +132,7 @@ public class UnitLoader
 //...
             ImageIcon icon = new ImageIcon();
             icon.setImage(ic);
-            JOptionPane.showMessageDialog(null, icon);
+           // JOptionPane.showMessageDialog(null, icon);
             return unit;
     } 
   

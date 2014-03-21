@@ -65,6 +65,7 @@ public class Unit extends Soldier
     
     public static BufferedImage getUnitPic(Unit unit)
     {
+        
         BufferedImage img = new BufferedImage(unit.xWidth, unit.yHeight, 4);
         try {
              img = ImageIO.read(new File(unit.spriteName));
@@ -72,6 +73,7 @@ public class Unit extends Soldier
             Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
             
         }
+        System.out.println("Got image of"+unit.spriteName);
         return img;
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
