@@ -75,11 +75,12 @@ public final class Compass extends JPanel
             ImageIcon northWestImage2 = new ImageIcon(newimg8);
         JButton northWest = new JButton(northWestImage2);
         
-        ImageIcon holderImage = new ImageIcon("Sprites/Compass/Circle.png");
-            Image img9 = holderImage.getImage();
-            Image newimg9 = img9.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); 
-            ImageIcon holderImage2 = new ImageIcon(newimg9);
-        JButton holder = new JButton(holderImage2);
+//        ImageIcon holderImage = new ImageIcon("Sprites/Compass/Circle.png");
+//            Image img9 = holderImage.getImage();
+//            Image newimg9 = img9.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); 
+//            ImageIcon holderImage2 = new ImageIcon(newimg9);
+//        JButton toggleSprint = new JButton(holderImage2);
+        JButton toggleSprint = new JButton();
        
         int moveDirection;
         
@@ -126,9 +127,9 @@ public final class Compass extends JPanel
        this.southWest.setOpaque(false);
        this.southWest.setContentAreaFilled(false);
        this.southWest.setBorderPainted(false);
-       this.holder.setOpaque(false);
-       this.holder.setContentAreaFilled(false);
-       this.holder.setBorderPainted(false);
+       this.toggleSprint.setOpaque(false);
+       this.toggleSprint.setContentAreaFilled(false);
+       this.toggleSprint.setBorderPainted(false);
       // comp.setLayout(new GridLayout(3,3));
       // this.setUpVisuals();
     }
@@ -178,7 +179,23 @@ public final class Compass extends JPanel
                   moveDirection=7;
                   moveLogic();
                 }});
-         add(holder);
+                
+         add(toggleSprint);
+         
+              toggleSprint.addActionListener(new ActionListener(){
+                  @Override
+                  public void actionPerformed(ActionEvent e)
+                  {
+                      System.out.println("Toggle Sprint");
+                      if(GUI.unitSelected.isSprinting)
+                      {
+                          Modifier.removeSprint(GUI.unitSelected);
+                      }
+                      else
+                          GUI.unitSelected.sprint();
+                      
+                  }});
+              
          add(east);
                 east.addActionListener(new ActionListener() {
                     @Override
@@ -298,6 +315,8 @@ public final class Compass extends JPanel
        }
          //this set the unit onto the tile
           GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
+          
+          
 
           //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));

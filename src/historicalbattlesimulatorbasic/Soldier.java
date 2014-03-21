@@ -64,10 +64,10 @@ public class Soldier
     Tile tileOccupied;
 //basic dice to be used in combat
     Random dice = new Random();
-    public boolean isCharging;
-    public boolean isDefending;
-    public boolean isSprinting;
-    public boolean isBracing;
+    protected boolean isCharging;
+    protected boolean isDefending;
+    protected boolean isSprinting;
+    protected boolean isBracing;
  
 public static void main(String[] args)
 {

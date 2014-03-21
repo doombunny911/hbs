@@ -49,7 +49,7 @@ public class GUI implements MouseListener
     static ArrayList<Unit> player2AllUnits;//player 2's unitDraws
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
-
+//    static JPanel moveButtonPanel; //panel for moving options (sprint etc)
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
     public GUI(JPanel panel)
@@ -234,13 +234,9 @@ public class GUI implements MouseListener
                   //if it is not visible, make it visible
                   if(!GUI.moveC.isVisible())
                         GUI.moveC.setVisible(true);
+             
                   
-                  
-                  GUI.panel.repaint();
-                  GUI.gameFrame.repaint();
-                  GUI.gameFrame.revalidate();
-              
-              
+                  GUI.repainter();
            }
        });
        button[4].addActionListener(new ActionListener() {
