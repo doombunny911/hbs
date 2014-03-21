@@ -10,6 +10,7 @@ import historicalbattlesimulatorbasic.Tile;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -21,12 +22,27 @@ import javax.imageio.ImageIO;
  */
 public class BufferedImageLoaders 
 {
+    
+    private ArrayList<BufferedImageName> imageList = new ArrayList<BufferedImageName>();
     BufferedImage grass = grassLoader();
-    BufferedImage tree, dirt, rock, vikingGreen, vikingGray, vikingPurple, vikingRed, knightBlack, knightGray, knightBlue;
+    BufferedImage tree, dirt, rock;
+    
     public void loadAllImages()
     {
-       
+       imageList = BufferedImageMassImport.loadAllImages();
         
+    }
+    public BufferedImage getImage(String imageName)
+    {
+        BufferedImage result = null;
+        for(BufferedImageName bin: imageList)
+        {
+            if(bin.getName().equals(imageName))
+            {
+               result =bin.getImage();
+            }
+        }
+        return result;
     }
     public BufferedImage getGrass()
     {
@@ -95,4 +111,5 @@ public class BufferedImageLoaders
         }
         return img;
        }
+       
 }

@@ -29,6 +29,7 @@ public class Map
    BufferedImage dirt = BufferedImageLoaders.dirtLoader();
    BufferedImage rock = BufferedImageLoaders.rockLoader();
    BufferedImage grass =  BufferedImageLoaders.grassLoader();
+   
     public static void main(String[] args) throws IOException
     {
         Map m = MapCreator.createMap();
