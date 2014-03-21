@@ -41,7 +41,7 @@ public class Soldier
     //these won't be modified at all and are constants left to remain as the basis when modifiers are implemented
    protected    double baseAttack;
    protected double baseHP;
-   protected  double baseDmg;
+   protected  int baseDmg;
    protected  double baseDmgBonus;
    protected  double baseDefense;
    protected  double baseArmorClass;
@@ -63,7 +63,7 @@ public class Soldier
    protected boolean isCharging;
    protected boolean isDefending;
    protected boolean isSprinting;
-   protected boolean isBracing;
+//   protected boolean isBracing;
    
    //make sure to set to false after each turn
    protected boolean hasSprinted; //used at turn end.  If true, no stamina is increased
@@ -307,6 +307,9 @@ public void moveNorthWest()
          this.placeOnTile(tileOccupied);
     }
 }
+
+
+
 public Soldier()
 {
     
@@ -510,5 +513,25 @@ public void calculateModifiers(Soldier opponent)
     {
          t.occupyBy(this);
         this.tileOccupied=t;
+    }
+    //needs to be checked/corrected
+    public void endTurn()
+    {
+        
+        //not sure how pervasive special ability is for this method
+        //i feel like special ability could be anything and so it is hard to
+        //determine what things are going to return to base and what doesn't
+         System.out.println("Your turn has ended");
+         speed  =baseSpeed;
+         range    =baseRange;
+         chargeBonus  =baseChargeBonus;
+         isCharging=false;
+          isSprinting=false;
+            
+            
+            hasSprinted=false;
+            hasMoved=false;
+           
+            
     }
 }

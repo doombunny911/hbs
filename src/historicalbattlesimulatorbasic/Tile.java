@@ -109,16 +109,18 @@ public class Tile extends Rectangle
     //refers to if the tile has a neighbor[anotehr tile in the designated direction
     boolean hasNorth() 
     {
-        return yPosition!=0;
+        return yPosition>=GUI.tileWidth;
+//        return yPosition!=0;
     }
     
     boolean hasNorthEast()
     {
-        return yPosition!=0 &&  xPosition!=yHeight;
+        return hasNorth()&&hasEast();
+//        return yPosition!=0 &&  xPosition!=yHeight;
     }
     boolean hasWest()
     {
-        return xPosition!=0;
+        return xPosition>=GUI.tileWidth;
     }
     boolean hasSouthEast()
     {
@@ -126,7 +128,8 @@ public class Tile extends Rectangle
     }
     boolean hasSouth()
     {
-        return yPosition!=yHeight-Openingmenuscreen.tilePanel.getHeight()-Painter.remainderHeight;
+        return yPosition<=GUI.tileGameMap[0][(int)GUI.numberOfTilesHeight-1].yPosition-GUI.tileWidth;
+//        return yPosition!=yHeight-Openingmenuscreen.tilePanel.getHeight()-Painter.remainderHeight;
     }      
      boolean hasSouthWest()
     {
@@ -134,7 +137,8 @@ public class Tile extends Rectangle
     }
     boolean hasEast()
     {
-        return xPosition!=xLength-Openingmenuscreen.tilePanel.getWidth()-Painter.remainderWidth;
+       return xPosition<GUI.tileGameMap[(int)GUI.numberOfTilesWidth-1][0].xPosition-GUI.tileWidth;
+//        return xPosition!=xLength-Openingmenuscreen.tilePanel.getWidth()-Painter.remainderWidth;
     } 
     boolean hasNorthWest()
     {

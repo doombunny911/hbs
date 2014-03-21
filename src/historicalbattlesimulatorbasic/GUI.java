@@ -279,6 +279,10 @@ public class GUI implements MouseListener
              {
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
+                 GUI.unitSelected.resetUnitPoints();
+                 GUI.unitSelected.endTurn();
+                 GUI.unitSelected=null;
+                 GUI.tileClicked=null;
                  
              }
         
