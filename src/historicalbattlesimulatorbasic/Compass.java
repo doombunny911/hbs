@@ -243,9 +243,9 @@ public final class Compass extends JPanel
      }
     public void moveLogic()
     {
-       double mCount = GUI.unitSelected.moveMentCounter;
+       GUI.unitSelected.hasMoved=true;
        int index=Integer.MAX_VALUE;
-                      
+       
        //find the index of the unitDraw that needs to be removed
        for(int i=0;i<GUI.unitDraws.size();i++)
        {
@@ -256,60 +256,71 @@ public final class Compass extends JPanel
               index=i;
           }
        }
+       int tileMoveChange = GUI.tileWidth;
+       
+       if(GUI.unitSelected.isSprinting)
+       {
+            tileMoveChange*=2;
+            GUI.unitSelected.stamina--;
+            GUI.unitSelected.hasSprinted=true;
+
+       }
+       
+       
                 //which direction was unit moved in
-      if(mCount>0)
+      if(GUI.unitSelected.speed>0)
       {
          switch(moveDirection)
          {
            case 1: //north
            {
-               GUI.unitSelected.yPosition-=GUI.tileWidth; //yPosition - 10 = 1 tile north
+               GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
                break;
            }
            case 2: //northEast
            {
                System.out.println("northEast");
-               GUI.unitSelected.xPosition+=GUI.tileWidth; //xPosition + 10 = 1 tile east
-               GUI.unitSelected.yPosition-=GUI.tileWidth; //yPosition - 10 = 1 tile north
+               GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+               GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
                break;
            }
            case 3: //East
            {
                 System.out.println("east");
-               GUI.unitSelected.xPosition+=GUI.tileWidth;//xPosition + 10 = 1 tile east
+               GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
                break;
            }
            case 4: //southEast
            {
                 System.out.println("southEast");
-               GUI.unitSelected.xPosition+=GUI.tileWidth;//xPosition + 10 = 1 tile east
-               GUI.unitSelected.yPosition+=GUI.tileWidth;//yPosition + 10 = 1 tile South
+               GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+               GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
                break;
            }
            case 5: //South
            {
                 System.out.println("south");
-               GUI.unitSelected.yPosition+=GUI.tileWidth;//yPosition + 10 = 1 tile South
+               GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
                break;
            }
            case 6://southWest
            {
                 System.out.println("southWest");
-               GUI.unitSelected.xPosition-=GUI.tileWidth;//xPosition -10 = 1 tile West
-               GUI.unitSelected.yPosition+=GUI.tileWidth;//yPosition + 10 = 1 tile South
+               GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+               GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
                break;
            }
            case 7://West
            {
                 System.out.println("west");
-               GUI.unitSelected.xPosition-=GUI.tileWidth;//xPosition -10 = 1 tile West
+               GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
                break;
            }
            case 8://NorthWest
            {
                 System.out.println("northWest");
-               GUI.unitSelected.xPosition-=GUI.tileWidth;//xPosition -10 = 1 tile West
-               GUI.unitSelected.yPosition-=GUI.tileWidth;//yPosition -10 = 1 tile North
+               GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+               GUI.unitSelected.yPosition-=tileMoveChange;//yPosition -10 = 1 tile North
                break;
            }
        }
@@ -326,7 +337,7 @@ public final class Compass extends JPanel
             GUI.unitDraws.add(draw);//adds the new unit
             moveDirection=0; //no direction
              GUI.repainter();
-            mCount--; //removes one move counter from the unit 
+            GUI.unitSelected.speed--; //removes one move counter from the unit 
             
       } 
         }
