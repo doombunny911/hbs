@@ -72,7 +72,7 @@ public class GUI implements MouseListener
     //initializes defenseButton
     private static void initDefenseButton()
     {
-        JButton sAbility = new JButton("Special Ability");
+        final JButton sAbility = new JButton("Special Ability");
         sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
         sAbility.setVisible(true);
         GUI.panel.add(sAbility);
@@ -83,6 +83,7 @@ public class GUI implements MouseListener
            {
                System.out.println("Special Ability activated");
                GUI.unitSelected.useSpecialAbility();
+               sAbility.setVisible(false);
           }
        });
         
@@ -197,7 +198,10 @@ public class GUI implements MouseListener
                    //if unitSelected does not have a defensive special ability, don't load extra button
                    //otherwise, load a panel with a button for speical ability
                    //i assume is the defense method, prepareation or whatnot
-                   initDefenseButton();
+                   //if there is a specialAbility and the button hasn't been initialized
+                        initDefenseButton();
+                  //elseIf(there is a specialAbility and the button has been intialized
+                        GUI.panel.getComponentAt(GUI.buttonPanel.getComponent(2).getLocation()).setVisible(true);
                    GUI.unitSelected.brace();
                }
            }
