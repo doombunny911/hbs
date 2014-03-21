@@ -51,7 +51,7 @@ public final class TerrainPlacer extends JPanel
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon unitImage2 = new ImageIcon(newimg);
             JButton button = new JButton(u.nameOfUnit,unitImage2) ;
-            unitImages.add(button);
+//            unitImages.add(button);
             button.setOpaque(false);
             add(button);
                 button.addActionListener(new ActionListener() 
@@ -62,8 +62,6 @@ public final class TerrainPlacer extends JPanel
 //                  
                     System.out.println(u.nameOfUnit);
                 }
-
-                    
             });
            // button.setContentAreaFilled(false);
             button.setBorderPainted(false);

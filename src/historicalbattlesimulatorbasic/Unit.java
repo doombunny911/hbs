@@ -53,11 +53,9 @@ public class Unit extends Soldier
          Unit u = uA.get(0);
          BufferedImage ic = getUnitPic(u);
          Graphics g = ic.createGraphics();
-
-//...
-            ImageIcon icon = new ImageIcon();
-            icon.setImage(ic);
-            JOptionPane.showMessageDialog(null, icon);
+         ImageIcon icon = new ImageIcon();
+         icon.setImage(ic);
+         JOptionPane.showMessageDialog(null, icon);
      }
     public void setSprite(String sprite)
     {
@@ -142,7 +140,6 @@ public class Unit extends Soldier
             {
                 
             }//do nothing
-            
         }
        if(unitsAlive==0)
         {
