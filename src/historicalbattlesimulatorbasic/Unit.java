@@ -403,5 +403,43 @@ if(!parent.exists() && !parent.mkdirs()){
    {
        //use specialAbility
    }
+   public void drawUnit(Unit unit)
+   {
+       int index=Integer.MAX_VALUE;
+       if(GUI.unitDraws!=null)
+       {
+           //loop through them to find the right unitDraw
+           for(int i=0;i<GUI.unitDraws.size();i++)
+           {
+               
+               if(unit.unitID==GUI.unitDraws.get(i).thisUnit.unitID)
+               {
+                   //this is the unit we want to remove from the arrayList
+                   index=i;
+                   break;
+               }
+                   
+           }
+       }
+       else
+           System.out.println("GUI unitDraws is null");
+       
+       if(index==Integer.MAX_VALUE)
+       {
+           //logic fail, this should never happen
+           System.out.println("You failed at logic in drawUnit");
+       }
+       else
+       {
+              unit.setPosition(unit.xPosition,unit.yPosition);
+          //updates the draw to show new location of unit
+            UnitDraw draw = new UnitDraw(unit,new Tile(unit.xPosition,unit.yPosition,GUI.tileWidth,GUI.tileWidth));
+            GUI.unitDraws.remove(index); //removes the previous unit
+            GUI.unitDraws.add(draw);//adds the new unit
+//            moveDirection=0; //no direction
+            GUI.repainter();
+//            GUI.unitSelected.speed--;
+       }
+   }
   
 }
