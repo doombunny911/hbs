@@ -79,6 +79,31 @@ public class GUI implements MouseListener
            return null;
     }
     
+    //initializes defenseButton
+    private static void initDefenseButton()
+    {
+        JButton sAbility = new JButton("Special Ability");
+        sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
+        sAbility.setVisible(true);
+        GUI.panel.add(sAbility);
+        
+        sAbility.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               System.out.println("Special Ability activated");
+               GUI.unitSelected.useSpecialAbility();
+          }
+       });
+        
+    }
+    
+    
+    
+    
+    
+    
+    //initializes attackButton
     private static void initAttackButton() 
     {
          attackButtonPanel=new JPanel();
@@ -111,6 +136,9 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) //charge
            {
+               System.out.println("charging, now losing stamina");
+               GUI.attackUnit.charge();
+               GUI.impendingAttack=true;
                
            }
        });
@@ -121,6 +149,9 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) //special ability
            {
                
+               System.out.println("specialAbility Activated");
+               GUI.attackUnit.useSpecialAbility();
+               GUI.impendingAttack=true;
            }
        }); 
      }
@@ -147,9 +178,15 @@ public class GUI implements MouseListener
                GUI.attackUnit=GUI.unitSelected;
                GUI.toggleButtons(GUI.buttonPanel,false);
         
+               
+               
+               
+               
                if(GUI.attackButtonPanel==null)
                {
                  initAttackButton();
+                 //if attackUnit does not have a special ability,or doesn't 
+                 //have an offensive special ability disable button or don't show it
                }
                if(!GUI.attackButtonPanel.isVisible())
                    GUI.toggleButtons(GUI.attackButtonPanel,true);
@@ -167,7 +204,10 @@ public class GUI implements MouseListener
                //can't prepare to defend if attacking
                if(GUI.attackUnit==null)
                {
+                   //if unitSelected does not have a defensive special ability, don't load extra button
+                   //otherwise, load a panel with a button for speical ability
                    //i assume is the defense method, prepareation or whatnot
+                   initDefenseButton();
                    GUI.unitSelected.brace();
                }
            }
@@ -234,6 +274,11 @@ public class GUI implements MouseListener
                    GUI.moveC.setVisible(false);
                  
                }
+               else
+               {
+                   //should not be possible
+                   System.out.println("logic is broken in cancel selection");
+               }
                //make buttons disapear/click through or delete and remake
            }
        });
@@ -255,6 +300,7 @@ public class GUI implements MouseListener
    //will probably become useless in final project but still pivotal now
     public void loadUnit() 
     {
+        System.out.println("in loadUnit");
         //gets the arrayList stored in unitLoader
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         //sets the tile location of where they are at
@@ -315,13 +361,6 @@ public class GUI implements MouseListener
              //loads the buttons, stay loaded until cancel Selection selected
              toggleButtons(GUI.buttonPanel,true);
         }
-        
-        
-        
-        
-        
-
-        
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
        // they want to attack.  Currently no range check to see if they are
