@@ -398,5 +398,10 @@ if(!parent.exists() && !parent.mkdirs()){
   {
       this.currentFormation=form;
   }
+
+   public void useSpecialAbility() 
+   {
+       //use specialAbility
+   }
   
 }

@@ -32,13 +32,14 @@ public class GUI implements MouseListener
     static Map gameMap; //the Map, not being used atm
     static Tile[][] tileGameMap; //the array of tiles that make up the tileGameMap
     static int tileWidth; //the width of an induvidual tile
-    static JPanel panel; //the tilePanel
+    static JPanel panel; //the panel holding all the tiles
     static ArrayList<UnitDraw> unitDraws=new ArrayList<>();//the unitDraws gotten via unitLoader
     static Tile tileClicked;//the tile that was clicked last
     static UnitLoader loader; //a unitLoader, used to get all the unitDraws loaded for unitDraws ArrayList
     static int unitNum; //the number of unitDraws in the unitLoader, decreased to parse through the arrayList
     static JButton endTurn; //the button that ends a players turn
     static JPanel buttonPanel = new JPanel(); //the panel that holds the buttons on bottom of screen
+    static JPanel attackButtonPanel;
     static JPanel statPanel= new JPanel(); //the panel that holds the stats when they are printed
     static Unit unitSelected; //the unit that is currently selected
     static Unit attackUnit; //may not be used, currently used for attacking
@@ -53,6 +54,7 @@ public class GUI implements MouseListener
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
     public GUI(JPanel panel)
    {
+       
        GUI.panel=panel;
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
@@ -66,6 +68,84 @@ public class GUI implements MouseListener
        else
            return null;
     }
+    
+    //initializes defenseButton
+    private static void initDefenseButton()
+    {
+        JButton sAbility = new JButton("Special Ability");
+        sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
+        sAbility.setVisible(true);
+        GUI.panel.add(sAbility);
+        
+        sAbility.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               System.out.println("Special Ability activated");
+               GUI.unitSelected.useSpecialAbility();
+          }
+       });
+        
+    }
+    
+    
+    
+    
+    
+    
+    //initializes attackButton
+    private static void initAttackButton() 
+    {
+         attackButtonPanel=new JPanel();
+         attackButtonPanel.setLayout(null);
+         attackButtonPanel.setBounds(GUI.buttonPanel.getBounds());
+         JButton[] attackButton = new JButton[3];
+         attackButton[0]=  new JButton("Regular Attack");
+         attackButton[1] = new JButton("Charge");
+         attackButton[2] = new JButton("Special Ability Attack");
+         Component c = GUI.buttonPanel.getComponent(0);
+         attackButton[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
+         attackButton[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());
+         attackButton[2].setBounds(c.getX()+c.getWidth()*3,c.getY(),c.getWidth(),c.getHeight());
+         attackButtonPanel.add(attackButton[0]);
+         attackButtonPanel.add(attackButton[1]);
+         attackButtonPanel.add(attackButton[2]);
+        GUI.repainter();
+        
+        
+        attackButton[0].addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) //normal attack
+           {
+               System.out.println("Please click on the unit you wish to attack");
+               GUI.impendingAttack=true;
+          }
+       });
+       
+       attackButton[1].addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) //charge
+           {
+               System.out.println("charging, now losing stamina");
+               GUI.attackUnit.charge();
+               GUI.impendingAttack=true;
+               
+           }
+       });
+       
+       attackButton[2].addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent ae) //special ability
+           {
+               
+               System.out.println("specialAbility Activated");
+               GUI.attackUnit.useSpecialAbility();
+               GUI.impendingAttack=true;
+           }
+       }); 
+     }
+    
     
    //buttonLoader, used for button action listening
    public static void buttonLoader()
@@ -86,7 +166,25 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
                GUI.attackUnit=GUI.unitSelected;
+               GUI.toggleButtons(GUI.buttonPanel,false);
+        
+               
+               
+               
+               
+               if(GUI.attackButtonPanel==null)
+               {
+                 initAttackButton();
+                 //if attackUnit does not have a special ability,or doesn't 
+                 //have an offensive special ability disable button or don't show it
+               }
+               if(!GUI.attackButtonPanel.isVisible())
+                   GUI.toggleButtons(GUI.attackButtonPanel,true);
+               
+               
            }
+
+           
        });
        
        button[1].addActionListener(new ActionListener() {
@@ -96,7 +194,10 @@ public class GUI implements MouseListener
                //can't prepare to defend if attacking
                if(GUI.attackUnit==null)
                {
+                   //if unitSelected does not have a defensive special ability, don't load extra button
+                   //otherwise, load a panel with a button for speical ability
                    //i assume is the defense method, prepareation or whatnot
+                   initDefenseButton();
                    GUI.unitSelected.brace();
                }
            }
@@ -158,10 +259,15 @@ public class GUI implements MouseListener
                if(GUI.unitSelected!=null)
                {
                    GUI.unitSelected=null;
-                   GUI.toggleButtons(false);
+                   GUI.toggleButtons(GUI.buttonPanel,false);
                    GUI.statPanel.setVisible(false);
                    GUI.moveC.setVisible(false);
                  
+               }
+               else
+               {
+                   //should not be possible
+                   System.out.println("logic is broken in cancel selection");
                }
                //make buttons disapear/click through or delete and remake
            }
@@ -184,6 +290,7 @@ public class GUI implements MouseListener
    //will probably become useless in final project but still pivotal now
     public void loadUnit() 
     {
+        System.out.println("in loadUnit");
         //gets the arrayList stored in unitLoader
         Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         //sets the tile location of where they are at
@@ -196,10 +303,7 @@ public class GUI implements MouseListener
         //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
         GUI.repainter(); //repaints
     }
-    @Override
-    public void mousePressed(MouseEvent me) 
-    {
-    }
+   
     
     
     //mouseClicked holds a lot of logic due to the event driven processes of our project
@@ -219,9 +323,12 @@ public class GUI implements MouseListener
         //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
         if(playerOneLoadUnits()) 
             loadUnit(player1AllUnits,GUI.player1UnitNum);
-        if(playerTwoLoadUnits())
+        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
             loadUnit(player2AllUnits,GUI.player2UnitNum);
             
+        
+        
+        
         
         //if a tile has been clicked(should be always) and the tile clicked on
         //has a soldier in it and there is not already a unit selected
@@ -242,10 +349,8 @@ public class GUI implements MouseListener
 
            }
              //loads the buttons, stay loaded until cancel Selection selected
-             toggleButtons(true);
+             toggleButtons(GUI.buttonPanel,true);
         }
-
-        
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
        // they want to attack.  Currently no range check to see if they are
@@ -254,6 +359,7 @@ public class GUI implements MouseListener
         {
             GUI.attackUnit.attack(GUI.unitSelected);
             GUI.attackUnit=null;
+            impendingAttack=false;
         }
         
       GUI.repainter();
@@ -270,15 +376,15 @@ public class GUI implements MouseListener
     //gets buttons by checking to see components on the panel
     
     //toggles visiblity of buttons and panel that holds the buttons
-    private static void toggleButtons(boolean b) 
+    private static void toggleButtons(JPanel panel,boolean b) 
     {
         //sets the buttonPanel to b, 
-        GUI.buttonPanel.setVisible(b);
+        panel.setVisible(b);
         
         //the number of components in the panel
-        int bNum =GUI.buttonPanel.getComponentCount();
+        int bNum =panel.getComponentCount();
         for(int i=0;i<bNum;i++)
-           GUI.buttonPanel.getComponent(i).setVisible(b);
+           panel.getComponent(i).setVisible(b);
        GUI.repainter();
     }
 
@@ -645,7 +751,10 @@ public class GUI implements MouseListener
 //    g2.setColor(temp);
     }
     
-
+ @Override
+    public void mousePressed(MouseEvent me) 
+    {
+    }
     
     @Override
     public void mouseReleased(MouseEvent me) 
