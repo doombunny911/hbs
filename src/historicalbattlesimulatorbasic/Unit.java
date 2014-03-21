@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 /**
  * This is the unit class
  * @author schm1413
+ * edit Andrew Phillips
  */
 public class Unit extends Soldier 
 {
