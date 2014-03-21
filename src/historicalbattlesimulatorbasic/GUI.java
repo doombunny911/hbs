@@ -4,6 +4,12 @@
  */
 package historicalbattlesimulatorbasic;
 
+import historicalbattlesimulatorbasic.Compass;
+import historicalbattlesimulatorbasic.Map;
+import historicalbattlesimulatorbasic.Tile;
+import historicalbattlesimulatorbasic.Unit;
+import historicalbattlesimulatorbasic.UnitDraw;
+import historicalbattlesimulatorbasic.UnitLoader;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

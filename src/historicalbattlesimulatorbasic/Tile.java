@@ -39,26 +39,7 @@ public class Tile extends Rectangle
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
-//    public static BufferedImage grassLoader() 
-//    {
-//       BufferedImage grass1=null;
-//       try {
-//           grass1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"greenGround.png"));
-//       } catch (IOException ex) {
-//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-//       }
-//       return grass1;
-//    }
-//      public static BufferedImage rockLoader() 
-//    {
-//       BufferedImage rock1=null;
-//       try {
-//           rock1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"rocksGround.png"));
-//       } catch (IOException ex) {
-//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-//       }
-//       return rock1;
-//    }
+
         public static BufferedImage treeLoader() 
    {
       BufferedImage tree1=null;
@@ -69,18 +50,6 @@ public class Tile extends Rectangle
        }
        return tree1;
     }
-    
-//    
-//      public static BufferedImage dirtLoader() 
-//    {
-//       BufferedImage brown1=null;
-//       try {
-//           brown1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"brownGround.png"));
-//       } catch (IOException ex) {
-//           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-//       }
-//       return brown1;
-//    }
     
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
@@ -186,7 +155,7 @@ public class Tile extends Rectangle
     }
     
     //returns the designated tile, if they exist.
-    
+     
     protected void colorTile(Graphics g) throws IOException
     {
         Random rng = new Random(100);
