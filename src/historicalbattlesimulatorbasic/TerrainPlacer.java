@@ -17,41 +17,42 @@ import javax.swing.JPanel;
  */
 public final class TerrainPlacer extends JPanel
 { 
+    BufferedImageLoaders terLoader;
     ArrayList<JButton> terrainImages = new ArrayList();
    // ArrayList<
     int numOfUnitsToPlace = 0;
     public static void main(String[] args)
     {
-        UnitLoader ul = new UnitLoader();
-        ArrayList units = ul.runLoader();
-        UnitPlacer up = new UnitPlacer(units);
-        up.setUpButtons(units);
+        BufferedImageLoaders bil = new BufferedImageLoaders();
+        bil.loadAllImages();
+        ArrayList<BufferedImageName> image = bil.getImages();
+        TerrainPlacer tp = new TerrainPlacer(image);
         
         JFrame newJ = new JFrame();
         newJ.setVisible(true);
         newJ.setSize(500,200);
-        newJ.add(up);
+        newJ.add(tp);
         newJ.repaint();
         newJ.revalidate();
     }
-   public TerrainPlacer(ArrayList<Unit> unitArrayList)
+   public TerrainPlacer(ArrayList<BufferedImageName> images)
    {
-    BufferedImageLoaders terLoader = new BufferedImageLoaders();
+    terLoader = new BufferedImageLoaders();
     terLoader.loadAllImages();
-    this.numOfUnitsToPlace = unitArrayList.size();
-    setUpButtons(unitArrayList);
+    this.numOfUnitsToPlace = images.size();
+    setUpButtons(images);
    }
-    public void setUpButtons(ArrayList<Unit> unitArrayList)
+    public void setUpButtons(ArrayList<BufferedImageName> imageArrayList)
     {
-        JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
-        for(final Unit u: unitArrayList)
+        JOptionPane.showMessageDialog(this, "Click on a terrain image to place it on the field of battle");
+        for(final  BufferedImageName t: imageArrayList)
         {         
-            ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
-            Image img = unitImage.getImage();
+            ImageIcon terrainImage = new ImageIcon(t.getImage());
+            Image img = terrainImage.getImage();
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
-            ImageIcon unitImage2 = new ImageIcon(newimg);
-            JButton button = new JButton(u.nameOfUnit,unitImage2) ;
-//            unitImages.add(button);
+            ImageIcon terrainImage2 = new ImageIcon(newimg);
+            System.out.println(t.getName());
+            JButton button = new JButton(terrainImage2);
             button.setOpaque(false);
             add(button);
                 button.addActionListener(new ActionListener() 
@@ -60,7 +61,7 @@ public final class TerrainPlacer extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  
-                    System.out.println(u.nameOfUnit);
+                    System.out.println(t.getName());
                 }
             });
            // button.setContentAreaFilled(false);

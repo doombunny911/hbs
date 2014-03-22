@@ -50,12 +50,7 @@ public static ArrayList<BufferedImageName> loadAllImages(){
                     img = ImageIO.read(f);
                     BufferedImageName ad = new BufferedImageName(img, f.getName());
                     bin.add(ad);
-                    // you probably want something more involved here
-                    // to display in your UI
-                    System.out.println("image: " + f.getName());
-                    System.out.println(" width : " + img.getWidth());
-                    System.out.println(" height: " + img.getHeight());
-                    System.out.println(" size  : " + f.length());
+                    
                 } catch (final IOException e) {
                     // handle errors here
                 }
@@ -64,4 +59,5 @@ public static ArrayList<BufferedImageName> loadAllImages(){
         return bin;
     }
 }
+
 

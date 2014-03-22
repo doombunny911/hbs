@@ -19,11 +19,6 @@ import java.util.Random;
  */
 public class Tile extends Rectangle
 {
-//   BufferedImage  grass = grassLoader();
-//   BufferedImage dirt = dirtLoader();
-//   BufferedImage rocks = rockLoader() ;
- // BufferedImage tree = treeLoader();
-//    boolean repaint = true;
 
     
     boolean tileBlocked;

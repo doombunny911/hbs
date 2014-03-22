@@ -23,14 +23,20 @@ import javax.imageio.ImageIO;
 public class BufferedImageLoaders 
 {
     
-    private ArrayList<BufferedImageName> imageList = new ArrayList<BufferedImageName>();
+    private ArrayList<BufferedImageName> imageList = new ArrayList<>();
     BufferedImage grass = grassLoader();
     BufferedImage tree, dirt, rock;
+   
     
     public void loadAllImages()
     {
        imageList = BufferedImageMassImport.loadAllImages();
         
+    }
+    
+    public ArrayList<BufferedImageName> getImages()
+    {
+        return imageList;
     }
     public BufferedImage getImage(String imageName)
     {

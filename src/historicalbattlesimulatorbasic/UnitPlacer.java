@@ -51,7 +51,8 @@ public final class UnitPlacer extends JPanel
     {
         JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
         for(final Unit u: unitArrayList)
-        {         
+        {     
+           //  public UnitFormations unitFormer = new UnitFormations(u);
             ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
             Image img = unitImage.getImage();
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 

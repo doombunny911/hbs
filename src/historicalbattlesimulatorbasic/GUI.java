@@ -324,13 +324,13 @@ public class GUI implements MouseListener
         if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
             loadUnit();
         
-        //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
         if(playerOneLoadUnits()) 
             loadUnit(player1AllUnits,GUI.player1UnitNum);
         else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
             loadUnit(player2AllUnits,GUI.player2UnitNum);
             
-        
+         //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
+       
         
         
         
