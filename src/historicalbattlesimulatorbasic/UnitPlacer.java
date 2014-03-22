@@ -30,8 +30,10 @@ public final class UnitPlacer extends JPanel
     {
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
-        UnitPlacer up = new UnitPlacer(units);
-        up.setUpButtons(units);
+        units = ul.unitPrepper(units);
+        UnitPlacer up = new UnitPlacer(units); 
+       
+
         
         JFrame newJ = new JFrame();
         newJ.setVisible(true);
@@ -55,7 +57,7 @@ public final class UnitPlacer extends JPanel
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon unitImage2 = new ImageIcon(newimg);
             JButton button = new JButton(u.nameOfUnit,unitImage2) ;
-            unitImages.add(button);
+            //unitImages.add(button);
             button.setOpaque(false);
             add(button);
                 button.addActionListener(new ActionListener() 
