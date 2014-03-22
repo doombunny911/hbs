@@ -56,7 +56,7 @@ public final class UnitPlacer extends JPanel
             Image img = unitImage.getImage();
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon unitImage2 = new ImageIcon(newimg);
-            JButton button = new JButton(u.nameOfUnit,unitImage2) ;
+            final JButton button = new JButton(u.nameOfUnit,unitImage2) ;
             //unitImages.add(button);
             button.setOpaque(false);
             add(button);
@@ -67,6 +67,7 @@ public final class UnitPlacer extends JPanel
                 {
 //                  
                     System.out.println(u.nameOfUnit);
+                    button.setVisible(false);
                 }});
            // button.setContentAreaFilled(false);
             button.setBorderPainted(false);
