@@ -51,11 +51,13 @@ public final class UnitPlacer extends JPanel
    }
     public void setUpButtons(ArrayList<Unit> unitArrayList)
     {
-        System.out.println(unitArrayList.size());
-        JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
+//        JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
        
         
-       final Unit u = unitArrayList.get(index);
+//       final Unit u = unitArrayList.get(index);
+          for(final Unit u: unitArrayList)
+           {         
+
            //  public UnitFormations unitFormer = new UnitFormations(u);
             ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
             Image img = unitImage.getImage();
@@ -75,10 +77,11 @@ public final class UnitPlacer extends JPanel
 //                  
                     System.out.println(u.nameOfUnit);
                     button.setVisible(false);
+                    u.drawUnit(u);
+                    
                 }});
             button.setBorderPainted(false);
-            u.drawUnit(u);
+         }
+   
     }
-   
-   
 }
