@@ -61,7 +61,7 @@ public class GUI implements MouseListener
        
         UnitPlacer up = new UnitPlacer(units); 
         up.units=units;
-        up.setBounds(200, 200, 300, 300);
+        up.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
         up.setUpButtons(units);
         GUI.panel.add(up);    
     }
