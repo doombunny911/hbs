@@ -7,7 +7,6 @@ package historicalbattlesimulatorbasic;
 
 import static historicalbattlesimulatorbasic.Unit.getUnitPic;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +19,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -52,8 +50,8 @@ public class UnitLoader
         fc.setCurrentDirectory(dir);
         File  current = fc.getCurrentDirectory();
         
-       System.out.println(current);
-       fc.showOpenDialog(null);
+        System.out.println(current);
+        fc.showOpenDialog(null);
         
   
        
@@ -151,9 +149,7 @@ public class UnitLoader
             }
             newPlayerUnits.addAll(allPrepUnit);
           }
-         
          allUnits = newPlayerUnits;
-         
          return allUnits;
       }
     public ArrayList getAllUnits()

@@ -26,14 +26,15 @@ public final class UnitPlacer extends JPanel
 { 
     ArrayList<JButton> unitImages = new ArrayList();
     int numOfUnitsToPlace = 0;
+    ArrayList<Unit> units = new ArrayList<>();
+    int index =0;
     public static void main(String[] args)
     {
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
         units = ul.unitPrepper(units);
         UnitPlacer up = new UnitPlacer(units); 
-       
-
+        
         
         JFrame newJ = new JFrame();
         newJ.setVisible(true);
@@ -44,14 +45,17 @@ public final class UnitPlacer extends JPanel
     }
    public UnitPlacer(ArrayList<Unit> unitArrayList)
    {
-    this.numOfUnitsToPlace = unitArrayList.size();
-    setUpButtons(unitArrayList);
+       this.numOfUnitsToPlace = unitArrayList.size();
+//       setUpButtons(unitArrayList);
+       GUI.unitPlacerTest = this;
    }
     public void setUpButtons(ArrayList<Unit> unitArrayList)
     {
+        System.out.println(unitArrayList.size());
         JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
-        for(final Unit u: unitArrayList)
-        {     
+       
+        
+       final Unit u = unitArrayList.get(index);
            //  public UnitFormations unitFormer = new UnitFormations(u);
             ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
             Image img = unitImage.getImage();
@@ -60,6 +64,8 @@ public final class UnitPlacer extends JPanel
             final JButton button = new JButton(u.nameOfUnit,unitImage2) ;
             //unitImages.add(button);
             button.setOpaque(false);
+            index++;
+            numOfUnitsToPlace--;
             add(button);
                 button.addActionListener(new ActionListener() 
                 {
@@ -70,10 +76,9 @@ public final class UnitPlacer extends JPanel
                     System.out.println(u.nameOfUnit);
                     button.setVisible(false);
                 }});
-           // button.setContentAreaFilled(false);
             button.setBorderPainted(false);
-           //button.setBackground(Color.black);
-        }
+            u.drawUnit(u);
     }
+   
    
 }

@@ -81,9 +81,9 @@ public class Openingmenuscreen extends JFrame
             //remove all panels
             removePanels();
             
-         
+            
+//            GUI.panel.setLayout(null);
             Map gameMap = new Map(10); //the width of the tiles
-
 
             GUI.gameMap=gameMap;
             GUI.buttonLoader();

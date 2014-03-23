@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 
 /**
@@ -48,7 +49,17 @@ public class Map
         this.generateTiles();
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
+        GUI.panel.setLayout(null);
         GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
+        
+        GUI.placeUnitTester();
+        
+      
+
+        
+        
+        
+        
         GUI.gameFrame.add(gen);
     }
  

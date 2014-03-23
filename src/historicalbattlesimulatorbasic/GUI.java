@@ -49,12 +49,25 @@ public class GUI implements MouseListener
     static ArrayList<Unit> player2AllUnits;//player 2's unitDraws
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
+    static UnitPlacer unitPlacerTest;
+    
+    
 //    static JPanel moveButtonPanel; //panel for moving options (sprint etc)
+
+    static void placeUnitTester() 
+    {
+        UnitLoader ul = new UnitLoader();
+        ArrayList units = ul.runLoader();
+        units = ul.unitPrepper(units);
+        UnitPlacer up = new UnitPlacer(units); 
+        up.units=units;
+        up.setBounds(200, 200, 300, 300);
+        GUI.panel.add(up);    
+    }
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
     public GUI(JPanel panel)
    {
-       
        GUI.panel=panel;
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
@@ -302,6 +315,7 @@ public class GUI implements MouseListener
         //adds it to the arrayList in GUI that is currently storing the unitDraws
         GUI.unitDraws.add(new UnitDraw(unit));
         
+        
         GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
         unitNum--; //keeps track of how many more unitDraws there are to be drawn,
         //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
@@ -321,16 +335,23 @@ public class GUI implements MouseListener
         
         GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
         
-        if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
-            loadUnit();
-        
-        if(playerOneLoadUnits()) 
-            loadUnit(player1AllUnits,GUI.player1UnitNum);
-        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
-            loadUnit(player2AllUnits,GUI.player2UnitNum);
+//        if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
+//            loadUnit();
+//        
+//        if(playerOneLoadUnits()) 
+//            loadUnit(player1AllUnits,GUI.player1UnitNum);
+//        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
+//            loadUnit(player2AllUnits,GUI.player2UnitNum);
             
          //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
-       
+       if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.numOfUnitsToPlace>0)
+       {
+           GUI.unitPlacerTest.setUpButtons(GUI.unitPlacerTest.units);
+           
+           GUI.repainter();
+
+       }
+        
         
         
         
