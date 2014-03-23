@@ -89,12 +89,12 @@ public class Openingmenuscreen extends JFrame
             GUI.buttonLoader();
             
             
-            UnitLoader loader = new UnitLoader();
-            loader.runLoader();
-            ArrayList<Unit> allUnits = loader.getAllUnits();
+//            UnitLoader loader = new UnitLoader();
+//            loader.runLoader();
+//            ArrayList<Unit> allUnits = loader.getAllUnits();
             //drawing unit, every unit is added via this, and thus drawn.
 //            while(unitNum!=0)
-            GUI.unitNum=allUnits.size();
+//            GUI.unitNum=allUnits.size();
             GUI.panel.repaint();
             GUI.gameFrame.repaint();
             GUI.gameFrame.revalidate();
