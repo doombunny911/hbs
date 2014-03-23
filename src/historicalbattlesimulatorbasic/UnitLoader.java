@@ -34,7 +34,7 @@ public class UnitLoader
     {
         UnitLoader tester = new UnitLoader();
         ArrayList<Unit> testUnits = tester.runLoader();
-        testUnits =  tester.unitPrepper(testUnits);
+       
         for(Unit u: testUnits)
         {
             System.out.println("Loaded "+u.nameOfUnit);
@@ -58,6 +58,7 @@ public class UnitLoader
         String name = fc.getSelectedFile().getName();
         System.out.println("You have selected to load "+name);
         ArrayList<Unit> returnUnit = this.loadAllUnits(name);
+        returnUnit = this.unitPrepper(returnUnit);
         return returnUnit;
         
         
@@ -125,7 +126,7 @@ public class UnitLoader
             unit.setSprite(spriteName);
            
              BufferedImage ic = getUnitPic(unit);
-             Graphics g = ic.createGraphics();
+            
 
 //...
             ImageIcon icon = new ImageIcon();
@@ -141,13 +142,13 @@ public class UnitLoader
           for(Unit prep: playerUnits)
           {
             int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.nameOfUnit+" to create: ", "", JOptionPane.PLAIN_MESSAGE));
-            String confirm = "Really create "+someNumber+" "+prep.nameOfUnit+" ?";
-            JOptionPane.showConfirmDialog(null, confirm);
+           // String confirm = "Really create "+someNumber+" "+prep.nameOfUnit+" ?";
+            //JOptionPane.showConfirmDialog(null, confirm);
             for(int i=0; i<someNumber; i++)
             {
                 allPrepUnit.add(prep);
             }
-            newPlayerUnits.addAll(allPrepUnit);
+            newPlayerUnits = allPrepUnit;
           }
          allUnits = newPlayerUnits;
          return allUnits;

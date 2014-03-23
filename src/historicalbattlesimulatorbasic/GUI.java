@@ -58,7 +58,7 @@ public class GUI implements MouseListener
     {
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
-        units = ul.unitPrepper(units);
+       
         UnitPlacer up = new UnitPlacer(units); 
         up.units=units;
         up.setBounds(200, 200, 300, 300);
@@ -380,7 +380,7 @@ public class GUI implements MouseListener
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
        // they want to attack.  Currently no range check to see if they are
-       //able to reach them
+       //able to freach them
         if(GUI.attackUnit!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied)
         {
             GUI.attackUnit.attack(GUI.unitSelected);

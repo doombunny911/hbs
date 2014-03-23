@@ -32,22 +32,25 @@ public final class UnitPlacer extends JPanel
     {
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
-        units = ul.unitPrepper(units);
+        
         UnitPlacer up = new UnitPlacer(units); 
         
         
         JFrame newJ = new JFrame();
+        
         newJ.setVisible(true);
         newJ.setSize(500,200);
         newJ.add(up);
         newJ.repaint();
         newJ.revalidate();
     }
+    
    public UnitPlacer(ArrayList<Unit> unitArrayList)
    {
        this.numOfUnitsToPlace = unitArrayList.size();
 //       setUpButtons(unitArrayList);
        GUI.unitPlacerTest = this;
+       setOpaque(false);
    }
     public void setUpButtons(ArrayList<Unit> unitArrayList)
     {
