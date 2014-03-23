@@ -24,8 +24,18 @@ public class UnitDraw
     {
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        getUnit.currentFormation = new UnitFormations
+        System.out.println("in UnitDraw, GUI.tileClicked is initailzed " + GUI.tileClicked);
+        if(getUnit.currentFormation==null)
+        {
+            UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
+            getUnit.currentFormation=form;
+        }
+        else
+        {
+            getUnit.currentFormation = new UnitFormations
                 (getUnit,GUI.tileClicked);
+        }
+        
         this.tileLocationOfUnit=GUI.tileClicked;
         this.thisUnit=getUnit;
     }

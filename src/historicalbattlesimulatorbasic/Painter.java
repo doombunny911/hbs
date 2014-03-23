@@ -77,27 +77,27 @@ public class Painter extends JPanel
             {
                 
                 g2.draw(GUI.tileGameMap[j][i]);
-                 GUI.tileGameMap[j][i].paintTile((g2));
-                  
-                 
+                 GUI.tileGameMap[j][i].paintTile((g2));  
              }
-     GUI.panel.repaint();
-      
+         }
+      }
       //sprites
       if(!GUI.unitDraws.isEmpty())
       {
          for(int p=0;p<GUI.unitDraws.size();p++)
-         {             
+         {      
+             System.out.println("p = " + p);
+//             System.out.println(GUI.unitDraws.get(p).thisUnit.currentFormation);
              GUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g);
          }
       }
       //not currently used
-      if(GUI.unitSelected!=null&&GUI.tileClicked!=null&&!GUI.impendingAttack)
-      {
-          GUI.paintRange(GUI.unitSelected,g);
-      }
+//      if(GUI.unitSelected!=null&&GUI.tileClicked!=null&&!GUI.impendingAttack)
+//      {
+//          GUI.paintRange(GUI.unitSelected,g);
+//      }
     }
    }
-   }
-}
+   
+
 

@@ -27,7 +27,9 @@ public final class UnitPlacer extends JPanel
     ArrayList<JButton> unitImages = new ArrayList();
     int numOfUnitsToPlace = 0;
     ArrayList<Unit> units = new ArrayList<>();
+    Unit unitToBeLoaded;
     int index =0;
+    boolean check = false;
     public static void main(String[] args)
     {
         UnitLoader ul = new UnitLoader();
@@ -49,13 +51,11 @@ public final class UnitPlacer extends JPanel
    {
        this.numOfUnitsToPlace = unitArrayList.size();
 //       setUpButtons(unitArrayList);
-       GUI.unitPlacerTest = this;
        setOpaque(false);
    }
     public void setUpButtons(ArrayList<Unit> unitArrayList)
     {
 //        JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
-       
         
 //       final Unit u = unitArrayList.get(index);
           for(final Unit u: unitArrayList)
@@ -68,6 +68,8 @@ public final class UnitPlacer extends JPanel
             ImageIcon unitImage2 = new ImageIcon(newimg);
             final JButton button = new JButton(u.nameOfUnit,unitImage2) ;
             //unitImages.add(button);
+            
+            
             button.setOpaque(false);
             index++;
             numOfUnitsToPlace--;
@@ -80,8 +82,8 @@ public final class UnitPlacer extends JPanel
 //                  
                     System.out.println(u.nameOfUnit);
                     button.setVisible(false);
-                    u.drawUnit(u);
-                    
+                    check=true;
+                    unitToBeLoaded=u;
                 }});
             button.setBorderPainted(false);
          }

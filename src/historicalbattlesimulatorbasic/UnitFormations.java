@@ -24,7 +24,7 @@ public final class UnitFormations
     public UnitFormations(Unit unit,Tile tile)
     {
         index=0;
-        spriteLocations = new Tile[50];
+        spriteLocations = new Tile[5000];
         //set default formation
         this.unit = unit;
         defaultFormation(tile);
@@ -64,14 +64,18 @@ public final class UnitFormations
     {
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSoldiers.length;
+       System.out.println("numberOfSoldiers = " + numberOfSoldiers );
+       
+      System.out.println("In default formation");
       
-     
      //this class has a lot of work to allow it to be used for more complex formations 
+//       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
        
-       
+       //
+       System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
       int soldiersPerSprite =  1; //each sprite represents this many soldiers
-            switch(unit.unitFacing)
-           {
+            switch(unit.unitSoldiers[0].facing)
+           { 
                case 1: //north
                {
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
@@ -132,6 +136,7 @@ public final class UnitFormations
                    break;
                }
            }
+  
        return this;
     
     }
@@ -140,9 +145,16 @@ public final class UnitFormations
     {
        
         int temp = this.index;
-        
+        System.out.println("index = " + index);
+        int j=0;
         //need to loop over the unitDraws to find which unitDraw you are looking for to paint the right ones
+        System.out.println("the size of unitDraws is "  +GUI.unitDraws.size());
+        for(int i=0;i<GUI.unitDraws.size();i++)
+        {
+           j=i;
+        }
         Unit u =  GUI.unitDraws.get(0).getThisUnit();
+        System.out.println("in paintFormation");
         BufferedImage  unImg = Unit.getUnitPic(u);
         
         for(int i=this.index-1;i>=0;i--)

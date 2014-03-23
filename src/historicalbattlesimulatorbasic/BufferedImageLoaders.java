@@ -31,7 +31,7 @@ public class BufferedImageLoaders
     public void loadAllImages()
     {
        imageList = BufferedImageMassImport.loadAllImages();
-        
+      
     }
     
     public ArrayList<BufferedImageName> getImages()

@@ -5,7 +5,6 @@
 package historicalbattlesimulatorbasic;
 
 
-import static historicalbattlesimulatorbasic.Unit.getUnitPic;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -125,7 +124,7 @@ public class UnitLoader
             Unit unit = new Unit(soldier,unitSize);
             unit.setSprite(spriteName);
            
-             BufferedImage ic = getUnitPic(unit);
+             BufferedImage ic = Unit.getUnitPic(unit);
             
 
 //...

@@ -249,8 +249,8 @@ public class Tile extends Rectangle
     public void paintTile(Graphics2D g)
     {
         g.drawImage(image, this.xPosition,
-                    this.yPosition, 10,
-                    10,null);
+                    this.yPosition, GUI.tileWidth,
+                    GUI.tileWidth,null);
       
     }
     

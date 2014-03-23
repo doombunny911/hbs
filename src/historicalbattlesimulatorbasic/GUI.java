@@ -59,11 +59,14 @@ public class GUI implements MouseListener
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
        
-        UnitPlacer up = new UnitPlacer(units); 
-        up.units=units;
-        up.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
-        up.setUpButtons(units);
-        GUI.panel.add(up);    
+        GUI.unitPlacerTest = new UnitPlacer(units); 
+        GUI.unitPlacerTest.units=units;
+        GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
+        
+        GUI.unitPlacerTest.setUpButtons(units);
+        GUI.panel.add(GUI.unitPlacerTest);    
+      
+
     }
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
@@ -345,12 +348,19 @@ public class GUI implements MouseListener
 //            loadUnit(player2AllUnits,GUI.player2UnitNum);
             
          //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
-       if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.numOfUnitsToPlace>0)
+       if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.check)
        {
-           GUI.unitPlacerTest.setUpButtons(GUI.unitPlacerTest.units);
            
+           unitPlacerTest.check=false;
+           System.out.println("in UnitPlacer ");
+//           unitPlacerTest.unitToBeLoaded.drawUnit( unitPlacerTest.unitToBeLoaded);
+//           GUI.unitPlacerTest.setUpButtons(GUI.unitPlacerTest.units);
+          Unit unit = unitPlacerTest.unitToBeLoaded;
+          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+           GUI.unitDraws.add(new UnitDraw(unit));
+           GUI.tileClicked=null;
            GUI.repainter();
-
+           
        }
         
         

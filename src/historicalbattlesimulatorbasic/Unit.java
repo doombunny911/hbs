@@ -44,6 +44,7 @@ public class Unit extends Soldier
     int unitFacing = super.facing;
     UnitFormations currentFormation;
     String spriteName = "blackKnight.png"; 
+    
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -65,7 +66,7 @@ public class Unit extends Soldier
     public static BufferedImage getUnitPic(Unit unit)
     {
         
-        BufferedImage img = new BufferedImage(unit.xWidth, unit.yHeight, 4);
+        BufferedImage img = new BufferedImage(GUI.tileWidth, GUI.tileWidth, 4);
         try {
              img = ImageIO.read(new File(unit.spriteName));
         } catch (IOException ex) {
@@ -86,7 +87,7 @@ public class Unit extends Soldier
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
          //Creates a random Unit ID
-
+        this.unitFacing=super.facing;
         this.unitID=Unit.unitIDGen;
         
         Unit.unitIDGen++;
@@ -114,6 +115,7 @@ public class Unit extends Soldier
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
         this.unitID=Unit.unitIDGen;
+        this.unitFacing=super.facing;
 
      
         Unit.unitIDGen++;
@@ -406,6 +408,7 @@ if(!parent.exists() && !parent.mkdirs()){
    public void drawUnit(Unit unit)
    {
        int index=Integer.MAX_VALUE;
+       
        if(GUI.unitDraws!=null)
        {
            //loop through them to find the right unitDraw
@@ -423,21 +426,24 @@ if(!parent.exists() && !parent.mkdirs()){
        }
        else
            System.out.println("GUI unitDraws is null");
-       
-       if(index==Integer.MAX_VALUE)
+//       
+//       if(index==Integer.MAX_VALUE)
+//       {
+//           //logic fail, this should never happen
+//           System.out.println("You failed at logic in Unit.drawUnit");
+//       }
+//       else
        {
-           //logic fail, this should never happen
-           System.out.println("You failed at logic in drawUnit");
-       }
-       else
-       {
-              unit.setPosition(unit.xPosition,unit.yPosition);
+//         System.out.println(GUI.tileClicked.xPosition);
+//         unit.setPosition(unit.xPosition,unit.yPosition);
+         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+
           //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(unit,new Tile(unit.xPosition,unit.yPosition,GUI.tileWidth,GUI.tileWidth));
-            GUI.unitDraws.remove(index); //removes the previous unit
+//            GUI.unitDraws.remove(0); //removes the previous unit
             GUI.unitDraws.add(draw);//adds the new unit
 //            moveDirection=0; //no direction
-            GUI.repainter();
+//            GUI.repainter();
 //            GUI.unitSelected.speed--;
        }
    }
