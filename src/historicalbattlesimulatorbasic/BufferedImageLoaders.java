@@ -38,6 +38,17 @@ public class BufferedImageLoaders
     {
         return imageList;
     }
+    public static final BufferedImage loadBackground()
+    {
+        BufferedImage background = null;
+        try {
+           background = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"havok.jpg"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+        return background;
+    }
     public BufferedImage getImage(String imageName)
     {
         BufferedImage result = null;

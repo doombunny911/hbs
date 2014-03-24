@@ -7,11 +7,15 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -20,6 +24,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 
@@ -89,12 +94,7 @@ public class Openingmenuscreen extends JFrame
             GUI.buttonLoader();
             
             
-//            UnitLoader loader = new UnitLoader();
-//            loader.runLoader();
-//            ArrayList<Unit> allUnits = loader.getAllUnits();
-            //drawing unit, every unit is added via this, and thus drawn.
-//            while(unitNum!=0)
-//            GUI.unitNum=allUnits.size();
+
             GUI.panel.repaint();
             GUI.gameFrame.repaint();
             GUI.gameFrame.revalidate();
@@ -104,20 +104,26 @@ public class Openingmenuscreen extends JFrame
    public Openingmenuscreen()
    {       
        initFrame();
-       
+     
+     
        initButtonPanel();
         
        initTilePanel();
+         
+       
                
        initWelcomePanel();
-               
+       //Graphics g = this.getGraphics();
+       
+       
        gameFrame.add(tilePanel);
        gameFrame.setVisible(true);
        GUI.gameFrame=gameFrame;
    }
   
    //sets to fullscreen mode, more a hinderence atm but good for final product
-  public void setFullScreen()
+
+   public void setFullScreen()
   {
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);

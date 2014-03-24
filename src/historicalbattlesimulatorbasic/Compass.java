@@ -125,6 +125,7 @@ public final class Compass extends JPanel
        this.toggleSprint.setOpaque(false);
        this.toggleSprint.setContentAreaFilled(false);
        this.toggleSprint.setBorderPainted(false);
+       setOpaque(false);
       // comp.setLayout(new GridLayout(3,3));
       // this.setUpVisuals();
     }
