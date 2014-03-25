@@ -5,7 +5,6 @@
 package historicalbattlesimulatorbasic;
 
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -136,25 +135,40 @@ public class UnitLoader
   
   public ArrayList<Unit> unitPrepper(ArrayList<Unit> playerUnits)
       {
-       ArrayList<Unit> newPlayerUnits = new ArrayList();
+//       ArrayList<Unit> newPlayerUnits = new ArrayList();
+          System.out.println("the size please " + playerUnits.size());
        ArrayList<Unit> allPrepUnit = new ArrayList();
           for(Unit prep: playerUnits)
           {
+            
             int someNumber = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter amount of "+prep.nameOfUnit+" to create: ", "", JOptionPane.PLAIN_MESSAGE));
            // String confirm = "Really create "+someNumber+" "+prep.nameOfUnit+" ?";
             //JOptionPane.showConfirmDialog(null, confirm);
-            for(int i=0; i<someNumber; i++)
+            
+            //add the original unit
+            allPrepUnit.add(prep);
+            
+            for(int i=1; i<someNumber; i++)
             {
-                allPrepUnit.add(prep);
+                //create a new unit(very important, otherwise just have copies of the orignal units)
+                Unit newUnit = new Unit(prep.soldierType,prep.unitSize);
+                
+                //add the new instance of the unit
+                allPrepUnit.add(newUnit);
             }
-            newPlayerUnits = allPrepUnit;
+//            allUnits = allPrepUnit;
           }
-         allUnits = newPlayerUnits;
+//         allUnits = newPlayerUnits;
+          allUnits = allPrepUnit;
          return allUnits;
       }
-    public ArrayList getAllUnits()
-    {
-        return allUnits;
-    }
+  
+  
+  
+ 
+  public ArrayList getAllUnits()
+  {
+    return allUnits;
+  }
     
 }

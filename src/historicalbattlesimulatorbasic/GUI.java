@@ -59,6 +59,11 @@ public class GUI implements MouseListener
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
        
+        for(int i =0;i<units.size();i++)
+        {
+            System.out.println("add 1");
+        }
+        
         GUI.unitPlacerTest = new UnitPlacer(units); 
         GUI.unitPlacerTest.units=units;
         GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
@@ -104,13 +109,7 @@ public class GUI implements MouseListener
           }
        });
         
-    }
-    
-    
-    
-    
-    
-    
+    } 
     //initializes attackButton
     private static void initAttackButton() 
     {
@@ -185,10 +184,6 @@ public class GUI implements MouseListener
            {
                GUI.attackUnit=GUI.unitSelected;
                GUI.toggleButtons(GUI.buttonPanel,false);
-        
-               
-               
-               
                
                if(GUI.attackButtonPanel==null)
                {
@@ -278,6 +273,7 @@ public class GUI implements MouseListener
                    GUI.unitSelected=null;
                    GUI.toggleButtons(GUI.buttonPanel,false);
                    GUI.statPanel.setVisible(false);
+                   if(GUI.moveC!=null&&!GUI.moveC.isVisible())
                    GUI.moveC.setVisible(false);
                  
                }
@@ -309,11 +305,11 @@ public class GUI implements MouseListener
  
    //this is called when the original unitDraws need to be loaded the first time, 
    //will probably become useless in final project but still pivotal now
-    public void loadUnit() 
+    public void loadUnit(Unit unit) 
     {
         System.out.println("in loadUnit");
         //gets the arrayList stored in unitLoader
-        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
+//        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         //sets the tile location of where they are at
         unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
         //adds it to the arrayList in GUI that is currently storing the unitDraws
@@ -321,7 +317,7 @@ public class GUI implements MouseListener
         
         
         GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
-        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
+//        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
         //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
         GUI.repainter(); //repaints
     }
@@ -350,17 +346,17 @@ public class GUI implements MouseListener
          //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
        if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.check)
        {
-           
+           loadUnit(unitPlacerTest.unitToBeLoaded);
            unitPlacerTest.check=false;
+           unitPlacerTest.unitToBeLoaded=null;
            System.out.println("in UnitPlacer ");
 //           unitPlacerTest.unitToBeLoaded.drawUnit( unitPlacerTest.unitToBeLoaded);
 //           GUI.unitPlacerTest.setUpButtons(GUI.unitPlacerTest.units);
-          Unit unit = unitPlacerTest.unitToBeLoaded;
-          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-           GUI.unitDraws.add(new UnitDraw(unit));
-           GUI.tileClicked=null;
-           GUI.repainter();
-           
+//          Unit unit = unitPlacerTest.unitToBeLoaded;
+//          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+//           GUI.unitDraws.add(new UnitDraw(unit));
+//           GUI.tileClicked=null;
+//           GUI.repainter();
        }
         
         

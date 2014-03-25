@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 /**
  *
  * @author Edward
+ * edited: Andrew
  * This class contains the details of all different unit formations.
  * Setting a unit to be in one of these formation will change the unit layout to be as follows.
  */
@@ -49,7 +50,7 @@ public final class UnitFormations
             {
                 if(unit.unitID==GUI.tileGameMap[j][i].getOccupier().getUnitID())
                 {
-                    
+                    //not completed
                 }
             }
         }

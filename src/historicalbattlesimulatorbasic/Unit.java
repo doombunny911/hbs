@@ -58,24 +58,8 @@ public class Unit extends Soldier
          icon.setImage(ic);
          JOptionPane.showMessageDialog(null, icon);
      }
-    public void setSprite(String sprite)
-    {
-        this.spriteName = sprite;
-    }
     
-    public static BufferedImage getUnitPic(Unit unit)
-    {
-        
-        BufferedImage img = new BufferedImage(GUI.tileWidth, GUI.tileWidth, 4);
-        try {
-             img = ImageIO.read(new File(unit.spriteName));
-        } catch (IOException ex) {
-            Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-        System.out.println("Got image of"+unit.spriteName);
-        return img;
-    }
+    
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
       //   System.out.println("unitIDGEN = " + Unit.unitIDGen);
@@ -128,6 +112,27 @@ public class Unit extends Soldier
         }
     
     }
+    
+    
+    public void setSprite(String sprite)
+    {
+        this.spriteName = sprite;
+    }
+    
+    public static BufferedImage getUnitPic(Unit unit)
+    {
+        
+        BufferedImage img = new BufferedImage(GUI.tileWidth, GUI.tileWidth, 4);
+        try {
+             img = ImageIO.read(new File(unit.spriteName));
+        } catch (IOException ex) {
+            Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        System.out.println("Got image of"+unit.spriteName);
+        return img;
+    }
+    
     //this should determine how many units are still alive
     public int getUnitsAlive()
     {
@@ -391,7 +396,7 @@ if(!parent.exists() && !parent.mkdirs()){
       Unit.unitIDGen++;
       for(int i=0; i<unitSize; i++)
       {
-            //make each unit a soldier
+            //gives this id to the soldiers that make it up
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
      }

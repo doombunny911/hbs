@@ -6,8 +6,6 @@
 
 package historicalbattlesimulatorbasic;
 
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -55,11 +52,12 @@ public final class UnitPlacer extends JPanel
    }
     public void setUpButtons(ArrayList<Unit> unitArrayList)
     {
-//        JOptionPane.showMessageDialog(this, "Click on a unit to place it on the field of battle");
         
 //       final Unit u = unitArrayList.get(index);
           for(final Unit u: unitArrayList)
-           {         
+           {      
+               System.out.println("the id of the unit in the unitPlacer "
+                        + u.getUnitID() + " "  + u.unitID);
 
            //  public UnitFormations unitFormer = new UnitFormations(u);
             ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
@@ -67,7 +65,7 @@ public final class UnitPlacer extends JPanel
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon unitImage2 = new ImageIcon(newimg);
             final JButton button = new JButton(u.nameOfUnit,unitImage2) ;
-            //unitImages.add(button);
+//            unitImages.add(button);
             
             
             button.setOpaque(false);
@@ -79,11 +77,22 @@ public final class UnitPlacer extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  
-                    System.out.println(u.nameOfUnit);
-                    button.setVisible(false);
-                    check=true;
-                    unitToBeLoaded=u;
+                  if(check)
+                  {
+                      //nothing
+                  }
+                  else
+                  {
+                     check=true;
+                     System.out.println(u.nameOfUnit);
+                     button.setVisible(false);
+                    
+                     unitToBeLoaded=u;
+                  }
+                    
+                    
+                        
+                    
                 }});
             button.setBorderPainted(false);
          }

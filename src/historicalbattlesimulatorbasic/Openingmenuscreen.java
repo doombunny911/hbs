@@ -95,9 +95,7 @@ public class Openingmenuscreen extends JFrame
             
             
 
-            GUI.panel.repaint();
-            GUI.gameFrame.repaint();
-            GUI.gameFrame.revalidate();
+            GUI.repainter();
         }
     });
 
