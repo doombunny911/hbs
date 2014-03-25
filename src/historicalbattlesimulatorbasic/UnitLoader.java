@@ -153,6 +153,8 @@ public class UnitLoader
                 //create a new unit(very important, otherwise just have copies of the orignal units)
                 Unit newUnit = new Unit(prep.soldierType,prep.unitSize);
                 
+                //set the sprite equal to the original sprite
+                newUnit.setSprite(prep.getSpriteName());
                 //add the new instance of the unit
                 allPrepUnit.add(newUnit);
             }

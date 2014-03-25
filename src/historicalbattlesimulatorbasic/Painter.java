@@ -64,21 +64,11 @@ public class Painter extends JPanel
       {
          for(int j=0;j<sWidth;j++)
          {
-            if(j%10==0)
-          {
-                
-                g2.fill(GUI.tileGameMap[j][i]);
-            }
-            if(i%10==0)
-            {
-                g2.fill(GUI.tileGameMap[j][i]);
-            }
-            else
-            {
+           
                 
                 g2.draw(GUI.tileGameMap[j][i]);
                  GUI.tileGameMap[j][i].paintTile((g2));  
-             }
+         
          }
       }
       //sprites
@@ -86,7 +76,7 @@ public class Painter extends JPanel
       {
          for(int p=0;p<GUI.unitDraws.size();p++)
          {      
-             System.out.println("p = " + p);
+//             System.out.println("p = " + p);
 //             System.out.println(GUI.unitDraws.get(p).thisUnit.currentFormation);
              GUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g);
          }

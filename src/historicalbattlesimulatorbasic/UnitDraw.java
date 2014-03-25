@@ -10,7 +10,6 @@ package historicalbattlesimulatorbasic;
  * @author Andrew
  */
 
-//Units at some level are rectangles holding soldiers.  Therefore, I will draw
 public class UnitDraw
 {
     
@@ -32,6 +31,7 @@ public class UnitDraw
         }
         else
         {
+            //this will later call which formation it is and draw according to that pattern
             getUnit.currentFormation = new UnitFormations
                 (getUnit,GUI.tileClicked);
         }

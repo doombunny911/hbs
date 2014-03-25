@@ -273,8 +273,8 @@ public class GUI implements MouseListener
                    GUI.unitSelected=null;
                    GUI.toggleButtons(GUI.buttonPanel,false);
                    GUI.statPanel.setVisible(false);
-                   if(GUI.moveC!=null&&!GUI.moveC.isVisible())
-                   GUI.moveC.setVisible(false);
+                   if(GUI.moveC!=null&&GUI.moveC.isVisible())
+                        GUI.moveC.setVisible(false);
                  
                }
                else
@@ -319,7 +319,7 @@ public class GUI implements MouseListener
         GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
 //        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
         //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
-        GUI.repainter(); //repaints
+//        GUI.repainter(); //repaints
     }
    
     
@@ -360,8 +360,6 @@ public class GUI implements MouseListener
        }
         
         
-        
-        
         //if a tile has been clicked(should be always) and the tile clicked on
         //has a soldier in it and there is not already a unit selected
         if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null)
@@ -374,6 +372,7 @@ public class GUI implements MouseListener
                
               if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
               {
+                  System.out.println("unitSelecteed is being called ");
                   
                   //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
                   GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;

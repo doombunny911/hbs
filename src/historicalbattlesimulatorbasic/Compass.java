@@ -9,11 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  *
@@ -138,7 +134,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveNorthWest();
-                    System.out.println("northWest");
+//                    System.out.println("northWest in Compass button");
                   moveDirection=8;
                   moveLogic();
                 }});
@@ -148,7 +144,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveNorth();
-                     System.out.println("north");
+//                     System.out.println("north in Compass button");
                   moveDirection=1;
                   moveLogic();
                 }});
@@ -158,7 +154,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveNorthEast();
-                   System.out.println("northEast");
+//                   System.out.println("northEast in Compass button");
                   moveDirection=2;
                   moveLogic();
                 }});
@@ -169,7 +165,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.
-                System.out.println("west");
+//                System.out.println("west in Compass button");
 
 //                  GUI.unitSelected.moveWest();
                   moveDirection=7;
@@ -182,7 +178,7 @@ public final class Compass extends JPanel
                   @Override
                   public void actionPerformed(ActionEvent e)
                   {
-                      System.out.println("Toggle Sprint");
+                      System.out.println("Toggle Sprint in Compass button");
                       if(GUI.unitSelected.isSprinting)
                       {
                           Modifier.removeSprint(GUI.unitSelected);
@@ -197,7 +193,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveEast();
-                  System.out.println("east");
+//                  System.out.println("east in Compass button");
 
                   moveDirection=3;
                   moveLogic();
@@ -208,7 +204,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveSouthWest();
-                 System.out.println("southWest");
+//                 System.out.println("southWest in Compass button");
                   moveDirection=6;
                   moveLogic();
                 }});       
@@ -218,7 +214,7 @@ public final class Compass extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  GUI.unitSelected.moveSouth();
-                System.out.println("south");
+//                System.out.println("south in Compass button");
 
                   moveDirection=5;
                   moveLogic();  
@@ -228,7 +224,7 @@ public final class Compass extends JPanel
                      @Override
                  public void actionPerformed(ActionEvent e)
                  {
-                     System.out.println("southEast");
+//                     System.out.println("southEast in Compass button");
 
 //                   GUI.unitSelected.moveSouthEast();
                    moveDirection=4;
@@ -243,6 +239,7 @@ public final class Compass extends JPanel
        //find the index of the unitDraw that needs to be removed
        for(int i=0;i<GUI.unitDraws.size();i++)
        {
+//           System.out.println("in moveLogic before index selection");
           if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
           {
               System.out.println("unitID of unitDraw at "+ i+ " = "+
@@ -250,6 +247,7 @@ public final class Compass extends JPanel
               index=i;
           }
        }
+       
        int tileMoveChange = GUI.tileWidth;
        
        
@@ -259,7 +257,6 @@ public final class Compass extends JPanel
             GUI.unitSelected.stamina--;
             GUI.unitSelected.hasSprinted=true;
        }
-       
        
     //which direction was unit moved in
       if(GUI.unitSelected.speed>0)
@@ -273,46 +270,46 @@ public final class Compass extends JPanel
            }
            case 2: //northEast
            {
-               System.out.println("northEast");
+//               System.out.println("northEast in logic");
                GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
                GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
                break;
            }
            case 3: //East
            {
-               System.out.println("east");
+//               System.out.println("east in logic");
                GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
                break;
            }
            case 4: //southEast
            {
-               System.out.println("southEast");
+//               System.out.println("southEast in logic");
                GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
                GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
                break;
            }
            case 5: //South
            {
-               System.out.println("south");
+//               System.out.println("south in logic");
                GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
                break;
            }
            case 6://southWest
            {
-               System.out.println("southWest");
+//               System.out.println("southWest in logic");
                GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
                GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
                break;
            }
            case 7://West
            {
-               System.out.println("west");
+//               System.out.println("west in logic");
                GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
                break;
            }
            case 8://NorthWest
            {
-               System.out.println("northWest");
+//               System.out.println("northWest in logic");
                GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
                GUI.unitSelected.yPosition-=tileMoveChange;//yPosition -10 = 1 tile North
                break;

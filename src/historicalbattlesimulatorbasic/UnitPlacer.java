@@ -56,8 +56,8 @@ public final class UnitPlacer extends JPanel
 //       final Unit u = unitArrayList.get(index);
           for(final Unit u: unitArrayList)
            {      
-               System.out.println("the id of the unit in the unitPlacer "
-                        + u.getUnitID() + " "  + u.unitID);
+//               System.out.println("the id of the unit in the unitPlacer "
+//                        + u.getUnitID() + " "  + u.unitID);
 
            //  public UnitFormations unitFormer = new UnitFormations(u);
             ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
@@ -88,6 +88,8 @@ public final class UnitPlacer extends JPanel
                      button.setVisible(false);
                     
                      unitToBeLoaded=u;
+                     
+                     System.out.println("in unitPlacer, the speed of this unit is " + u.speed);
                   }
                     
                     

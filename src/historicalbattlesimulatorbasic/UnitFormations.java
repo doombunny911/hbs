@@ -70,7 +70,7 @@ public final class UnitFormations
       System.out.println("In default formation");
       
      //this class has a lot of work to allow it to be used for more complex formations 
-//       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
+       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
        
        //
        System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
@@ -113,7 +113,6 @@ public final class UnitFormations
                }
                case 3: //south
                {
-                   System.out.println("case 2");
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
@@ -146,16 +145,16 @@ public final class UnitFormations
     {
        
         int temp = this.index;
-        System.out.println("index = " + index);
+//        System.out.println("index = " + index);
         int j=0;
         //need to loop over the unitDraws to find which unitDraw you are looking for to paint the right ones
-        System.out.println("the size of unitDraws is "  +GUI.unitDraws.size());
+//        System.out.println("the size of unitDraws is "  +GUI.unitDraws.size());
         for(int i=0;i<GUI.unitDraws.size();i++)
         {
            j=i;
         }
         Unit u =  GUI.unitDraws.get(0).getThisUnit();
-        System.out.println("in paintFormation");
+//        System.out.println("in paintFormation");
         BufferedImage  unImg = Unit.getUnitPic(u);
         
         for(int i=this.index-1;i>=0;i--)
