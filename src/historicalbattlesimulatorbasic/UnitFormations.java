@@ -86,6 +86,7 @@ public final class UnitFormations
                       //adjusting index amount of tiles over
                       //so first will be at start tile and each subsuquent 
                       //soldier will be +1 tile to the "right"
+                      
                         spriteLocations[this.index]= 
                         GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
                                  [tile.yPosition/GUI.tileWidth]; 
@@ -139,6 +140,97 @@ public final class UnitFormations
   
        return this;
     
+    }
+    
+    public UnitFormations boxFormation(Tile tile, int depth)
+    {
+        
+        int numberOfSoldiers= unit.unitSoldiers.length;
+        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
+       
+       System.out.println("in box formation");
+      
+//       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
+       
+       System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
+      int soldiersPerSprite =  1; //each sprite represents this many soldiers
+            switch(unit.unitSoldiers[0].facing)
+           { 
+               case 1: //north
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+                  {
+                       //store the location of the sprites for later painting
+                    //this works by getting base tile of unit start location and 
+                      //adjusting index amount of tiles over
+                      //so first will be at start tile and each subsuquent 
+                      //soldier will be +1 tile to the "right"
+                      
+                        spriteLocations[this.index]= 
+                        GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
+                                 [tile.yPosition/GUI.tileWidth]; 
+                        
+                        
+                        //put the soldier onto the tile
+                        this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                        spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
+                        this.index++;
+                  }
+                    
+                    break;
+               }
+               case 2: //east
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+                  {
+                    spriteLocations[this.index]= 
+                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth+this.index];
+                    this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                    spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
+                    this.index++;
+                    }
+                    break;
+               }
+               case 3: //south
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+                  {
+                    spriteLocations[this.index]= 
+                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth-this.index][tile.yPosition/GUI.tileWidth];
+                    this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                    spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
+                    this.index++;
+                  }
+                   break;
+               }
+               case 4: //west
+               {
+                   for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+                  {
+                    spriteLocations[this.index]= 
+                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth-this.index];
+                    this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
+                    spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
+                    this.index++;
+                  }
+                   break;
+               }
+           }
+  
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return this;
     }
     
     public void paintFormation(Graphics g)
