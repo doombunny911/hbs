@@ -45,8 +45,8 @@ public final class Openingmenuscreen extends JFrame
         {
             Game game = new Game();  
         }
-    });
-
+    }); 
+    
     JButton b2 = new JButton( new AbstractAction("Create Unit") { 
         @Override
         public void actionPerformed( ActionEvent e ) 
@@ -95,7 +95,6 @@ public final class Openingmenuscreen extends JFrame
             
             
 
-            GUI.repainter();
         }
     });
 
@@ -105,14 +104,20 @@ public final class Openingmenuscreen extends JFrame
      
      
        
-       initButtonPanel();
+      
        initTilePanel();
 
-       
+      initButtonPanel();
+
        initWelcomePanel();
-      
        gameFrame.add(tilePanel);
        gameFrame.setVisible(true);
+//       welcomePanel.revalidate();
+
+//       buttonPanel.repaint();
+//       welcomePanel.repaint();
+//       gameFrame.revalidate();
+//       gameFrame.repaint();
        GUI.gameFrame=gameFrame;
    }
   
@@ -145,6 +150,12 @@ public final class Openingmenuscreen extends JFrame
     private void initButtonPanel() 
     {
          BufferedImageLoaders bil = new BufferedImageLoaders();
+//         b1.setVisible(true);
+//         b2.setVisible(true);
+//         b3.setVisible(true);
+//         b4.setVisible(true);
+//         b5.setVisible(true);
+         
         buttonPanel = new JPanel(new GridLayout(5,1));
         buttonPanel.add(b1);
         buttonPanel.add(b2);
@@ -162,10 +173,7 @@ public final class Openingmenuscreen extends JFrame
         Image background = bil.getBackground();
         tilePanel = new IPanel(background);
         tilePanel.setBounds(0,0,gameFrame.getWidth(),200);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.BASELINE;
-        gbc.weighty=0;
-        tilePanel.add(buttonPanel,gbc);
+     
        
     }
    private void removePanels()
@@ -177,13 +185,15 @@ public final class Openingmenuscreen extends JFrame
 
     private void initWelcomePanel() 
     {
-         BufferedImageLoaders bil = new BufferedImageLoaders();
+       BufferedImageLoaders bil = new BufferedImageLoaders();
        bil.loadTopScreen();
        Image topImage = bil.getTopScreen();
        welcomePanel = new IPanel(topImage);
        welcomePanel.setBounds(0,0,gameFrame.getWidth(),200);
-     
-   
+       GridBagConstraints gbc = new GridBagConstraints();
+       gbc.anchor = GridBagConstraints.BASELINE;
+       gbc.weighty=0;
+       welcomePanel.add(buttonPanel,gbc);
        gameFrame.add(welcomePanel);
 
     }
