@@ -156,7 +156,7 @@ public class BufferedImageLoaders
     public BufferedImage getBackground()
     {
         
-        
+        //BufferedImage background1 = new BufferedImage(this.backg
         return background;
     }
     public BufferedImage getImage(String imageName)

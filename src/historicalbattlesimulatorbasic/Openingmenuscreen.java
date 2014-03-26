@@ -109,7 +109,7 @@ public final class Openingmenuscreen extends JFrame
        initTilePanel();
 
        
-       initWelcomePanel();
+//       initWelcomePanel();
       
        //Graphics g = buttonPanel.getGraphics();
       // g.drawImage(scroll, unitNum, unitNum, moveC);
@@ -160,6 +160,11 @@ public final class Openingmenuscreen extends JFrame
     private void initTilePanel()
     {
         tilePanel = new JPanel(new GridBagLayout());
+        BufferedImageLoaders bil = new BufferedImageLoaders();
+        bil.loadBackground();
+        Image background = bil.getBackground();
+        tilePanel = new IPanel(background);
+        tilePanel.setBounds(0,0,gameFrame.getWidth(),200);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.BASELINE;
         gbc.weighty=0;
@@ -175,16 +180,12 @@ public final class Openingmenuscreen extends JFrame
 
     private void initWelcomePanel() 
     {
-        BufferedImageLoaders bil = new BufferedImageLoaders();
-        bil.loadBackground();
-        Image background = bil.getBackground();
-        welcomePanel = new IPanel(background);
-        welcomePanel.setBounds(0,0,gameFrame.getWidth(),200);
+       
         JLabel welcomeLabel = new JLabel();
         welcomeLabel.setHorizontalAlignment(JLabel.HEIGHT);
         welcomeLabel.setText("Welcome to the Historical Battle Simulator");
         welcomeLabel.setFont(new Font("Serif",Font.BOLD,65));
-        welcomePanel.add(welcomeLabel);  
+//        welcomePanel.add(welcomeLabel);  
 
      
    
