@@ -26,13 +26,14 @@ public class UnitDraw
         System.out.println("in UnitDraw, GUI.tileClicked is initailzed " + GUI.tileClicked);
         if(getUnit.currentFormation==null)
         {
-            
+            System.out.println("currentFormation is null");
             UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
             form.defaultFormation(GUI.tileClicked);
             getUnit.currentFormation=form;
         }
         else
         {
+            System.out.println("currentFormatoin is not null");
             //this will later call which formation it is and draw according to that pattern
             getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
         }
