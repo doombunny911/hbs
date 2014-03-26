@@ -33,7 +33,7 @@ import javax.swing.JPanel;
  *
  * @author Andrew
  */
-public class Openingmenuscreen extends JFrame
+public final class Openingmenuscreen extends JFrame
 {
     static JPanel tilePanel;//becomes obselete after GUI is initialized
     JFrame gameFrame; //become obsolete after GUI is initialized
@@ -107,17 +107,19 @@ public class Openingmenuscreen extends JFrame
        initButtonPanel();
         
        initTilePanel();
-         
+
        
-               
        initWelcomePanel();
-       //Graphics g = this.getGraphics();
-       
+      
+       //Graphics g = buttonPanel.getGraphics();
+      // g.drawImage(scroll, unitNum, unitNum, moveC);
+       //buttonPanel.paint(g);
        
        gameFrame.add(tilePanel);
        gameFrame.setVisible(true);
        GUI.gameFrame=gameFrame;
    }
+  
   
    //sets to fullscreen mode, more a hinderence atm but good for final product
 
@@ -173,13 +175,19 @@ public class Openingmenuscreen extends JFrame
 
     private void initWelcomePanel() 
     {
-        welcomePanel = new JPanel();
+        BufferedImageLoaders bil = new BufferedImageLoaders();
+        bil.loadBackground();
+        Image background = bil.getBackground();
+        welcomePanel = new IPanel(background);
         welcomePanel.setBounds(0,0,gameFrame.getWidth(),200);
         JLabel welcomeLabel = new JLabel();
         welcomeLabel.setHorizontalAlignment(JLabel.HEIGHT);
         welcomeLabel.setText("Welcome to the Historical Battle Simulator");
         welcomeLabel.setFont(new Font("Serif",Font.BOLD,65));
-        welcomePanel.add(welcomeLabel);    
+        welcomePanel.add(welcomeLabel);  
+
+     
+   
        gameFrame.add(welcomePanel);
 
     }

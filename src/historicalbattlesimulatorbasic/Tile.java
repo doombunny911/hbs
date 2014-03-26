@@ -7,12 +7,14 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
+import javax.swing.JPanel;
 /**
  * One tile can hold one unit. Each tile has a different effect. Each tile is a square
  * @author Schmalz
@@ -31,8 +33,6 @@ public class Tile extends Rectangle
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
     BufferedImage image;
 
-   
-    
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
     //load tiles of buffered the images 

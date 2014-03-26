@@ -7,11 +7,14 @@ package historicalbattlesimulatorbasic;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +30,7 @@ import javax.swing.SwingConstants;
 //will be used for mouse listening too
 public class GUI implements MouseListener
 {
+    JLabel bgL = new JLabel();
     static double numberOfTilesWidth; //the number of tiles that make up the width
     static double numberOfTilesHeight;//the number of tiles that make up the height
     static JFrame gameFrame; //the gameframe, holds the panels/buttons
@@ -94,6 +98,7 @@ public class GUI implements MouseListener
     //initializes defenseButton
     private static void initDefenseButton()
     {
+        
         final JButton sAbility = new JButton("Special Ability");
         sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
         sAbility.setVisible(true);
@@ -443,12 +448,22 @@ public class GUI implements MouseListener
     
       public static JButton[] initializeButtons(JButton[] button)
    {
-       button[0]=new JButton("Attack");
-       button[1]=new JButton("Defend");
-       button[2]=new JButton("Check Stats");
-       button[3]=new JButton("Move");
-       button[4]=new JButton("Choose Formation");
-       button[5]=new JButton("Cancel Selection");
+       BufferedImageLoaders bil = new BufferedImageLoaders();
+       bil.loadAllButtons();
+       ImageIcon attackB = bil.getIconAttack();
+       ImageIcon defendB = bil.getIconDefend();
+       ImageIcon checkB = bil.getCheckStatsIcon();
+       ImageIcon moveB = bil.getIconMove();
+       ImageIcon formB = bil.getIconSetFormation();
+       ImageIcon cancelB = bil.getIconCancel();
+       
+       button[0]=new JButton(attackB);
+       button[1]=new JButton(defendB);
+       button[2]=new JButton(checkB);
+       button[3]=new JButton(moveB);
+       button[4]=new JButton(formB);
+       button[5]=new JButton(cancelB);
+   
        GUI.endTurn=new JButton("End Turn");
        endTurn.setVisible(true);
        endTurn.setBounds(GUI.panel.getWidth()/2,0,100,35);
@@ -524,16 +539,39 @@ public class GUI implements MouseListener
     public static void addButtonsToPanel(JButton[] button) 
     {
        GUI.panel.setLayout(null);
+       BufferedImageLoaders bil = new BufferedImageLoaders();
+       bil.loadAllButtons();
+      
 //       aPanel.setPreferredSize(new Dimension(500,300));
+     
        buttonPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
        buttonPanel.setEnabled(false);
-       buttonPanel.setOpaque(false);
-       button[0].setBounds(buttonPanel.getWidth()/6-30-100,35,100,30);
-       button[1].setBounds(buttonPanel.getWidth()/6*2-30-100,35,100,30);
-       button[2].setBounds(buttonPanel.getWidth()/6*3-30-100,35,125,30);
-       button[3].setBounds(buttonPanel.getWidth()/6*4-30-100,35,100,30);
-       button[4].setBounds(buttonPanel.getWidth()/6*5-45-100,35,150,30);
-       button[5].setBounds(buttonPanel.getWidth()/6*6-45-100,35,150,30);
+       buttonPanel.setOpaque(true);
+       
+       button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
+       button[0].setOpaque(false);
+       button[0].setContentAreaFilled(false);
+       button[0].setBorderPainted(false);
+       button[1].setBounds(buttonPanel.getWidth()/6*2-30-100,0,100,100);
+       button[1].setOpaque(false);
+       button[1].setContentAreaFilled(false);
+       button[1].setBorderPainted(false);
+       button[2].setBounds(buttonPanel.getWidth()/6*3-30-100,0,125,100);
+       button[2].setOpaque(false);
+       button[2].setContentAreaFilled(false);
+       button[2].setBorderPainted(false);
+       button[3].setBounds(buttonPanel.getWidth()/6*4-30-100,0,100,100);
+       button[3].setOpaque(false);
+       button[3].setContentAreaFilled(false);
+       button[3].setBorderPainted(false);
+       button[4].setBounds(buttonPanel.getWidth()/6*5-45-100,0,150,100);
+       button[4].setOpaque(false);
+       button[4].setContentAreaFilled(false);
+       button[4].setBorderPainted(false);
+       button[5].setBounds(buttonPanel.getWidth()/6*6-45-100,0,150,100);
+       button[5].setOpaque(false);
+       button[5].setContentAreaFilled(false);
+       button[5].setBorderPainted(false);
        buttonPanel.add(button[0]);
        buttonPanel.add(button[1]);
        buttonPanel.add(button[2]);
