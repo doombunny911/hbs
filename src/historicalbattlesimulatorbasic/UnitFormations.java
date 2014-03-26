@@ -22,6 +22,8 @@ public final class UnitFormations
     private Tile[] spriteLocations;
     private Tile[][] locations;
     private int index;
+    private Tile thisTile;
+    int value;
     BufferedImage img;
     public UnitFormations(Unit unit,Tile tile)
     {
@@ -29,7 +31,8 @@ public final class UnitFormations
 //        locations = new Tile[5000][5000];
         //set default formation
         this.unit = unit;
-        boxFormation(tile);
+        this.thisTile = tile;
+//        setBoxFormation(tile);
 //        defaultFormation(tile);
     }
     
@@ -78,9 +81,9 @@ public final class UnitFormations
        System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
       int soldiersPerSprite =  1; //each sprite represents this many soldiers
       
-      
+     
       spriteLocations = new Tile[numberOfSoldiers/soldiersPerSprite];
-
+      this.index=0;
             switch(unit.unitSoldiers[0].facing)
            { 
                case 1: //north
@@ -92,7 +95,7 @@ public final class UnitFormations
                       //adjusting index amount of tiles over
                       //so first will be at start tile and each subsuquent 
                       //soldier will be +1 tile to the "right"
-                      
+                      System.out.println(i);
                         spriteLocations[this.index]= 
                         GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
                                  [tile.yPosition/GUI.tileWidth]; 
@@ -102,6 +105,7 @@ public final class UnitFormations
                         this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                         spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
                         this.index++;
+                        System.out.println("Tile added  at ["+(tile.xPosition/GUI.tileWidth+this.index)+"] ["+(tile.yPosition/GUI.tileWidth)+"]");
                   }
                     
                     break;
@@ -143,12 +147,12 @@ public final class UnitFormations
                    break;
                }
            }
-  
+       value=0;
        return this;
     
     }
     
-    public UnitFormations boxFormation(Tile tile)
+    public UnitFormations setBoxFormation()
     {
         int soldiersPerSprite =  1;//each sprite represents this many soldiers
         int depth=0;
@@ -156,7 +160,7 @@ public final class UnitFormations
         int effectiveSoldiers=numberOfSoldiers/soldiersPerSprite;
         System.out.println("numberOfSoldiers = " + numberOfSoldiers );
        if(effectiveSoldiers<4)
-           this.defaultFormation(tile);
+           this.defaultFormation(thisTile);
        else if(effectiveSoldiers>4&&effectiveSoldiers<35)
            depth=1;
        else
@@ -206,27 +210,32 @@ public final class UnitFormations
                      if(i<depth||i>=indexI-depth)
                      {
 //                         System.out.println("on the top of the box or the bottom of the box, draw the sprites");
-                         locations[j][i] = GUI.tileGameMap[tile.xPosition/GUI.tileWidth+j][tile.yPosition/GUI.tileWidth+i];
+                         locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
                          this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
                          locations[j][i].occupyBy(unit.unitSoldiers[count]); 
                          count++;
+                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
                          
                      }
                      else if(j>=depth&&j<indexI-depth&&extra>0)
                      {
-                         locations[j][i] = GUI.tileGameMap[tile.xPosition/GUI.tileWidth+j][tile.yPosition/GUI.tileWidth+i];
+                         locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
                          this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
                          locations[j][i].occupyBy(unit.unitSoldiers[count]); 
                          count++;
                          extra--;
+                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+
                      }
                      else if(j<depth||j>=indexI-depth)
                      {
 //                         System.out.println("on the left side of the box, draw the unit");
-                         locations[j][i]=GUI.tileGameMap[tile.xPosition/GUI.tileWidth+j][tile.yPosition/GUI.tileWidth+i];
+                         locations[j][i]=GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
                          this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
                          locations[j][i].occupyBy(unit.unitSoldiers[count]); 
-                          count++;
+                        count++;
+                        System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+
                      }
                  }
              }
@@ -238,7 +247,7 @@ public final class UnitFormations
            for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
            {
               spriteLocations[this.index]= 
-              GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth+this.index];
+              GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth][thisTile.yPosition/GUI.tileWidth+this.index];
               this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
               spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
 //              this.index++;
@@ -250,7 +259,7 @@ public final class UnitFormations
            for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
            {
                  spriteLocations[this.index]= 
-                 GUI.tileGameMap[tile.xPosition/GUI.tileWidth-this.index][tile.yPosition/GUI.tileWidth];
+                 GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth-this.index][thisTile.yPosition/GUI.tileWidth];
                  this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                  spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
 //                 this.index++;
@@ -262,7 +271,7 @@ public final class UnitFormations
           for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
           {
             spriteLocations[this.index]= 
-            GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth-this.index];
+            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth][thisTile.yPosition/GUI.tileWidth-this.index];
             this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
             spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
 //           this.index++;
@@ -270,24 +279,21 @@ public final class UnitFormations
             break;
        }
      }    
-       
+       value=1;
        
         return this;
     }
     
     public void paintFormation(Graphics g)
     {
-       if(spriteLocations!=null)
+//        System.out.println("spriteLocations is " + spriteLocations);
+       if(value==0)
        {
-           int temp = this.index;
-//        System.out.println("index = " + index);
-//        int j=0;
-        //need to loop over the unitDraws to find which unitDraw you are looking for to paint the right ones
-//        System.out.println("the size of unitDraws is "  +GUI.unitDraws.size());
-        for(int i=0;i<GUI.unitDraws.size();i++)
-        {
+          int temp = this.index;
+          for(int i=0;i<GUI.unitDraws.size();i++)
+          { 
           
-        }
+          }
         Unit u =  GUI.unitDraws.get(0).getThisUnit();
 //        System.out.println("in paintFormation");
         BufferedImage  unImg = Unit.getUnitPic(u);
@@ -301,17 +307,14 @@ public final class UnitFormations
         }
         
         this.index=temp;
-       }
-       else
-       {
-           
-            Unit u =  GUI.unitDraws.get(0).getThisUnit();
-//           System.out.println("in paintFormation");
-           BufferedImage  unImg = Unit.getUnitPic(u);
-           
-           
-           for(int i=0;i<locations[0].length;i++)
-            {
+      }
+       else if(value==1)
+     {
+          Unit u =  GUI.unitDraws.get(0).getThisUnit();
+//        System.out.println("in paintFormation");
+          BufferedImage  unImg = Unit.getUnitPic(u);
+         for(int i=0;i<locations[0].length;i++)
+         {
             for(int j=0;j<locations.length;j++)
             {
                 if(locations[j][i]!=null&&locations[j][i].isOccupied)
@@ -323,10 +326,11 @@ public final class UnitFormations
                 }
             }
         }
-       }
-        
-        
-            
-        
+      }
+    }
+
+    void setWedgeFormation(Tile tileClicked) 
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

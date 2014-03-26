@@ -145,7 +145,7 @@ public class Unit extends Soldier
             Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
             
         }
-        System.out.println("Got image of"+unit.spriteName);
+//        System.out.println("Got image of"+unit.spriteName);
         return img;
     }
     

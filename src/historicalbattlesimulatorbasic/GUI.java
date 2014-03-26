@@ -46,7 +46,7 @@ public class GUI implements MouseListener
     static JPanel buttonPanel = new JPanel(); //the panel that holds the buttons on bottom of screen
     static JPanel attackButtonPanel;
     static JPanel statPanel= new JPanel(); //the panel that holds the stats when they are printed
-   
+    static JPanel formationPanel;
     static Unit unitSelected; //the unit that is currently selected
     static Unit attackUnit; //may not be used, currently used for attacking
     static boolean impendingAttack=false; //probably won't be used
@@ -56,11 +56,79 @@ public class GUI implements MouseListener
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
     static UnitPlacer unitPlacerTest;
-    
+     
     
 //    static JPanel moveButtonPanel; //panel for moving options (sprint etc)
 
-    static void placeUnitTester() 
+   
+    
+  //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
+    public GUI(JPanel panel)
+   {
+       GUI.panel=panel;
+       GUI.panel.addMouseListener(this);
+       GUI.statPanel.setVisible(false);
+       
+   }
+    
+     private static void initFormPanel() 
+     {
+         formationPanel=new JPanel();
+         JButton[] button = new JButton[3];
+         formationPanel.setLayout(null);
+         formationPanel.setBounds(GUI.buttonPanel.getBounds());
+         button[0]=  new JButton("Line Formation");
+         button[1] = new JButton("Box Formation");
+         button[2] = new JButton("Wedge Formation");
+         Component c = GUI.buttonPanel.getComponent(0);
+         button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
+         button[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());
+         button[2].setBounds(c.getX()+c.getWidth()*3,c.getY(),c.getWidth(),c.getHeight());
+         formationPanel.add(button[0]);
+         formationPanel.add(button[1]);
+         formationPanel.add(button[2]);
+          GUI.repainter();
+         
+         button[0].addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) //line Formation
+           {
+               GUI.unitSelected.currentFormation.defaultFormation(tileClicked);
+               GUI.repainter();
+          }
+       });
+       
+       button[1].addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) //box Formation
+           {
+               GUI.unitSelected.currentFormation.setBoxFormation();
+               GUI.repainter();
+//               GUI.unitSelected.currentFormation=new UnitFormations(GUI.unitSelected,GUI.tileClicked);
+           }
+       });
+       
+       button[2].addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent ae) //Wedge Formation
+           {
+               
+               GUI.unitSelected.currentFormation.setWedgeFormation(tileClicked);
+
+           }
+       });
+       
+       panel.add(formationPanel);
+       
+       
+       
+       
+       
+     }
+    
+    
+    public static void placeUnitTester() 
     {
       
         
@@ -75,18 +143,10 @@ public class GUI implements MouseListener
         GUI.panel.add(GUI.unitPlacerTest);    
       
 
-    }
+    } 
     
-  //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
-    public GUI(JPanel panel)
-   {
-       GUI.panel=panel;
-       GUI.panel.addMouseListener(this);
-       GUI.statPanel.setVisible(false);
-       
-   }
     
-    //method that returns tileClicked the value of tileClicked
+    //method that returns  the value of tileClicked
     public static Tile getTileClicked() 
     {
        if(GUI.tileClicked!=null)
@@ -210,6 +270,8 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae)
            {
                //can't prepare to defend if attacking
+              GUI.toggleButtons(GUI.buttonPanel,false);
+
                if(GUI.attackUnit==null)
                {
                    //if unitSelected does not have a defensive special ability, don't load extra button
@@ -221,6 +283,7 @@ public class GUI implements MouseListener
                         GUI.panel.getComponentAt(GUI.buttonPanel.getComponent(2).getLocation()).setVisible(true);
                    GUI.unitSelected.brace();
                }
+                   
            }
        });
        
@@ -232,6 +295,8 @@ public class GUI implements MouseListener
       //if statPanel!=null (should be never) and is not visible, call method print stats
                if(GUI.statPanel!=null&&GUI.statPanel.isVisible()==false)
                     GUI.printStats(GUI.unitSelected);
+               else if(GUI.statPanel!=null&&GUI.statPanel.isVisible())
+                   GUI.statPanel.setVisible(false);
                //get the stats of the unit clicked and print them on side of screen
            }
        });
@@ -241,18 +306,18 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
               //don't think this is necessary but I will look into it, I think i did this to help isolate a bug
-               if(GUI.tileClicked!=null)
-                   GUI.tileClicked=null;
+//               if(GUI.tileClicked!=null)
+//                   GUI.tileClicked=null;
                
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
                      GUI.initializeCompass();
                   }
+                  else if(!moveC.isVisible())
+                  {
+                     GUI.moveC.setVisible(true);      
+                  }
                   //if it is not visible, make it visible
-                  if(!GUI.moveC.isVisible())
-                        GUI.moveC.setVisible(true);
-             
-                  
                   GUI.repainter();
            }
        });
@@ -261,10 +326,33 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
+               if(formationPanel==null)
+               {
+                   initFormPanel();
+               }
+               else
+               {
+                   if(!formationPanel.isVisible())
+                   {
+                       formationPanel.setVisible(true);
+                   }
+               }
+               
+               GUI.toggleButtons(buttonPanel, false);
+               
+               if(moveC!=null&&moveC.isVisible())
+                   moveC.setVisible(false);
+               if(GUI.attackButtonPanel!=null&&attackButtonPanel.isVisible())
+                   attackButtonPanel.setVisible(false);
+               
+                   
+               
                //set formation button, not done
           //
               //System.out.println("this button does not do anything atm");
            }
+
+          
        });
        button[5].addActionListener(new ActionListener() 
        {
@@ -280,7 +368,11 @@ public class GUI implements MouseListener
                    GUI.statPanel.setVisible(false);
                    if(GUI.moveC!=null&&GUI.moveC.isVisible())
                         GUI.moveC.setVisible(false);
-                 
+                   if(GUI.formationPanel!=null&&formationPanel.isVisible())
+                   {
+                       formationPanel.setVisible(false);
+                       toggleButtons(formationPanel,false);
+                   }
                }
                else
                {
@@ -471,11 +563,12 @@ public class GUI implements MouseListener
        return button;
    }
       
-       //method that prints stats, gets the information from the unit and prints it
+   //method that prints stats, gets the information from the unit and prints it
     private static void printStats(Unit unitSelected) 
     {
         //unitSoldiers[0] won't work when soldier 0 dies
         //need to add these stats to the unit itself
+        statPanel = new JPanel();
         int unitNumLocal=unitSelected.getUnitsAlive();
         double unitAttack=unitSelected.unitSoldiers[0].attack;
         double unitDefense = unitSelected.unitSoldiers[0].defense;
@@ -512,7 +605,6 @@ public class GUI implements MouseListener
                 break;
             }
         }
-        
         //using html allows me to carriage return
         JLabel stats = new JLabel("<html> Soldiers in Unit: "+unitNumLocal+
                 "<br>AttackPower: "+unitAttack+"<br>DefensePower: "+unitDefense+

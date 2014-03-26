@@ -26,14 +26,15 @@ public class UnitDraw
         System.out.println("in UnitDraw, GUI.tileClicked is initailzed " + GUI.tileClicked);
         if(getUnit.currentFormation==null)
         {
+            
             UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
+            form.defaultFormation(GUI.tileClicked);
             getUnit.currentFormation=form;
         }
         else
         {
             //this will later call which formation it is and draw according to that pattern
-            getUnit.currentFormation = new UnitFormations
-                (getUnit,GUI.tileClicked);
+            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
         }
         
         this.tileLocationOfUnit=GUI.tileClicked;
@@ -53,8 +54,20 @@ public class UnitDraw
     {
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        getUnit.currentFormation = new UnitFormations
-                (getUnit,tile);
+        
+        if(getUnit.currentFormation==null)
+        {
+            
+            UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
+            form.defaultFormation(GUI.tileClicked);
+            getUnit.currentFormation=form;
+        }
+        else
+        {
+            //this will later call which formation it is and draw according to that pattern
+            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
+        }
+        
         this.tileLocationOfUnit=tile;
         this.thisUnit=getUnit;
     }
