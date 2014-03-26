@@ -94,6 +94,8 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) //line Formation
            {
                GUI.unitSelected.currentFormation.defaultFormation(tileClicked);
+               GUI.toggleButtons(formationPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
                GUI.repainter();
           }
        });
@@ -103,6 +105,8 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) //box Formation
            {
                GUI.unitSelected.currentFormation.setBoxFormation();
+               GUI.toggleButtons(formationPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
                GUI.repainter();
 //               GUI.unitSelected.currentFormation=new UnitFormations(GUI.unitSelected,GUI.tileClicked);
            }
@@ -115,6 +119,9 @@ public class GUI implements MouseListener
            {
                
                GUI.unitSelected.currentFormation.setWedgeFormation(tileClicked);
+               GUI.toggleButtons(formationPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
+               GUI.repainter();
 
            }
        });
@@ -158,11 +165,17 @@ public class GUI implements MouseListener
     //initializes defenseButton
     private static void initDefenseButton()
     {
-        
         final JButton sAbility = new JButton("Special Ability");
         sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
+        sAbility.setLocation(GUI.buttonPanel.getComponent(2).getX(),GUI.gameFrame.getHeight()-buttonPanel.getHeight());
         sAbility.setVisible(true);
         GUI.panel.add(sAbility);
+//        final JButton cancel = new JButton("Cancel Selection");
+//        cancel.setBounds(GUI.buttonPanel.getComponent(5).getBounds());
+//        cancel.setLocation(GUI.buttonPanel.getComponent(2).getX(),GUI.gameFrame.getHeight()-buttonPanel.getHeight());
+//
+//        cancel.setVisible(true);
+//        GUI.panel.add(cancel);
         
         sAbility.addActionListener(new ActionListener() {
            @Override
@@ -170,9 +183,26 @@ public class GUI implements MouseListener
            {
                System.out.println("Special Ability activated");
                GUI.unitSelected.useSpecialAbility();
+                //reload the buttons that are loaded when a unit is clicked
                sAbility.setVisible(false);
+//               cancel.setVisible(false);
+              toggleButtons(GUI.buttonPanel,true);
+
           }
        });
+//        cancel.addActionListener(new ActionListener() {
+//           @Override
+//           public void actionPerformed(ActionEvent ae) 
+//           {
+//               System.out.println("cancel current selection");
+//               
+//               //reload the buttons that are loaded when a unit is clicked
+//               sAbility.setVisible(false);
+//               cancel.setVisible(false);
+//               toggleButtons(GUI.buttonPanel,true);
+//
+//          }
+//       });
         
     } 
     //initializes attackButton
@@ -192,7 +222,7 @@ public class GUI implements MouseListener
          attackButtonPanel.add(attackButton[0]);
          attackButtonPanel.add(attackButton[1]);
          attackButtonPanel.add(attackButton[2]);
-        GUI.repainter();
+         GUI.repainter();
         
         
         attackButton[0].addActionListener(new ActionListener() {
@@ -201,6 +231,8 @@ public class GUI implements MouseListener
            {
                System.out.println("Please click on the unit you wish to attack");
                GUI.impendingAttack=true;
+               GUI.toggleButtons(attackButtonPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
           }
        });
        
@@ -211,6 +243,8 @@ public class GUI implements MouseListener
                System.out.println("charging, now losing stamina");
                GUI.attackUnit.charge();
                GUI.impendingAttack=true;
+               GUI.toggleButtons(attackButtonPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
                
            }
        });
@@ -224,6 +258,8 @@ public class GUI implements MouseListener
                System.out.println("specialAbility Activated");
                GUI.attackUnit.useSpecialAbility();
                GUI.impendingAttack=true;
+               GUI.toggleButtons(attackButtonPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
            }
        }); 
      }
@@ -447,13 +483,6 @@ public class GUI implements MouseListener
            unitPlacerTest.check=false;
            unitPlacerTest.unitToBeLoaded=null;
            System.out.println("in UnitPlacer ");
-//           unitPlacerTest.unitToBeLoaded.drawUnit( unitPlacerTest.unitToBeLoaded);
-//           GUI.unitPlacerTest.setUpButtons(GUI.unitPlacerTest.units);
-//          Unit unit = unitPlacerTest.unitToBeLoaded;
-//          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-//           GUI.unitDraws.add(new UnitDraw(unit));
-//           GUI.tileClicked=null;
-//           GUI.repainter();
        }
         
         

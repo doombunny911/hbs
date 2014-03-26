@@ -59,9 +59,6 @@ public final class UnitFormations
                 }
             }
         }
-        
-        
-        
         return this;
     }
     //the default formation for a unit
@@ -99,13 +96,11 @@ public final class UnitFormations
                         spriteLocations[this.index]= 
                         GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
                                  [tile.yPosition/GUI.tileWidth]; 
-                        
-                        
                         //put the soldier onto the tile
                         this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                         spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
                         this.index++;
-                        System.out.println("Tile added  at ["+(tile.xPosition/GUI.tileWidth+this.index)+"] ["+(tile.yPosition/GUI.tileWidth)+"]");
+//                        System.out.println("Tile added  at ["+(tile.xPosition/GUI.tileWidth+this.index)+"] ["+(tile.yPosition/GUI.tileWidth)+"]");
                   }
                     
                     break;
@@ -187,10 +182,10 @@ public final class UnitFormations
          if(num<numberOfSoldiers/soldiersPerSprite)
          {
              locations = new Tile[i][i];
-             System.out.println("the i that made the magic = " + i);
+//             System.out.println("the i that made the magic = " + i);
              indexI = i;
              extra = numberOfSoldiers/soldiersPerSprite-num;
-             System.out.println("extra = " + extra);
+//             System.out.println("extra = " + extra);
              break;
          }
              
@@ -214,7 +209,7 @@ public final class UnitFormations
                          this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
                          locations[j][i].occupyBy(unit.unitSoldiers[count]); 
                          count++;
-                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+//                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
                          
                      }
                      else if(j>=depth&&j<indexI-depth&&extra>0)
@@ -224,7 +219,7 @@ public final class UnitFormations
                          locations[j][i].occupyBy(unit.unitSoldiers[count]); 
                          count++;
                          extra--;
-                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+//                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
 
                      }
                      else if(j<depth||j>=indexI-depth)
@@ -234,7 +229,7 @@ public final class UnitFormations
                          this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
                          locations[j][i].occupyBy(unit.unitSoldiers[count]); 
                         count++;
-                        System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+//                        System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
 
                      }
                  }
