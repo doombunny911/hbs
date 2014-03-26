@@ -6,7 +6,6 @@
 
 package historicalbattlesimulatorbasic;
 
-import historicalbattlesimulatorbasic.Tile;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -31,6 +30,7 @@ public class BufferedImageLoaders
     BufferedImage attackB, defendB, cancelB, setFormB, moveB, checkB, scroll;
     ArrayList<BufferedImage> buttons = new ArrayList();
     private BufferedImage background;
+    private BufferedImage welcomePanelImage;
     public void loadAllButtons()
     {
       try {
@@ -72,10 +72,23 @@ public class BufferedImageLoaders
 //       }
       try {
            scroll = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"ScrollBG.jpg"));
+
+//           setFormB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"SetFormation.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+     
+    }
+    
+    public void loadScroll()
+    {
+         try {
+           scroll = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"ScrollBG.png"));
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    
     public ImageIcon getIconAttack()
     {
         
@@ -143,6 +156,18 @@ public class BufferedImageLoaders
     public ArrayList<BufferedImageName> getImages()
     {
         return imageList;
+    }
+    public void loadTopScreen()
+    {
+         try {
+           welcomePanelImage = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"WelcomePanel.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    public BufferedImage getTopScreen()
+    {
+        return welcomePanelImage;
     }
     public void loadBackground()
     {

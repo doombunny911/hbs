@@ -24,9 +24,20 @@ private Image             image            = null;
     });
 }
 
-public IPanel(final Image i) {
+public IPanel(final Image i)
+{
     imageOrg = i;
     image = i;
+}
+
+public IPanel()
+{
+    
+}
+public static void setBackgroundImage(final Image i, IPanel ip)
+{
+    ip.imageOrg = i;
+    ip.image = i;
 }
 
 @Override
