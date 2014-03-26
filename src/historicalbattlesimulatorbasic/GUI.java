@@ -512,7 +512,14 @@ public class GUI implements MouseListener
         //the number of components in the panel
         int bNum =panel.getComponentCount();
         for(int i=0;i<bNum;i++)
-           panel.getComponent(i).setVisible(b);
+        {
+//            System.out.println(panel.getComponent(i).getName());
+//            if("cancel".equals(panel.getComponent(i).getName()))
+//                panel.getComponent(i).setVisible(true);
+//            else              
+                panel.getComponent(i).setVisible(b);
+             
+        }
        GUI.repainter();
     }
 
@@ -555,7 +562,9 @@ public class GUI implements MouseListener
        button[3]=new JButton(moveB);
        button[4]=new JButton(formB);
        button[5]=new JButton(cancelB);
-   
+       button[5].setName("cancel");
+       
+       
        GUI.endTurn=new JButton("End Turn");
        endTurn.setVisible(true);
        endTurn.setBounds(GUI.panel.getWidth()/2,0,100,35);

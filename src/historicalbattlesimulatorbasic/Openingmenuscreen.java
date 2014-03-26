@@ -173,7 +173,7 @@ public final class Openingmenuscreen extends JFrame
     }
    private void removePanels()
    {
-       gameFrame.remove(welcomePanel);
+//       gameFrame.remove(welcomePanel);
        tilePanel.remove(buttonPanel);
        gameFrame.remove(tilePanel);
    }
