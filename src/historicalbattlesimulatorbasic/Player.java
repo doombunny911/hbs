@@ -58,8 +58,30 @@ public static void setWinner(Player p)
 
 public void takeTurn()
 {
+    //set value of all player units clickable to true.
+    for(Unit u: allUnits)
+    {
+        u.setClickable();
+    }
     
+    //allow player to select a unit. So long as the unit is clickable, it should respond. Once a unit has made a move, or done something
+    //and expended 2 unit points, set it unclickable
     
+}    
+   
+    
+
+public boolean anyClickable()
+{
+boolean anyClickable = true;
+    for(Unit u: allUnits)
+    {
+        if(!u.isClickable())
+        {
+            anyClickable = false;
+        }
+    }
+    return anyClickable;
 }
 
 }

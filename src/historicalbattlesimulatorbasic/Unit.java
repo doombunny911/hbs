@@ -28,6 +28,7 @@ public class Unit extends Soldier
 {
     static int unitIDGen =0;
     int unitID;
+    boolean clickable = true;
     double moveMentCounter =super.speed; //for now, very basic
     String nameOfUnit = super.unitName;
     Soldier unitSoldiers[];
@@ -91,6 +92,7 @@ public class Unit extends Soldier
         
        System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
     }
+    
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
@@ -121,7 +123,18 @@ public class Unit extends Soldier
     {
         this.spriteName = sprite;
     }
-    
+    public boolean isClickable()
+    {
+        return clickable;
+    }
+    public void setClickable()
+    {
+        this.clickable = true;
+    }
+    public void setClickableFalse()
+    {
+        this.clickable = false;
+    }
     public static BufferedImage getUnitPic(Unit unit)
     {
         
@@ -175,7 +188,7 @@ public class Unit extends Soldier
       
        if (isInRange(aSize, dSize))
         {
-      
+           
         if(defender.unitDefeat==false)
         {
             
@@ -222,7 +235,8 @@ public class Unit extends Soldier
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
                     + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+
                     defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + " remain.");
-        }
+         //unitPoints = unitPoints -1;   
+ }
         
     
     

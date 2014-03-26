@@ -4,6 +4,7 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,7 @@ public class GUI implements MouseListener
     static JFrame gameFrame; //the gameframe, holds the panels/buttons
     static Map gameMap; //the Map, not being used atm
     static Tile[][] tileGameMap; //the array of tiles that make up the tileGameMap
-    static int tileWidth; //the width of an induvidual tile
+    static int tileWidth; //the width of an individual tile
     static JPanel panel; //the panel holding all the tiles
     static ArrayList<UnitDraw> unitDraws=new ArrayList<>();//the unitDraws gotten via unitLoader
     static Tile tileClicked;//the tile that was clicked last
@@ -41,6 +42,7 @@ public class GUI implements MouseListener
     static JPanel buttonPanel = new JPanel(); //the panel that holds the buttons on bottom of screen
     static JPanel attackButtonPanel;
     static JPanel statPanel= new JPanel(); //the panel that holds the stats when they are printed
+   
     static Unit unitSelected; //the unit that is currently selected
     static Unit attackUnit; //may not be used, currently used for attacking
     static boolean impendingAttack=false; //probably won't be used
@@ -56,13 +58,7 @@ public class GUI implements MouseListener
 
     static void placeUnitTester() 
     {
-       // UnitLoader ul = new UnitLoader();
-        //ArrayList units = ul.runLoader();
-       
-//        for(int i =0;i<units.size();i++)
-//        {
-//            System.out.println("add 1");
-//        }
+      
         
         GUI.unitPlacerTest = new UnitPlacer(); 
         ArrayList units = GUI.unitPlacerTest.getUnitList();
@@ -83,6 +79,7 @@ public class GUI implements MouseListener
        GUI.panel=panel;
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
+       
    }
     
     //method that returns tileClicked the value of tileClicked
@@ -93,7 +90,7 @@ public class GUI implements MouseListener
        else
            return null;
     }
-    
+   
     //initializes defenseButton
     private static void initDefenseButton()
     {

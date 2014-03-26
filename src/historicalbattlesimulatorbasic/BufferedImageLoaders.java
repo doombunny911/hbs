@@ -26,8 +26,12 @@ public class BufferedImageLoaders
     private ArrayList<BufferedImageName> imageList = new ArrayList<>();
     BufferedImage grass = grassLoader();
     BufferedImage tree, dirt, rock;
-   
     
+    
+    public void loadAllButtons()
+    {
+        
+    }
     public void loadAllImages()
     {
        imageList = BufferedImageMassImport.loadAllImages();
