@@ -676,7 +676,7 @@ public class GUI implements MouseListener
      
        buttonPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
        buttonPanel.setEnabled(false);
-       buttonPanel.setOpaque(true);
+       buttonPanel.setOpaque(false);
        
        button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
        button[0].setOpaque(false);
