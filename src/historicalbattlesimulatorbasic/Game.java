@@ -39,12 +39,12 @@ public static void main(String[] args)
 {
    
 Game game = new Game();
-Player p1 = new Player();
-p1.setPlayerName("Player One");
-Player p2 = new Player();
-p2.setPlayerName("Player Two");
-playersForDemo.add(p1);
-playersForDemo.add(p2);
+//Player p1 = new Player();
+
+//Player p2 = new Player();
+
+//playersForDemo.add(p1);
+//playersForDemo.add(p2);
 JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
 UnitLoader ul1 = new UnitLoader();
 
@@ -53,19 +53,19 @@ GUI.player1UnitNum=ul1.getAllUnits().size();
 GUI.player2UnitNum=ul2.getAllUnits().size();
 GUI.player1AllUnits=ul1.getAllUnits();
 GUI.player2AllUnits=ul2.getAllUnits();
-p1.allUnits = ul1.runLoader();
+//p1.allUnits = ul1.runLoader();
 
 
 
-p2.allUnits = ul2.runLoader();
+//p2.allUnits = ul2.runLoader();
 
-game.setUp(p1);
+//game.setUp(p1);
 JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
-game.setUp(p2);
+////game.setUp(p2);
 
-p2.allUnits = ul1.runLoader();
+//p2.allUnits = ul1.runLoader();
 
-p2.allUnits = ul1.runLoader();
+//p2.allUnits = ul1.runLoader();
 
 
   //game begin
@@ -102,7 +102,7 @@ public static ArrayList playerCreator(int numPlay)
        for(int i=0; i<numPlay; i++)
            
         {           
-            Player.singlePlayerDialog(players);   
+   //         Player.singlePlayerDialog(players);   
         }
         return players;
     }
@@ -115,7 +115,7 @@ public static ArrayList playerCreator(int numPlay)
 
     private boolean takeTurn(Player p)
     {
-      hasWinner =  p.takeTurn();
+   //   hasWinner =  p.takeTurn();
       return hasWinner;
            }
 

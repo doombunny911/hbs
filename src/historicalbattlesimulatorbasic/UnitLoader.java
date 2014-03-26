@@ -23,6 +23,8 @@ import javax.swing.JOptionPane;
  * @author Andrew + Edward
  */
 //class reads from a text file and loads the units into a unit array.
+
+
 public class UnitLoader 
 {
     
@@ -36,7 +38,9 @@ public class UnitLoader
         for(Unit u: testUnits)
         {
             System.out.println("Loaded "+u.nameOfUnit);
+            System.out.println("Speed "+ u.speed);
         }
+        
     }
       public ArrayList<Unit> runLoader()
       {
@@ -123,12 +127,12 @@ public class UnitLoader
             Unit unit = new Unit(soldier,unitSize);
             unit.setSprite(spriteName);
            
-             BufferedImage ic = Unit.getUnitPic(unit);
+            // BufferedImage ic = Unit.getUnitPic(unit);
             
 
 //...
-            ImageIcon icon = new ImageIcon();
-            icon.setImage(ic);
+         //   ImageIcon icon = new ImageIcon();
+         //   icon.setImage(ic);
            // JOptionPane.showMessageDialog(null, icon);
             return unit;
     } 

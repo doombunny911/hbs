@@ -56,19 +56,22 @@ public class GUI implements MouseListener
 
     static void placeUnitTester() 
     {
-        UnitLoader ul = new UnitLoader();
-        ArrayList units = ul.runLoader();
+       // UnitLoader ul = new UnitLoader();
+        //ArrayList units = ul.runLoader();
        
-        for(int i =0;i<units.size();i++)
-        {
-            System.out.println("add 1");
-        }
+//        for(int i =0;i<units.size();i++)
+//        {
+//            System.out.println("add 1");
+//        }
         
-        GUI.unitPlacerTest = new UnitPlacer(units); 
+        GUI.unitPlacerTest = new UnitPlacer(); 
+        ArrayList units = GUI.unitPlacerTest.getUnitList();
         GUI.unitPlacerTest.units=units;
+        
+        
         GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
         
-        GUI.unitPlacerTest.setUpButtons(units);
+        GUI.unitPlacerTest.setUpButtons();
         GUI.panel.add(GUI.unitPlacerTest);    
       
 

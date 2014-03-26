@@ -44,7 +44,7 @@ public class Unit extends Soldier
     int unitFacing = super.facing;
     UnitFormations currentFormation;
     String spriteName = "blackKnight.png"; 
-    
+    int playerNum;
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -59,7 +59,10 @@ public class Unit extends Soldier
          JOptionPane.showMessageDialog(null, icon);
      }
     
-    
+    public void setPlayerNum(int playerNum)
+    {
+        this.playerNum = playerNum;
+    }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
       //   System.out.println("unitIDGEN = " + Unit.unitIDGen);
@@ -124,7 +127,7 @@ public class Unit extends Soldier
         
         BufferedImage img = new BufferedImage(GUI.tileWidth, GUI.tileWidth, 4);
         try {
-             img = ImageIO.read(new File(unit.spriteName));
+             img = ImageIO.read(new File("Sprites"+File.separator+"UnitSprites"+File.separator+unit.spriteName));
         } catch (IOException ex) {
             Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -268,7 +271,19 @@ public class Unit extends Soldier
         }
         return false;
     }
-    
+    public void resetUnitPoints()
+    {
+        this.unitPoints = 2;
+    }
+    public int returnUnitPoints()
+    {
+        return unitPoints;
+    }
+    public void expendUnitPoint()
+    {
+        this.unitPoints = this.unitPoints -1;
+    }
+            
     /*
     Used to move the entire unit in a direction. Sets the unit to be facing this direction.
     @dir - Direction:
@@ -326,10 +341,7 @@ public class Unit extends Soldier
         return yPosition;
     }
     
-    public void resetUnitPoints() 
-    {
-        unitPoints=2;
-    }
+   
 
     //Saves the unit in the designated filename
     public void saveUnit(String fileName2) throws IOException {
