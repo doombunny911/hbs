@@ -344,7 +344,7 @@ public class GUI implements MouseListener
               //don't think this is necessary but I will look into it, I think i did this to help isolate a bug
 //               if(GUI.tileClicked!=null)
 //                   GUI.tileClicked=null;
-               
+//                   System.out.println("the value of move is " + moveC);
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
                      GUI.initializeCompass();
@@ -362,11 +362,10 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-               if(formationPanel==null)
-               {
+               
                    initFormPanel();
-               }
-               else
+               
+               
                {
                    if(!formationPanel.isVisible())
                    {

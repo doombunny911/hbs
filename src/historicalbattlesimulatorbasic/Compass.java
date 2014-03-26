@@ -259,7 +259,7 @@ public final class Compass extends JPanel
        }
        
     //which direction was unit moved in
-       
+       System.out.println("speed = " + GUI.unitSelected.unitSoldiers[0].speed);
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
       if(GUI.unitSelected.unitSoldiers[0].speed>0)
       {
@@ -321,7 +321,10 @@ public final class Compass extends JPanel
           GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
           //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
-            
+            if(GUI.unitSelected.currentFormation!=null)
+            {
+                 System.out.println("GUI unitSelected formation != null");
+            }
            
             GUI.unitDraws.remove(index); //removes the previous unit
             GUI.unitDraws.add(draw);//adds the new unit
