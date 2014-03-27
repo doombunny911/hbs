@@ -63,7 +63,7 @@ public final class UnitFormations
     }
     //the default formation for a unit
     //need to check to see if tile is occupied
-    public UnitFormations defaultFormation(Tile tile)
+    public UnitFormations defaultFormation()
     {
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSoldiers.length;
@@ -92,10 +92,10 @@ public final class UnitFormations
                       //adjusting index amount of tiles over
                       //so first will be at start tile and each subsuquent 
                       //soldier will be +1 tile to the "right"
-                      System.out.println(i);
+//                      System.out.println(i);
                         spriteLocations[this.index]= 
-                        GUI.tileGameMap[tile.xPosition/GUI.tileWidth+this.index]
-                                 [tile.yPosition/GUI.tileWidth]; 
+                        GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+this.index]
+                                 [thisTile.yPosition/GUI.tileWidth]; 
                         //put the soldier onto the tile
                         this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                         spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
@@ -110,7 +110,7 @@ public final class UnitFormations
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
-                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth+this.index];
+                    GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth][thisTile.yPosition/GUI.tileWidth+this.index];
                     this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                     spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
@@ -122,7 +122,7 @@ public final class UnitFormations
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
-                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth-this.index][tile.yPosition/GUI.tileWidth];
+                    GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth-this.index][thisTile.yPosition/GUI.tileWidth];
                     this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                     spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
@@ -134,7 +134,7 @@ public final class UnitFormations
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                     spriteLocations[this.index]= 
-                    GUI.tileGameMap[tile.xPosition/GUI.tileWidth][tile.yPosition/GUI.tileWidth-this.index];
+                    GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth][thisTile.yPosition/GUI.tileWidth-this.index];
                     this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                     spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
@@ -155,7 +155,7 @@ public final class UnitFormations
         int effectiveSoldiers=numberOfSoldiers/soldiersPerSprite;
         System.out.println("numberOfSoldiers = " + numberOfSoldiers );
        if(effectiveSoldiers<4)
-           this.defaultFormation(thisTile);
+           this.defaultFormation();
        else if(effectiveSoldiers>4&&effectiveSoldiers<35)
            depth=1;
        else

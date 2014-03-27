@@ -122,7 +122,7 @@ public final class UnitPlacer extends JPanel
                   else
                   {
                      check=true;
-                     System.out.println(u.nameOfUnit);
+//                     System.out.println(u.nameOfUnit);
                      button.setVisible(false);
                     
                      unitToBeLoaded=u;

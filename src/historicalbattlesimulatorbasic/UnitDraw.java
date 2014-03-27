@@ -28,7 +28,7 @@ public class UnitDraw
         {
             System.out.println("currentFormation is null");
             UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
-            form.defaultFormation(GUI.tileClicked);
+            form.defaultFormation();
             getUnit.currentFormation=form;
         }
         else
@@ -60,7 +60,7 @@ public class UnitDraw
         {
             
             UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
-            form.defaultFormation(GUI.tileClicked);
+            form.defaultFormation();
             getUnit.currentFormation=form;
         }
         else

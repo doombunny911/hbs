@@ -56,7 +56,7 @@ public class GUI implements MouseListener
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
     static UnitPlacer unitPlacerTest;
-     
+//    static boolean busy;
     
 //    static JPanel moveButtonPanel; //panel for moving options (sprint etc)
 
@@ -73,6 +73,7 @@ public class GUI implements MouseListener
     
      private static void initFormPanel() 
      {
+         
          formationPanel=new JPanel();
          JButton[] button = new JButton[3];
          formationPanel.setLayout(null);
@@ -87,16 +88,16 @@ public class GUI implements MouseListener
          formationPanel.add(button[0]);
          formationPanel.add(button[1]);
          formationPanel.add(button[2]);
-          GUI.repainter();
-         
+//         busy=true;
          button[0].addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) //line Formation
            {
-               GUI.unitSelected.currentFormation.defaultFormation(tileClicked);
+               GUI.unitSelected.currentFormation.defaultFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
-               GUI.repainter();
+//               busy=false;
+//               GUI.repainter();
           }
        });
        
@@ -107,7 +108,8 @@ public class GUI implements MouseListener
                GUI.unitSelected.currentFormation.setBoxFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
-               GUI.repainter();
+//               busy=false;
+//               GUI.repainter();
 //               GUI.unitSelected.currentFormation=new UnitFormations(GUI.unitSelected,GUI.tileClicked);
            }
        });
@@ -121,16 +123,13 @@ public class GUI implements MouseListener
                GUI.unitSelected.currentFormation.setWedgeFormation(tileClicked);
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
-               GUI.repainter();
+//               busy = false;
+//               GUI.repainter();
 
            }
        });
        
        panel.add(formationPanel);
-       
-       
-       
-       
        
      }
     
@@ -380,7 +379,7 @@ public class GUI implements MouseListener
                if(GUI.attackButtonPanel!=null&&attackButtonPanel.isVisible())
                    attackButtonPanel.setVisible(false);
                
-                   
+//               busy= true;  
                
                //set formation button, not done
           //
@@ -464,9 +463,15 @@ public class GUI implements MouseListener
     {
         double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
         double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
+       GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
+
+//        if(!busy)
+//        {
+            System.out.println("tileClicked is equal to something ");
+//        }
+//        else
         
-        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-        
+//        }
 //        if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
 //            loadUnit();
 //        
@@ -484,12 +489,11 @@ public class GUI implements MouseListener
            System.out.println("in UnitPlacer ");
        }
         
-        
         //if a tile has been clicked(should be always) and the tile clicked on
         //has a soldier in it and there is not already a unit selected
-        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null)
+        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null||formationPanel!=null&&formationPanel.isVisible())
         {
-           
+//           if(formationPanel!=null&&formationPanel.isVisible())
            //loop through loaded unitDraws until we find the one with the same unit
             //as the soldier's unit id we found when we clicked on it
            for(int i =0;i<unitDraws.size();i++)
@@ -497,7 +501,7 @@ public class GUI implements MouseListener
                
               if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
               {
-                  System.out.println("unitSelecteed is being called ");
+                  System.out.println("unitSelecteed is being initialized ");
                   
                   //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
                   GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
@@ -518,7 +522,8 @@ public class GUI implements MouseListener
             impendingAttack=false;
         }
         
-      GUI.repainter();
+        GUI.repainter();
+
     }
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
     public boolean thereIsAUnitReadyToBeLoaded() 
