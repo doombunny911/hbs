@@ -15,12 +15,14 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,18 +41,26 @@ public final class Openingmenuscreen extends JFrame
     JFrame gameFrame; //become obsolete after GUI is initialized
     JPanel buttonPanel;
     JPanel welcomePanel;
-    JButton b1 = new JButton( new AbstractAction("Run Simulation") {
-        @Override
+    JButton b1, b2 ,b3, b4, b5;
+   BufferedImageLoaders bil = new BufferedImageLoaders();
+    public void initButtonImages()
+    {
+        bil.loadMenuButtons();
+        ImageIcon run = bil.getIconRunSimulation();
+        b1 = new JButton(run) ;
+        b1.addActionListener(new ActionListener() {
         public void actionPerformed( ActionEvent e ) 
         {
             Game game = new Game();  
         }
     }); 
-    
-    JButton b2 = new JButton( new AbstractAction("Create Unit") { 
+    ImageIcon create = bil.getIconCreateUnit();
+        b2 = new JButton(create) ;
+        b2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
+           
             try {
                 UnitCreator.createUnit();
 //            UnitLoader loader = new UnitLoader();
@@ -58,10 +68,12 @@ public final class Openingmenuscreen extends JFrame
                 //go to file and load in all unitDraws into a unit array to later be drawn
             } catch (IOException ex) {
                 Logger.getLogger(Openingmenuscreen.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } 
         }
-    });
-    JButton b3 = new JButton( new AbstractAction("Create Map") { 
+    }); 
+        ImageIcon map = bil.getIconCreateMap();
+        b3 = new JButton(map);
+        b3.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
@@ -70,13 +82,18 @@ public final class Openingmenuscreen extends JFrame
          Map  gameMap = MapCreator.createMap();
         }
     });
-       JButton b4 = new JButton ( new AbstractAction("Create Scenario"){
+      ImageIcon scenario = bil.getIconCreateScenario();
+       b4 = new JButton (scenario);
+       b4.addActionListener(new ActionListener() {
+       
        @Override
        public void actionPerformed ( ActionEvent e )
        {
            Scenario scenario = ScenarioCreator.createScenario();
        }});
-       JButton b5 = new JButton( new AbstractAction("Load Game") { 
+       ImageIcon load = bil.getIconLoadGame();
+       b5 = new JButton(load);
+       b5.addActionListener(new ActionListener() { 
         @Override
         //This refers to when the loadGame button is clicked 
        public void actionPerformed( ActionEvent e ) 
@@ -97,7 +114,7 @@ public final class Openingmenuscreen extends JFrame
 
         }
     });
-
+    }
    public Openingmenuscreen()
    {       
        initFrame();
@@ -106,7 +123,7 @@ public final class Openingmenuscreen extends JFrame
        
       
        initTilePanel();
-
+    
       initButtonPanel();
 
        initWelcomePanel();
@@ -142,17 +159,28 @@ public final class Openingmenuscreen extends JFrame
 //                        getPreferredSize().getHeight());
 //       System.out.println(gameFrame.getSize());
     }
-
+    public static void setTransparent(JButton b)
+    {
+        b.setOpaque(false);
+        b.setContentAreaFilled(false);
+        b.setBorderPainted(false);
+        
+    }
     private void initButtonPanel() 
     {
-         BufferedImageLoaders bil = new BufferedImageLoaders();
-//         b1.setVisible(true);
-//         b2.setVisible(true);
-//         b3.setVisible(true);
-//         b4.setVisible(true);
-//         b5.setVisible(true);
-         
+         initButtonImages();
+         b1.setVisible(true);
+         setTransparent(b1);
+         b2.setVisible(true);
+         setTransparent(b2);
+         b3.setVisible(true);
+         setTransparent(b3);
+         b4.setVisible(true);
+         setTransparent(b4);
+         b5.setVisible(true);
+         setTransparent(b5);
         buttonPanel = new JPanel(new GridLayout(5,1));
+        buttonPanel.setOpaque(false);
         buttonPanel.add(b1);
         buttonPanel.add(b2);
         buttonPanel.add(b3);
@@ -164,12 +192,12 @@ public final class Openingmenuscreen extends JFrame
     private void initTilePanel()
     {
         tilePanel = new JPanel(new GridBagLayout());
-        BufferedImageLoaders bil = new BufferedImageLoaders();
+       // BufferedImageLoaders bil = new BufferedImageLoaders();
         bil.loadBackground();
         Image background = bil.getBackground();
         tilePanel = new IPanel(background);
         tilePanel.setBounds(0,0,gameFrame.getWidth(),200);
-     
+        
        
     }
    private void removePanels()
@@ -181,7 +209,6 @@ public final class Openingmenuscreen extends JFrame
 
     private void initWelcomePanel() 
     {
-       BufferedImageLoaders bil = new BufferedImageLoaders();
        bil.loadTopScreen();
        Image topImage = bil.getTopScreen();
        welcomePanel = new IPanel(topImage);

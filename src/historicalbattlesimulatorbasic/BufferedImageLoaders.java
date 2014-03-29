@@ -31,6 +31,11 @@ public class BufferedImageLoaders
     ArrayList<BufferedImage> buttons = new ArrayList();
     private BufferedImage background;
     private BufferedImage welcomePanelImage;
+    private BufferedImage runB;
+    private BufferedImage createMapB;
+    private BufferedImage createScenarioB;
+    private BufferedImage loadB;
+    private BufferedImage unitCreatorB;
     public void loadAllButtons()
     {
       try {
@@ -80,6 +85,86 @@ public class BufferedImageLoaders
      
     }
     
+      public void loadMenuButtons()
+    {
+      try {
+           runB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"runSimulation.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      
+      try {
+           createMapB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"MapCreator.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      try {
+           createScenarioB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"ScenarioCreator.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      try {
+           loadB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"LoadGame.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       try {
+           unitCreatorB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"UnitCreator.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      
+    }
+    public ImageIcon getIconRunSimulation()
+    {
+          ImageIcon runBIcon = new ImageIcon(runB);
+            Image img = runBIcon.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            runBIcon = new ImageIcon(newimg);
+            return runBIcon;
+    }
+    
+     public ImageIcon getIconCreateMap()
+    {
+          ImageIcon createMapIcon = new ImageIcon(createMapB);
+            Image img = createMapIcon.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            createMapIcon = new ImageIcon(newimg);
+            return createMapIcon;
+    }
+     public ImageIcon getIconCreateScenario()
+    {
+          ImageIcon createScenarioIcon = new ImageIcon(createScenarioB);
+            Image img = createScenarioIcon.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            createScenarioIcon = new ImageIcon(newimg);
+            return createScenarioIcon;
+    }
+     public ImageIcon getIconCreateUnit()
+    {
+          ImageIcon createUnitIcon = new ImageIcon(unitCreatorB);
+            Image img = createUnitIcon.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            createUnitIcon = new ImageIcon(newimg);
+            return createUnitIcon;
+    }
+      public ImageIcon getIconLoadGame()
+    {
+          ImageIcon loadGameIcon = new ImageIcon(loadB);
+            Image img = loadGameIcon.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            loadGameIcon = new ImageIcon(newimg);
+            return loadGameIcon;
+    }
+     
+     public ImageIcon getIconLoadGameMap()
+    {
+          ImageIcon createMapIcon = new ImageIcon(createMapB);
+            Image img = createMapIcon.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            createMapIcon = new ImageIcon(newimg);
+            return createMapIcon;
+    }
     public void loadScroll()
     {
          try {

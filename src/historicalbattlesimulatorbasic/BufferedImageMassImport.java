@@ -23,7 +23,7 @@ public class BufferedImageMassImport {
     // File representing the folder that you select using a FileChooser
     static final File dir = new File("Sprites"+File.separator+"Terrain");
     // array of supported extensions (use a List if you prefer)
-    static final String[] EXTENSIONS = new String[]{
+    static final String[] EXTENSIONS = new String[]{"jpg",
         "gif", "png", "bmp" // and other formats you need
     };
     // filter to identify images based on their extensions
@@ -37,7 +37,7 @@ public class BufferedImageMassImport {
                 }
             }
             return (false);
-        }
+        }   
     };
 
 public static ArrayList<BufferedImageName> loadAllImages(){
