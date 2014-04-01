@@ -22,9 +22,16 @@ public final class UnitFormations
     private Tile[] spriteLocations;
     private Tile[][] locations;
     private int index;
+    public  int whichFormation;
     private Tile thisTile;
     int value;
     BufferedImage img;
+    public static final int WEDGE = 2;
+    public static final int SQUARE = 1;
+    public static final int DEFAULT = 0;
+    
+    
+    
     public UnitFormations(Unit unit,Tile tile)
     {
         index=0;
@@ -35,7 +42,11 @@ public final class UnitFormations
 //        setBoxFormation(tile);
 //        defaultFormation(tile);
     }
-    
+    public void updateTileAndUnit(Unit unit, Tile tile)
+    {
+        thisTile = tile;
+        unit = unit;
+    }
     public static void setPikeWall(Unit unit)
     {
         
@@ -65,6 +76,7 @@ public final class UnitFormations
     //need to check to see if tile is occupied
     public UnitFormations defaultFormation()
     {
+        whichFormation =0;
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSoldiers.length;
        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
@@ -72,7 +84,7 @@ public final class UnitFormations
       System.out.println("In default formation");
       
      //this class has a lot of work to allow it to be used for more complex formations 
-       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
+//       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
        
        //
        System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
@@ -88,7 +100,7 @@ public final class UnitFormations
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
                        //store the location of the sprites for later painting
-                    //this works by getting base tile of unit start location and 
+                      //this works by getting base tile of unit start location and 
                       //adjusting index amount of tiles over
                       //so first will be at start tile and each subsuquent 
                       //soldier will be +1 tile to the "right"
@@ -143,12 +155,14 @@ public final class UnitFormations
                }
            }
        value=0;
+       GUI.repainter();
        return this;
     
     }
     
     public UnitFormations setBoxFormation()
     {
+        whichFormation=1;
         int soldiersPerSprite =  1;//each sprite represents this many soldiers
         int depth=0;
         int numberOfSoldiers= unit.unitSoldiers.length;
@@ -324,8 +338,9 @@ public final class UnitFormations
       }
     }
 
-    void setWedgeFormation(Tile tileClicked) 
+    void setWedgeFormation() 
     {
+        whichFormation=2;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

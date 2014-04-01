@@ -33,7 +33,7 @@ public class UnitDraw
         }
         else
         {
-            System.out.println("currentFormatoin is not null");
+            System.out.println("currentFormatoin is not null in UnitDraw giving only unit in paremter");
             //this will later call which formation it is and draw according to that pattern
             getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
         }
@@ -55,18 +55,39 @@ public class UnitDraw
     {
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        
+        UnitFormations form = getUnit.currentFormation;
         if(getUnit.currentFormation==null)
         {
-            
-            UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
+            System.out.println("in unitDraw in a part that shouldn't happen, need fixing");
+//            UnitFormations form = new UnitFormations(getUnit,tile);
             form.defaultFormation();
             getUnit.currentFormation=form;
         }
         else
         {
+            //find the correct formation and recalculate that
+                if(form.whichFormation==UnitFormations.DEFAULT)
+                {
+                    form.updateTileAndUnit(getUnit, tile);
+                    System.out.println("the default formation is = to DEFAULT in unitDraw");
+                    form.defaultFormation();
+                }
+                else if(form.whichFormation==UnitFormations.SQUARE)
+                {
+                    form.updateTileAndUnit(getUnit, tile);
+                    form.setBoxFormation();
+                }
+                else if(form.whichFormation==UnitFormations.WEDGE)
+                {
+                    form.updateTileAndUnit(getUnit, tile);
+                    form.setWedgeFormation();
+                }
+            
+            
+//            System.out.println("im here, help");
+//            getUnit.currentFo
             //this will later call which formation it is and draw according to that pattern
-            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
+//            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
         }
         
         this.tileLocationOfUnit=tile;

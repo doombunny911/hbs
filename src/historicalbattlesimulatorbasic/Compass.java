@@ -323,11 +323,11 @@ public final class Compass extends JPanel
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             if(GUI.unitSelected.currentFormation!=null)
             {
-                 System.out.println("GUI unitSelected formation != null");
+                 System.out.println("GUI unitSelected formation != null in compass");
             }
-           
+           GUI.unitDraws.add(draw);//adds the new unit
+
             GUI.unitDraws.remove(index); //removes the previous unit
-            GUI.unitDraws.add(draw);//adds the new unit
             moveDirection=0; //no direction
             GUI.repainter();
             GUI.unitSelected.speed--; //removes one move counter from the unit 

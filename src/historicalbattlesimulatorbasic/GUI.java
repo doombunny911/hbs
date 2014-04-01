@@ -120,7 +120,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) //Wedge Formation
            {
                
-               GUI.unitSelected.currentFormation.setWedgeFormation(tileClicked);
+               GUI.unitSelected.currentFormation.setWedgeFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
 //               busy = false;
