@@ -109,7 +109,7 @@ public final class Openingmenuscreen extends JFrame
         {
 //needs a lot of fiddling
             
-         Map  gameMap = MapCreator.createMap();
+         Map gameMap = MapCreator.createMap();
         }
     });
       ImageIcon scenario = bil.getIconCreateScenario();

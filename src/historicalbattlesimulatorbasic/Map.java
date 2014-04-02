@@ -33,7 +33,7 @@ public class Map
    
     public static void main(String[] args) throws IOException
     {
-        Map m = MapCreator.createMap();
+      //  Map m = MapCreator.createMap();
        // m.saveMap("file");
         
     }
