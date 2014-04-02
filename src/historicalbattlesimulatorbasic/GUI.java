@@ -614,10 +614,13 @@ public class GUI implements MouseListener
        button[5]=new JButton(cancelB);
        button[5].setName("cancel");
        
-       
-       GUI.endTurn=new JButton("End Turn");
+       ImageIcon end = bil.getIconEndTurn();
+       GUI.endTurn=new JButton(end);
        endTurn.setVisible(true);
-       endTurn.setBounds(GUI.panel.getWidth()/2,0,100,35);
+       endTurn.setOpaque(false);
+       endTurn.setBorderPainted(false);
+
+       endTurn.setBounds(GUI.panel.getWidth()/2,0,100,45);
        GUI.panel.add(endTurn);
        return button;
    }
