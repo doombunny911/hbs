@@ -407,6 +407,21 @@ public class GUI implements MouseListener
                  GUI.unitSelected=null;
                  GUI.tileClicked=null;
                  GUI.toggleButtons(buttonPanel, false);
+                 
+                 if(Game.playersForDemo.get(0).allUnits.size()==0||Game.playersForDemo.get(1).isWinner)
+                 {
+                      Game.playersForDemo.get(1).isWinner=true;
+                      JOptionPane.showMessageDialog(null, "congratulations " + Game.playersForDemo.get(1).playerName + " you are victorious");
+                 }
+                 else if(Game.playersForDemo.get(1).allUnits.size()==0||Game.playersForDemo.get(0).isWinner)
+                 {
+                     Game.playersForDemo.get(0).isWinner=true;
+                     JOptionPane.showMessageDialog(null, "congratulations " + Game.playersForDemo.get(0).playerName + " you are victorious");
+                     
+                 }
+                    
+                 
+                 
                  if(Game.playersForDemo.get(0).myTurn)
                  {
                      Game.playersForDemo.get(0).myTurn=false;
