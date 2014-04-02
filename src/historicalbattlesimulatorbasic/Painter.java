@@ -56,7 +56,8 @@ public class Painter extends JPanel
    @Override
    public void paintComponent(Graphics g)
    {
-       
+//       if(GUI.tileGameMap!=null) 
+//             System.out.println(GUI.tileGameMap[0][0].getOccupier());
       Graphics2D g2=(Graphics2D)g;
        
       //tileMap

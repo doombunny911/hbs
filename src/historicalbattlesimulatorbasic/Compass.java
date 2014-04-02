@@ -319,6 +319,15 @@ public final class Compass extends JPanel
        }
          //this set the unit onto the tile
           GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
+          
+          //remove the soldiers from the previous tiles
+          for(int i=0;i<GUI.numberOfTilesHeight;i++)
+              for(int j=0;j<GUI.numberOfTilesWidth;j++)
+              {
+                  if(GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
+                      GUI.tileGameMap[j][i].occupyingSoldier=null;
+              }
+          
           //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             if(GUI.unitSelected.currentFormation!=null)
@@ -326,7 +335,6 @@ public final class Compass extends JPanel
                  System.out.println("GUI unitSelected formation != null in compass");
             }
            GUI.unitDraws.add(draw);//adds the new unit
-
             GUI.unitDraws.remove(index); //removes the previous unit
             moveDirection=0; //no direction
             GUI.repainter();

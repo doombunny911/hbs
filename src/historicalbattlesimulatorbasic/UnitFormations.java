@@ -45,17 +45,13 @@ public final class UnitFormations
     public void updateTileAndUnit(Unit unit, Tile tile)
     {
         thisTile = tile;
-        unit = unit;
+        this.unit = unit;
     }
     public static void setPikeWall(Unit unit)
     {
         
     }
     
-    public static void setSquare(Unit unit)
-    {
-        
-    }
     public UnitFormations locateLocationOfSprites(Unit unit)
     {
         //locate all the location of soldiers
@@ -112,7 +108,6 @@ public final class UnitFormations
                         this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                         spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
                         this.index++;
-//                        System.out.println("Tile added  at ["+(tile.xPosition/GUI.tileWidth+this.index)+"] ["+(tile.yPosition/GUI.tileWidth)+"]");
                   }
                     
                     break;
@@ -126,7 +121,7 @@ public final class UnitFormations
                     this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                     spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;
-                    }
+                  }
                     break;
                }
                case 3: //south
@@ -135,6 +130,7 @@ public final class UnitFormations
                   {
                     spriteLocations[this.index]= 
                     GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth-this.index][thisTile.yPosition/GUI.tileWidth];
+                    
                     this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                     spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                     this.index++;

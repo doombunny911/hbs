@@ -4,15 +4,12 @@
  */
 package historicalbattlesimulatorbasic;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -583,11 +580,7 @@ public class GUI implements MouseListener
         //the number of components in the panel
         int bNum =panel.getComponentCount();
         for(int i=0;i<bNum;i++)
-        {
-//            System.out.println(panel.getComponent(i).getName());
-//            if("cancel".equals(panel.getComponent(i).getName()))
-//                panel.getComponent(i).setVisible(true);
-//            else              
+        {        
                 panel.getComponent(i).setVisible(b);
              
         }
