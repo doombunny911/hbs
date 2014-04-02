@@ -6,7 +6,6 @@
 
 package historicalbattlesimulatorbasic;
 
-import static historicalbattlesimulatorbasic.BufferedImageMassImport.dir;
 import java.io.File;
 import javax.swing.JFileChooser;
 

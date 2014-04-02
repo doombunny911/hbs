@@ -99,8 +99,6 @@ public class GUI implements MouseListener
                GUI.unitSelected.currentFormation.defaultFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
-//               busy=false;
-//               GUI.repainter();
           }
        });
        
@@ -123,8 +121,6 @@ public class GUI implements MouseListener
                GUI.unitSelected.currentFormation.setWedgeFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
-//               busy = false;
-//               GUI.repainter();
 
            }
        });
@@ -133,18 +129,6 @@ public class GUI implements MouseListener
        
      }
     
-    
-//    public static void placeUnitTester() 
-//    {
-//      
-//        UnitPlacer unitP = new UnitPlacer("holder");
-//        GUI.unitPlacerTest = unitP;
-//        ArrayList units = GUI.unitPlacerTest.getUnitList();
-//        GUI.unitPlacerTest.unitArrayList=units;    
-//        GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
-//        GUI.unitPlacerTest.setUpButtons();
-//        GUI.panel.add(GUI.unitPlacerTest);    
-//    } 
     //method that returns  the value of tileClicked
     public static Tile getTileClicked() 
     {
@@ -241,7 +225,6 @@ public class GUI implements MouseListener
    //buttonLoader, used for button action listening
    public static void buttonLoader()
    {
-       //set the layout to null so we can place it exactly where we want using pixels
        GUI.panel.setLayout(null);
        GUI.buttonPanel.setLayout(null);
 
@@ -267,8 +250,6 @@ public class GUI implements MouseListener
                }
                if(!GUI.attackButtonPanel.isVisible())
                    GUI.toggleButtons(GUI.attackButtonPanel,true);
-               
-               
            }
 
            
@@ -291,8 +272,7 @@ public class GUI implements MouseListener
                   //elseIf(there is a specialAbility and the button has been intialized
                         GUI.panel.getComponentAt(GUI.buttonPanel.getComponent(2).getLocation()).setVisible(true);
                    GUI.unitSelected.brace();
-               }
-                   
+               } 
            }
        });
        
@@ -314,10 +294,7 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-              //don't think this is necessary but I will look into it, I think i did this to help isolate a bug
-//               if(GUI.tileClicked!=null)
-//                   GUI.tileClicked=null;
-//                   System.out.println("the value of move is " + moveC);
+              //don't think this is necessary but I will look into it, I think i did this to help isolate a bug  
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
                      GUI.initializeCompass();
@@ -335,26 +312,20 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-               
                    initFormPanel();
-               
-               
                {
                    if(!formationPanel.isVisible())
                    {
                        formationPanel.setVisible(true);
                    }
                }
-               
                GUI.toggleButtons(buttonPanel, false);
                
                if(moveC!=null&&moveC.isVisible())
                    moveC.setVisible(false);
                if(GUI.attackButtonPanel!=null&&attackButtonPanel.isVisible())
                    attackButtonPanel.setVisible(false);
-           }
-
-          
+           } 
        });
        button[5].addActionListener(new ActionListener() 
        {
@@ -381,7 +352,6 @@ public class GUI implements MouseListener
                    //should not be possible
                    System.out.println("logic is broken in cancel selection");
                }
-               //make buttons disapear/click through or delete and remake
            }
        });
        endTurn.addActionListener(new ActionListener()
@@ -425,7 +395,6 @@ public class GUI implements MouseListener
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
                  }
              }
-        
        });
    }
 

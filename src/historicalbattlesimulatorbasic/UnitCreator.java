@@ -9,8 +9,6 @@ import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
