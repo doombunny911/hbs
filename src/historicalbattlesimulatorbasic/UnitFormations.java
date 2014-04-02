@@ -220,7 +220,6 @@ public final class UnitFormations
                          //ask user to try again
                          System.out.println("don't draw out of bounds ");
                      }
-//                     System.out.println("the bad number is now at " + (indexI*i+j));
                      else if(i<depth||i>=indexI-depth)
                      {
 //                         System.out.println("on the top of the box or the bottom of the box, draw the sprites");

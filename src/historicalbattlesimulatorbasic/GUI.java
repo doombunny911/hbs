@@ -54,6 +54,7 @@ public class GUI implements MouseListener
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
     static UnitPlacer unitPlacerTest;
+    static Unit enemySelected;
 //    static boolean busy;
     
 //    static JPanel moveButtonPanel; //panel for moving options (sprint etc)
@@ -351,11 +352,6 @@ public class GUI implements MouseListener
                    moveC.setVisible(false);
                if(GUI.attackButtonPanel!=null&&attackButtonPanel.isVisible())
                    attackButtonPanel.setVisible(false);
-               
-               
-               //set formation button, not done
-          //
-              //System.out.println("this button does not do anything atm");
            }
 
           
@@ -506,6 +502,24 @@ public class GUI implements MouseListener
                         break;
                     }
                   }
+                  for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
+                  {
+                      if(Game.playersForDemo.get(1).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())
+                      {
+                          if(GUI.enemySelected!=null&&GUI.enemySelected==Game.playersForDemo.get(1).allUnits.get(i))
+                          {
+                              GUI.statPanel.setVisible(false);
+                              enemySelected=null;
+                          }
+                          else
+                          {
+                               GUI.enemySelected = Game.playersForDemo.get(1).allUnits.get(i);
+                               GUI.printStats(Game.playersForDemo.get(1).allUnits.get(i));
+
+                          }
+                      }
+                          //print the stats
+                  }
               }
                else if(Game.playersForDemo.get(1).myTurn)
                {
@@ -517,6 +531,24 @@ public class GUI implements MouseListener
                             GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
                             toggleButtons(GUI.buttonPanel,true);
                         } 
+                   }
+                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
+                   {
+                      if(Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())
+                      {
+                          if(GUI.enemySelected!=null&&GUI.enemySelected==Game.playersForDemo.get(1).allUnits.get(i))
+                          {
+                              GUI.statPanel=null;
+                              enemySelected=null;
+                          }
+                          else
+                          {
+                               GUI.enemySelected = Game.playersForDemo.get(0).allUnits.get(0);
+                               GUI.printStats(Game.playersForDemo.get(0).allUnits.get(0));
+                          } 
+                      }
+                          
+                          //print the stats
                    }
                }
            }
