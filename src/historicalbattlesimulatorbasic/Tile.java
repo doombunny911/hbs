@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JPanel;
 /**
@@ -31,7 +32,8 @@ public class Tile extends Rectangle
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
-    BufferedImage image;
+    BufferedImageName image;
+
 
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
@@ -226,15 +228,37 @@ public class Tile extends Rectangle
         tileWest = west;
        
     }
- public void setImage(BufferedImage img)
+ public void setImage(BufferedImageName img)
  {
      this.image = img;
  }
+ 
    public BufferedImage getImage()
    {
-       return image;
+       return image.getImage();
    }
-    
+   
+   public static String[] saveTile(Tile t)
+   {
+       //0 is xPosition
+       //1 is yPosition
+       //2 is z Position
+       //3 is terrain Effect
+       //4 is level of cover
+       //5 is xLength
+       //6 is yHeight
+       //7 is image
+    String saver[] = new String[8]; 
+    saver[0] = Integer.toString(t.xPosition);
+    saver[1] = Integer.toString(t.yPosition);
+    saver[2] = Integer.toString(t.zPosition);
+    saver[3] = Integer.toString(t.terrainEffect);
+    saver[4] = Integer.toString(t.levelOfCover);
+    saver[5] = Integer.toString(t.xLength);
+    saver[6] = Integer.toString(t.yHeight);
+    saver[7] = t.image.getName();
+    return saver;
+   }
     public Unit checkUnitWithinBounds(Tile tile)
     {
 //        //if a unit's x+width and y+height intersects with the tiles position
@@ -248,7 +272,7 @@ public class Tile extends Rectangle
 
     public void paintTile(Graphics2D g)
     {
-        g.drawImage(image, this.xPosition,
+        g.drawImage(image.getImage(), this.xPosition,
                     this.yPosition, GUI.tileWidth,
                     GUI.tileWidth,null);
       

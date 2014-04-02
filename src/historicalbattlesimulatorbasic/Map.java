@@ -27,9 +27,9 @@ public class Map
    private double squareHeight;
    private double squareWidth;
    private String name;
-   BufferedImage dirt = BufferedImageLoaders.dirtLoader();
-   BufferedImage rock = BufferedImageLoaders.rockLoader();
-   BufferedImage grass =  BufferedImageLoaders.grassLoader();
+   BufferedImageName dirt = BufferedImageLoaders.dirtLoader();
+   BufferedImageName rock = BufferedImageLoaders.rockLoader();
+   BufferedImageName grass =  BufferedImageLoaders.grassLoader();
    
     public static void main(String[] args) throws IOException
     {
@@ -149,7 +149,7 @@ public class Map
     
     public void setTileTerrain(Tile t, BufferedImage img)
     {
-        t.image = img;
+        t.image.setImage(img);
     }
     public void saveMap(String fileName2) throws IOException
     {
@@ -163,8 +163,19 @@ if(!parent.exists() && !parent.mkdirs()){
 } 
         try {                      
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-            writer.println("---"); //seperator 
-            writer.println(this.squareWidth);
+            //seperator 
+             for(int i=0;i<squareHeight;i++)
+        {
+                 for(int j=0;j<squareWidth;j++)
+                    {
+                   String saver[] = Tile.saveTile(GUI.tileGameMap[j][i]);
+                        writer.println("---");
+                            for(int l=0; l<saver.length;l++)
+                            {
+                                writer.print(saver[l]);
+                            }
+                     }
+        } 
             System.out.println("Saved");
             writer.close();
              } 

@@ -25,8 +25,8 @@ public class BufferedImageLoaders
 {
     
     private ArrayList<BufferedImageName> imageList = new ArrayList<>();
-    BufferedImage grass = grassLoader();
-    BufferedImage tree, dirt, rock;
+    BufferedImageName grass = grassLoader();
+    BufferedImageName tree, dirt, rock;
     BufferedImage attackB, defendB, cancelB, setFormB, moveB, checkB, scroll;
     ArrayList<BufferedImage> buttons = new ArrayList();
     private BufferedImage background;
@@ -281,11 +281,11 @@ public class BufferedImageLoaders
         }
         return result;
     }
-    public BufferedImage getGrass()
+    public BufferedImageName getGrass()
     {
         return grass;
     }
-       public static BufferedImage grassLoader() 
+       public static BufferedImageName grassLoader() 
     {
        BufferedImage grass1=null;
        try {
@@ -293,9 +293,10 @@ public class BufferedImageLoaders
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
-       return grass1;
+       BufferedImageName grass = new BufferedImageName(grass1, "greenGround.png");
+       return grass;
     }
-      public static BufferedImage rockLoader() 
+      public static BufferedImageName rockLoader() 
     {
        BufferedImage rock1=null;
        try {
@@ -303,19 +304,21 @@ public class BufferedImageLoaders
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
-       return rock1;
+       BufferedImageName rock = new BufferedImageName(rock1, "rocksGround.png");
+       return rock;
     }
       
     
-      public static BufferedImage dirtLoader() 
+      public static BufferedImageName dirtLoader() 
     {
        BufferedImage brown1=null;
        try {
            brown1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"brownGround.png"));
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return brown1;
+       } 
+       BufferedImageName dirt = new BufferedImageName(brown1, "brownGround.png");
+       return dirt;
     }
       public static BufferedImage blackKnightLoader() 
     {

@@ -15,14 +15,17 @@ import java.awt.image.BufferedImage;
  */
 public class BufferedImageName 
 {
-    public final BufferedImage img;
-    public final String name;
+    public BufferedImage img;
+    public  String name;
     public BufferedImageName(BufferedImage img, String name)
     {
         this.img = img;
         this.name = name;
     }
-    
+    public void setImage(BufferedImage img)
+    {
+        this.img = img;
+    }
     public BufferedImage getImage()
     {
         return img;
