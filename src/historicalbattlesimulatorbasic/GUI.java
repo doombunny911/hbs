@@ -479,9 +479,22 @@ public class GUI implements MouseListener
 //            loadUnit(player1AllUnits,GUI.player1UnitNum);
 //        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
 //            loadUnit(player2AllUnits,GUI.player2UnitNum);
-            
+       if(Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null) 
+       {
+           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+           Game.playersForDemo.get(0).up.check=false;
+           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+           System.out.println("in mouseClicked going to unitplacer ");
+       }
+       else if(Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null)
+       {
+           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+           Game.playersForDemo.get(1).up.check=false;
+           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+           System.out.println("in mouseClicked going to unitplacer ");
+       }
          //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
-       if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.check)
+       else if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.check)
        {
            loadUnit(unitPlacerTest.unitToBeLoaded);
            unitPlacerTest.check=false;

@@ -66,7 +66,7 @@ public final class Openingmenuscreen extends JFrame
             
             
             
-              removePanels();
+            removePanels();
             Map map = new Map(10);
             p1.up.setUpButtons();
             p2.up.setUpButtons();

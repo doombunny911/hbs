@@ -19,7 +19,7 @@ public class Game
 {
 
   
-    Frame frame = JOptionPane.getRootFrame();    
+//    Frame frame = JOptionPane.getRootFrame();    
 
 //    Player players[];
     Map gameMap;
@@ -121,8 +121,8 @@ public static ArrayList playerCreator(int numPlay)
       return hasWinner;
            }
 
-    private void setUp(Player p1) 
-    {
-       JOptionPane.showMessageDialog(null, p1.playerName+" place your units!");
-    }
+//    private void setUp(Player p1) 
+//    {
+//       JOptionPane.showMessageDialog(null, p1.playerName+" place your units!");
+//    }
 }
