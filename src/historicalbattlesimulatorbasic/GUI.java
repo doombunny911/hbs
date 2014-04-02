@@ -539,7 +539,7 @@ public class GUI implements MouseListener
                }
 
            }
-        else if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace>0||Game.playersForDemo.get(1).up.numOfUnitsToPlace>0)  
+        else if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace>0)  
         {
             //user is trying to select a unit before all the units are loaded
             JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
