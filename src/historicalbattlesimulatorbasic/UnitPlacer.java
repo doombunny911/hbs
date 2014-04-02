@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public final class UnitPlacer extends JPanel
 { 
     ArrayList<JButton> unitImages = new ArrayList();
-    int numOfUnitsToPlace = 0;
+    int numOfUnitsToPlace;
 //    ArrayList<Unit> units = new ArrayList<>();
     Unit unitToBeLoaded;
     ArrayList<Unit> unitArrayList;
@@ -56,6 +56,7 @@ public final class UnitPlacer extends JPanel
        UnitLoader ul = new UnitLoader();
        this.unitArrayList = ul.runLoader();
        this.numOfUnitsToPlace = this.unitArrayList.size();
+       System.out.println("the number in unitPlacer = " + numOfUnitsToPlace);
        this.setOpaque(false);
         
    }
@@ -103,7 +104,6 @@ public final class UnitPlacer extends JPanel
             
             button.setOpaque(false);
             index++;
-            numOfUnitsToPlace--;
             add(button);
                 button.addActionListener(new ActionListener() 
                 {
@@ -119,7 +119,8 @@ public final class UnitPlacer extends JPanel
                      check=true;
                      System.out.println(u.nameOfUnit);
                      button.setVisible(false);
-                    
+                    numOfUnitsToPlace--;
+                    System.out.println("new num in unitPlacer = "+numOfUnitsToPlace );
                      unitToBeLoaded=u;
                      
                      System.out.println("in unitPlacer, the speed of this unit is " + u.speed);

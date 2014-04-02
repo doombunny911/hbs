@@ -22,7 +22,7 @@ String nameOfArmy; //The name of the army
 int unitLimit, unitsRemaining;
 boolean isWinner = false;
 ArrayList <Unit> allUnits; //all of a players units
-ArrayList <UnitDraw> playersUnitDraws;
+//ArrayList <UnitDraw> playersUnitDraws;
 UnitLoader playerUnits = new UnitLoader();
    
 public static void main(String[] args)

@@ -495,7 +495,7 @@ public class GUI implements MouseListener
         
         //if a tile has been clicked(should be always) and the tile clicked on
         //has a soldier in it and there is not already a unit selected
-        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null||formationPanel!=null&&formationPanel.isVisible())
+        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||formationPanel!=null&&formationPanel.isVisible())
         {
 //           if(formationPanel!=null&&formationPanel.isVisible())
            //loop through loaded unitDraws until we find the one with the same unit

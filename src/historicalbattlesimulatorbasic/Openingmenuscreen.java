@@ -47,27 +47,19 @@ public final class Openingmenuscreen extends JFrame
         {
             
             Game game = new Game(); 
-            
-            Scanner in = new Scanner(System.in);
+            removePanels();
             System.out.println("what is your name player one ?");
              String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
            JOptionPane.showMessageDialog(null, name   +" choose your army:");
             Player p1 = new Player(name);
             System.out.println("what is your name player two ?");
             name = JOptionPane.showInputDialog(null, " Enter your name player 2");
-            JOptionPane.showMessageDialog(null,name +" Player 2 choose your army:");
+            JOptionPane.showMessageDialog(null,name +"  choose your army:");
             Player p2 = new Player(name);
-
+            p1.myTurn=true;
             Game.playersForDemo.add(p1);
             Game.playersForDemo.add(p2);
-//            UnitLoader unitLoader1 = new UnitLoader();
-//p1.allUnits = ul1.runLoader();
 
-//             unitLoader1.runLoader();
-            
-            
-            
-            removePanels();
             Map map = new Map(10);
             p1.up.setUpButtons();
             p2.up.setUpButtons();
@@ -75,7 +67,7 @@ public final class Openingmenuscreen extends JFrame
             p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
             p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
             GUI.panel.add(p1.up);
-            GUI.panel.add(p2.up);
+            GUI.panel.add(p2.up);           
             game.gameMap=map;
             GUI.buttonLoader();
 //            
