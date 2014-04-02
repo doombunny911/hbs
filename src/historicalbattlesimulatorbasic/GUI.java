@@ -31,7 +31,7 @@ import javax.swing.SwingConstants;
 //will be used for mouse listening too
 public class GUI implements MouseListener
 {
-    JLabel bgL = new JLabel();
+//    JLabel bgL = new JLabel();
     static double numberOfTilesWidth; //the number of tiles that make up the width
     static double numberOfTilesHeight;//the number of tiles that make up the height
     static JFrame gameFrame; //the gameframe, holds the panels/buttons
@@ -113,9 +113,6 @@ public class GUI implements MouseListener
                GUI.unitSelected.currentFormation.setBoxFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
-//               busy=false;
-//               GUI.repainter();
-//               GUI.unitSelected.currentFormation=new UnitFormations(GUI.unitSelected,GUI.tileClicked);
            }
        });
        
@@ -174,12 +171,6 @@ public class GUI implements MouseListener
         sAbility.setLocation(GUI.buttonPanel.getComponent(2).getX(),GUI.gameFrame.getHeight()-buttonPanel.getHeight());
         sAbility.setVisible(true);
         GUI.panel.add(sAbility);
-//        final JButton cancel = new JButton("Cancel Selection");
-//        cancel.setBounds(GUI.buttonPanel.getComponent(5).getBounds());
-//        cancel.setLocation(GUI.buttonPanel.getComponent(2).getX(),GUI.gameFrame.getHeight()-buttonPanel.getHeight());
-//
-//        cancel.setVisible(true);
-//        GUI.panel.add(cancel);
         
         sAbility.addActionListener(new ActionListener() {
            @Override
@@ -371,7 +362,6 @@ public class GUI implements MouseListener
                if(GUI.attackButtonPanel!=null&&attackButtonPanel.isVisible())
                    attackButtonPanel.setVisible(false);
                
-//               busy= true;  
                
                //set formation button, not done
           //
@@ -476,40 +466,7 @@ public class GUI implements MouseListener
 //        }
 //        else
         
-//        }
-//        if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
-//            loadUnit();
-//        
-//        if(playerOneLoadUnits()) 
-//            loadUnit(player1AllUnits,GUI.player1UnitNum);
-//        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
-//            loadUnit(player2AllUnits,GUI.player2UnitNum);
-       if(Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null) 
-       {
-           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-           Game.playersForDemo.get(0).up.check=false;
-           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-           System.out.println("in mouseClicked going to unitplacer ");
-       }
-       else if(Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null)
-       {
-           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-           Game.playersForDemo.get(1).up.check=false;
-           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
-           System.out.println("in mouseClicked going to unitplacer ");
-       }
-         //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
-       else if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.check)
-       {
-           loadUnit(unitPlacerTest.unitToBeLoaded);
-           unitPlacerTest.check=false;
-           unitPlacerTest.unitToBeLoaded=null;
-           System.out.println("in UnitPlacer ");
-       }
-        
-        //if a tile has been clicked(should be always) and the tile clicked on
-        //has a soldier in it and there is not already a unit selected
-        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||formationPanel!=null&&formationPanel.isVisible())
+        if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible()))
         {
 //           if(formationPanel!=null&&formationPanel.isVisible())
            //loop through loaded unitDraws until we find the one with the same unit
@@ -553,6 +510,48 @@ public class GUI implements MouseListener
                }
 
            }
+        else if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace>0||Game.playersForDemo.get(1).up.numOfUnitsToPlace>0)  
+        {
+            //user is trying to select a unit before all the units are loaded
+            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
+        }    
+            
+            
+            
+//        }
+//        if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
+//            loadUnit();
+//        
+//        if(playerOneLoadUnits()) 
+//            loadUnit(player1AllUnits,GUI.player1UnitNum);
+//        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
+//            loadUnit(player2AllUnits,GUI.player2UnitNum);
+       if(Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null) 
+       {
+           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+           Game.playersForDemo.get(0).up.check=false;
+           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+           System.out.println("in mouseClicked going to unitplacer ");
+       }
+       else if(Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null)
+       {
+           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+           Game.playersForDemo.get(1).up.check=false;
+           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+           System.out.println("in mouseClicked going to unitplacer ");
+       }
+         //these other methods are based off the one above, last night last second attempt to load player 1 unitDraws and player 2 unitDraws
+       else if(GUI.unitPlacerTest!=null&&GUI.tileClicked!=null &&GUI.unitPlacerTest.check)
+       {
+           loadUnit(unitPlacerTest.unitToBeLoaded);
+           unitPlacerTest.check=false;
+           unitPlacerTest.unitToBeLoaded=null;
+           System.out.println("in UnitPlacer ");
+       }
+        
+        //if a tile has been clicked(should be always) and the tile clicked on
+        //has a soldier in it and there is not already a unit selected
+        
              //loads the buttons, stay loaded until cancel Selection selected
         
         //used for attacking only, if attack button is selected, The unitSelected
