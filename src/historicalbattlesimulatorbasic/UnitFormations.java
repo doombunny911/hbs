@@ -95,12 +95,15 @@ public final class UnitFormations
                {
                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
                   {
-                       //store the location of the sprites for later painting
-                      //this works by getting base tile of unit start location and 
-                      //adjusting index amount of tiles over
-                      //so first will be at start tile and each subsuquent 
-                      //soldier will be +1 tile to the "right"
-//                      System.out.println(i);
+                       
+                      if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+                      {
+                          //make the button revisible and undraw the sprites already drawn, currently not being done
+                          System.out.println("I am out of bounds");
+                      }
+                      else
+                      {
+                           //soldier will be +1 tile to the "right"
                         spriteLocations[this.index]= 
                         GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+this.index]
                                  [thisTile.yPosition/GUI.tileWidth]; 
@@ -108,6 +111,8 @@ public final class UnitFormations
                         this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                         spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]); 
                         this.index++;
+                      }
+                     
                   }
                     
                     break;
@@ -210,9 +215,13 @@ public final class UnitFormations
              {
                  for(int j=0;j<indexI;j++)
                  {
-                     
+                     if(thisTile.xPosition/GUI.tileWidth+j+thisTile.yPosition/GUI.tileWidth+i==GUI.numberOfTilesWidth||thisTile.xPosition/GUI.tileWidth+j+thisTile.yPosition/GUI.tileWidth+i==GUI.numberOfTilesHeight)
+                     {
+                         //ask user to try again
+                         System.out.println("don't draw out of bounds ");
+                     }
 //                     System.out.println("the bad number is now at " + (indexI*i+j));
-                     if(i<depth||i>=indexI-depth)
+                     else if(i<depth||i>=indexI-depth)
                      {
 //                         System.out.println("on the top of the box or the bottom of the box, draw the sprites");
                          locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];

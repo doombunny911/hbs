@@ -334,7 +334,7 @@ public final class Compass extends JPanel
             {
                  System.out.println("GUI unitSelected formation != null in compass");
             }
-           GUI.unitDraws.add(draw);//adds the new unit
+            GUI.unitDraws.add(draw);//adds the new unit
             GUI.unitDraws.remove(index); //removes the previous unit
             moveDirection=0; //no direction
             GUI.repainter();

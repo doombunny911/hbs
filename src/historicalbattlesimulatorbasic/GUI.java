@@ -133,24 +133,17 @@ public class GUI implements MouseListener
      }
     
     
-    public static void placeUnitTester() 
-    {
-      
-        UnitPlacer unitP = new UnitPlacer("holder");
-        GUI.unitPlacerTest = unitP;
-        ArrayList units = GUI.unitPlacerTest.getUnitList();
-        GUI.unitPlacerTest.unitArrayList=units;
-        
-        
-        GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
-        
-        GUI.unitPlacerTest.setUpButtons();
-        GUI.panel.add(GUI.unitPlacerTest);    
-      
-
-    } 
-    
-    
+//    public static void placeUnitTester() 
+//    {
+//      
+//        UnitPlacer unitP = new UnitPlacer("holder");
+//        GUI.unitPlacerTest = unitP;
+//        ArrayList units = GUI.unitPlacerTest.getUnitList();
+//        GUI.unitPlacerTest.unitArrayList=units;    
+//        GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
+//        GUI.unitPlacerTest.setUpButtons();
+//        GUI.panel.add(GUI.unitPlacerTest);    
+//    } 
     //method that returns  the value of tileClicked
     public static Tile getTileClicked() 
     {
@@ -471,21 +464,6 @@ public class GUI implements MouseListener
         double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
         double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-
-//        if(!busy)
-//        {
-            System.out.println("tileClicked is equal to something ");
-//        }
-//        else
-        
-//        }
-//        if(thereIsAUnitReadyToBeLoaded())//tileClicked!=null (impossible) and unitNum>0
-//            loadUnit();
-//        
-//        if(playerOneLoadUnits()) 
-//            loadUnit(player1AllUnits,GUI.player1UnitNum);
-//        else if(playerTwoLoadUnits()) //if player 1 is done loading their units, load player two
-//            loadUnit(player2AllUnits,GUI.player2UnitNum);
        if(Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null) 
        {
            loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
@@ -512,13 +490,7 @@ public class GUI implements MouseListener
         //has a soldier in it and there is not already a unit selected
         if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible()))
         {
-//           if(formationPanel!=null&&formationPanel.isVisible())
-           //loop through loaded unitDraws until we find the one with the same unit
-            //as the soldier's unit id we found when we clicked on it
-//           for(int i =0;i<unitDraws.size();i++)
-//           {
-               
-//              if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
+//             if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
                if(Game.playersForDemo.get(0).myTurn)   
               {
                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
@@ -534,9 +506,6 @@ public class GUI implements MouseListener
                         break;
                     }
                   }
-                    
-                  
-
               }
                else if(Game.playersForDemo.get(1).myTurn)
                {
@@ -549,22 +518,18 @@ public class GUI implements MouseListener
                             toggleButtons(GUI.buttonPanel,true);
                         } 
                    }
-                    
-                 
                }
-
            }
-        else if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace>0)  
+        else if(GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0))  
         {
             //user is trying to select a unit before all the units are loaded
             JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
         }
-             //loads the buttons, stay loaded until cancel Selection selected
         
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
        // they want to attack.  Currently no range check to see if they are
-       //able to freach them
+       //able to reach them
         if(GUI.attackUnit!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied)
         {
             GUI.attackUnit.attack(GUI.unitSelected);
@@ -603,26 +568,26 @@ public class GUI implements MouseListener
     }
 
     //method I rushed through last night, based of loadUnit(no parameters)
-    private void loadUnit(ArrayList<Unit> player1AllUnits,int num) 
-    {
-        Unit unit=player1AllUnits.get(num-1);
-        unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        GUI.unitDraws.add(new UnitDraw(unit));
-        GUI.tileClicked=null;
-        num--;
-        GUI.panel.repaint();
-    }
+//    private void loadUnit(ArrayList<Unit> player1AllUnits,int num) 
+//    {
+//        Unit unit=player1AllUnits.get(num-1);
+//        unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+//        GUI.unitDraws.add(new UnitDraw(unit));
+//        GUI.tileClicked=null;
+//        num--;
+//        GUI.panel.repaint();
+//    }
 
     //determines if i can load player 2 unitDraws onto game and into arrayList
-    private boolean playerTwoLoadUnits() 
-    {
-         return GUI.tileClicked!=null&&player2UnitNum!=0;
-    }
-    
-    public boolean playerOneLoadUnits()
-    {
-        return GUI.tileClicked!=null&&player1UnitNum!=0;
-    }
+//    private boolean playerTwoLoadUnits() 
+//    {
+//         return GUI.tileClicked!=null&&player2UnitNum!=0;
+//    }
+//    
+//    public boolean playerOneLoadUnits()
+//    {
+//        return GUI.tileClicked!=null&&player1UnitNum!=0;
+//    }
     
       public static JButton[] initializeButtons(JButton[] button)
    {
