@@ -23,7 +23,7 @@ public final class UnitPlacer extends JPanel
 { 
     ArrayList<JButton> unitImages = new ArrayList();
     int numOfUnitsToPlace = 0;
-    ArrayList<Unit> units = new ArrayList<>();
+//    ArrayList<Unit> units = new ArrayList<>();
     Unit unitToBeLoaded;
     ArrayList<Unit> unitArrayList;
     int index =0;
@@ -73,71 +73,8 @@ public final class UnitPlacer extends JPanel
    {
        return this.player;
    }
-//    public void setUpButtons(ArrayList<Unit> unitArrayList)
-//    {
-//        
-//         final JButton title = new JButton(this.player+" 's Units");
-//          add(title);
-//         title.addActionListener(new ActionListener() 
-//                {
-//                    @Override
-//                public void actionPerformed(ActionEvent e)
-//                {
-//                      title.setVisible(false);
-//                      //nothing
-//                  
-//                }
-//                });
-////       final Unit u = unitArrayList.get(index);
-//         add(title);
-//          for(final Unit u: unitArrayList)
-//           {      
-////               System.out.println("the id of the unit in the unitPlacer "
-////                        + u.getUnitID() + " "  + u.unitID);
-//
-//           //  public UnitFormations unitFormer = new UnitFormations(u);
-//            ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
-//            Image img = unitImage.getImage();
-//            Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
-//            ImageIcon unitImage2 = new ImageIcon(newimg);
-//            final JButton button = new JButton(u.nameOfUnit,unitImage2) ;
-////            unitImages.add(button);
-//            
-//            
-//            button.setOpaque(false);
-//            index++;
-//            numOfUnitsToPlace--;
-//            add(button);
-//                button.addActionListener(new ActionListener() 
-//                {
-//                    @Override
-//                public void actionPerformed(ActionEvent e)
-//                {
-//                  if(check)
-//                  {
-//                      //nothing
-//                  }
-//                  else
-//                  {
-//                     check=true;
-////                     System.out.println(u.nameOfUnit);
-//                     button.setVisible(false);
-//                    
-//                     unitToBeLoaded=u;
-//                     
-//                     System.out.println("in unitPlacer, the speed of this unit is " + u.speed);
-//                  }
-//                    
-//                    
-//                        
-//                    
-//                }});
-//            button.setBorderPainted(false);
-//         }
-//   
-//    }
-  
-    public void setUpButtons()
+
+   public void setUpButtons()
     {
         
          final JButton title = new JButton(this.player+" 's Units");
@@ -156,10 +93,6 @@ public final class UnitPlacer extends JPanel
          add(title);
           for(final Unit u: this.unitArrayList)
            {      
-//               System.out.println("the id of the unit in the unitPlacer "
-//                        + u.getUnitID() + " "  + u.unitID);
-
-           //  public UnitFormations unitFormer = new UnitFormations(u);
             ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
             Image img = unitImage.getImage();
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 

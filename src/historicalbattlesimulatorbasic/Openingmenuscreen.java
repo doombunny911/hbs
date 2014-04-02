@@ -51,11 +51,11 @@ public final class Openingmenuscreen extends JFrame
             Scanner in = new Scanner(System.in);
             System.out.println("what is your name player one ?");
              String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
-           JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
+           JOptionPane.showMessageDialog(null, name   +" choose your army:");
             Player p1 = new Player(name);
             System.out.println("what is your name player two ?");
-            name = JOptionPane.showInputDialog(null, "Enter your name player 2");
-            JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
+            name = JOptionPane.showInputDialog(null, " Enter your name player 2");
+            JOptionPane.showMessageDialog(null,name +" Player 2 choose your army:");
             Player p2 = new Player(name);
 
             Game.playersForDemo.add(p1);

@@ -144,7 +144,7 @@ public class GUI implements MouseListener
         UnitPlacer unitP = new UnitPlacer("holder");
         GUI.unitPlacerTest = unitP;
         ArrayList units = GUI.unitPlacerTest.getUnitList();
-        GUI.unitPlacerTest.units=units;
+        GUI.unitPlacerTest.unitArrayList=units;
         
         
         GUI.unitPlacerTest.setBounds(GUI.gameFrame.getWidth()/2-200,4*GUI.gameFrame.getHeight()/5, 300, 300);
@@ -193,19 +193,6 @@ public class GUI implements MouseListener
 
           }
        });
-//        cancel.addActionListener(new ActionListener() {
-//           @Override
-//           public void actionPerformed(ActionEvent ae) 
-//           {
-//               System.out.println("cancel current selection");
-//               
-//               //reload the buttons that are loaded when a unit is clicked
-//               sAbility.setVisible(false);
-//               cancel.setVisible(false);
-//               toggleButtons(GUI.buttonPanel,true);
-//
-//          }
-//       });
         
     } 
     //initializes attackButton
@@ -516,17 +503,26 @@ public class GUI implements MouseListener
            for(int i =0;i<unitDraws.size();i++)
            {
                
-              if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
+//              if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
+               if(Game.playersForDemo.get(0).myTurn&&Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())   
               {
                   System.out.println("unitSelecteed is being initialized ");
                   
                   //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-                  GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
+//                  GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
+                  GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                 toggleButtons(GUI.buttonPanel,true);
+
               }
+               else if(Game.playersForDemo.get(1).myTurn&&Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())
+               {
+                   GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                  toggleButtons(GUI.buttonPanel,true);
+
+               }
 
            }
              //loads the buttons, stay loaded until cancel Selection selected
-             toggleButtons(GUI.buttonPanel,true);
         }
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 

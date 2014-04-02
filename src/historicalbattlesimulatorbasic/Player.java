@@ -33,8 +33,8 @@ public static void main(String[] args)
 
 public Player(String playerName)
 {
-    up=new UnitPlacer(playerName);   
-//    allUnits = playerUnits.runLoader();
+    up=new UnitPlacer(playerName);  
+    allUnits=up.unitArrayList;
     this.playerName = playerName;
 }
 

@@ -6,7 +6,6 @@
 
 package historicalbattlesimulatorbasic;
 
-import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
