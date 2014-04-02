@@ -6,11 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
-import java.awt.Frame;
-import java.awt.HeadlessException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class Player{
 
-   UnitPlacer up = new UnitPlacer(); 
-Frame frame = JOptionPane.getRootFrame();
+   UnitPlacer up;
+   boolean myTurn;
+   
 String playerName; //the players actual name
 String nameOfArmy; //The name of the army
-int unitLimit, unitsRemaning;
+int unitLimit, unitsRemaining;
 boolean isWinner = false;
 ArrayList <Unit> allUnits; //all of a players units
-    UnitLoader playerUnits = new UnitLoader();
+ArrayList <UnitDraw> playersUnitDraws;
+UnitLoader playerUnits = new UnitLoader();
    
 public static void main(String[] args)
 {
@@ -35,14 +33,15 @@ public static void main(String[] args)
 
 public Player(String playerName)
 {
-    allUnits = playerUnits.runLoader();
+    up=new UnitPlacer(playerName);   
+//    allUnits = playerUnits.runLoader();
     this.playerName = playerName;
 }
 
 public void generatePlayerUnitPlacer()
 {
     
-    this.up = new UnitPlacer();
+    this.up = new UnitPlacer(playerName);
     up.setPlayer(playerName);
     up.setUpButtons();
   

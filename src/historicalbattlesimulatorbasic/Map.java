@@ -52,7 +52,7 @@ public class Map
         GUI.panel.setLayout(null);
         GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
         
-        GUI.placeUnitTester();
+//        GUI.placeUnitTester();
         
       
 

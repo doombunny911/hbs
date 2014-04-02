@@ -137,8 +137,8 @@ public class GUI implements MouseListener
     public static void placeUnitTester() 
     {
       
-        
-        GUI.unitPlacerTest = new UnitPlacer(); 
+        UnitPlacer unitP = new UnitPlacer("holder");
+        GUI.unitPlacerTest = unitP;
         ArrayList units = GUI.unitPlacerTest.getUnitList();
         GUI.unitPlacerTest.units=units;
         

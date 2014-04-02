@@ -65,21 +65,17 @@ public class UnitDraw
         }
         else
         {
-            //find the correct formation and recalculate that
+            form.updateTileAndUnit(getUnit, tile); //updates the current unit and tile
                 if(form.whichFormation==UnitFormations.DEFAULT)
                 {
-                    form.updateTileAndUnit(getUnit, tile);
-                    System.out.println("the default formation is = to DEFAULT in unitDraw");
                     form.defaultFormation();
                 }
                 else if(form.whichFormation==UnitFormations.SQUARE)
                 {
-                    form.updateTileAndUnit(getUnit, tile);
                     form.setBoxFormation();
                 }
                 else if(form.whichFormation==UnitFormations.WEDGE)
                 {
-                    form.updateTileAndUnit(getUnit, tile);
                     form.setWedgeFormation();
                 }
             

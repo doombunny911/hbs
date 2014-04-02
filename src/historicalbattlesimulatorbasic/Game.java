@@ -7,9 +7,7 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Frame;
-import java.awt.HeadlessException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -23,7 +21,7 @@ public class Game
   
     Frame frame = JOptionPane.getRootFrame();    
 
-    Player players[];
+//    Player players[];
     Map gameMap;
     boolean hasWinner=false;
     Player winner=null;
@@ -39,28 +37,32 @@ public static void main(String[] args)
 {
    
 Game game = new Game();
-//Player p1 = new Player();
+Scanner in = new Scanner(System.in);
+System.out.println("what is your name player one ?");
+String name = in.next();
+Player p1 = new Player(name);
+System.out.println("what is your name player two ?");
+name = in.next();
+Player p2 = new Player(name);
 
-//Player p2 = new Player();
-
-//playersForDemo.add(p1);
-//playersForDemo.add(p2);
+playersForDemo.add(p1);
+playersForDemo.add(p2);
 JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
-UnitLoader ul1 = new UnitLoader();
-
-UnitLoader ul2 = new UnitLoader();
-GUI.player1UnitNum=ul1.getAllUnits().size();
-GUI.player2UnitNum=ul2.getAllUnits().size();
-GUI.player1AllUnits=ul1.getAllUnits();
-GUI.player2AllUnits=ul2.getAllUnits();
+UnitLoader unitLoader1 = new UnitLoader();
 //p1.allUnits = ul1.runLoader();
 
+unitLoader1.runLoader();
 
 
 //p2.allUnits = ul2.runLoader();
 
 //game.setUp(p1);
 JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
+UnitLoader unitLoader2 = new UnitLoader();
+GUI.player2UnitNum=unitLoader2.getAllUnits().size();
+GUI.player2AllUnits=unitLoader2.getAllUnits();
+
+
 ////game.setUp(p2);
 
 //p2.allUnits = ul1.runLoader();

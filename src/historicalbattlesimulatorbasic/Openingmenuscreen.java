@@ -6,9 +6,6 @@ package historicalbattlesimulatorbasic;
 
 
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -16,17 +13,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -51,7 +45,43 @@ public final class Openingmenuscreen extends JFrame
         b1.addActionListener(new ActionListener() {
         public void actionPerformed( ActionEvent e ) 
         {
-            Game game = new Game();  
+            
+            Game game = new Game(); 
+            
+            Scanner in = new Scanner(System.in);
+            System.out.println("what is your name player one ?");
+            String name = in.next();
+            Player p1 = new Player(name);
+            System.out.println("what is your name player two ?");
+            name = in.next();
+            Player p2 = new Player(name);
+
+            Game.playersForDemo.add(p1);
+            Game.playersForDemo.add(p2);
+            JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
+//            UnitLoader unitLoader1 = new UnitLoader();
+//p1.allUnits = ul1.runLoader();
+
+//             unitLoader1.runLoader();
+            
+            
+            
+              removePanels();
+            Map map = new Map(10);
+            p1.up.setUpButtons();
+            p2.up.setUpButtons();
+            
+            p1.up.setBounds(200, 200, 200, 200);
+            p2.up.setBounds(0,0,200,100);
+            GUI.panel.add(p1.up);
+            GUI.panel.add(p2.up);
+            game.gameMap=map;
+//            GUI.panel.setLayout(null);
+//            Map gameMap = new Map(10); //the width of the tiles
+
+//            GUI.gameMap=gameMap;
+            GUI.buttonLoader();
+//            
         }
     }); 
     ImageIcon create = bil.getIconCreateUnit();
