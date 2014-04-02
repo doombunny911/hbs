@@ -27,7 +27,7 @@ public class BufferedImageLoaders
     private ArrayList<BufferedImageName> imageList = new ArrayList<>();
     BufferedImageName grass = grassLoader();
     BufferedImageName tree, dirt, rock;
-    BufferedImage attackB, defendB, cancelB, setFormB, moveB, checkB, scroll;
+    BufferedImage attackB, defendB, cancelB, setFormB, moveB, checkB, scroll, squareB, wedgeB, lineB;
     ArrayList<BufferedImage> buttons = new ArrayList();
     private BufferedImage background;
     private BufferedImage welcomePanelImage;
@@ -38,6 +38,21 @@ public class BufferedImageLoaders
     private BufferedImage unitCreatorB;
     public void loadAllButtons()
     {
+      try {
+           squareB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"squareFormation.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      try {
+           wedgeB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"wedgeFormation.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      try {
+           lineB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"lineFormation.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
       try {
            attackB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Attack.png"));
        } catch (IOException ex) {
@@ -84,6 +99,7 @@ public class BufferedImageLoaders
        }
      
     }
+    
     
       public void loadMenuButtons()
     {
@@ -224,6 +240,30 @@ public class BufferedImageLoaders
             checkStatsImage = new ImageIcon(newimg);
             return checkStatsImage;
     }
+    public ImageIcon getSquareFormIcon()
+    {
+        ImageIcon squareFormation = new ImageIcon(squareB);
+            Image img = squareFormation.getImage();
+            Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
+            squareFormation = new ImageIcon(newimg);
+            return squareFormation;
+    }
+     public ImageIcon getWedgeFormIcon()
+    {
+        ImageIcon wedgeForm = new ImageIcon(wedgeB);
+            Image img = wedgeForm.getImage();
+            Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
+            wedgeForm = new ImageIcon(newimg);
+            return wedgeForm;
+    }
+      public ImageIcon getLineFormIcon()
+    {
+        ImageIcon lineFormation = new ImageIcon(lineB);
+            Image img = lineFormation.getImage();
+            Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
+            lineFormation = new ImageIcon(newimg);
+            return lineFormation;
+    }
     public Image getScroll()
     {
       ImageIcon scrollBG = new ImageIcon(scroll);
@@ -351,5 +391,5 @@ public class BufferedImageLoaders
         }
         return img;
        }
-       
+        
 }

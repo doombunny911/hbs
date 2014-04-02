@@ -73,14 +73,18 @@ public class GUI implements MouseListener
     
      private static void initFormPanel() 
      {
-         
+         BufferedImageLoaders bil = new BufferedImageLoaders();
+         bil.loadAllButtons();
          formationPanel=new JPanel();
          JButton[] button = new JButton[3];
          formationPanel.setLayout(null);
          formationPanel.setBounds(GUI.buttonPanel.getBounds());
-         button[0]=  new JButton("Line Formation");
-         button[1] = new JButton("Box Formation");
-         button[2] = new JButton("Wedge Formation");
+         ImageIcon lineB = bil.getLineFormIcon();
+         ImageIcon boxB = bil.getSquareFormIcon();
+         ImageIcon wedgeB = bil.getWedgeFormIcon();
+         button[0]=  new JButton(lineB);
+         button[1] = new JButton(boxB);
+         button[2] = new JButton(wedgeB);
          Component c = GUI.buttonPanel.getComponent(0);
          button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
          button[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());

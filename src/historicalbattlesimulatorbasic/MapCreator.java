@@ -21,7 +21,7 @@ public class MapCreator
       
    }
          
-    public void createMap()
+    public static Map createMap()
     {
         String prompt[] = new String[1];
      //   prompt[0]="Enter the name of your map:";
@@ -32,7 +32,8 @@ public class MapCreator
         mapParticulars[i]=JOptionPane.showInputDialog ( prompt[i] );
         }
         Map map = new Map(Integer.parseInt(mapParticulars[0]));
-        world = map;
+       
+        return map;
         //Place Different Items on the map
     }
     
