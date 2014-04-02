@@ -17,7 +17,6 @@ public class UnitDraw
     int xDraw,yDraw; //x and y position
     Unit thisUnit; //the unit being drawn
     Tile tileLocationOfUnit; //tile location of where the unit is at
-    
     //this constructor should be used when first loading in the units
     public UnitDraw(Unit getUnit)
     {
@@ -78,18 +77,8 @@ public class UnitDraw
                 {
                     form.setWedgeFormation();
                 }
-            
-            
-//            System.out.println("im here, help");
-//            getUnit.currentFo
-            //this will later call which formation it is and draw according to that pattern
-//            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
         }
-        
         this.tileLocationOfUnit=tile;
         this.thisUnit=getUnit;
     }
-    //just add where they need to be painted and this method will do it
-
-
 }

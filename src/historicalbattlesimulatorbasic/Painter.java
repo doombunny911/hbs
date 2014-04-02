@@ -6,9 +6,6 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**

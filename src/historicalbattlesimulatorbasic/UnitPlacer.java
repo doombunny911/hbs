@@ -125,10 +125,6 @@ public final class UnitPlacer extends JPanel
                      
                      System.out.println("in unitPlacer, the speed of this unit is " + u.speed);
                   }
-                    
-                    
-                        
-                    
                 }});
             button.setBorderPainted(false);
          }
