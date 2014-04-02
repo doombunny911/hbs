@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -418,7 +419,20 @@ public class GUI implements MouseListener
                  GUI.unitSelected.endTurn();
                  GUI.unitSelected=null;
                  GUI.tileClicked=null;
-                 
+                 GUI.toggleButtons(buttonPanel, false);
+                 if(Game.playersForDemo.get(0).myTurn)
+                 {
+                     Game.playersForDemo.get(0).myTurn=false;
+                     Game.playersForDemo.get(1).myTurn=true;
+                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
+
+                 }
+                 else if(Game.playersForDemo.get(1).myTurn)
+                 {
+                     Game.playersForDemo.get(1).myTurn=false;
+                     Game.playersForDemo.get(0).myTurn=true;
+                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
+                 }
              }
         
        });
@@ -500,30 +514,47 @@ public class GUI implements MouseListener
 //           if(formationPanel!=null&&formationPanel.isVisible())
            //loop through loaded unitDraws until we find the one with the same unit
             //as the soldier's unit id we found when we clicked on it
-           for(int i =0;i<unitDraws.size();i++)
-           {
+//           for(int i =0;i<unitDraws.size();i++)
+//           {
                
 //              if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
-               if(Game.playersForDemo.get(0).myTurn&&Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())   
+               if(Game.playersForDemo.get(0).myTurn)   
               {
-                  System.out.println("unitSelecteed is being initialized ");
+                  for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
+                  {
+                      if(Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())
+                    {
+                        System.out.println("unitSelected is being initialized ");
                   
-                  //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-//                  GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
-                  GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
-                 toggleButtons(GUI.buttonPanel,true);
+                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
+//                      GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
+                        GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                        toggleButtons(GUI.buttonPanel,true);
+                        break;
+                    }
+                  }
+                    
+                  
 
               }
-               else if(Game.playersForDemo.get(1).myTurn&&Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())
+               else if(Game.playersForDemo.get(1).myTurn)
                {
-                   GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
-                  toggleButtons(GUI.buttonPanel,true);
-
+                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
+                   {
+                      if(Game.playersForDemo.get(1).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID())
+                        {
+                            System.out.println("unitSelected is being initialized ");
+                            GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
+                            toggleButtons(GUI.buttonPanel,true);
+                        } 
+                   }
+                    
+                 
                }
 
            }
              //loads the buttons, stay loaded until cancel Selection selected
-        }
+        
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
        // they want to attack.  Currently no range check to see if they are
