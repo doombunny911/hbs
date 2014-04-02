@@ -361,26 +361,25 @@ public class GUI implements MouseListener
              {
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
-                 GUI.unitSelected.resetUnitPoints();
-                 GUI.unitSelected.endTurn();
-                 GUI.unitSelected=null;
+                 if(GUI.unitSelected!=null)
+                 {
+                      GUI.unitSelected.resetUnitPoints();
+                      GUI.unitSelected.endTurn();
+                      GUI.unitSelected=null;
+                 }
                  GUI.tileClicked=null;
                  GUI.toggleButtons(buttonPanel, false);
                  
-                 if(Game.playersForDemo.get(0).allUnits.size()==0||Game.playersForDemo.get(1).isWinner)
+                 if(Game.playersForDemo.get(0).allUnits.isEmpty()||Game.playersForDemo.get(1).isWinner)
                  {
                       Game.playersForDemo.get(1).isWinner=true;
                       JOptionPane.showMessageDialog(null, "congratulations " + Game.playersForDemo.get(1).playerName + " you are victorious");
                  }
-                 else if(Game.playersForDemo.get(1).allUnits.size()==0||Game.playersForDemo.get(0).isWinner)
+                 else if(Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner)
                  {
                      Game.playersForDemo.get(0).isWinner=true;
                      JOptionPane.showMessageDialog(null, "congratulations " + Game.playersForDemo.get(0).playerName + " you are victorious");
-                     
                  }
-                    
-                 
-                 
                  if(Game.playersForDemo.get(0).myTurn)
                  {
                      Game.playersForDemo.get(0).myTurn=false;
@@ -392,7 +391,7 @@ public class GUI implements MouseListener
                  {
                      Game.playersForDemo.get(1).myTurn=false;
                      Game.playersForDemo.get(0).myTurn=true;
-                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
+                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(1).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
                  }
              }
        });
