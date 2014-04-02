@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 public class UnitLoader 
 {
     
-    static ArrayList<Unit> allUnits = new ArrayList();
+     ArrayList<Unit> allUnits = new ArrayList();
      //Tester
       public static void main(String[] args) throws IOException 
     {

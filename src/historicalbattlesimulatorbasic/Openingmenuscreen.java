@@ -50,15 +50,16 @@ public final class Openingmenuscreen extends JFrame
             
             Scanner in = new Scanner(System.in);
             System.out.println("what is your name player one ?");
-            String name = in.next();
+             String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
+           JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
             Player p1 = new Player(name);
             System.out.println("what is your name player two ?");
-            name = in.next();
+            name = JOptionPane.showInputDialog(null, "Enter your name player 2");
+            JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
             Player p2 = new Player(name);
 
             Game.playersForDemo.add(p1);
             Game.playersForDemo.add(p2);
-            JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
 //            UnitLoader unitLoader1 = new UnitLoader();
 //p1.allUnits = ul1.runLoader();
 
@@ -71,15 +72,11 @@ public final class Openingmenuscreen extends JFrame
             p1.up.setUpButtons();
             p2.up.setUpButtons();
             
-            p1.up.setBounds(200, 200, 200, 200);
-            p2.up.setBounds(0,0,200,100);
+            p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+            p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
             GUI.panel.add(p1.up);
             GUI.panel.add(p2.up);
             game.gameMap=map;
-//            GUI.panel.setLayout(null);
-//            Map gameMap = new Map(10); //the width of the tiles
-
-//            GUI.gameMap=gameMap;
             GUI.buttonLoader();
 //            
         }
@@ -109,7 +106,7 @@ public final class Openingmenuscreen extends JFrame
         {
 //needs a lot of fiddling
             
-         Map  gameMap = MapCreator.createMap();
+//         Map  gameMap = MapCreator.createMap();
         }
     });
       ImageIcon scenario = bil.getIconCreateScenario();
