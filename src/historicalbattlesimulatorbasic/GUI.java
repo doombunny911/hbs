@@ -63,9 +63,9 @@ public class GUI implements MouseListener
        GUI.statPanel.setVisible(false);
        
    }
-    
+   
    private static void initFormPanel() 
-     {
+   {
          BufferedImageLoaders bil = new BufferedImageLoaders();
          bil.loadAllButtons();
          formationPanel=new JPanel();
@@ -122,8 +122,7 @@ public class GUI implements MouseListener
        panel.add(formationPanel);
        
      }
-    
-    //method that returns  the value of tileClicked
+   //method that returns  the value of tileClicked
    public static Tile getTileClicked() 
     {
          if(GUI.tileClicked!=null)
@@ -131,7 +130,6 @@ public class GUI implements MouseListener
         else
             return null;
     }
-
     //initializes defenseButton
    private static void initDefenseButton()
     {
@@ -214,8 +212,7 @@ public class GUI implements MouseListener
            }
        }); 
      }
-    
-    
+   
    //buttonLoader, used for button action listening
    public static void buttonLoader()
    {
@@ -390,13 +387,6 @@ public class GUI implements MouseListener
           
        });
    }
-   protected static boolean componentNotNullAndIsVisible(Component c) {
-        return c!=null&&c.isVisible();
-    }
-   protected static boolean componentNotNullAndIsNotVisible(Component c) {
-        return c!=null&&c.isVisible()==false;
-    }
-
    //this is called when the original unitDraws need to be loaded the first time, 
    //will probably become useless in final project but still pivotal now
    public void loadUnit(Unit unit) 
@@ -415,9 +405,6 @@ public class GUI implements MouseListener
         //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
 //        GUI.repainter(); //repaints
     }
-   
-    
-    
     //mouseClicked holds a lot of logic due to the event driven processes of our project
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
@@ -790,7 +777,12 @@ public class GUI implements MouseListener
     protected static boolean player1HasNoUnits() {
                return Game.playersForDemo.get(0).allUnits.isEmpty()||Game.playersForDemo.get(1).isWinner;
            }
-    
+    protected static boolean componentNotNullAndIsVisible(Component c) {
+        return c!=null&&c.isVisible();
+    }
+    protected static boolean componentNotNullAndIsNotVisible(Component c) {
+        return c!=null&&c.isVisible()==false;
+    }
 
      //paints the area around the unit that it can move, very useful.  broken atm
     public static void paintRange(Unit unitSelected,Graphics g) 
