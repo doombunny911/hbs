@@ -38,7 +38,6 @@ public class GUI implements MouseListener
     static JPanel panel; //the panel holding all the tiles
     static ArrayList<UnitDraw> unitDraws=new ArrayList<>();//the unitDraws gotten via unitLoader
     static Tile tileClicked;//the tile that was clicked last
-    static UnitLoader loader; //a unitLoader, used to get all the unitDraws loaded for unitDraws ArrayList
     static int unitNum; //the number of unitDraws in the unitLoader, decreased to parse through the arrayList
     static JButton endTurn; //the button that ends a players turn
     static JPanel buttonPanel = new JPanel(); //the panel that holds the buttons on bottom of screen
@@ -55,14 +54,9 @@ public class GUI implements MouseListener
     static int player2UnitNum; //same as above
     static UnitPlacer unitPlacerTest;
     static Unit enemySelected;
-//    static boolean busy;
-    
-//    static JPanel moveButtonPanel; //panel for moving options (sprint etc)
-
-   
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
-    public GUI(JPanel panel)
+   public GUI(JPanel panel)
    {
        GUI.panel=panel;
        GUI.panel.addMouseListener(this);
@@ -70,14 +64,14 @@ public class GUI implements MouseListener
        
    }
     
-     private static void initFormPanel() 
+   private static void initFormPanel() 
      {
          BufferedImageLoaders bil = new BufferedImageLoaders();
          bil.loadAllButtons();
          formationPanel=new JPanel();
-         JButton[] button = new JButton[3];
          formationPanel.setLayout(null);
          formationPanel.setBounds(GUI.buttonPanel.getBounds());
+         JButton[] button = new JButton[3];
          ImageIcon lineB = bil.getLineFormIcon();
          ImageIcon boxB = bil.getSquareFormIcon();
          ImageIcon wedgeB = bil.getWedgeFormIcon();
@@ -130,7 +124,7 @@ public class GUI implements MouseListener
      }
     
     //method that returns  the value of tileClicked
-    public static Tile getTileClicked() 
+   public static Tile getTileClicked() 
     {
          if(GUI.tileClicked!=null)
             return GUI.tileClicked;
@@ -139,7 +133,7 @@ public class GUI implements MouseListener
     }
 
     //initializes defenseButton
-    private static void initDefenseButton()
+   private static void initDefenseButton()
     {
         final JButton sAbility = new JButton("Special Ability");
         sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
@@ -163,7 +157,7 @@ public class GUI implements MouseListener
         
     } 
     //initializes attackButton
-    private static void initAttackButton() 
+   private static void initAttackButton() 
     {
          attackButtonPanel=new JPanel();
          attackButtonPanel.setLayout(null);
@@ -396,21 +390,16 @@ public class GUI implements MouseListener
           
        });
    }
-
-
-    protected static boolean componentNotNullAndIsVisible(Component c) {
+   protected static boolean componentNotNullAndIsVisible(Component c) {
         return c!=null&&c.isVisible();
     }
-
-
-
-    protected static boolean componentNotNullAndIsNotVisible(Component c) {
+   protected static boolean componentNotNullAndIsNotVisible(Component c) {
         return c!=null&&c.isVisible()==false;
     }
- 
+
    //this is called when the original unitDraws need to be loaded the first time, 
    //will probably become useless in final project but still pivotal now
-    public void loadUnit(Unit unit) 
+   public void loadUnit(Unit unit) 
     {
         System.out.println("in loadUnit");
         //gets the arrayList stored in unitLoader
@@ -433,7 +422,7 @@ public class GUI implements MouseListener
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
     @Override
-    public void mouseClicked(MouseEvent mac) 
+   public void mouseClicked(MouseEvent mac) 
     {
         double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
         double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
@@ -545,7 +534,7 @@ public class GUI implements MouseListener
     }
 
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
-    public boolean thereIsAUnitReadyToBeLoaded() 
+   public boolean thereIsAUnitReadyToBeLoaded() 
     {
         System.out.println("in there is a unit ready to be loaded");
         return GUI.tileClicked!=null&&unitNum!=0;
@@ -556,7 +545,7 @@ public class GUI implements MouseListener
     //gets buttons by checking to see components on the panel
     
     //toggles visiblity of buttons and panel that holds the buttons
-    private static void toggleButtons(JPanel panel,boolean b) 
+   private static void toggleButtons(JPanel panel,boolean b) 
     {
         //sets the buttonPanel to b, 
         panel.setVisible(b);
@@ -569,7 +558,7 @@ public class GUI implements MouseListener
         }
        GUI.repainter();
     }
-      public static JButton[] initializeButtons(JButton[] button)
+   public static JButton[] initializeButtons(JButton[] button)
    {
        BufferedImageLoaders bil = new BufferedImageLoaders();
        
@@ -588,7 +577,7 @@ public class GUI implements MouseListener
        return button;
    }
 
-    protected static JButton[] getButtonInit(JButton[] button, ImageIcon[] buttonImages) {
+   protected static JButton[] getButtonInit(JButton[] button, ImageIcon[] buttonImages) {
         button[0]=new JButton(buttonImages[0]);
         button[1]=new JButton(buttonImages[1]);
         button[2]=new JButton(buttonImages[2]);
@@ -597,8 +586,7 @@ public class GUI implements MouseListener
         button[5]=new JButton(buttonImages[5]);
         return button;
     }
-
-    protected static ImageIcon[] getButtonImages(ImageIcon[] buttonImages, BufferedImageLoaders bil) {
+   protected static ImageIcon[] getButtonImages(ImageIcon[] buttonImages, BufferedImageLoaders bil) {
         bil.loadAllButtons();
         buttonImages[0] = bil.getIconAttack();
         buttonImages[1] = bil.getIconDefend();
@@ -610,7 +598,7 @@ public class GUI implements MouseListener
     }
       
    //method that prints stats, gets the information from the unit and prints it
-    private static void printStats(Unit unitSelected) 
+   private static void printStats(Unit unitSelected) 
     {
         //unitSoldiers[0] won't work when soldier 0 dies
         //need to add these stats to the unit itself
@@ -645,7 +633,7 @@ public class GUI implements MouseListener
     }
 
        //adds buttons to the panel
-    public static void addButtonsToPanel(JButton[] button) 
+   public static void addButtonsToPanel(JButton[] button) 
     {
        GUI.panel.setLayout(null);
        BufferedImageLoaders bil = new BufferedImageLoaders();
@@ -660,7 +648,7 @@ public class GUI implements MouseListener
        GUI.repainter();
     }
 
-    protected static void reallyAddButtonsToPanel(JButton[] button) {
+   protected static void reallyAddButtonsToPanel(JButton[] button) {
         buttonPanel.setOpaque(false);
         buttonPanel.add(button[0]);
         buttonPanel.add(button[1]);
@@ -699,11 +687,9 @@ public class GUI implements MouseListener
     }
      //only used once, used it to get information from the original panel to the new panel. 
    public static void copy(Component c,Component d)
-   {
+    {
        d.setBounds(0, 0,c.getWidth(),c.getHeight());
    }
-   
-   
     //if called and statPanel is initalized and visible, will update the stats of the unit
     public static void printStatsUpdater(Unit unit)
    {
@@ -712,39 +698,30 @@ public class GUI implements MouseListener
            GUI.printStats(unit); //should be equal to GUI.unitSelected
        }
    }
-
     protected boolean thereIsAnAttackReadyToHappenAndTileClickedIsOccupied() {
         return GUI.attackUnit!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied;
     }
-
     protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }
-
     protected boolean PlayerSelectedSameEnemyUnitAgain(int playerNum,int i) {
         return GUI.enemySelected!=null&&GUI.enemySelected==Game.playersForDemo.get(playerNum).allUnits.get(i);
     }
-
     protected boolean player2UnitIsEqualToUnitSelectedAt(int i) {
         return Game.playersForDemo.get(1).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
-
     protected boolean player1UnitIsEqualToUnitSelectedAt(int i) {
         return Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
-
     protected boolean thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
     }
-
     protected boolean player2IsReadyToLoadUnits() {
         return Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;
     }
-
     protected boolean player1IsReadyToLoadUnits() {
         return Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null;
     }
-    
     protected static JButton[] removeDefaultLookOfJButtons(JButton[] button) {
         button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
         button[0].setOpaque(false);
@@ -772,7 +749,6 @@ public class GUI implements MouseListener
         button[5].setBorderPainted(false);
         return button;
     }
-    
     protected static String unitIsFacing(int facingInt) {
         String facing;
         //determing which way the unit is facing
@@ -802,20 +778,16 @@ public class GUI implements MouseListener
         }
         return facing;
     }
-    
-            protected static boolean player2Turn() {
+    protected static boolean player2Turn() {
                return Game.playersForDemo.get(1).myTurn;
            }
-
-           protected static boolean player1Turn() {
+    protected static boolean player1Turn() {
                return Game.playersForDemo.get(0).myTurn;
            }
-
-           protected static boolean player2HasNoUnits() {
+    protected static boolean player2HasNoUnits() {
                return Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner;
            }
-
-           protected static boolean player1HasNoUnits() {
+    protected static boolean player1HasNoUnits() {
                return Game.playersForDemo.get(0).allUnits.isEmpty()||Game.playersForDemo.get(1).isWinner;
            }
     
