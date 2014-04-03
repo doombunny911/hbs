@@ -223,7 +223,7 @@ public class GUI implements MouseListener
     
     
    //buttonLoader, used for button action listening
-   public  void buttonLoader()
+   public static void buttonLoader()
    {
        GUI.panel.setLayout(null);
        GUI.buttonPanel.setLayout(null);
@@ -396,22 +396,7 @@ public class GUI implements MouseListener
           
        });
    }
-           protected boolean player2Turn() {
-               return Game.playersForDemo.get(1).myTurn;
-           }
 
-           protected boolean player1Turn() {
-               return Game.playersForDemo.get(0).myTurn;
-           }
-
-           protected boolean player2HasNoUnits() {
-               return Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner;
-           }
-
-           protected boolean player1HasNoUnits() {
-               return Game.playersForDemo.get(0).allUnits.isEmpty()||Game.playersForDemo.get(1).isWinner;
-           }
-    
 
     protected static boolean componentNotNullAndIsVisible(Component c) {
         return c!=null&&c.isVisible();
@@ -422,10 +407,6 @@ public class GUI implements MouseListener
     protected static boolean componentNotNullAndIsNotVisible(Component c) {
         return c!=null&&c.isVisible()==false;
     }
-
-  
-    
-
  
    //this is called when the original unitDraws need to be loaded the first time, 
    //will probably become useless in final project but still pivotal now
@@ -821,6 +802,22 @@ public class GUI implements MouseListener
         }
         return facing;
     }
+    
+            protected static boolean player2Turn() {
+               return Game.playersForDemo.get(1).myTurn;
+           }
+
+           protected static boolean player1Turn() {
+               return Game.playersForDemo.get(0).myTurn;
+           }
+
+           protected static boolean player2HasNoUnits() {
+               return Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner;
+           }
+
+           protected static boolean player1HasNoUnits() {
+               return Game.playersForDemo.get(0).allUnits.isEmpty()||Game.playersForDemo.get(1).isWinner;
+           }
     
 
      //paints the area around the unit that it can move, very useful.  broken atm
