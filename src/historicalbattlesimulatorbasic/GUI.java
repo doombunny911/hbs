@@ -282,6 +282,11 @@ public class GUI implements MouseListener
                         //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
 //                      GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
                         GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                        if(combatPanel==null)
+                        {
+                            GUI.initCombatPanel();
+                        }
+                        
                         toggleButtons(GUI.buttonPanel,true);
                     }
                     
@@ -313,6 +318,10 @@ public class GUI implements MouseListener
                         {
                             System.out.println("unitSelected is being initialized ");
                             GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
+                             if(combatPanel==null)
+                            {
+                                GUI.initCombatPanel();
+                            }
                             toggleButtons(GUI.buttonPanel,true);
                         } 
                    }

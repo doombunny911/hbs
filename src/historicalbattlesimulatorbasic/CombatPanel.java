@@ -48,9 +48,6 @@ public class CombatPanel extends JPanel
 
     public void getAllUnitsInRange() {
         unitSelected = GUI.unitSelected;
-<<<<<<< HEAD
-//        enemyUnits = unitSelected
-=======
         for(Player p: Game.playersForDemo)
         {
             if(p.myTurn)
@@ -60,7 +57,6 @@ public class CombatPanel extends JPanel
             
         }
         enemyUnits = unitSelected.getAllInRange(enemyPlayer);
->>>>>>> f557ff357e635123e9be36d2a21462a1cabe5a8c
     }
     //Generate buttons with stats on them as well
      public void setUpButtons()
