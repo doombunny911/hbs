@@ -363,7 +363,6 @@ public class GUI implements MouseListener
         }
         
         GUI.repainter();
-
     }
 
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
@@ -372,8 +371,6 @@ public class GUI implements MouseListener
         System.out.println("in there is a unit ready to be loaded");
         return GUI.tileClicked!=null&&unitNum!=0;
     }
-    
-
     //toggles whether buttons are seen or not seen
     //gets buttons by checking to see components on the panel
     
@@ -555,7 +552,6 @@ public class GUI implements MouseListener
           
        });
    }
-   
       public static void addButtonsToPanel(JButton[] button) 
     {
         
