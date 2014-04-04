@@ -208,8 +208,11 @@ public final class UnitFormations
         int effectiveSoldiers=numberOfSoldiers/soldiersPerSprite;
 //        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
        if(effectiveSoldiers<12)
-           this.defaultFormation();
-       else if(effectiveSoldiers>12&&effectiveSoldiers<35)
+       {
+           return this.defaultFormation();
+       }
+           
+       else if(effectiveSoldiers>=12&&effectiveSoldiers<35)
            depth=1;
        else
            depth=2;
@@ -222,37 +225,50 @@ public final class UnitFormations
       int num=0;
       int extra = 0;
       int boxLength = 0;
-      for(int i =25;i>0;i--)
-      {
-          num=0;
-         for(int j=0;j<depth;j++)
-         {
-            
-              num+=(i-j*2)*4-4;
-         } 
-                
-         if(num<effectiveSoldiers)
-         {
-             if(num==i*i) //perfect sqaure
-             {
-                 System.out.println("perfect square");
-                 locations=new Tile[i][i];
-                 boxLength = i;
-                
-             }
-                 
-             else
-             {
-                 System.out.println("not a perfect square.  i = " + i);
-                locations = new Tile[i][i];
-                boxLength = i;
-                extra = numberOfSoldiers/soldiersPerSprite-num;
-                
-             }
-            break;
-         }
-             
-      }
+      int jIndex=-1;
+//      for(int i=2;i<1000;i++)
+//      {
+//          jIndex=-1;
+//          while(num<effectiveSoldiers)
+//          {   //num==1*4-4
+//              //3 5 7 9
+//              jIndex++;
+//              num+=(i+jIndex*2)*4-4;
+//              
+//          }
+//      }
+      
+//      for(int i =25;i>0;i--)
+//      {
+//          num=0;
+//         for(int j=0;j<depth;j++)
+//         {
+//            
+//              num+=(i-j*2)*4-4;
+//         } 
+//                
+//         if(num<effectiveSoldiers)
+//         {
+//             if(num==i*i) //perfect sqaure
+//             {
+//                 System.out.println("perfect square");
+                 locations=new Tile[jIndex][jIndex];
+//                 boxLength = i;
+//                
+//             }
+//                 
+//             else
+//             {
+//                 System.out.println("not a perfect square.  i = " + i);
+//                locations = new Tile[i][i];
+//                boxLength = i;
+//                extra = numberOfSoldiers/soldiersPerSprite-num;
+//                
+//             }
+//            break;
+//         }
+//             
+//      }
       
        int count =0;
       switch(unit.unitSoldiers[0].facing)
