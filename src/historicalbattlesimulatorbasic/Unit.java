@@ -275,7 +275,12 @@ public class Unit extends Soldier
         }
     }
 
-    private boolean isInRange(int aSize, int dSize) {
+    /*
+    @aSize - Attacker size
+    @dSize - DefenderSize
+    */
+    private boolean isInRange(int aSize, int dSize) 
+    {
         for (int i = 0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
         {
             int j = dSize-1; //the integer for the defenders unit size.
@@ -284,6 +289,21 @@ public class Unit extends Soldier
             }
         }
         return false;
+    }
+    
+    public ArrayList<Unit> getAllInRange(Player p2)
+    {
+        ArrayList<Unit> allUnitsInRange = new ArrayList<>();
+        ArrayList<Unit> p2AllUnits = p2.getUnitList();
+        for(Unit u: p2AllUnits)
+        {
+           if(this.isInRange(this.unitSize, u.unitSize))
+           {
+               allUnitsInRange.add(u);
+           }
+        }
+        
+        return allUnitsInRange;
     }
     public void resetUnitPoints()
     {
