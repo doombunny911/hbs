@@ -22,7 +22,7 @@ public class CombatPanel extends JPanel
     public void initPanel()
     {
         unitSelected = GUI.unitSelected;
-        enemyUnits = unitSelected
+//        enemyUnits = unitSelected
     }
     //Generate buttons with stats on them as well
     //When button is clicked, run 'attack' [subtract one point]

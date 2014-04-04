@@ -209,7 +209,7 @@ public final class UnitFormations
 //        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
        if(effectiveSoldiers<4)
            this.defaultFormation();
-       else if(effectiveSoldiers>4&&effectiveSoldiers<32)
+       else if(effectiveSoldiers>12&&effectiveSoldiers<35)
            depth=1;
        else
            depth=2;
@@ -222,7 +222,6 @@ public final class UnitFormations
       int num=0;
       int extra = 0;
       int boxLength = 0;
-    
       for(int i =25;i>0;i--)
       {
           num=0;
@@ -235,19 +234,26 @@ public final class UnitFormations
          if(num<effectiveSoldiers)
          {
              if(num==i*i) //perfect sqaure
+             {
+                 System.out.println("perfect square");
                  locations=new Tile[i][i];
+                 boxLength = i;
+                
+             }
+                 
              else
              {
-                 locations = new Tile[i][i];
+                 System.out.println("not a perfect square.  i = " + i);
+                locations = new Tile[i][i];
                 boxLength = i;
                 extra = numberOfSoldiers/soldiersPerSprite-num;
-                break; 
+                
              }
-            
+            break;
          }
              
       }
-  
+      
        int count =0;
       switch(unit.unitSoldiers[0].facing)
       { 
@@ -259,8 +265,12 @@ public final class UnitFormations
                  {
 //                     if(thisTile.xPosition/GUI.tileWidth+j+thisTile.yPosition/GUI.tileWidth+i==GUI.numberOfTilesWidth||thisTile.xPosition/GUI.tileWidth+j+thisTile.yPosition/GUI.tileWidth+i==GUI.numberOfTilesHeight)
 //                     {
-//                         //ask user to try again
+//                         ask user to try again
 //                         System.out.println("don't draw out of bounds ");
+//                     }
+//                     if(count==effectiveSoldiers)
+//                     {
+//                         
 //                     }
                       if(i<depth||i>=boxLength-depth)
                      {
