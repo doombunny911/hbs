@@ -213,14 +213,164 @@ public class GUI implements MouseListener
        }); 
      }
    
-   //buttonLoader, used for button action listening
+
+   //this is called when the original unitDraws need to be loaded the first time, 
+   //will probably become useless in final project but still pivotal now
+   public void loadUnit(Unit unit) 
+    {
+        System.out.println("in loadUnit");
+        //gets the arrayList stored in unitLoader
+//        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
+        //sets the tile location of where they are at
+        unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+        //adds it to the arrayList in GUI that is currently storing the unitDraws
+        GUI.unitDraws.add(new UnitDraw(unit));
+        
+        
+        GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
+//        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
+        //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
+//        GUI.repainter(); //repaints
+    }
+    //mouseClicked holds a lot of logic due to the event driven processes of our project
+    //and how we get around waiting for users to do something.
+    //this is how we get around while loops
+    @Override
+   public void mouseClicked(MouseEvent mac) 
+    {
+        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
+        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
+       GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
+       if(player1IsReadyToLoadUnits()) 
+       {
+           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+           Game.playersForDemo.get(0).up.check=false;
+           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+//           System.out.println("in mouseClicked going to unitplacer ");
+       }
+       else if(player2IsReadyToLoadUnits())
+       {
+           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+           Game.playersForDemo.get(1).up.check=false;
+           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+//           System.out.println("in mouseClicked going to unitplacer ");
+       }
+    
+        //if a tile has been clicked(should be always) and the tile clicked on
+        //has a soldier in it and there is not already a unit selected
+        if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+        {
+//             if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
+               if(player1Turn())   
+              {
+                  for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
+                  {
+                      if(player1UnitIsEqualToUnitSelectedAt(i))
+                    {
+                        System.out.println("unitSelected is being initialized ");
+                  
+                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
+//                      GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
+                        GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                        System.out.println(GUI.unitSelected);
+                        toggleButtons(GUI.buttonPanel,true);
+                    }
+                    
+                  }
+                  for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
+                  {
+                      if(player2UnitIsEqualToUnitSelectedAt(i))
+                      {
+                          if(PlayerSelectedSameEnemyUnitAgain(1,i))
+                          {
+                              GUI.statPanel.setVisible(false);
+                              enemySelected=null;
+                          }
+                          else
+                          {
+                               GUI.enemySelected = Game.playersForDemo.get(1).allUnits.get(i);
+                               GUI.printStats(Game.playersForDemo.get(1).allUnits.get(i));
+
+                          }
+                      }
+                          //print the stats
+                  }
+              }
+               else if(player2Turn())
+               {
+                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
+                   {
+                      if(player2UnitIsEqualToUnitSelectedAt(i))
+                        {
+                            System.out.println("unitSelected is being initialized ");
+                            GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
+                            toggleButtons(GUI.buttonPanel,true);
+                        } 
+                   }
+                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
+                   {
+                      if(player1UnitIsEqualToUnitSelectedAt(i))
+                      {
+                          if(PlayerSelectedSameEnemyUnitAgain(0,i))
+                          {
+                              GUI.statPanel=null;
+                              enemySelected=null;
+                          }
+                          else
+                          {
+                               GUI.enemySelected = Game.playersForDemo.get(0).allUnits.get(0);
+                               GUI.printStats(Game.playersForDemo.get(0).allUnits.get(0));
+                          } 
+                      }
+                          
+                          //print the stats
+                   }
+               }
+           }
+        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
+        {
+            //user is trying to select a unit before all the units are loaded
+            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
+        }
+        
+        //used for attacking only, if attack button is selected, The unitSelected
+       // is stored in attackUnit and we wait until a user clicks the unit that 
+       // they want to attack.  Currently no range check to see if they are
+       //able to reach them
+        if(thereIsAnAttackReadyToHappenAndTileClickedIsOccupied())
+        {
+            GUI.attackUnit.attack(GUI.unitSelected);
+            GUI.attackUnit=null;
+            impendingAttack=false;
+        }
+        
+        GUI.repainter();
+
+    }
+
+    //checks to see if someone clicked a tile and there are unitDraws in "queue"
+   public boolean thereIsAUnitReadyToBeLoaded() 
+    {
+        System.out.println("in there is a unit ready to be loaded");
+        return GUI.tileClicked!=null&&unitNum!=0;
+    }
+    
+
+    //toggles whether buttons are seen or not seen
+    //gets buttons by checking to see components on the panel
+    
+      //buttonLoader, used for button action listening
    public static void buttonLoader()
    {
        GUI.panel.setLayout(null);
        GUI.buttonPanel.setLayout(null);
-
+       buttonPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
+       buttonPanel.setEnabled(false);
+       buttonPanel.setVisible(false);
+       buttonPanel.setOpaque(false);
        JButton[] button=new JButton[6]; //the array of all the "bottom" buttons
        button=initializeButtons(button); //method that creates the buttons, than returned to the variable
+       
        
        addButtonsToPanel(button); //this method adds the buttons to the panel
        
@@ -387,150 +537,53 @@ public class GUI implements MouseListener
           
        });
    }
-   //this is called when the original unitDraws need to be loaded the first time, 
-   //will probably become useless in final project but still pivotal now
-   public void loadUnit(Unit unit) 
+   
+      public static void addButtonsToPanel(JButton[] button) 
     {
-        System.out.println("in loadUnit");
-        //gets the arrayList stored in unitLoader
-//        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
-        //sets the tile location of where they are at
-        unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        //adds it to the arrayList in GUI that is currently storing the unitDraws
-        GUI.unitDraws.add(new UnitDraw(unit));
         
+        button = setButtonsWithoutDefaults(button);
+            
         
-        GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
-//        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
-        //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
-//        GUI.repainter(); //repaints
-    }
-    //mouseClicked holds a lot of logic due to the event driven processes of our project
-    //and how we get around waiting for users to do something.
-    //this is how we get around while loops
-    @Override
-   public void mouseClicked(MouseEvent mac) 
-    {
-        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
-        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
-       GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-       if(player1IsReadyToLoadUnits()) 
-       {
-           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-           Game.playersForDemo.get(0).up.check=false;
-           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-//           System.out.println("in mouseClicked going to unitplacer ");
-       }
-       else if(player2IsReadyToLoadUnits())
-       {
-           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-           Game.playersForDemo.get(1).up.check=false;
-           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
-//           System.out.println("in mouseClicked going to unitplacer ");
-       }
-    
-        //if a tile has been clicked(should be always) and the tile clicked on
-        //has a soldier in it and there is not already a unit selected
-        if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
-        {
-//             if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
-               if(player1Turn())   
-              {
-                  for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
-                  {
-                      if(player1UnitIsEqualToUnitSelectedAt(i))
-                    {
-                        System.out.println("unitSelected is being initialized ");
-                  
-                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-//                      GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
-                        GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
-                        toggleButtons(GUI.buttonPanel,true);
-                        break;
-                    }
-                  }
-                  for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
-                  {
-                      if(player2UnitIsEqualToUnitSelectedAt(i))
-                      {
-                          if(PlayerSelectedSameEnemyUnitAgain(1,i))
-                          {
-                              GUI.statPanel.setVisible(false);
-                              enemySelected=null;
-                          }
-                          else
-                          {
-                               GUI.enemySelected = Game.playersForDemo.get(1).allUnits.get(i);
-                               GUI.printStats(Game.playersForDemo.get(1).allUnits.get(i));
-
-                          }
-                      }
-                          //print the stats
-                  }
-              }
-               else if(player2Turn())
-               {
-                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
-                   {
-                      if(player2UnitIsEqualToUnitSelectedAt(i))
-                        {
-                            System.out.println("unitSelected is being initialized ");
-                            GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
-                            toggleButtons(GUI.buttonPanel,true);
-                        } 
-                   }
-                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
-                   {
-                      if(player1UnitIsEqualToUnitSelectedAt(i))
-                      {
-                          if(PlayerSelectedSameEnemyUnitAgain(0,i))
-                          {
-                              GUI.statPanel=null;
-                              enemySelected=null;
-                          }
-                          else
-                          {
-                               GUI.enemySelected = Game.playersForDemo.get(0).allUnits.get(0);
-                               GUI.printStats(Game.playersForDemo.get(0).allUnits.get(0));
-                          } 
-                      }
-                          
-                          //print the stats
-                   }
-               }
-           }
-        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
-        {
-            //user is trying to select a unit before all the units are loaded
-            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
-        }
-        
-        //used for attacking only, if attack button is selected, The unitSelected
-       // is stored in attackUnit and we wait until a user clicks the unit that 
-       // they want to attack.  Currently no range check to see if they are
-       //able to reach them
-        if(thereIsAnAttackReadyToHappenAndTileClickedIsOccupied())
-        {
-            GUI.attackUnit.attack(GUI.unitSelected);
-            GUI.attackUnit=null;
-            impendingAttack=false;
-        }
-        
-        GUI.repainter();
-
+        buttonPanel.add(button[0]);
+        buttonPanel.add(button[1]);
+        buttonPanel.add(button[2]);
+        buttonPanel.add(button[3]);
+        buttonPanel.add(button[4]);
+        buttonPanel.add(button[5]);
+       GUI.panel.add(buttonPanel);
+       GUI.repainter();
     }
 
-    //checks to see if someone clicked a tile and there are unitDraws in "queue"
-   public boolean thereIsAUnitReadyToBeLoaded() 
+ 
+    protected static JButton[] setButtonsWithoutDefaults(JButton[] button)
     {
-        System.out.println("in there is a unit ready to be loaded");
-        return GUI.tileClicked!=null&&unitNum!=0;
+       
+        button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
+        button[0].setOpaque(false);
+        button[0].setContentAreaFilled(false);
+        button[0].setBorderPainted(false);
+        button[1].setBounds(buttonPanel.getWidth()/6*2-30-100,0,100,100);
+        button[1].setOpaque(false);
+        button[1].setContentAreaFilled(false);
+        button[1].setBorderPainted(false);
+        button[2].setBounds(buttonPanel.getWidth()/6*3-30-100,0,125,100);
+        button[2].setOpaque(false);
+        button[2].setContentAreaFilled(false);
+        button[2].setBorderPainted(false);
+        button[3].setBounds(buttonPanel.getWidth()/6*4-30-100,0,100,100);
+        button[3].setOpaque(false);
+        button[3].setContentAreaFilled(false);
+        button[3].setBorderPainted(false);
+        button[4].setBounds(buttonPanel.getWidth()/6*5-45-100,0,150,100);
+        button[4].setOpaque(false);
+        button[4].setContentAreaFilled(false);
+        button[4].setBorderPainted(false);
+        button[5].setBounds(buttonPanel.getWidth()/6*6-45-100,0,150,100);
+        button[5].setOpaque(false);
+        button[5].setContentAreaFilled(false);
+        button[5].setBorderPainted(false);  
+        return button;
     }
-    
-
-    //toggles whether buttons are seen or not seen
-    //gets buttons by checking to see components on the panel
-    
     //toggles visiblity of buttons and panel that holds the buttons
    private static void toggleButtons(JPanel panel,boolean b) 
     {
@@ -540,18 +593,22 @@ public class GUI implements MouseListener
         //the number of components in the panel
         int bNum =panel.getComponentCount();
         for(int i=0;i<bNum;i++)
-        {        
+        {     
             panel.getComponent(i).setVisible(b);
         }
        GUI.repainter();
     }
    public static JButton[] initializeButtons(JButton[] button)
    {
+
        BufferedImageLoaders bil = new BufferedImageLoaders();
        
        ImageIcon[] buttonImages = new ImageIcon[6];
-       buttonImages= getButtonImages(buttonImages, bil);
-       button= getButtonInit(button, buttonImages);
+      buttonImages= getButtonImages(buttonImages,bil);
+       
+      button=getButtonInit(button,buttonImages);
+
+        
        
        ImageIcon end = bil.getIconEndTurn();
        GUI.endTurn=new JButton(end);
@@ -620,31 +677,7 @@ public class GUI implements MouseListener
     }
 
        //adds buttons to the panel
-   public static void addButtonsToPanel(JButton[] button) 
-    {
-       GUI.panel.setLayout(null);
-       BufferedImageLoaders bil = new BufferedImageLoaders();
-       bil.loadAllButtons();
-//       aPanel.setPreferredSize(new Dimension(500,300));
-       removeDefaultLookOfJButtons(button);
-       buttonPanel.setBounds(0, GUI.gameFrame.getHeight()-150,GUI.gameFrame.getWidth(), 150);
-       buttonPanel.setEnabled(false);
-       buttonPanel.setVisible(false);
-       reallyAddButtonsToPanel(button);
-       GUI.panel.add(buttonPanel);
-       GUI.repainter();
-    }
 
-   protected static void reallyAddButtonsToPanel(JButton[] button) {
-        buttonPanel.setOpaque(false);
-        buttonPanel.add(button[0]);
-        buttonPanel.add(button[1]);
-        buttonPanel.add(button[2]);
-        buttonPanel.add(button[3]);
-        buttonPanel.add(button[4]);
-        buttonPanel.add(button[5]);
-    }
-    
        //this will clean up the code a little, instead of doing these all the time, can just make one call
    public static boolean repainter()
    {
@@ -783,7 +816,23 @@ public class GUI implements MouseListener
     protected static boolean componentNotNullAndIsNotVisible(Component c) {
         return c!=null&&c.isVisible()==false;
     }
-
+    protected static int determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt() {
+        //find the index of the unitDraw that needs to be removed
+        int index=-1;
+        for(int i=0;i<GUI.unitDraws.size();i++)
+        {
+//           System.out.println("in moveLogic before index selection");
+            if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
+            {
+                System.out.println("unitID of unitDraw at "+ i+ " = "+
+                        GUI.unitDraws.get(i).thisUnit.getUnitID());
+                index=i;
+                break;
+            }
+        }if(index==-1)
+           System.out.println("never found the right index in compass");
+        return index;
+    }
      //paints the area around the unit that it can move, very useful.  broken atm
     public static void paintRange(Unit unitSelected,Graphics g) 
     {

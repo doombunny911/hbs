@@ -239,22 +239,10 @@ public final class Compass extends JPanel
     public void moveLogic()
     {
        GUI.unitSelected.hasMoved=true;
-       int index=-1;
        
-       //find the index of the unitDraw that needs to be removed
-       for(int i=0;i<GUI.unitDraws.size();i++)
-       {
-//           System.out.println("in moveLogic before index selection");
-          if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
-          {
-              System.out.println("unitID of unitDraw at "+ i+ " = "+
-                      GUI.unitDraws.get(i).thisUnit.getUnitID());
-              index=i;
-              break;
-          }
-       }
-       if(index==-1)
-           System.out.println("never found the right index in compass");
+       
+       
+       int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
            
        
        
@@ -290,6 +278,8 @@ public final class Compass extends JPanel
             
       } 
    }
+
+    
 
     protected void removeSoldiersFromPreviousTiles() {
         //remove the soldiers from the previous tiles
