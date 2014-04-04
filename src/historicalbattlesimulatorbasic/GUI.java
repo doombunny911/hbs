@@ -261,7 +261,7 @@ public class GUI implements MouseListener
        
         if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
         {
-            System.out.println("here");
+            
 //             if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
                if(player1Turn())   
               {
