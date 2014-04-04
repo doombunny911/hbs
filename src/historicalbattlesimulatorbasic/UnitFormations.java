@@ -226,17 +226,16 @@ public final class UnitFormations
       int extra = 0;
       int boxLength = 0;
       int jIndex=-1;
-//      for(int i=2;i<1000;i++)
-//      {
-//          jIndex=-1;
-//          while(num<effectiveSoldiers)
-//          {   //num==1*4-4
-//              //3 5 7 9
-//              jIndex++;
-//              num+=(i+jIndex*2)*4-4;
-//              
-//          }
-//      }
+      while(num<effectiveSoldiers)
+      {   
+          jIndex++;
+          boxLength = 2+jIndex*2;
+          num+=boxLength*4-4;
+      }  
+        System.out.println("boxLength = " + boxLength);
+    
+        locations=new Tile[boxLength][boxLength];
+
       
 //      for(int i =25;i>0;i--)
 //      {
@@ -252,9 +251,9 @@ public final class UnitFormations
 //             if(num==i*i) //perfect sqaure
 //             {
 //                 System.out.println("perfect square");
-                 locations=new Tile[jIndex][jIndex];
 //                 boxLength = i;
-//                
+//                 locations=new Tile[jIndex][jIndex];
+
 //             }
 //                 
 //             else
@@ -288,7 +287,8 @@ public final class UnitFormations
 //                     {
 //                         
 //                     }
-                      if(i<depth||i>=boxLength-depth)
+                     if(i==0||j==0||i==boxLength-1||j==boxLength-1)
+//                      if(i<depth||i>=jIndex-depth||j<depth||j>=jIndex-depth)
                      {
 //                         System.out.println("on the top of the box or the bottom of the box, draw the sprites");
                          locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
@@ -298,28 +298,49 @@ public final class UnitFormations
 //                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
                          
                      }
-                     else if(j>=depth&&j<boxLength-depth&&extra>0)
-                     {
-                         locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
-                         this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
-                         locations[j][i].occupyBy(unit.unitSoldiers[count]); 
-                         count++;
-                         extra--;
-//                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
-
-                     }
-                     else if(j<depth||j>=boxLength-depth)
-                     {
-//                         System.out.println("on the left side of the box, draw the unit");
-                         locations[j][i]=GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
-                         this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
-                         locations[j][i].occupyBy(unit.unitSoldiers[count]); 
-                        count++;
-//                        System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
-
-                     }
+//                     else if(j>=depth&&j<jIndex-depth&&extra>0)
+//                     {
+//                         locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
+//                         this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
+//                         locations[j][i].occupyBy(unit.unitSoldiers[count]); 
+//                         count++;
+//                         extra--;
+////                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+//
+//                     }
+//                     else if(j<depth||j>=jIndex-depth)
+//                     {
+////                         System.out.println("on the left side of the box, draw the unit");
+//                         locations[j][i]=GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
+//                         this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
+//                         locations[j][i].occupyBy(unit.unitSoldiers[count]); 
+//                        count++;
+////                        System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
+//
+//                     }
                  }
              }
+             if(count<effectiveSoldiers)
+             {
+                for(int i=0;i<boxLength;i++)
+                {
+                    for(int j=0;j<boxLength;j++)
+                    {
+                        if(locations[j][i]==null&&count<effectiveSoldiers)
+                        {
+                            locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
+                            this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
+                            locations[j][i].occupyBy(unit.unitSoldiers[count]); 
+                            count++;
+                            if(count==effectiveSoldiers)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+             }
+             
                  break;
           }
 
