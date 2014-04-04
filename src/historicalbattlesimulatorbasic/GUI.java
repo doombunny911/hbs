@@ -255,11 +255,13 @@ public class GUI implements MouseListener
            Game.playersForDemo.get(1).up.unitToBeLoaded=null;
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-    
+       
         //if a tile has been clicked(should be always) and the tile clicked on
         //has a soldier in it and there is not already a unit selected
+       
         if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
         {
+            System.out.println("here");
 //             if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
                if(player1Turn())   
               {
@@ -272,7 +274,6 @@ public class GUI implements MouseListener
                         //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
 //                      GUI.unitSelected=GUI.unitDraws.get(i).thisUnit;
                         GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
-                        System.out.println(GUI.unitSelected);
                         toggleButtons(GUI.buttonPanel,true);
                     }
                     
@@ -327,11 +328,11 @@ public class GUI implements MouseListener
                    }
                }
            }
-        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
-        {
-            //user is trying to select a unit before all the units are loaded
-            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
-        }
+//        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
+//        {
+//            //user is trying to select a unit before all the units are loaded
+//            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
+//        }
         
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
@@ -734,7 +735,9 @@ public class GUI implements MouseListener
         return Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
     protected boolean thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile() {
-        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
+        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null;
+        
+//        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
     }
     protected boolean player2IsReadyToLoadUnits() {
         return Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;

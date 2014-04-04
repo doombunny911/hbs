@@ -87,17 +87,7 @@ public class BufferedImageLoaders
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
       try {
-           setFormB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"SetFormation.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
            scroll = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"ScrollBG.jpg"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
-           setFormB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"SetFormation.png"));
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
