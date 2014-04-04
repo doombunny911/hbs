@@ -54,6 +54,7 @@ public class GUI implements MouseListener
     static int player2UnitNum; //same as above
     static UnitPlacer unitPlacerTest;
     static Unit enemySelected;
+    static JPanel combatPanel;
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel)
@@ -64,6 +65,13 @@ public class GUI implements MouseListener
        
    }
    
+   private static void initCombatPanel()
+   {
+       CombatPanel combatPanel2 = new CombatPanel();
+       combatPanel2.initPanel();
+       combatPanel = combatPanel2;
+      // combatPanel.initPanel();
+   }
    private static void initFormPanel() 
    {
          BufferedImageLoaders bil = new BufferedImageLoaders();

@@ -207,7 +207,7 @@ public final class UnitFormations
         int numberOfSoldiers= unit.unitSoldiers.length;
         int effectiveSoldiers=numberOfSoldiers/soldiersPerSprite;
 //        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
-       if(effectiveSoldiers<4)
+       if(effectiveSoldiers<12)
            this.defaultFormation();
        else if(effectiveSoldiers>12&&effectiveSoldiers<35)
            depth=1;
