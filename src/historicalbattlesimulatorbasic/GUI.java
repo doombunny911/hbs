@@ -70,7 +70,7 @@ public class GUI implements MouseListener
        CombatPanel combatPanel2 = new CombatPanel();
        combatPanel2.setLayout(null);
        combatPanel2.setVisible(true);
-       combatPanel2.setBounds(GUI.gameFrame.getWidth()-400,GUI.gameFrame.getHeight()-400,200,200);
+       combatPanel2.setBounds(GUI.gameFrame.getWidth()/2-100,GUI.gameFrame.getHeight()-4*GUI.gameFrame.getHeight()/5,300,200);
        GUI.panel.add(combatPanel2);
        GUI.repainter();
        combatPanel2.initPanel();
@@ -168,66 +168,7 @@ public class GUI implements MouseListener
        });
         
     } 
-    //initializes attackButton
-   private static void initAttackButton() 
-    {
-         attackButtonPanel=new JPanel();
-         attackButtonPanel.setLayout(null);
-         attackButtonPanel.setBounds(GUI.buttonPanel.getBounds());
-         JButton[] attackButton = new JButton[3];
-         attackButton[0]=  new JButton("Regular Attack");
-         attackButton[1] = new JButton("Charge");
-         attackButton[2] = new JButton("Special Ability Attack");
-         Component c = GUI.buttonPanel.getComponent(0);
-         attackButton[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
-         attackButton[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());
-         attackButton[2].setBounds(c.getX()+c.getWidth()*3,c.getY(),c.getWidth(),c.getHeight());
-         attackButtonPanel.add(attackButton[0]);
-         attackButtonPanel.add(attackButton[1]);
-         attackButtonPanel.add(attackButton[2]);
-         GUI.repainter();
-        
-        
-        attackButton[0].addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent ae) //normal attack
-           {
-               System.out.println("Please click on the unit you wish to attack");
-               GUI.impendingAttack=true;
-               GUI.toggleButtons(attackButtonPanel, false);
-               GUI.toggleButtons(buttonPanel, true);
-            
-          }
-       });
-       
-       attackButton[1].addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent ae) //charge
-           {
-               System.out.println("charging, now losing stamina");
-               GUI.attackUnit.charge();
-               GUI.impendingAttack=true;
-               GUI.toggleButtons(attackButtonPanel, false);
-               GUI.toggleButtons(buttonPanel, true);
-               
-           }
-       });
-       
-       attackButton[2].addActionListener(new ActionListener() {
-
-           @Override
-           public void actionPerformed(ActionEvent ae) //special ability
-           {
-               
-               System.out.println("specialAbility Activated");
-               GUI.attackUnit.useSpecialAbility();
-               GUI.impendingAttack=true;
-               GUI.toggleButtons(attackButtonPanel, false);
-               GUI.toggleButtons(buttonPanel, true);
-           }
-       }); 
-     }
-   
+ 
 
    //this is called when the original unitDraws need to be loaded the first time, 
    //will probably become useless in final project but still pivotal now
@@ -412,14 +353,6 @@ public class GUI implements MouseListener
                 }
                 
                 
-//               if(GUI.attackButtonPanel!=null)
-//               {
-//                 initAttackButton();
-//                 //if attackUnit does not have a special ability,or doesn't 
-//                 //have an offensive special ability disable button or don't show it
-//               }
-//               if(!GUI.attackButtonPanel.isVisible())
-//                   GUI.toggleButtons(GUI.attackButtonPanel,true);
            }
        });
        

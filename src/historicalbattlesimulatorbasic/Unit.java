@@ -245,8 +245,7 @@ public class Unit extends Soldier
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-        if (isInRange(aSize, dSize, defender))
-        {
+       
            
         
         if(this.unitDefeat==false)
@@ -272,32 +271,72 @@ public class Unit extends Soldier
             
         System.out.println("After this round of attacks by the" + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+ defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + "remain.");
         }
-        }
+        
     }
 
     /*
     @aSize - Attacker size
     @dSize - DefenderSize
     */
-    private boolean isInRange(int aSize, int dSize, Soldier opponent) 
+    private boolean isInRange(Unit opponent) 
     {
-        for (int i = 0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
-        {
-            int j = dSize-1; //the integer for the defenders unit size.
-            if (this.unitSoldiers[i].getDistance(opponent)<range) {
-                return true;
+        boolean inRange=false;
+        opponent.calculateAveragePosition();
+        this.calculateAveragePosition();
+       
+            if (getDistance(opponent.getAvgXPosition(), opponent.getAvgYPosition())<(range)) {
+                inRange = true;
             }
-        }
-        return false;
+          
+       
+        return inRange;
     }
-    
+    double avgXPosition, avgYPosition;
+    @Override
+     public double getDistance(double avgX, double avgY)
+    {
+        this.calculateAveragePosition();
+        
+        double x1 = this.avgXPosition;
+     
+        double y1 = this.avgYPosition;
+     
+        double x2 = avgX;
+       // System.out.println(x2);
+        double y2 = avgY;
+      //  System.out.println(y2);
+        double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+       return distance;
+    }
+    public void calculateAveragePosition()
+    {
+        double xSum =0;
+        double ySum =0;
+        int divisor=0;
+        for(Soldier s: this.unitSoldiers)
+        {
+            xSum = s.tileOccupied.xPosition+xSum;
+            ySum =s.tileOccupied.yPosition+ySum;
+            divisor ++;
+        }
+        avgXPosition = xSum/divisor;
+        avgYPosition = ySum/divisor;
+    }
+    public double getAvgXPosition()
+    {
+        return avgXPosition;
+    }
+    public double getAvgYPosition()
+    {
+        return avgYPosition;
+    }
     public ArrayList<Unit> getAllInRange(Player p2)
     {
         ArrayList<Unit> allUnitsInRange = new ArrayList<>();
         ArrayList<Unit> p2AllUnits = p2.getUnitList();
         for(Unit u: p2AllUnits)
         {
-           if(this.isInRange(this.unitSize, u.unitSize, u.unitSoldiers[0]))
+           if(this.isInRange(u))
            {
                allUnitsInRange.add(u);
            }

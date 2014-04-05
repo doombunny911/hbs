@@ -62,22 +62,23 @@ public class CombatPanel extends JPanel
             
         }
         enemyUnits = enemyPlayer.allUnits;
-       // enemyUnits = unitSelected.getAllInRange(enemyPlayer);
+        enemyUnits = unitSelected.getAllInRange(enemyPlayer);
     }
     //Generate buttons with stats on them as well
      public void setUpButtons()
     {
         setLayout(new GridLayout(10,1));
-         final JLabel title = new JLabel(unitSelected.nameOfUnit+" can attack one of the following units. Click on your target!");
+         final JLabel title = new JLabel(unitSelected.nameOfUnit+" can attack one of the following units./n Click on your target!");
           add(title);
           
           for(final Unit u: this.enemyUnits)
            {      
 
 
-               System.out.println(u.nameOfUnit);
                 ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
 
+               System.out.println(u.nameOfUnit);
+             
                 Image img = unitImage.getImage();
                 Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
                 ImageIcon unitImage2 = new ImageIcon(newimg);
@@ -88,7 +89,7 @@ public class CombatPanel extends JPanel
             
             button.setOpaque(false);
             button.setContentAreaFilled(false);
-             button.setBorderPainted(false);
+            // button.setBorderPainted(false);
 
             add(button);
                 button.addActionListener(new ActionListener() 
@@ -100,8 +101,9 @@ public class CombatPanel extends JPanel
                     visible= false;
                     for(JButton b: buttons)
                     {
-                     //   b.setVisible(false);
+                     b.setVisible(false);
                     }
+                    setVisible(false);
                     //subtract one point here as well.
                 }
                 });
