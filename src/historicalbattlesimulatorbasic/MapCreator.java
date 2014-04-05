@@ -7,34 +7,36 @@
 package historicalbattlesimulatorbasic;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Edward
  */
 
-public class MapCreator
+public class MapCreator extends JPanel
 {
    Map world;
    public static void main(String[] args)
    {
-      
+    MapCreator mp = new MapCreator();
+   mp.createMap();
    }
          
-    public static Map createMap()
+    public Map createMap()
     {
-        String prompt[] = new String[1];
-     //   prompt[0]="Enter the name of your map:";
-        prompt[0]="Enter the width of your map: ";
+     
         String mapParticulars[] = new String[1]; 
         for(int i=0;i<mapParticulars.length; i++)
         {
-        mapParticulars[i]=JOptionPane.showInputDialog ( prompt[i] );
+        mapParticulars[i]=JOptionPane.showInputDialog ( "Name For Map" );
         }
-        Map map = new Map(Integer.parseInt(mapParticulars[0]));
-       
+        
+        world = GUI.gameMap;
+        world.generateBasic();
+        
         //
-        return map;
+       return world;
         //Place Different Items on the map
     }
     

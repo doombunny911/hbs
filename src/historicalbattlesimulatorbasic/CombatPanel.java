@@ -6,6 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,7 @@ public class CombatPanel extends JPanel
      {
         JFrame newJ = new JFrame();
         CombatPanel cp = new CombatPanel();
+        cp.initPanel();
         newJ.setVisible(true);
         newJ.setSize(500,200);
         newJ.add(cp);
@@ -41,35 +43,39 @@ public class CombatPanel extends JPanel
      
     public void initPanel()
     {
-        getAllUnitsInRange();
+        getAllUnitsOfEnemy();
         setUpButtons();
         
     }
 
-    public void getAllUnitsInRange() {
+    public void getAllUnitsOfEnemy() {
         unitSelected = GUI.unitSelected;
         for(Player p: Game.playersForDemo)
         {
-            if(p.myTurn)
+          
+            if(!p.myTurn)
             {
+            
                 enemyPlayer = p;
             }
             
         }
-        enemyUnits = unitSelected.getAllInRange(enemyPlayer);
+        enemyUnits = enemyPlayer.allUnits;
+       // enemyUnits = unitSelected.getAllInRange(enemyPlayer);
     }
     //Generate buttons with stats on them as well
      public void setUpButtons()
     {
-        
-         final JLabel title = new JLabel(unitSelected.nameOfUnit+" can attack:");
+        setLayout(new GridLayout(3,3));
+         final JLabel title = new JLabel(/*unitSelected.nameOfUnit*/" Can attack:");
           add(title);
           
           for(final Unit u: this.enemyUnits)
            {      
+               System.out.println(u.nameOfUnit);
                 ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
                 Image img = unitImage.getImage();
-                Image newimg = img.getScaledInstance(20, 40,  java.awt.Image.SCALE_SMOOTH); 
+                Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
                 ImageIcon unitImage2 = new ImageIcon(newimg);
                 final JButton button = new JButton((u.nameOfUnit+"Size of Unit"+u.unitSize),unitImage2) ;
                 buttons.add(button);
@@ -85,10 +91,10 @@ public class CombatPanel extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
                     unitSelected.attack(u);
-                    visible= false;
+                   // visible= false;
                     for(JButton b: buttons)
                     {
-                        b.setVisible(false);
+                     //   b.setVisible(false);
                     }
                     //subtract one point here as well.
                 }
@@ -97,8 +103,9 @@ public class CombatPanel extends JPanel
          }
    
     }
+}
   
     //When button is clicked, run 'attack' [subtract one point]
     //
     
-}
+

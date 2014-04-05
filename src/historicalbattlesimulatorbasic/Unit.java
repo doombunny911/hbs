@@ -297,7 +297,7 @@ public class Unit extends Soldier
         ArrayList<Unit> p2AllUnits = p2.getUnitList();
         for(Unit u: p2AllUnits)
         {
-           if(this.isInRange(this.unitSize, u.unitSize, u.soldierType))
+           if(this.isInRange(this.unitSize, u.unitSize, u.unitSoldiers[0]))
            {
                allUnitsInRange.add(u);
            }

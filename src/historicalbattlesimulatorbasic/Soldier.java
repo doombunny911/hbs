@@ -484,11 +484,15 @@ public void calculateModifiers(Soldier opponent)
     public double getDistance(Soldier opponent)
     {
         double x1 = this.tileOccupied.xPosition;
+     
         double y1 = this.tileOccupied.yPosition;
+     
         double x2 = opponent.tileOccupied.xPosition;
+       // System.out.println(x2);
         double y2 = opponent.tileOccupied.yPosition;
+      //  System.out.println(y2);
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-        return distance;
+       return distance;
     }
     private boolean inRange(Soldier opponent) 
     {

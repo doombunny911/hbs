@@ -406,20 +406,20 @@ public class GUI implements MouseListener
                 {
                     for(int j=0;j<GUI.numberOfTilesHeight;j++)
                     {
-                        if(GUI.tileGameMap[j][i].isOccupied)
-                            System.out.println("tile at ("+j+","+i+") = " +  GUI.tileGameMap[j][i]);
+//                       if(GUI.tileGameMap[j][i].isOccupied)
+  //                         System.out.println("tile at ("+j+","+i+") = " +  GUI.tileGameMap[j][i]);
                     }
                 }
                 
                 
-               if(GUI.attackButtonPanel!=null)
-               {
-                 initAttackButton();
-                 //if attackUnit does not have a special ability,or doesn't 
-                 //have an offensive special ability disable button or don't show it
-               }
-               if(!GUI.attackButtonPanel.isVisible())
-                   GUI.toggleButtons(GUI.attackButtonPanel,true);
+//               if(GUI.attackButtonPanel!=null)
+//               {
+//                 initAttackButton();
+//                 //if attackUnit does not have a special ability,or doesn't 
+//                 //have an offensive special ability disable button or don't show it
+//               }
+//               if(!GUI.attackButtonPanel.isVisible())
+//                   GUI.toggleButtons(GUI.attackButtonPanel,true);
            }
        });
        
