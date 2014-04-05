@@ -260,8 +260,9 @@ public final class UnitFormations
                      {
 //                         System.out.println("on the top of the box or the bottom of the box, draw the sprites");
                          locations[j][i] = GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
-                         this.unit.unitSoldiers[count].tileOccupied=locations[j][i];
-                         locations[j][i].occupyBy(unit.unitSoldiers[count]); 
+                         this.unit.unitSoldiers[count].tileOccupied=GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i];
+                         locations[j][i].occupyBy(unit.unitSoldiers[count]);
+                         GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+j][thisTile.yPosition/GUI.tileWidth+i].occupyBy(unit.unitSoldiers[count]);
                          count++;
 //                         System.out.println("Tile added  at ["+(thisTile.xPosition/GUI.tileWidth+j)+"] ["+(thisTile.yPosition/GUI.tileWidth+i)+"]");
                          
