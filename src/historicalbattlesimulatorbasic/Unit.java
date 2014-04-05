@@ -279,12 +279,12 @@ public class Unit extends Soldier
     @aSize - Attacker size
     @dSize - DefenderSize
     */
-    private boolean isInRange(int aSize, int dSize) 
+    private boolean isInRange(int aSize, int dSize, Soldier opponent) 
     {
         for (int i = 0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
         {
             int j = dSize-1; //the integer for the defenders unit size.
-            if (this.unitSoldiers[i].getDistance(soldierType)>range) {
+            if (this.unitSoldiers[i].getDistance(opponent)<range) {
                 return true;
             }
         }
@@ -297,7 +297,7 @@ public class Unit extends Soldier
         ArrayList<Unit> p2AllUnits = p2.getUnitList();
         for(Unit u: p2AllUnits)
         {
-           if(this.isInRange(this.unitSize, u.unitSize))
+           if(this.isInRange(this.unitSize, u.unitSize, u.soldierType))
            {
                allUnitsInRange.add(u);
            }
