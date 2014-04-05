@@ -425,15 +425,11 @@ public final class UnitFormations
           int temp = this.index;
           Unit u =  GUI.unitDraws.get(index).getThisUnit();
           System.out.println(u.nameOfUnit);
-//        System.out.println("in paintFormation");
-          ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
-          Image img = unitImage.getImage();
-          Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
+          BufferedImage  unImg = u.getUnitPic(u);
 
         for(int i=this.index-1;i>=0;i--)
         {
-          
-            g.drawImage(newimg, spriteLocations[i].xPosition,
+            g.drawImage(unImg, spriteLocations[i].xPosition,
                     spriteLocations[i].yPosition, spriteLocations[i].xLength,
                     spriteLocations[i].yHeight,null);
         }
@@ -442,7 +438,7 @@ public final class UnitFormations
       }
        else if(value==1)
      {
-          Unit u =  GUI.unitDraws.get(0).getThisUnit();
+          Unit u =  GUI.unitDraws.get(index).getThisUnit();
 //        System.out.println("in paintFormation");
           BufferedImage  unImg = u.getUnitPic(u);
          for(int i=0;i<locations[0].length;i++)
