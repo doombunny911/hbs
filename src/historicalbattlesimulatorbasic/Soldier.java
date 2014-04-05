@@ -104,7 +104,7 @@ public Soldier(String unitName,
 {
     
      this.unitName = unitName;
-     facing=3;
+     facing=1;
      this.unitType = unitType;
      this.attack = attack;
      this.dmg = dmg;
