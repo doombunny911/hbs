@@ -68,6 +68,11 @@ public class GUI implements MouseListener
    private static void initCombatPanel()
    {
        CombatPanel combatPanel2 = new CombatPanel();
+       combatPanel2.setLayout(null);
+       combatPanel2.setVisible(true);
+       combatPanel2.setBounds(GUI.gameFrame.getWidth()-400,GUI.gameFrame.getHeight()-400,200,200);
+       GUI.panel.add(combatPanel2);
+       GUI.repainter();
        combatPanel2.initPanel();
        combatPanel = combatPanel2;
        
@@ -191,6 +196,7 @@ public class GUI implements MouseListener
                GUI.impendingAttack=true;
                GUI.toggleButtons(attackButtonPanel, false);
                GUI.toggleButtons(buttonPanel, true);
+            
           }
        });
        
@@ -319,10 +325,6 @@ public class GUI implements MouseListener
                         {
                             System.out.println("unitSelected is being initialized ");
                             GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
-//                             if(combatPanel==null)
-//                            {
-//                                GUI.initCombatPanel();
-//                            }
                             toggleButtons(GUI.buttonPanel,true);
                         } 
                    }
@@ -398,7 +400,18 @@ public class GUI implements MouseListener
            {
                GUI.attackUnit=GUI.unitSelected;
                GUI.toggleButtons(GUI.buttonPanel,false);
-               
+                GUI.initCombatPanel();
+                
+                for(int i=0;i<GUI.numberOfTilesWidth;i++)
+                {
+                    for(int j=0;j<GUI.numberOfTilesHeight;j++)
+                    {
+                        if(GUI.tileGameMap[j][i].isOccupied)
+                            System.out.println("tile at ("+j+","+i+") = " +  GUI.tileGameMap[j][i]);
+                    }
+                }
+                
+                
                if(GUI.attackButtonPanel!=null)
                {
                  initAttackButton();
