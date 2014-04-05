@@ -95,7 +95,7 @@ public class Map
         GUI.tileGameMap[x][y]=insertTile;
     }
     
-    
+    //public void 
     
     //Sets the tile to have north, east, south, west
     public void setTileAllDirections()

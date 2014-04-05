@@ -30,7 +30,7 @@ public class CombatPanel extends JPanel
     //get all units in range
      public static void main(String[] args)
      {
-         JFrame newJ = new JFrame();
+        JFrame newJ = new JFrame();
         CombatPanel cp = new CombatPanel();
         newJ.setVisible(true);
         newJ.setSize(500,200);

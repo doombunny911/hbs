@@ -186,7 +186,7 @@ public class Unit extends Soldier
         System.out.println("Attacking units"+aSize);
         System.out.println("Defending units"+dSize);
       
-       if (isInRange(aSize, dSize))
+       if (isInRange(aSize, dSize, defender))
         {
            
         if(defender.unitDefeat==false)
@@ -245,7 +245,7 @@ public class Unit extends Soldier
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-        if (isInRange(aSize, dSize))
+        if (isInRange(aSize, dSize, defender))
         {
            
         
