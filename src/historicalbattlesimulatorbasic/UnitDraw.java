@@ -32,9 +32,9 @@ public class UnitDraw
         }
         else
         {
-            System.out.println("currentFormatoin is not null in UnitDraw giving only unit in paremter");
+            System.out.println("currentFormation is not null in UnitDraw giving only unit in parameter");
             //this will later call which formation it is and draw according to that pattern
-            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
+//            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
         }
         
         this.tileLocationOfUnit=GUI.tileClicked;
