@@ -611,7 +611,7 @@ public class GUI implements MouseListener
         int unitNumLocal=unitSelected.getUnitsAlive();
         double unitAttack=unitSelected.unitSoldiers[0].attack;
         double unitDefense = unitSelected.unitSoldiers[0].defense;
-        int facingInt = unitSelected.unitSoldiers[0].facing;
+        int facingInt = unitSelected.unitFacing;
         double armorClass = unitSelected.unitSoldiers[0].armorClass;
         double speed = unitSelected.unitSoldiers[0].speed;
         double range = unitSelected.unitSoldiers[0].range;

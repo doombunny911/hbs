@@ -77,7 +77,7 @@ public final class UnitFormations
         
         System.out.println(this.unit.getSpriteName());
         
-        whichFormation =0;
+        whichFormation =DEFAULT;
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSoldiers.length;
        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
@@ -88,13 +88,13 @@ public final class UnitFormations
 //       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
        
        //
-       System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
+       System.out.println("unit is facing " + unit.unitFacing);
        soldiersPerSprite =  1; //each sprite represents this many soldiers
       
      
       spriteLocations = new Tile[numberOfSoldiers/soldiersPerSprite];
       this.index=0;
-            switch(unit.unitSoldiers[0].facing)
+            switch(unit.unitFacing)
            { 
                case 1: //north
                {
@@ -224,10 +224,9 @@ public final class UnitFormations
       
 //       System.out.println("unit is facing " + unit.unitFacing); //don't understand why this gives different value than next line
        
-       System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
+       System.out.println("unit is facing " + unit.unitFacing);
        
       int num=0;
-      int extra = 0;
       int boxLength = 0;
       int jIndex=-1;
       while(num<effectiveSoldiers)
@@ -239,10 +238,10 @@ public final class UnitFormations
         System.out.println("boxLength = " + boxLength);
     
         locations=new Tile[boxLength][boxLength];
-      System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
+//      System.out.println("unit is facing " + unit.unitSoldiers[0].facing);
       
        int count =0;
-      switch(unit.unitSoldiers[0].facing)
+      switch(unit.unitFacing)
       { 
           case 1: //north
           {

@@ -81,14 +81,7 @@ public class MapTest {
     /**
      * Test of setTileAllDirections method, of class Map.
      */
-    @Test
-    public void testSetTileAllDirections() {
-        System.out.println("setTileAllDirections");
-        Map instance = null;
-        instance.setTileAllDirections();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
 
     /**
      * Test of setTileTerrain method, of class Map.

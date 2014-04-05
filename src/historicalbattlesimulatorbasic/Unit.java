@@ -29,7 +29,7 @@ public class Unit extends Soldier
     static int unitIDGen =0;
     int unitID;
     boolean clickable = true;
-    double moveMentCounter =super.speed; //for now, very basic
+    double moveMentCounter; //for now, very basic
     String nameOfUnit = super.unitName;
     Soldier unitSoldiers[];
     Soldier soldierType;
@@ -73,9 +73,8 @@ public class Unit extends Soldier
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
          //Creates a random Unit ID
-        this.unitFacing=super.facing;
         this.unitID=Unit.unitIDGen;
-        
+        this.moveMentCounter=super.speed;
         Unit.unitIDGen++;
         for(int i=0; i<unitSize; i++)
         {
@@ -85,8 +84,9 @@ public class Unit extends Soldier
             unitSoldiers[i].setUnitID(this.unitID);
             unitSoldiers[i].placeOnTile(tileOccupied);
         }
-        
-        
+        this.moveMentCounter=unitSoldiers[0].speed;
+        this.unitFacing=unitSoldiers[0].facing;
+
         
        System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
     }
@@ -94,15 +94,13 @@ public class Unit extends Soldier
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
-     //   System.out.println("unitIDGEN = " + Unit.unitIDGen);
-     //  System.out.println("Authentic unit created");
+
 
         nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
         this.soldierType = soldierType;
         this.unitID=Unit.unitIDGen;
-        this.unitFacing=super.facing;
 
      
         Unit.unitIDGen++;
@@ -113,7 +111,8 @@ public class Unit extends Soldier
             unitSoldiers[i]= soldierType.clone();
             unitSoldiers[i].setUnitID(this.unitID);
         }
-    
+        this.moveMentCounter=unitSoldiers[0].speed;
+        this.unitFacing=unitSoldiers[0].facing;
     }
     
     
