@@ -1,7 +1,9 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,7 +28,6 @@ public final class UnitFormations
     private Tile thisTile;
     int value;
     private int soldiersPerSprite =1;
-    BufferedImage img;
     public static final int WEDGE = 2;
     public static final int SQUARE = 1;
     public static final int DEFAULT = 0;
@@ -73,6 +74,9 @@ public final class UnitFormations
     //need to check to see if tile is occupied
     public UnitFormations defaultFormation()
     {
+        
+        System.out.println(this.unit.getSpriteName());
+        
         whichFormation =0;
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSoldiers.length;
@@ -412,23 +416,19 @@ public final class UnitFormations
         return this;
     }
     
-    public void paintFormation(Graphics g)
+    public void paintFormation(Graphics g,int index)
     {
 //        System.out.println("spriteLocations is " + spriteLocations);
        if(value==0)
        {
+          int count =0;
           int temp = this.index;
-          for(int i=0;i<GUI.unitDraws.size();i++)
-          { 
-          
-          }
-        Unit u =  GUI.unitDraws.get(0).getThisUnit();
-//        System.out.println("in paintFormation");
-        BufferedImage  unImg = Unit.getUnitPic(u);
-        
+          Unit u =  GUI.unitDraws.get(index).getThisUnit();
+          System.out.println(u.nameOfUnit);
+          BufferedImage  unImg = u.getUnitPic(u);
+
         for(int i=this.index-1;i>=0;i--)
         {
-          
             g.drawImage(unImg, spriteLocations[i].xPosition,
                     spriteLocations[i].yPosition, spriteLocations[i].xLength,
                     spriteLocations[i].yHeight,null);
@@ -438,9 +438,9 @@ public final class UnitFormations
       }
        else if(value==1)
      {
-          Unit u =  GUI.unitDraws.get(0).getThisUnit();
+          Unit u =  GUI.unitDraws.get(index).getThisUnit();
 //        System.out.println("in paintFormation");
-          BufferedImage  unImg = Unit.getUnitPic(u);
+          BufferedImage  unImg = u.getUnitPic(u);
          for(int i=0;i<locations[0].length;i++)
          {
             for(int j=0;j<locations.length;j++)

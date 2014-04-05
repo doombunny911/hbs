@@ -94,7 +94,7 @@ public final class UnitPlacer extends JPanel
          add(title);
           for(final Unit u: this.unitArrayList)
            {      
-            ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
+            ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
             Image img = unitImage.getImage();
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon unitImage2 = new ImageIcon(newimg);

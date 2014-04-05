@@ -72,8 +72,12 @@ public class CombatPanel extends JPanel
           
           for(final Unit u: this.enemyUnits)
            {      
+<<<<<<< HEAD
                System.out.println(u.nameOfUnit);
                 ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
+=======
+                ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
+>>>>>>> b3d1823edc562d3579a177062e1a1702390c329a
                 Image img = unitImage.getImage();
                 Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
                 ImageIcon unitImage2 = new ImageIcon(newimg);

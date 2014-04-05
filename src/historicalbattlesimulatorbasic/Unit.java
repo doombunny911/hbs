@@ -53,7 +53,7 @@ public class Unit extends Soldier
          UnitLoader ul = new UnitLoader();
          ArrayList<Unit> uA = ul.runLoader();
          Unit u = uA.get(0);
-         BufferedImage ic = getUnitPic(u);
+         BufferedImage ic = u.getUnitPic(u);
          Graphics g = ic.createGraphics();
          ImageIcon icon = new ImageIcon();
          icon.setImage(ic);
@@ -135,9 +135,8 @@ public class Unit extends Soldier
     {
         this.clickable = false;
     }
-    public static BufferedImage getUnitPic(Unit unit)
+    public  BufferedImage getUnitPic(Unit unit)
     {
-        
         BufferedImage img = new BufferedImage(GUI.tileWidth, GUI.tileWidth, 4);
         try {
              img = ImageIO.read(new File("Sprites"+File.separator+"UnitSprites"+File.separator+unit.spriteName));
@@ -145,7 +144,6 @@ public class Unit extends Soldier
             Logger.getLogger(Unit.class.getName()).log(Level.SEVERE, null, ex);
             
         }
-//        System.out.println("Got image of"+unit.spriteName);
         return img;
     }
     

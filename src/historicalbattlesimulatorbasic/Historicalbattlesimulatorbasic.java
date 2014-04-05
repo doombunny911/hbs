@@ -19,8 +19,6 @@ public class Historicalbattlesimulatorbasic
     
     public static void main(String[] args) 
     {
-        
-        Openingmenuscreen test = new Openingmenuscreen();
-        
+        Openingmenuscreen Start = new Openingmenuscreen();
     }
 }

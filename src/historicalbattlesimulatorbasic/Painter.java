@@ -75,7 +75,7 @@ public class Painter extends JPanel
          for(int p=0;p<GUI.unitDraws.size();p++)
          {      
              
-             GUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g);
+             GUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g,p);
          }
       }
       //not currently used
