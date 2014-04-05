@@ -66,8 +66,6 @@ public class Unit extends Soldier
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
-      //   System.out.println("unitIDGEN = " + Unit.unitIDGen);
-      //  System.out.println("Authentic unit created");
         this.nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;

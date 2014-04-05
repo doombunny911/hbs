@@ -36,10 +36,6 @@ public class Map
        // m.saveMap("file");
         
     }
-    public Map(int xHeight, int yHeight)
-    {
-     
-    }
    //populates the gameMap with basic tiles with no features other than area.
     public Map( int xWidth)
     {
@@ -52,13 +48,6 @@ public class Map
         GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
         
 //        GUI.placeUnitTester();
-        
-      
-
-        
-        
-        
-        
         GUI.gameFrame.add(gen);
     }
  

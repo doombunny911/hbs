@@ -60,6 +60,14 @@ public final class UnitPlacer extends JPanel
        this.setOpaque(false);
         
    }
+   public UnitPlacer(String name, ArrayList <Unit> u)
+   {
+       this.player=name;
+       this.unitArrayList=u;
+       this.numOfUnitsToPlace=u.size();
+       this.setOpaque(false);
+       this.setUpButtons();
+   }
    public ArrayList<Unit> getUnitList()
    {
        return this.unitArrayList;

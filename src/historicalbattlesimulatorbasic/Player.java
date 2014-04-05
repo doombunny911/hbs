@@ -40,7 +40,12 @@ public Player(String playerName)
     allUnits=up.unitArrayList;
     this.playerName = playerName;
 }
-
+public Player(String playerName,ArrayList <Unit> u)
+{
+    up=new UnitPlacer(playerName,u);
+    allUnits=u;
+    this.playerName = playerName;
+}
 public void generatePlayerUnitPlacer()
 {
     

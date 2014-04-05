@@ -421,10 +421,8 @@ public final class UnitFormations
 //        System.out.println("spriteLocations is " + spriteLocations);
        if(value==0)
        {
-          int count =0;
           int temp = this.index;
           Unit u =  GUI.unitDraws.get(index).getThisUnit();
-          System.out.println(u.nameOfUnit);
           BufferedImage  unImg = u.getUnitPic(u);
 
         for(int i=this.index-1;i>=0;i--)
