@@ -179,11 +179,11 @@ public class Unit extends Soldier
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
        
-        System.out.println("Attacking units"+aSize);
-        System.out.println("Defending units"+dSize);
+//        System.out.println("Attacking units"+aSize);
+//        System.out.println("Defending units"+dSize);
       
-       if (isInRange(aSize, dSize, defender))
-        {
+//       if (isInRange(aSize, dSize, defender))
+//        {
            
         if(defender.unitDefeat==false)
         {
@@ -200,7 +200,7 @@ public class Unit extends Soldier
                {
                    j=0;
                }
-               System.out.println("Defending units alive:"+defender.getUnitsAlive());
+            //   System.out.println("Defending units alive:"+defender.getUnitsAlive());
                 if(!this.unitSoldiers[i].isAlive()&&j!=0)
                 {
                     i--;
@@ -217,20 +217,24 @@ public class Unit extends Soldier
                 
                         
              
-            }
+            
         }
             
         }
+        //Message Afterwards
         if(defender.getUnitsAlive()==0 && isUnitDefeated())
                 {
-                    System.out.println("Remaining defender"+dSize);
-                    JOptionPane.showMessageDialog(null, "The attackers won, all defenders are dead");
-                
+                    //System.out.println("Remaining defender"+dSize);
+                    JOptionPane.showMessageDialog(null, "All the"+ defender.nameOfUnit +"s are dead!");
+                    defender.alive = false;
+                   
+                    
                     
                 }
+      
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
                     + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+
-                    defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + " remain.");
+                    defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + " remain. ");
          //unitPoints = unitPoints -1;   
  }
         

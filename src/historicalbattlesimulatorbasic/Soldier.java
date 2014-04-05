@@ -380,7 +380,7 @@ public Soldier attack(Soldier defender)
     
    
      defender.update();
-     JOptionPane.showMessageDialog(null,defender.unitName+ "'s remaining HP: "+defender.hp);
+//     JOptionPane.showMessageDialog(null,defender.unitName+ "'s remaining HP: "+defender.hp);
      return defender;
 }
 

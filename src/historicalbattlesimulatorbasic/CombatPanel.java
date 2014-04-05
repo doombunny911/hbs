@@ -43,6 +43,7 @@ public class CombatPanel extends JPanel
      
     public void initPanel()
     {
+        setOpaque(false);
         getAllUnitsOfEnemy();
         setUpButtons();
         
@@ -66,27 +67,27 @@ public class CombatPanel extends JPanel
     //Generate buttons with stats on them as well
      public void setUpButtons()
     {
-        setLayout(new GridLayout(3,3));
-         final JLabel title = new JLabel(/*unitSelected.nameOfUnit*/" Can attack:");
+        setLayout(new GridLayout(10,1));
+         final JLabel title = new JLabel(unitSelected.nameOfUnit+" can attack one of the following units. Click on your target!");
           add(title);
           
           for(final Unit u: this.enemyUnits)
            {      
-<<<<<<< HEAD
+
                System.out.println(u.nameOfUnit);
-                ImageIcon unitImage = new ImageIcon(Unit.getUnitPic(u));
-=======
                 ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
->>>>>>> b3d1823edc562d3579a177062e1a1702390c329a
+
                 Image img = unitImage.getImage();
                 Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
                 ImageIcon unitImage2 = new ImageIcon(newimg);
-                final JButton button = new JButton((u.nameOfUnit+"Size of Unit"+u.unitSize),unitImage2) ;
+                final JButton button = new JButton((u.nameOfUnit),unitImage2) ;
                 buttons.add(button);
 //            unitImages.add(button);
             
             
             button.setOpaque(false);
+            button.setContentAreaFilled(false);
+             button.setBorderPainted(false);
 
             add(button);
                 button.addActionListener(new ActionListener() 
@@ -95,7 +96,7 @@ public class CombatPanel extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
                     unitSelected.attack(u);
-                   // visible= false;
+                    visible= false;
                     for(JButton b: buttons)
                     {
                      //   b.setVisible(false);
