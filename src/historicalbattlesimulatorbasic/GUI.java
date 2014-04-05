@@ -70,6 +70,7 @@ public class GUI implements MouseListener
        CombatPanel combatPanel2 = new CombatPanel();
        combatPanel2.initPanel();
        combatPanel = combatPanel2;
+       
       // combatPanel.initPanel();
    }
    private static void initFormPanel() 
