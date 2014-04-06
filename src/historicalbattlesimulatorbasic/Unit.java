@@ -50,7 +50,7 @@ public class Unit extends Soldier
     UnitFormations currentFormation;
     String spriteName = "blackKnight.png"; 
     int playerNum;
-    double unitSpeed = super.speed;
+    double speed;
     double range;
     
 //    static Unit 
@@ -74,7 +74,7 @@ public class Unit extends Soldier
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
         unitFacing = soldierType.facing;
-        this.range = soldierType.range;
+        this.range = (soldierType.range)*4;
         this.speed = soldierType.speed;
         this.nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;

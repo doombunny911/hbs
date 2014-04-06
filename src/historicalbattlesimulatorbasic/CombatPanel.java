@@ -6,6 +6,8 @@
 
 package historicalbattlesimulatorbasic;
 
+import static historicalbattlesimulatorbasic.GUI.statPanel;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -68,9 +70,13 @@ public class CombatPanel extends JPanel
      public void setUpButtons()
     {
         setLayout(new GridLayout(10,1));
-         final JLabel title = new JLabel(unitSelected.nameOfUnit+" can attack one of the following units./n Click on your target!");
+        ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
+         final JLabel title = new JLabel(unitSelected.nameOfUnit,imageOfUnitSelected, JLabel.CENTER);
+        final JLabel title2 = new JLabel("Click on your target! If none are present, hit cancel");
+     
           add(title);
-          
+          add(title2);
+         
           for(final Unit u: this.enemyUnits)
            {      
 
@@ -109,7 +115,16 @@ public class CombatPanel extends JPanel
                 });
             
          }
-   
+   JButton close = new JButton("Close");
+        
+        close.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) //box Formation
+           {
+              setVisible(false);
+           }
+       });
+        add(close);
     }
 }
   

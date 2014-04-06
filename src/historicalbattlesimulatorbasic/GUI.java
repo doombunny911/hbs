@@ -6,10 +6,13 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -296,12 +299,12 @@ public class GUI implements MouseListener
        // is stored in attackUnit and we wait until a user clicks the unit that 
        // they want to attack.  Currently no range check to see if they are
        //able to reach them
-        if(thereIsAnAttackReadyToHappenAndTileClickedIsOccupied())
-        {
-            GUI.attackUnit.attack(GUI.unitSelected);
-            GUI.attackUnit=null;
-            impendingAttack=false;
-        }
+//        if(thereIsAnAttackReadyToHappenAndTileClickedIsOccupied())
+//        {
+//            GUI.attackUnit.attack(GUI.unitSelected);
+//            GUI.attackUnit=null;
+//            impendingAttack=false;
+//        }
         
         GUI.repainter();
     }
@@ -481,7 +484,7 @@ public class GUI implements MouseListener
                  if(player1Turn())
                  {
                      Game.playersForDemo.get(0).myTurn=false;
-                     Game.playersForDemo.get(1).myTurn=true;
+                    Game.playersForDemo.get(1).myTurn=true;
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
 
                  }
@@ -605,6 +608,14 @@ public class GUI implements MouseListener
         //unitSoldiers[0] won't work when soldier 0 dies
         //need to add these stats to the unit itself
         statPanel = new JPanel();
+      
+    //GUI.statPanel.setLayout(new GridLayout(3,1));
+//        BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
+//        ImageIcon unitPic2 = new ImageIcon(unitPic);
+//        JLabel up = new JLabel(unitPic2);
+//        up.setBounds(, unitNum, tileWidth, unitNum);
+//        GUI.statPanel.add(up);
+       
         int unitNumLocal=unitSelected.getUnitsAlive();
         double unitAttack=unitSelected.unitSoldiers[0].attack;
         double unitDefense = unitSelected.unitSoldiers[0].defense;
@@ -614,7 +625,16 @@ public class GUI implements MouseListener
         double range = unitSelected.unitSoldiers[0].range;
         double chargeBonus = unitSelected.unitSoldiers[0].chargeBonus;
         double stamina = unitSelected.unitSoldiers[0].stamina;
-        
+        JButton close = new JButton("Close");
+        close.setBounds(GUI.statPanel.getWidth(), -4*GUI.statPanel.getHeight()/5, GUI.statPanel.getWidth(), 50);
+//        close.setBounds(GUI.statPanel.width(), GUI.statPanel, tileWidth, facingInt);
+        close.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) //box Formation
+           {
+              statPanel.setVisible(false);
+           }
+       });
         String facing = unitIsFacing(facingInt);
         //using html allows me to carriage return
         JLabel stats = new JLabel("<html> Soldiers in Unit: "+unitNumLocal+
@@ -625,6 +645,8 @@ public class GUI implements MouseListener
         
         //add the label to the panel
         GUI.statPanel.add(stats);
+        //GUI.statPanel.add(new JLabel(" "));
+        GUI.statPanel.add(close);
         //set the location and size of panel
         GUI.statPanel.setBounds(GUI.panel.getWidth()-250,0,200,300);
         //set the panel to true
@@ -676,9 +698,9 @@ public class GUI implements MouseListener
            GUI.printStats(unit); //should be equal to GUI.unitSelected
        }
    }
-    protected boolean thereIsAnAttackReadyToHappenAndTileClickedIsOccupied() {
-        return GUI.attackUnit!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied;
-    }
+    //protected boolean thereIsAnAttackReadyToHappenAndTileClickedIsOccupied() {
+      //  return GUI.attackUnit!=null&&GUI.tileClicked!=null&&GUI.tileClicked.isOccupied;
+ //   }
     protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }

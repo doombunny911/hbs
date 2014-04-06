@@ -38,8 +38,8 @@ public class UnitLoader
             System.out.println("Loaded "+u.nameOfUnit);
             System.out.println("Speed "+ u.speed);
             System.out.println("Range "+u.range);
-            System.out.println("Attack "+u.baseAttack);
-            System.out.println("Base Armor " +u.baseArmorClass);
+           // System.out.println("Attack "+u.baseAttack);
+          //  System.out.println("Base Armor " +u.baseArmorClass);
         }
         
     }
