@@ -700,8 +700,8 @@ public class GUI implements MouseListener
         return Game.playersForDemo.get(1).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
     protected boolean player1UnitIsEqualToUnitSelectedAt(int i) {
-        return Game.playersForDemo.get(0).allUnits.get(i).yPosition==GUI.tileClicked.yPosition&&Game.playersForDemo.get(0).allUnits.get(i).xPosition==GUI.tileClicked.xPosition;
-//        return Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
+//        return Game.playersForDemo.get(0).allUnits.get(i).yPosition==GUI.tileClicked.yPosition&&Game.playersForDemo.get(0).allUnits.get(i).xPosition==GUI.tileClicked.xPosition;
+        return Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
     protected boolean thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null;
