@@ -139,11 +139,13 @@ public final class Openingmenuscreen extends JFrame
             Soldier s2 = new Soldier("Greek BodyGuard",1,3,2,4,5,7,3,4,2,2,5,4);
             Unit player2Unit = new Unit(s2,50);
             player2Unit.setSprite("redKnight.png");
+            Unit unit3 = new Unit(s,10);
             String name = "Player1";
             String name2="Player2";
             ArrayList <Unit> u = new ArrayList(); 
             ArrayList <Unit> u2 = new ArrayList();
             u.add(player1Unit);
+            u.add(unit3);
             u2.add(player2Unit);
             Player p1 = new Player(name,u);
             

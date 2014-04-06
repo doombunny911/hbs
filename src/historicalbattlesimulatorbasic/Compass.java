@@ -91,8 +91,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.moveNorthWest();
-//                    System.out.println("northWest in Compass button");
                   moveDirection=8;
                   moveLogic();
                 }});
@@ -101,8 +99,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.moveNorth();
-//                     System.out.println("north in Compass button");
                   moveDirection=1;
                   moveLogic();
                 }});
@@ -111,8 +107,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.moveNorthEast();
-//                   System.out.println("northEast in Compass button");
                   moveDirection=2;
                   moveLogic();
                 }});
@@ -122,10 +116,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.
-//                System.out.println("west in Compass button");
-
-//                  GUI.unitSelected.moveWest();
                   moveDirection=7;
                   moveLogic();
                 }});
@@ -150,9 +140,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.moveEast();
-//                  System.out.println("east in Compass button");
-
                   moveDirection=3;
                   moveLogic();
                 }});
@@ -161,8 +148,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.moveSouthWest();
-//                 System.out.println("southWest in Compass button");
                   moveDirection=6;
                   moveLogic();
                 }});       
@@ -171,9 +156,6 @@ public final class Compass extends JPanel{
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-//                  GUI.unitSelected.moveSouth();
-//                System.out.println("south in Compass button");
-
                   moveDirection=5;
                   moveLogic();  
                 }});
@@ -182,9 +164,6 @@ public final class Compass extends JPanel{
                      @Override
                  public void actionPerformed(ActionEvent e)
                  {
-//                     System.out.println("southEast in Compass button");
-
-//                   GUI.unitSelected.moveSouthEast();
                    moveDirection=4;
                    moveLogic();
                  }});
