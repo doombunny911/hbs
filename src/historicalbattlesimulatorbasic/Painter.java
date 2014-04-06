@@ -4,8 +4,10 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import javax.swing.JPanel;
 
 /**
@@ -63,8 +65,18 @@ public class Painter extends JPanel
          for(int j=0;j<sWidth;j++)
          {
            
+                if(GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
+                {
+                    Stroke originalStroke = g2.getStroke();
+                    g2.setStroke(new BasicStroke(4));
+                    g2.draw(GUI.tileGameMap[j][i]);
+                    g2.setStroke(originalStroke);
+                }
+                else
+                {
+                    g2.draw(GUI.tileGameMap[j][i]);
+                }
                 
-                g2.draw(GUI.tileGameMap[j][i]);
                  GUI.tileGameMap[j][i].paintTile((g2));  
          
          }

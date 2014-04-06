@@ -504,6 +504,15 @@ if(!parent.exists() && !parent.mkdirs()){
             UnitDraw draw = new UnitDraw(unit,new Tile(unit.xPosition,unit.yPosition,GUI.tileWidth,GUI.tileWidth));
             GUI.unitDraws.add(draw);//adds the new unit
        }
+
+    void highlightUnit() 
+    {
+        for(int i =0;i<this.unitSize;i++)
+        {
+//            this.tileOccupied.
+//            this.unitSoldiers[i].tileOccupied.setFrame(tileOccupied);
+        }
+    }
    }
   
 
