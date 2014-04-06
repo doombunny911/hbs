@@ -26,13 +26,17 @@ import javax.swing.JOptionPane;
  */
 public class Unit extends Soldier 
 {
+    //THIS IS THE MOST IMPORTANT 
+      Soldier soldierType;
+      
     static int unitIDGen =0;
     int unitID;
     boolean clickable = true;
+   
     double moveMentCounter; //for now, very basic
-    String nameOfUnit = super.unitName;
+    String nameOfUnit;
     Soldier unitSoldiers[];
-    Soldier soldierType;
+    
     int unitSize; 
     int unitWidth;
     int unitStartLocationX;
@@ -42,10 +46,13 @@ public class Unit extends Soldier
     int xPosition, yPosition;
     int yHeight=40;
     int xWidth=10;
-    int unitFacing = super.facing;
+    int unitFacing;
     UnitFormations currentFormation;
     String spriteName = "blackKnight.png"; 
     int playerNum;
+    double unitSpeed = super.speed;
+    double range;
+    
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -66,6 +73,9 @@ public class Unit extends Soldier
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
+        unitFacing = soldierType.facing;
+        this.range = soldierType.range;
+        this.speed = soldierType.speed;
         this.nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
@@ -74,7 +84,7 @@ public class Unit extends Soldier
         this.soldierType = soldierType;
          //Creates a random Unit ID
         this.unitID=Unit.unitIDGen;
-        this.moveMentCounter=super.speed;
+        this.moveMentCounter=soldierType.speed;
         Unit.unitIDGen++;
         for(int i=0; i<unitSize; i++)
         {
@@ -90,12 +100,14 @@ public class Unit extends Soldier
         
        System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
     }
-    
+   
     //Create a unit with out position.
      public Unit(Soldier soldierType, int unitSize)
     {
 
-
+        unitFacing = soldierType.facing;
+        range = soldierType.range;
+        speed = soldierType.speed;
         nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
         unitSoldiers = new Soldier[unitSize];
@@ -283,7 +295,7 @@ public class Unit extends Soldier
         opponent.calculateAveragePosition();
         this.calculateAveragePosition();
        
-            if (getDistance(opponent.getAvgXPosition(), opponent.getAvgYPosition())<(range)) {
+            if (getDistance(opponent.getAvgXPosition(), opponent.getAvgYPosition())<(this.soldierType.range)) {
                 inRange = true;
             }
           
@@ -305,6 +317,7 @@ public class Unit extends Soldier
         double y2 = avgY;
       //  System.out.println(y2);
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        System.out.println("DISTANCE - "+distance);
        return distance;
     }
     public void calculateAveragePosition()

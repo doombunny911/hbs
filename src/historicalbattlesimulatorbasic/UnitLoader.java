@@ -37,6 +37,9 @@ public class UnitLoader
         {
             System.out.println("Loaded "+u.nameOfUnit);
             System.out.println("Speed "+ u.speed);
+            System.out.println("Range "+u.range);
+            System.out.println("Attack "+u.baseAttack);
+            System.out.println("Base Armor " +u.baseArmorClass);
         }
         
     }
@@ -107,7 +110,7 @@ public class UnitLoader
                 
                 int nDMGDice = Integer.parseInt(reader.nextLine()); //3
                 
-                double nAttackBonus = Double.parseDouble(reader.nextLine()); //2
+                double nAttackBonus = Double.parseDouble(reader.nextLine()); //
                 double dmgBonus = Double.parseDouble(reader.nextLine());//4
                 double hp = Double.parseDouble(reader.nextLine()); //5
                 double ac = Double.parseDouble(reader.nextLine()); //6
@@ -124,14 +127,7 @@ public class UnitLoader
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             Unit unit = new Unit(soldier,unitSize);
             unit.setSprite(spriteName);
-           
-            // BufferedImage ic = Unit.getUnitPic(unit);
-            
-
-//...
-         //   ImageIcon icon = new ImageIcon();
-         //   icon.setImage(ic);
-           // JOptionPane.showMessageDialog(null, icon);
+           System.out.println("Units Speed "+unit.speed);
             return unit;
     } 
   

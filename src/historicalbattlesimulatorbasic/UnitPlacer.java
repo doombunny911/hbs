@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -56,7 +57,7 @@ public final class UnitPlacer extends JPanel
        UnitLoader ul = new UnitLoader();
        this.unitArrayList = ul.runLoader();
        this.numOfUnitsToPlace = this.unitArrayList.size();
-       System.out.println("the number in unitPlacer = " + numOfUnitsToPlace);
+       //System.out.println("the number in unitPlacer = " + numOfUnitsToPlace);
        this.setOpaque(false);
         
    }
@@ -82,26 +83,20 @@ public final class UnitPlacer extends JPanel
    {
        return this.player;
    }
-
+ boolean allDone = false;
    public void setUpButtons()
     {
         
-         final JButton title = new JButton(this.player+" 's Units");
-          add(title);
-         title.addActionListener(new ActionListener() 
-                {
-                    @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                      title.setVisible(false);
-                      //nothing
-                  
-                }
-                });
+         final JLabel title = new JLabel(this.player+" 's Units");
+        
+        
 //       final Unit u = unitArrayList.get(index);
          add(title);
+        
+         int indx= 0;
           for(final Unit u: this.unitArrayList)
            {      
+               indx++;
             ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
             Image img = unitImage.getImage();
             Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
@@ -128,15 +123,21 @@ public final class UnitPlacer extends JPanel
                      System.out.println(u.nameOfUnit);
                      button.setVisible(false);
                     numOfUnitsToPlace--;
-                    System.out.println("new num in unitPlacer = "+numOfUnitsToPlace );
+      //              System.out.println("new num in unitPlacer = "+numOfUnitsToPlace );
                      unitToBeLoaded=u;
-                     
+                 
+                     title.setVisible(false);
                      System.out.println("in unitPlacer, the speed of this unit is " + u.speed);
+                     System.out.println("in unitPlacer, the range of this unit is "+ u.range);
                   }
                 }});
+//                if(indx ==this.unitArrayList.size())
+//                {
+//                    allDone = true;
+//                }
             button.setBorderPainted(false);
+           
          }
-   
     }
   
 }
