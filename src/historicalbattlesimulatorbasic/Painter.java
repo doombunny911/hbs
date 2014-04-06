@@ -65,17 +65,17 @@ public class Painter extends JPanel
          for(int j=0;j<sWidth;j++)
          {
            
-//                if(tileHasASpriteFromUnitSelectedat(j, i))
-//                {
-//                    Stroke originalStroke = g2.getStroke();
-//                    g2.setStroke(new BasicStroke(4));
-//                    g2.draw(GUI.tileGameMap[j][i]);
-//                    g2.setStroke(originalStroke);
-//                }
-//                else
-//                {
+                if(tileHasASpriteFromUnitSelectedat(j, i))
+                {
+                    Stroke originalStroke = g2.getStroke();
+                    g2.setStroke(new BasicStroke(4));
                     g2.draw(GUI.tileGameMap[j][i]);
-//                }
+                    g2.setStroke(originalStroke);
+                }
+                else
+                {
+                    g2.draw(GUI.tileGameMap[j][i]);
+                }
                 
                  GUI.tileGameMap[j][i].paintTile((g2));  
          
@@ -98,7 +98,18 @@ public class Painter extends JPanel
     }
 
     protected boolean tileHasASpriteFromUnitSelectedat(int j, int i) {
-        return GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
+        
+        if( GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied)
+        {
+            System.out.println(GUI.unitSelected);
+            System.out.println("j = " + j + " i = " + i);
+            System.out.println(GUI.tileGameMap[j][i]);
+            System.out.println(GUI.tileGameMap[j][i].getOccupier());
+             return GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
+
+        }
+        else
+            return false;
     }
    }
    

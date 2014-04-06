@@ -154,6 +154,7 @@ public final class UnitFormations
                             this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                             spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                             this.index++;
+                            count++;
                        }
                    }
                    
@@ -184,6 +185,7 @@ public final class UnitFormations
                             this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                             spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                             this.index++;
+                            count++;
                         }
                   }
                    
@@ -220,6 +222,7 @@ public final class UnitFormations
                             this.unit.unitSoldiers[i].tileOccupied=spriteLocations[this.index];
                             spriteLocations[this.index].occupyBy(unit.unitSoldiers[i]);
                             this.index++;
+                            count++;
                         }
                    }
                    

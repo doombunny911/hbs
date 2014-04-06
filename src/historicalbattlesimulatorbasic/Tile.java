@@ -266,7 +266,12 @@ public class Tile extends Rectangle
 //        }
         return null;
     }
-
+    public void removeSoldier()
+    {
+        isOccupied=false;
+        occupyingSoldier=null;
+    }
+    
     public void paintTile(Graphics2D g)
     {
         g.drawImage(image.getImage(), this.xPosition,

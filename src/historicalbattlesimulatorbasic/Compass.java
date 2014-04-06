@@ -233,7 +233,7 @@ public final class Compass extends JPanel{
             for(int j=0;j<GUI.numberOfTilesWidth;j++)
             {
                 if(thereIsASoldierWhereThereShouldNotBe(j, i))
-                    GUI.tileGameMap[j][i].occupyingSoldier=null;
+                    GUI.tileGameMap[j][i].removeSoldier();
             }
     }
     protected boolean thereIsASoldierWhereThereShouldNotBe(int j, int i) {
