@@ -104,6 +104,7 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) //line Formation
            {
+               GUI.removeSoldiersFromPreviousTiles();
                GUI.unitSelected.currentFormation.defaultFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
@@ -114,7 +115,9 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) //box Formation
            {
+               GUI.removeSoldiersFromPreviousTiles();
                GUI.unitSelected.currentFormation.setBoxFormation();
+               
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
            }
@@ -789,6 +792,18 @@ public class GUI implements MouseListener
         }if(index==-1)
            System.out.println("never found the right index in compass");
         return index;
+    }
+    protected static void removeSoldiersFromPreviousTiles() {
+        //remove the soldiers from the previous tiles
+        for(int i=0;i<GUI.numberOfTilesHeight;i++)
+            for(int j=0;j<GUI.numberOfTilesWidth;j++)
+            {
+                if(thereIsASoldierWhereThereShouldNotBe(j, i))
+                    GUI.tileGameMap[j][i].removeSoldier();
+            }
+    }
+    protected static boolean thereIsASoldierWhereThereShouldNotBe(int j, int i) {
+        return GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
     }
      //paints the area around the unit that it can move, very useful.  broken atm
     public static void paintRange(Unit unitSelected,Graphics g) 

@@ -98,18 +98,7 @@ public class Painter extends JPanel
     }
 
     protected boolean tileHasASpriteFromUnitSelectedat(int j, int i) {
-        
-        if( GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied)
-        {
-            System.out.println(GUI.unitSelected);
-            System.out.println("j = " + j + " i = " + i);
-            System.out.println(GUI.tileGameMap[j][i]);
-            System.out.println(GUI.tileGameMap[j][i].getOccupier());
-             return GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
-
-        }
-        else
-            return false;
+             return GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied&& GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
     }
    }
    
