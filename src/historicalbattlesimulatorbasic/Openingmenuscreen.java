@@ -37,8 +37,7 @@ public final class Openingmenuscreen extends JFrame
     JPanel welcomePanel;
     JButton b1, b2 ,b3, b4, b5;
    BufferedImageLoaders bil = new BufferedImageLoaders();
-    public void initButtonImages()
-    {
+    public void initButtonImages(){
         bil.loadMenuButtons();
         ImageIcon run = bil.getIconRunSimulation();
         b1 = new JButton(run) ;
@@ -171,8 +170,7 @@ public final class Openingmenuscreen extends JFrame
         }
     });
     }
-   public Openingmenuscreen()
-   {       
+    public Openingmenuscreen(){       
        initFrame();
      
      
@@ -189,18 +187,14 @@ public final class Openingmenuscreen extends JFrame
 
        GUI.gameFrame=gameFrame;
    }
-  
-  
+
    //sets to fullscreen mode, more a hinderence atm but good for final product
 
-   public void setFullScreen()
-  {
+    public void setFullScreen(){
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);
   }
-
-    private void initFrame()
-    {
+    private void initFrame(){
        this.gameFrame= new JFrame("Historical Battle Simulator");
        
        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE); //program stops if frame is close
@@ -215,15 +209,13 @@ public final class Openingmenuscreen extends JFrame
 //                        getPreferredSize().getHeight());
 //       System.out.println(gameFrame.getSize());
     }
-    public static void setTransparent(JButton b)
-    {
+    public static void setTransparent(JButton b){
         b.setOpaque(false);
         b.setContentAreaFilled(false);
         b.setBorderPainted(false);
         
     }
-    private void initButtonPanel() 
-    {
+    private void initButtonPanel() {
          initButtonImages();
          b1.setVisible(true);
          setTransparent(b1);
@@ -243,10 +235,7 @@ public final class Openingmenuscreen extends JFrame
         buttonPanel.add(b4);
         buttonPanel.add(b5);
     }    
-
-   
-    private void initTilePanel()
-    {
+    private void initTilePanel(){
         tilePanel = new JPanel(new GridBagLayout());
        // BufferedImageLoaders bil = new BufferedImageLoaders();
         bil.loadBackground();
@@ -256,15 +245,12 @@ public final class Openingmenuscreen extends JFrame
         
        
     }
-   private void removePanels()
-   {
+    private void removePanels(){
        gameFrame.remove(welcomePanel);
        tilePanel.remove(buttonPanel);
        gameFrame.remove(tilePanel);
    }
-
-    private void initWelcomePanel() 
-    {
+    private void initWelcomePanel() {
        bil.loadTopScreen();
        Image topImage = bil.getTopScreen();
        welcomePanel = new IPanel(topImage);

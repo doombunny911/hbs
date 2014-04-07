@@ -27,14 +27,12 @@ public class UnitCreator
      * @throws java.io.IOException
      */
     //Tester
-      public static void main(String[] args) throws IOException 
-    {
+    public static void main(String[] args) throws IOException {
         
       UnitCreator.createUnit();
     }
       //This shall be used to create a unit. Multiple of this unit may be loaded for a battle.
-    public static void createUnit() throws IOException
-    {
+    public static void createUnit() throws IOException{
         //What the scanner will say so that user knows what stat they are entering
         String[] prompt = new String[16];
     
@@ -127,7 +125,6 @@ public class UnitCreator
     }   
 
 }
-
     private static boolean createMore(Frame frame) throws HeadlessException {
       
         int n = JOptionPane.showConfirmDialog(

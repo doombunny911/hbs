@@ -32,86 +32,85 @@ public class Game
 
     
 
-public static void main(String[] args){
-   
-Game game = new Game();
-Scanner in = new Scanner(System.in);
-System.out.println("what is your name player one ?");
-String name = in.next();
-Player p1 = new Player(name);
-System.out.println("what is your name player two ?");
-name = in.next();
-Player p2 = new Player(name);
+    public static void main(String[] args){
 
-playersForDemo.add(p1);
-playersForDemo.add(p2);
-JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
-UnitLoader unitLoader1 = new UnitLoader();
-//p1.allUnits = ul1.runLoader();
+    Game game = new Game();
+    Scanner in = new Scanner(System.in);
+    System.out.println("what is your name player one ?");
+    String name = in.next();
+    Player p1 = new Player(name);
+    System.out.println("what is your name player two ?");
+    name = in.next();
+    Player p2 = new Player(name);
 
-unitLoader1.runLoader();
+    playersForDemo.add(p1);
+    playersForDemo.add(p2);
+    JOptionPane.showMessageDialog(null,"Player 1 choose your army:");
+    UnitLoader unitLoader1 = new UnitLoader();
+    //p1.allUnits = ul1.runLoader();
 
-
-//p2.allUnits = ul2.runLoader();
-
-//game.setUp(p1);
-JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
-UnitLoader unitLoader2 = new UnitLoader();
-GUI.player2UnitNum=unitLoader2.getAllUnits().size();
-GUI.player2AllUnits=unitLoader2.getAllUnits();
+    unitLoader1.runLoader();
 
 
-////game.setUp(p2);
+    //p2.allUnits = ul2.runLoader();
 
-//p2.allUnits = ul1.runLoader();
-
-//p2.allUnits = ul1.runLoader();
-
-
-  //game begin
- game.playGame(playersForDemo);
- }
+    //game.setUp(p1);
+    JOptionPane.showMessageDialog(null,"Player 2 choose your army:");
+    UnitLoader unitLoader2 = new UnitLoader();
+    GUI.player2UnitNum=unitLoader2.getAllUnits().size();
+    GUI.player2AllUnits=unitLoader2.getAllUnits();
 
 
+    ////game.setUp(p2);
 
- public void playGame(ArrayList<Player> playersForDemo){
-   boolean hasWinner = false;
-//   while(!hasWinner)
-//   {
-       for(Player p : playersForDemo)
-       {
-           JOptionPane.showMessageDialog(null,"Player "+p.playerName+"'s turn.");
-           hasWinner = takeTurn(p);
-       }
-//   }
-}
-//sets how many people are playing
+    //p2.allUnits = ul1.runLoader();
 
-public void setNumPlayers(int numOfPlayers){
-    Game.numOfPlayers=numOfPlayers;
-    
-}
-public static ArrayList playerCreator(int numPlay)    {
-     
-       ArrayList<Player> players = new ArrayList();     
-       
-      
-       for(int i=0; i<numPlay; i++)
-           
-        {           
-   //         Player.singlePlayerDialog(players);   
-        }
-        return players;
+    //p2.allUnits = ul1.runLoader();
+
+
+      //game begin
+     game.playGame(playersForDemo);
+     }
+
+
+
+    public void playGame(ArrayList<Player> playersForDemo){
+       boolean hasWinner = false;
+    //   while(!hasWinner)
+    //   {
+           for(Player p : playersForDemo)
+           {
+               JOptionPane.showMessageDialog(null,"Player "+p.playerName+"'s turn.");
+               hasWinner = takeTurn(p);
+           }
+    //   }
     }
+    //sets how many people are playin
+    public void setNumPlayers(int numOfPlayers){
+        Game.numOfPlayers=numOfPlayers;
+
+    }
+    public static ArrayList playerCreator(int numPlay)    {
+
+           ArrayList<Player> players = new ArrayList();     
 
 
-    
-    //need win conditions
-   //if player surrenders or out of unitDraws
+           for(int i=0; i<numPlay; i++)
+
+            {           
+       //         Player.singlePlayerDialog(players);   
+            }
+            return players;
+        }
+
+
+
+        //need win conditions
+       //if player surrenders or out of unitDraws
 
 
     private boolean takeTurn(Player p){
-   //   hasWinner =  p.takeTurn();
-      return hasWinner;
-           }
-}
+       //   hasWinner =  p.takeTurn();
+          return hasWinner;
+               }
+    }

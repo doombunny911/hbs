@@ -31,8 +31,7 @@ public class CombatPanel extends JPanel
      boolean visible = true;
      ArrayList<JButton> buttons = new ArrayList<>();
     //get all units in range
-     public static void main(String[] args)
-     {
+    public static void main(String[] args){
         JFrame newJ = new JFrame();
         CombatPanel cp = new CombatPanel();
         cp.initPanel();
@@ -43,8 +42,7 @@ public class CombatPanel extends JPanel
         newJ.revalidate();
      }
      
-    public void initPanel()
-    {
+    public void initPanel() {
         setOpaque(false);
         getAllUnitsOfEnemy();
         setUpButtons();
@@ -67,8 +65,7 @@ public class CombatPanel extends JPanel
         enemyUnits = unitSelected.getAllInRange(enemyPlayer);
     }
     //Generate buttons with stats on them as well
-     public void setUpButtons()
-    {
+    public void setUpButtons(){
         setLayout(new GridLayout(10,1));
         ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
          final JLabel title = new JLabel(unitSelected.nameOfUnit,imageOfUnitSelected, JLabel.CENTER);

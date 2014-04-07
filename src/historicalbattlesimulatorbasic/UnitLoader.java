@@ -26,10 +26,9 @@ import javax.swing.JOptionPane;
 public class UnitLoader 
 {
     
-     ArrayList<Unit> allUnits = new ArrayList();
+    ArrayList<Unit> allUnits = new ArrayList();
      //Tester
-      public static void main(String[] args) throws IOException 
-    {
+  public static void main(String[] args) throws IOException {
         UnitLoader tester = new UnitLoader();
         ArrayList<Unit> testUnits = tester.runLoader();
        
@@ -43,8 +42,7 @@ public class UnitLoader
         }
         
     }
-      public ArrayList<Unit> runLoader()
-      {
+  public ArrayList<Unit> runLoader(){
           
         final JFileChooser fc = new JFileChooser();
         File dir = new File("Units"+File.separator+"anchor.txt");
@@ -67,8 +65,7 @@ public class UnitLoader
         
         
       }
-    public ArrayList<Unit> loadAllUnits(String fileToLoad) 
-    {
+  public ArrayList<Unit> loadAllUnits(String fileToLoad) {
         try {
             //Load all units
             //while
@@ -99,8 +96,7 @@ public class UnitLoader
        
     }
     //Loads a singular unit. 
-    public static Unit loadUnit(Scanner reader, String unitName)
-    {        
+  public static Unit loadUnit(Scanner reader, String unitName){        
        
             //Scanner reader = new Scanner(new FileInputStream(file));
             //reader.findWithinHorizon(nameOfUnit, 0);
@@ -131,8 +127,7 @@ public class UnitLoader
             return unit;
     } 
   
-  public ArrayList<Unit> unitPrepper(ArrayList<Unit> playerUnits)
-      {
+  public ArrayList<Unit> unitPrepper(ArrayList<Unit> playerUnits){
 //       ArrayList<Unit> newPlayerUnits = new ArrayList();
           System.out.println("the size please " + playerUnits.size());
        ArrayList<Unit> allPrepUnit = new ArrayList();
@@ -162,12 +157,7 @@ public class UnitLoader
           allUnits = allPrepUnit;
          return allUnits;
       }
-  
-  
-  
- 
-  public ArrayList getAllUnits()
-  {
+  public ArrayList getAllUnits(){
     return allUnits;
   }
     

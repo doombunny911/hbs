@@ -136,16 +136,14 @@ public Soldier(String unitName,
 /*
 @int id - the identification number of the unit
 */
-public void setUnitID(int id)
-{
+  public void setUnitID(int id){
     this.idOfUnit = id;
 }
-public int getUnitID()
-{
+  public int getUnitID(){
     return this.idOfUnit;
 }
 //MOVEMENT
-public void placeOnTile(Tile tile){
+  public void placeOnTile(Tile tile){
     tileOccupied = tile;
     
     tileOccupied.occupyBy(this); //hopefully this works... Don't know if it will though.
@@ -160,7 +158,7 @@ public void placeOnTile(Tile tile){
     7 is west
     8 is northwest
     */
-public void moveDirection(int dir){
+  public void moveDirection(int dir){
     if(dir==1)
     {
         this.moveNorth();
@@ -203,7 +201,7 @@ public void moveDirection(int dir){
     7 is west
     8 is northwest
     */
-public boolean canMove(int dir){
+  public boolean canMove(int dir){
     if(dir==1)
     {
           return this.tileOccupied.hasNorth();
@@ -239,49 +237,49 @@ public boolean canMove(int dir){
     else 
         return false;
 }
-public void moveNorth(){
+  public void moveNorth(){
 if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     {
         tileOccupied = tileOccupied.tileNorth();
         this.placeOnTile(tileOccupied);
     }
 }
-public void moveNorthEast(){
+  public void moveNorthEast(){
     if(tileOccupied.hasNorthEast()&&!tileOccupied.tileNorthEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileNorthEast();
      this.placeOnTile(tileOccupied);
     }
 }
-public void moveEast(){
+  public void moveEast(){
     if(tileOccupied.hasEast()&&!tileOccupied.tileEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileEast();
      this.placeOnTile(tileOccupied);
     }
 }
-public void moveSouthEast(){
+  public void moveSouthEast(){
     if(tileOccupied.hasSouthEast()&&!tileOccupied.tileSouthEast.isOccupied)
     {
     tileOccupied = tileOccupied.tileSouthEast();
      this.placeOnTile(tileOccupied);
     }
 }
-public void moveSouth(){
+  public void moveSouth(){
     if(tileOccupied.hasSouth()&&!tileOccupied.tileSouth.isOccupied)
     {
     tileOccupied = tileOccupied.tileSouth();
      this.placeOnTile(tileOccupied);
     }
 }
-public void moveSouthWest(){
+  public void moveSouthWest(){
     if(tileOccupied.hasSouthWest()&&!tileOccupied.tileSouthWest.isOccupied)
     {
     tileOccupied = tileOccupied.tileSouthWest();
      this.placeOnTile(tileOccupied);
     }
 }
-public void moveWest(){
+  public void moveWest(){
     System.out.println(this);
     if(tileOccupied.hasWest()&&!tileOccupied.tileWest.isOccupied)
     {
@@ -289,14 +287,14 @@ public void moveWest(){
      this.placeOnTile(tileOccupied);
     }
 }
-public void moveNorthWest(){
+  public void moveNorthWest(){
     if(tileOccupied.hasNorthWest()&&!tileOccupied.tileNorthWest.isOccupied)
     {
        tileOccupied = tileOccupied.tileNorthWest();
          this.placeOnTile(tileOccupied);
     }
 }
-public Soldier(){
+  public Soldier(){
     
 }
 
@@ -318,24 +316,24 @@ public Soldier(){
     return clone;
 }
 /* Actions Taken by the user. The following methods are actions taken by the user that modify values.*/
-public void defend(){
+  public void defend(){
     Modifier.defend(this);
 }
-public void charge(){
+  public void charge(){
     Modifier.charge(this);
 }
-public void brace(){
+  public void brace(){
     Modifier.setBracing(this);
 }
-public void sprint(){
+  public void sprint(){
     Modifier.sprint(this);
 }
 /*Die- the following method, when activated 'kills' the soldier*/
-public void die()        {
+  public void die()        {
     alive = false;
 }
 //the method for attacking another soldier(individually)
-public Soldier attack(Soldier defender){
+  public Soldier attack(Soldier defender){
     //calculate the dice roll for the attack
     int diceRoll = dice.nextInt(20);
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
@@ -356,7 +354,7 @@ public Soldier attack(Soldier defender){
 //     JOptionPane.showMessageDialog(null,defender.unitName+ "'s remaining HP: "+defender.hp);
      return defender;
 }
-public Soldier rangeAttack(Soldier opponent){
+  public Soldier rangeAttack(Soldier opponent){
     if(lineOfSight(opponent)&&inRange(opponent))
     {
          int diceRoll = dice.nextInt(20);
@@ -382,7 +380,7 @@ public Soldier rangeAttack(Soldier opponent){
    return opponent;
     
 }
-public void update(){
+  public void update(){
     System.out.println("Update called");
         if (this.hp<=0)
         {
@@ -396,14 +394,14 @@ public void update(){
         }
      
 }
-public boolean isAlive(){
+  public boolean isAlive(){
     return alive;
 }
-public double getHealth(){
+  public double getHealth(){
     return this.hp;
 }
 //this is the method to calculate which modifiers get implemented. It is a series of if cases for the variety of settings.
-public void calculateModifiers(Soldier opponent){
+  public void calculateModifiers(Soldier opponent){
         setBalanceBonus(opponent);
         
         
@@ -424,7 +422,7 @@ public void calculateModifiers(Soldier opponent){
             Modifier.setWavering(this);
         }
 }
-private void setBalanceBonus(Soldier opponent) {
+  private void setBalanceBonus(Soldier opponent) {
         //Balance Bonus
         /*
         / 1 is Melee
@@ -439,12 +437,11 @@ private void setBalanceBonus(Soldier opponent) {
         }
        
     }
-private boolean lineOfSight(Soldier opponent){
+  private boolean lineOfSight(Soldier opponent){
         //loops over tiles between the unit to make sure no obstruction is there
         return true;
     }
-
- public double getDistance(Soldier opponent){
+  public double getDistance(Soldier opponent){
         double x1 = this.tileOccupied.xPosition;
      
         double y1 = this.tileOccupied.yPosition;
@@ -456,8 +453,7 @@ private boolean lineOfSight(Soldier opponent){
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
        return distance;
     }
-    
-public double getDistance(double avgX, double avgY){
+  public double getDistance(double avgX, double avgY){
         double x1 = this.tileOccupied.xPosition;
      
         double y1 = this.tileOccupied.yPosition;
@@ -469,7 +465,7 @@ public double getDistance(double avgX, double avgY){
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
        return distance;
     }
-private boolean inRange(Soldier opponent) {
+  private boolean inRange(Soldier opponent) {
        if(this.range >= this.getDistance(opponent))
        {
            return true;
@@ -482,17 +478,11 @@ private boolean inRange(Soldier opponent) {
        
        
     }
-
-    /*
-    Places a soldier on a tile
-    @Tile t - The tile to place the soldier
-    */
-private void occupyTile(Tile t){
+  private void occupyTile(Tile t){
          t.occupyBy(this);
         this.tileOccupied=t;
     }
-    //needs to be checked/corrected
-public void endTurn() {
+  public void endTurn() {
         
         //not sure how pervasive special ability is for this method
         //i feel like special ability could be anything and so it is hard to

@@ -30,8 +30,7 @@ public final class UnitPlacer extends JPanel
     int index =0;
     boolean check = false;
     String player = "";
-    public static void main(String[] args)
-    {
+   public static void main(String[] args){
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
         
@@ -46,13 +45,10 @@ public final class UnitPlacer extends JPanel
         newJ.repaint();
         newJ.revalidate();
     }
-   
-   public void setPlayer(String playerName)
-   {
+   public void setPlayer(String playerName){
        this.player = playerName;
    }
-   public UnitPlacer(String name)
-   {
+   public UnitPlacer(String name){
        this.player=name;
        UnitLoader ul = new UnitLoader();
        this.unitArrayList = ul.runLoader();
@@ -61,31 +57,26 @@ public final class UnitPlacer extends JPanel
        this.setOpaque(false);
         
    }
-   public UnitPlacer(String name, ArrayList <Unit> u)
-   {
+   public UnitPlacer(String name, ArrayList <Unit> u){
        this.player=name;
        this.unitArrayList=u;
        this.numOfUnitsToPlace=u.size();
        this.setOpaque(false);
        this.setUpButtons();
    }
-   public ArrayList<Unit> getUnitList()
-   {
+   public ArrayList<Unit> getUnitList(){
        return this.unitArrayList;
    }
-   public UnitPlacer(ArrayList<Unit> unitArrayList)
-   {
+   public UnitPlacer(ArrayList<Unit> unitArrayList){
        this.numOfUnitsToPlace = unitArrayList.size();
 //       setUpButtons(unitArrayList);
        setOpaque(false);
    }
-   public String getTitle()
-   {
+   public String getTitle(){
        return this.player;
    }
- boolean allDone = false;
-   public void setUpButtons()
-    {
+   boolean allDone = false;
+   public void setUpButtons(){
         
          final JLabel title = new JLabel(this.player+" 's Units");
         

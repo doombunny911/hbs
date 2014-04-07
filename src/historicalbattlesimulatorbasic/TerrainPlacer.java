@@ -21,8 +21,7 @@ public final class TerrainPlacer extends JPanel
     ArrayList<JButton> terrainImages = new ArrayList();
    // ArrayList<
     int numOfUnitsToPlace = 0;
-    public static void main(String[] args)
-    {
+    public static void main(String[] args){
         BufferedImageLoaders bil = new BufferedImageLoaders();
         bil.loadAllImages();
         ArrayList<BufferedImageName> image = bil.getImages();
@@ -35,15 +34,13 @@ public final class TerrainPlacer extends JPanel
         newJ.repaint();
         newJ.revalidate();
     }
-   public TerrainPlacer(ArrayList<BufferedImageName> images)
-   {
+    public TerrainPlacer(ArrayList<BufferedImageName> images){
     terLoader = new BufferedImageLoaders();
     terLoader.loadAllImages();
     this.numOfUnitsToPlace = images.size();
     setUpButtons(images);
    }
-    public void setUpButtons(ArrayList<BufferedImageName> imageArrayList)
-    {
+    public void setUpButtons(ArrayList<BufferedImageName> imageArrayList){
         JOptionPane.showMessageDialog(this, "Click on a terrain image to place it on the field of battle");
         for(final  BufferedImageName t: imageArrayList)
         {         

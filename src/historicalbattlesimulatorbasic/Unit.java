@@ -141,24 +141,19 @@ public class Unit extends Soldier
     }
     
     
-    public void setSprite(String sprite)
-    {
+    public void setSprite(String sprite){
         this.spriteName = sprite;
     }
-    public boolean isClickable()
-    {
+    public boolean isClickable(){
         return clickable;
     }
-    public void setClickable()
-    {
+    public void setClickable(){
         this.clickable = true;
     }
-    public void setClickableFalse()
-    {
+    public void setClickableFalse(){
         this.clickable = false;
     }
-    public  BufferedImage getUnitPic(Unit unit)
-    {
+    public  BufferedImage getUnitPic(Unit unit){
         BufferedImage img = new BufferedImage(GUI.tileWidth, GUI.tileWidth, 4);
         try {
              img = ImageIO.read(new File("Sprites"+File.separator+"UnitSprites"+File.separator+unit.spriteName));
@@ -170,8 +165,7 @@ public class Unit extends Soldier
     }
     
     //this should determine how many units are still alive
-    public int getUnitsAlive()
-    {
+    public int getUnitsAlive() {
         int unitsAlive=0;
         for(int i=0; i<unitSize; i++)
         {
@@ -193,15 +187,13 @@ public class Unit extends Soldier
     /*
      * Gets the boolean value if the unit is defeated
      * */
-    public boolean isUnitDefeated()
-    {
+    public boolean isUnitDefeated(){
         return unitDefeat;
     }
     /*
     Attacks the defending units. 
     */
-    public void attack(Unit defender)
-    {
+    public void attack(Unit defender){
        
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
@@ -273,8 +265,7 @@ public class Unit extends Soldier
     /*
   Calculates whether the opponent is in range or not, based on getting the central position. (The math may be off on this one)
     */
-    private boolean isInRange(Unit opponent) 
-    {
+    private boolean isInRange(Unit opponent) {
         boolean inRange=false;
         opponent.calculateAveragePosition();
         this.calculateAveragePosition();
@@ -288,8 +279,7 @@ public class Unit extends Soldier
     }
     double avgXPosition, avgYPosition;
     @Override
-     public double getDistance(double avgX, double avgY)
-    {
+     public double getDistance(double avgX, double avgY){
         this.calculateAveragePosition();
         
         double x1 = this.avgXPosition;
@@ -304,8 +294,7 @@ public class Unit extends Soldier
         System.out.println("DISTANCE - "+distance);
        return distance;
     }
-    public void calculateAveragePosition()
-    {
+    public void calculateAveragePosition(){
        
         double xSum =0;
         double ySum =0;
@@ -323,16 +312,13 @@ public class Unit extends Soldier
         
         
     }
-    public double getAvgXPosition()
-    {
+    public double getAvgXPosition(){
         return avgXPosition;
     }
-    public double getAvgYPosition()
-    {
+    public double getAvgYPosition(){
         return avgYPosition;
     }
-    public ArrayList<Unit> getAllInRange(Player p2)
-    {
+    public ArrayList<Unit> getAllInRange(Player p2){
         ArrayList<Unit> allUnitsInRange = new ArrayList<>();
         ArrayList<Unit> p2AllUnits = p2.getUnitList();
         for(Unit u: p2AllUnits)
@@ -345,17 +331,14 @@ public class Unit extends Soldier
         
         return allUnitsInRange;
     }
-    public void resetUnitPoints()
-    {
+    public void resetUnitPoints(){
         this.unitPoints = 2;
         System.out.println(this.nameOfUnit+ " reset movement points");
     }
-    public int returnUnitPoints()
-    {
+    public int returnUnitPoints(){
         return unitPoints;
     }
-    public void expendUnitPoint()
-    {
+    public void expendUnitPoint(){
         this.unitPoints = this.unitPoints -1;
     }
             
@@ -372,8 +355,7 @@ public class Unit extends Soldier
     8 is northwest
     */
   
-    public void moveDirection(int dir)
-    {
+    public void moveDirection(int dir){
        boolean accessible=true; //the value for if every soldier can move
        
       //this algorithm will run until each 
@@ -396,23 +378,20 @@ public class Unit extends Soldier
     @xPosition - The x variable position of the unit
     @yPosition - The y variable position of the unit
     */
-    public void placeUnit(int xPosition, int yPosition)
-    {
+    public void placeUnit(int xPosition, int yPosition){
         this.xPosition= xPosition;
         this.yPosition= yPosition;
     }
     /*
     Returns the x variable position
     */
-    public int getXPosition()
-    {
+    public int getXPosition(){
         return xPosition;
     }
     /*
     Returns the y variable position
     */
-    public int getYPosition()
-    {
+    public int getYPosition(){
         return yPosition;
     }
     
@@ -458,27 +437,23 @@ if(!parent.exists() && !parent.mkdirs()){
         }
     }
 
-    public String getSpriteName()
-    {
+    public String getSpriteName(){
         System.out.println("getSpriteName called");
         return this.spriteName;
     }
-    public void setPosition(int x, int y) 
-    {
+    public void setPosition(int x, int y)  {
         this.xPosition = x;
         this.yPosition = y;
     }
 
-        public int getUnitID()
-        {
+        public int getUnitID() {
             return this.unitID;
         }
    
         
   //if unit is not properally initialized (Unit unit = new Unit(parameters)), 
  //call this ONLY once.  can also set a boolean whenever ID is set the first time
-  public void setUnitUnitID()
-  {
+  public void setUnitUnitID(){
       this.unitID=Unit.unitIDGen;
       Unit.unitIDGen++;
       for(int i=0; i<unitSize; i++)
@@ -488,17 +463,13 @@ if(!parent.exists() && !parent.mkdirs()){
             unitSoldiers[i].setUnitID(this.unitID);
      }
   }
-  public void setFormation(UnitFormations form)
-  {
+  public void setFormation(UnitFormations form) {
       this.currentFormation=form;
   }
-
-   public void useSpecialAbility() 
-   {
+  public void useSpecialAbility() {
        //use specialAbility
    }
-   public void drawUnit(Unit unit)
-   {
+  public void drawUnit(Unit unit) {
        
        int  index=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
 

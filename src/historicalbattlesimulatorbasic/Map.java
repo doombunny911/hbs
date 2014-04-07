@@ -30,15 +30,13 @@ public class Map
    BufferedImageName rock = BufferedImageLoaders.rockLoader();
    BufferedImageName grass =  BufferedImageLoaders.grassLoader();
    
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException{
 //        Map m = MapCreator.createMap();
        // m.saveMap("file");
         
     }
    //populates the gameMap with basic tiles with no features other than area.
-    public Map( int xWidth)
-    {
+    public Map( int xWidth){
         //this.name = name;
         GUI.tileWidth=xWidth;
         this.generateTiles();
@@ -50,9 +48,7 @@ public class Map
 //        GUI.placeUnitTester();
         GUI.gameFrame.add(gen);
     }
- 
-    public final void generateBasic()
-    {
+    public final void generateBasic(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
         squareWidth = Math.floor(width/GUI.tileWidth);
@@ -77,10 +73,7 @@ public class Map
             }
         } 
     }
-    
-    
-    public final void generateTiles()
-    {
+    public final void generateTiles(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
         squareWidth = Math.floor(width/GUI.tileWidth);
@@ -106,12 +99,10 @@ public class Map
         } 
     }
     //inserts a specific tile into a specific location
-    public void insertTile(Tile insertTile, int x,int y)
-    {
+    public void insertTile(Tile insertTile, int x,int y) {
         GUI.tileGameMap[x][y]=insertTile;
     }
-    public void insertSquare(Tile insertTile, int topX, int topY, int width, int height)
-    {
+    public void insertSquare(Tile insertTile, int topX, int topY, int width, int height){
         for(int i=0; i<width; i++)
         {
             for(int j=0; j<height; j++)
@@ -172,12 +163,10 @@ public class Map
 //    }
 //    
     //Sets a tile's terrain image
-    public void setTileTerrain(Tile t, BufferedImage img)
-    {
+    public void setTileTerrain(Tile t, BufferedImage img){
         t.image.setImage(img);
     }
-    public void saveMap(String fileName2) throws IOException
-    {
+    public void saveMap(String fileName2) throws IOException{
         PrintWriter writer = null;
         String fileName=fileName2+".txt";
         File file = new File("Maps"+File.separator+fileName);

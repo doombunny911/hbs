@@ -18,8 +18,7 @@ public class UnitDraw
     Unit thisUnit; //the unit being drawn
     Tile tileLocationOfUnit; //tile location of where the unit is at
     //this constructor should be used when first loading in the units
-    public UnitDraw(Unit getUnit)
-    {
+    public UnitDraw(Unit getUnit){
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
         System.out.println("in UnitDraw, GUI.tileClicked is initailzed " + GUI.tileClicked);
@@ -43,15 +42,13 @@ public class UnitDraw
     /*
     Returns the specific unit
     */
-    public Unit getThisUnit()
-    {
+    public Unit getThisUnit(){
         return thisUnit;
     }
 
     
     //this constructor should be used for future updates to the unit location
-    public UnitDraw(Unit getUnit,Tile tile)
-    {
+    public UnitDraw(Unit getUnit,Tile tile){
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
         UnitFormations form = getUnit.currentFormation;

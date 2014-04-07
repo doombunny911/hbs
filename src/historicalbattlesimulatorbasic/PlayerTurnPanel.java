@@ -23,8 +23,7 @@ public class PlayerTurnPanel extends JPanel
  int p1UnitCount ;
  ArrayList<Unit> player2Units;
  int p2UnitCount ;
- public PlayerTurnPanel()
- {
+ public PlayerTurnPanel(){
    player1Units = GUI.player1AllUnits;
    player2Units = GUI.player2AllUnits;
    initTPanel();
@@ -32,8 +31,7 @@ public class PlayerTurnPanel extends JPanel
   // p2UnitCount = GUI.unitTally(player2Units);
  }
  
- public void initTPanel()
- {
+ public void initTPanel() {
 
      this.setOpaque(false);
      
@@ -60,8 +58,7 @@ public class PlayerTurnPanel extends JPanel
 //     }
      
  }
- public void switchTurn()
- {
+ public void switchTurn(){
      if( Game.playersForDemo.get(0).myTurn=true)
      {
          turnPlayer = 1;
@@ -78,6 +75,5 @@ public class PlayerTurnPanel extends JPanel
      {
          turnPlayer =4; //4 means player 2 won
      }
- }
-    
+ }  
 }

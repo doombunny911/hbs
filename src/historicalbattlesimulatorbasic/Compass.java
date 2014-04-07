@@ -206,7 +206,6 @@ public final class Compass extends JPanel{
             
       } 
    }
-
     protected void determineTheNewLocationOfTheUnit(int tileMoveChange) {
         switch(moveDirection)
         {
@@ -288,7 +287,6 @@ public final class Compass extends JPanel{
         this.toggleSprint.setBorderPainted(false);
         setOpaque(false);
     }
-
     private void  determineNewDirectionOfUnit() {
        if(previousMoveDirection!=moveDirection)
        {
