@@ -8,11 +8,13 @@ package historicalbattlesimulatorbasic;
 
 import static historicalbattlesimulatorbasic.GUI.statPanel;
 import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,7 +45,11 @@ public class CombatPanel extends JPanel
      }
      
     public void initPanel() {
-        setOpaque(false);
+        
+        this.setBackground(Color.BLACK);
+        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
+        this.setBorder(borderUsed);
+        
         getAllUnitsOfEnemy();
         setUpButtons();
         
@@ -66,12 +72,15 @@ public class CombatPanel extends JPanel
     }
     //Generate buttons with stats on them as well
     public void setUpButtons(){
-        setLayout(new GridLayout(10,1));
+        setLayout(new GridLayout(5,1));
         ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
-         final JLabel title = new JLabel(unitSelected.nameOfUnit,imageOfUnitSelected, JLabel.CENTER);
-        final JLabel title2 = new JLabel("Click on your target! If none are present, hit cancel");
-     
-          add(title);
+        final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b></font></center></h4></html>") ;
+        final JLabel title1 = new JLabel(unitSelected.nameOfUnit,imageOfUnitSelected, JLabel.CENTER);
+      //   title.setBackground(Color.white);
+        final JLabel title2 = new JLabel("<html> <font color = 'white' face='Times New Roman'"
+                + "> Click on your target! If none are present, hit cancel</b></font></html>");
+          add(title0);
+          add(title1);
           add(title2);
          
           for(final Unit u: this.enemyUnits)
@@ -90,8 +99,11 @@ public class CombatPanel extends JPanel
 //            unitImages.add(button);
             
             
-            button.setOpaque(false);
-            button.setContentAreaFilled(false);
+           // button.setOpaque(false);
+           // button.setContentAreaFilled(false);
+            button.setBorderPainted(true);
+            button.setBackground(Color.black);
+            button.setForeground(Color.white);
             // button.setBorderPainted(false);
 
             add(button);
@@ -102,6 +114,7 @@ public class CombatPanel extends JPanel
                 {
                     unitSelected.attack(u);
                     visible= false;
+                    
                     for(JButton b: buttons)
                     {
                      b.setVisible(false);
@@ -123,11 +136,13 @@ public class CombatPanel extends JPanel
                     }
     }
            JButton close = new JButton("Close");
-        
+        close.setForeground(Color.white);
+        close.setBackground(Color.red);
         close.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) //box Formation
            {
+               
               setVisible(false);
              
            }

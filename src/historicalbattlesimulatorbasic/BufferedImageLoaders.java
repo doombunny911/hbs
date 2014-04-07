@@ -37,61 +37,45 @@ public class BufferedImageLoaders
     private BufferedImage loadB;
     private BufferedImage unitCreatorB;
     private BufferedImage endTurnB;
+    private BufferedImage specialAbility;
+    
+    public void loadDefenseButtons()
+    {
+        try {
+         specialAbility = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"SpecialAbility.png"));
+         defendB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Defend.png"));
+       } catch (IOException ex) {
+           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+       }
+           
+     
+    }
     public void loadAllButtons()
     {
+     
+     
       try {
            squareB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"squareFormation.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+       
            wedgeB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"wedgeFormation.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+      
            lineB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"lineFormation.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+      
+      
            attackB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Attack.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
       
-      try {
            defendB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Defend.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+       
            cancelB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Cancel.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+       
            checkB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"CheckStats.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      
-      try {
+       
            moveB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Move.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+       
            setFormB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"SetFormation.png"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+      
            scroll = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"ScrollBG.jpg"));
-       } catch (IOException ex) {
-           Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      try {
+       
            endTurnB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"endTurn.png"));
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,6 +110,15 @@ public class BufferedImageLoaders
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             runBIcon = new ImageIcon(newimg);
             return runBIcon;
+    }
+    
+    public ImageIcon getIconSpecialAbility()
+    {
+          ImageIcon specialAbility2 = new ImageIcon(specialAbility);
+            Image img = specialAbility2.getImage();
+            Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
+            specialAbility2 = new ImageIcon(newimg);
+            return specialAbility2;
     }
     
      public ImageIcon getIconCreateMap()

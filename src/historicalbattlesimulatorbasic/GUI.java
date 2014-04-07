@@ -64,6 +64,7 @@ public class GUI implements MouseListener
     static Unit enemySelected;
     static JPanel combatPanel;
     private static JPanel turnPanel;
+    static ImageIcon specialAbility;
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel) {
@@ -152,19 +153,47 @@ public class GUI implements MouseListener
     }
     //initializes defenseButton
    private static void initDefenseButton(){
-        final JButton sAbility = new JButton("Special Ability");
+       
+       BufferedImageLoaders bil = new BufferedImageLoaders();
+       bil.loadDefenseButtons();
+        final JButton sAbility = new JButton(bil.getIconSpecialAbility());
+        final JButton defendN = new JButton(bil.getIconDefend());
         sAbility.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
         sAbility.setLocation(GUI.buttonPanel.getComponent(2).getX(),GUI.gameFrame.getHeight()-buttonPanel.getHeight());
         sAbility.setVisible(true);
+        sAbility.setOpaque(false);
+        sAbility.setBorderPainted(false);
+   
+        defendN.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
+        defendN.setLocation(GUI.buttonPanel.getComponent(2).getX()+GUI.buttonPanel.getComponent(2).getBounds().width,GUI.gameFrame.getHeight()-buttonPanel.getHeight());
+        defendN.setVisible(true);
+        defendN.setOpaque(false);
+        defendN.setBorderPainted(false);
         GUI.panel.add(sAbility);
+        GUI.panel.add(defendN);
         
         sAbility.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
+               GUI.unitSelected.expendUnitPoint();
                System.out.println("Special Ability activated");
                GUI.unitSelected.useSpecialAbility();
                 //reload the buttons that are loaded when a unit is clicked
+               sAbility.setVisible(false);
+               defendN.setVisible(false);
+//               cancel.setVisible(false);
+              toggleButtons(GUI.buttonPanel,true);
+
+          }
+       });defendN.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent ae) 
+           {
+               System.out.println("Unit Defending");
+               GUI.unitSelected.defend();
+                //reload the buttons that are loaded when a unit is clicked
+               defendN.setVisible(false);
                sAbility.setVisible(false);
 //               cancel.setVisible(false);
               toggleButtons(GUI.buttonPanel,true);
@@ -416,6 +445,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
                    initFormPanel();
+                   GUI.unitSelected.expendUnitPoint();
                    if(GUI.unitSelected.hasUnitPoints())
                {
                    
@@ -592,9 +622,10 @@ public class GUI implements MouseListener
        ImageIcon end = bil.getIconEndTurn();
        GUI.endTurn=new JButton(end);
        endTurn.setVisible(true);
-       endTurn.setOpaque(false);
+       //endTurn.setOpaque(false);
        endTurn.setBorderPainted(true);
-       endTurn.setContentAreaFilled(false);
+       endTurn.setBackground(Color.black);
+     //  endTurn.setContentAreaFilled(false);
        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
        endTurn.setBorder(borderUsed);
        GUI.initTurnPanel();
@@ -621,6 +652,7 @@ public class GUI implements MouseListener
         buttonImages[3] = bil.getIconMove();
         buttonImages[4] = bil.getIconSetFormation();
         buttonImages[5] = bil.getIconCancel();
+        
         return buttonImages;
     }
    public static int unitTally(ArrayList<Unit> units){
