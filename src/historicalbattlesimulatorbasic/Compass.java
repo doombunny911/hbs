@@ -185,7 +185,6 @@ public final class Compass extends JPanel{
        }
        
     //which direction was unit moved in
-       System.out.println("speed of unit in compass = " + GUI.unitSelected.moveMentCounter);
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
       if(GUI.unitSelected.moveMentCounter>0)
       {
