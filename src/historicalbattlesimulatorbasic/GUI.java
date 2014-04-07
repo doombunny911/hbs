@@ -341,18 +341,7 @@ public class GUI implements MouseListener
            {
                GUI.attackUnit=GUI.unitSelected;
                GUI.toggleButtons(GUI.buttonPanel,false);
-                GUI.initCombatPanel();
-                
-                for(int i=0;i<GUI.numberOfTilesWidth;i++)
-                {
-                    for(int j=0;j<GUI.numberOfTilesHeight;j++)
-                    {
-//                       if(GUI.tileGameMap[j][i].isOccupied)
-  //                         System.out.println("tile at ("+j+","+i+") = " +  GUI.tileGameMap[j][i]);
-                    }
-                }
-                
-                
+               GUI.initCombatPanel();
            }
        });
        
@@ -728,6 +717,7 @@ public class GUI implements MouseListener
         return Game.playersForDemo.get(1).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
     protected boolean player1UnitIsEqualToUnitSelectedAt(int i) {
+//        return Game.playersForDemo.get(0).allUnits.get(i).yPosition==GUI.tileClicked.yPosition&&Game.playersForDemo.get(0).allUnits.get(i).xPosition==GUI.tileClicked.xPosition;
         return Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
     protected boolean thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile() {
