@@ -228,19 +228,18 @@ public class GUI implements MouseListener
         if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
         {
             
-//             if(GUI.unitDraws.get(i).thisUnit.unitID==GUI.tileClicked.getOccupier().getUnitID())
-               if(player1Turn())   
+              if(player1Turn())   
               {
                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
                   {
                       if(player1UnitIsEqualToUnitSelectedAt(i))
-                    {
+                      {
                         System.out.println("unitSelected is being initialized ");
                   
                         //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
                         GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
                         toggleButtons(GUI.buttonPanel,true);
-                    }
+                      }
                     
                   }
                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
@@ -292,11 +291,11 @@ public class GUI implements MouseListener
                    }
                }
            }
-//        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
-//        {
-//            //user is trying to select a unit before all the units are loaded
-//            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
-//        }
+        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
+        {
+            //user is trying to select a unit before all the units are loaded
+            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
+        }
         
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
@@ -681,8 +680,6 @@ public class GUI implements MouseListener
         GUI.panel.add(GUI.statPanel);
         GUI.repainter();
     }
-
-       //adds buttons to the panel
 
        //this will clean up the code a little, instead of doing these all the time, can just make one call
    public static boolean repainter()
