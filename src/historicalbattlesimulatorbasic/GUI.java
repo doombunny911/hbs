@@ -535,7 +535,7 @@ public class GUI implements MouseListener
         return button;
     }
     //toggles visiblity of buttons and panel that holds the buttons
-   private static void toggleButtons(JPanel panel,boolean b) 
+   public static void toggleButtons(JPanel panel,boolean b) 
     {
         //sets the buttonPanel to b, 
         panel.setVisible(b);

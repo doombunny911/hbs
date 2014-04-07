@@ -109,12 +109,15 @@ public class CombatPanel extends JPanel
                     {
                      b.setVisible(false);
                     }
-                    setVisible(false);
+                   // setVisible(false);
                     //subtract one point here as well.
-                }
-                });
+                    if (!GUI.unitSelected.unitDefeat)
+                        GUI.toggleButtons(GUI.buttonPanel,true);
+                    
+                } 
+              
             
-         }
+             });
    JButton close = new JButton("Close");
         
         close.addActionListener(new ActionListener() {
@@ -122,12 +125,17 @@ public class CombatPanel extends JPanel
            public void actionPerformed(ActionEvent ae) //box Formation
            {
               setVisible(false);
+             
            }
        });
         add(close);
+     if (!GUI.unitSelected.unitDefeat)
+                    {
+                    GUI.toggleButtons(GUI.buttonPanel,true);
+                    }
+    }
     }
 }
-  
     //When button is clicked, run 'attack' [subtract one point]
     //
     

@@ -295,7 +295,7 @@ public class Unit extends Soldier
         opponent.calculateAveragePosition();
         this.calculateAveragePosition();
        
-            if (getDistance(opponent.getAvgXPosition(), opponent.getAvgYPosition())<(this.soldierType.range)) {
+            if (getDistance(opponent.getAvgXPosition(), opponent.getAvgYPosition())<((this.soldierType.range))*100) {
                 inRange = true;
             }
           
@@ -322,6 +322,7 @@ public class Unit extends Soldier
     }
     public void calculateAveragePosition()
     {
+       
         double xSum =0;
         double ySum =0;
         int divisor=0;
@@ -332,7 +333,11 @@ public class Unit extends Soldier
             divisor ++;
         }
         avgXPosition = xSum/divisor;
+        
         avgYPosition = ySum/divisor;
+        System.out.println(this.unitName+"AVG X POSITION - " + avgXPosition + "AVG Y POSITION - "+ avgYPosition);
+        
+        
     }
     public double getAvgXPosition()
     {
