@@ -35,8 +35,7 @@ public class Tile extends Rectangle
     //a tile is just a rectangle, therefore, xPosition and yPosition refer
     //to the (x,y) coords for the top left point
     //load tiles of buffered the images 
-    public Tile(int xPosition, int yPosition, int xLength, int yLength)
-    {
+    public Tile(int xPosition, int yPosition, int xLength, int yLength){
             
         
         super.setBounds(xPosition, yPosition, xLength, yLength);
@@ -49,13 +48,11 @@ public class Tile extends Rectangle
     }
     
     //set the height
-    public void setHeight(int Height)
-    {
+    public void setHeight(int Height){
         this.zPosition=Height;
     }
     //set level of cover. 0 is none, 1 is light, 2 is full
-    public void setCover(int cover)
-    {
+    public void setCover(int cover){
         this.levelOfCover = cover;
     }
     
@@ -65,84 +62,67 @@ public class Tile extends Rectangle
     level 3(-3 movement) - A unit is attempting to move across terrain considered to be 'rough'. Harsh 	foliage, harsh rocks, harsh incline or heavy mud
     level 4(-4 movement) - A unit is attempting to move across terrain considered to be 'rough'. Extreme foliage, extreme rocks, extreme incline or extreme mud.	
     */
-    public void setTerrainDifficultyLevel(int level)
-    {
+    public void setTerrainDifficultyLevel(int level){
         terrainEffect=level;
     }
-    public int getTerrainDifficultyLevel()
-    {
+    public int getTerrainDifficultyLevel(){
         return terrainEffect;
     }
     //occupy by a soldier
-    public void occupyBy(Soldier soldier)
-    {
+    public void occupyBy(Soldier soldier){
         occupyingSoldier = soldier;
         isOccupied = true;
     }
     //set tileBlocked boolean variable to true, to be used for collision detection. 
-    public void setTileBlocked()
-    {
+    public void setTileBlocked(){
         tileBlocked=true;
     }
     //test if someone is occupying it. Will be used to prevent collision
-    public boolean getIsOccupied()
-    {
+    public boolean getIsOccupied(){
         return isOccupied;
     }
     //
-    public Soldier getOccupier()
-    {
+    public Soldier getOccupier(){
         return occupyingSoldier;
     }
-    public double calculateDistanceTo(Tile otherTile)
-    {
+    public double calculateDistanceTo(Tile otherTile) {
         double distance = Math.sqrt((otherTile.yPosition-this.yPosition)+((otherTile.xPosition-this.xPosition)));
         return distance;
      }
 
     //refers to if the tile has a neighbor[anotehr tile in the designated direction
-    boolean hasNorth() 
-    {
+    boolean hasNorth() {
         return yPosition>=GUI.tileWidth;
 //        return yPosition!=0;
     }
     
-    boolean hasNorthEast()
-    {
+    boolean hasNorthEast(){
         return hasNorth()&&hasEast();
 //        return yPosition!=0 &&  xPosition!=yHeight;
     }
-    boolean hasWest()
-    {
+    boolean hasWest(){
         return xPosition>=GUI.tileWidth;
     }
-    boolean hasSouthEast()
-    {
+    boolean hasSouthEast(){
         return hasEast()&&hasSouth();     
     }
-    boolean hasSouth()
-    {
+    boolean hasSouth(){
         return yPosition<=GUI.tileGameMap[0][(int)GUI.numberOfTilesHeight-1].yPosition-GUI.tileWidth;
 //        return yPosition!=yHeight-Openingmenuscreen.tilePanel.getHeight()-Painter.remainderHeight;
     }      
-     boolean hasSouthWest()
-    {
+    boolean hasSouthWest() {
         return hasSouth()&&hasWest();
     }
-    boolean hasEast()
-    {
+    boolean hasEast(){
        return xPosition<GUI.tileGameMap[(int)GUI.numberOfTilesWidth-1][0].xPosition-GUI.tileWidth;
 //        return xPosition!=xLength-Openingmenuscreen.tilePanel.getWidth()-Painter.remainderWidth;
     } 
-    boolean hasNorthWest()
-    {
+    boolean hasNorthWest(){
         return hasNorth()&&hasWest();
     }
     
     //returns the designated tile, if they exist.
-     
-    protected void colorTile(Graphics g) throws IOException
-    {
+    protected void colorTile(Graphics g) throws IOException{
         Random rng = new Random(100);
 //       
        
@@ -160,83 +140,69 @@ public class Tile extends Rectangle
        
         
     }
-    Tile tileNorth()
-    {
+    Tile tileNorth(){
         if(hasNorth())
          return tileNorth;
         else
             return null;
     }
-    Tile tileNorthEast()
-    {
+    Tile tileNorthEast(){
         if(hasNorthEast())
             return tileNorthEast;
         else
             return null;
     }
-    Tile tileEast()
-    {
+    Tile tileEast(){
         if(hasEast())
          return tileEast;
         else
             return null;
     }
-    Tile tileSouthEast()
-    {
+    Tile tileSouthEast(){
         if(hasSouthEast())
             return tileSouthEast;
         else
             return null;
     }
-      Tile tileSouth()
-    {
+    Tile tileSouth(){
         if(hasSouth())
          return tileSouth;
         else
             return null;
     }
-      Tile tileSouthWest()
-      {
+    Tile tileSouthWest() {
           if(hasSouthWest())
               return tileSouthWest;
           else
               return null;
       }
-       Tile tileWest()
-    {
+    Tile tileWest(){
         if(hasWest())
          return tileWest;
         else
             return null;
     }
-       Tile tileNorthWest()
-       {
+    Tile tileNorthWest() {
            if(hasNorthWest())
                return tileNorthWest;
            else
                return null;
        }
      //have to set up the other directions.
-    void setDirections(Tile north, Tile east, Tile south, Tile west)
-    {
+    void setDirections(Tile north, Tile east, Tile south, Tile west){
         tileNorth = north;
         tileEast = east;
         tileSouth = south;
         tileWest = west;
        
     }
- public void setImage(BufferedImageName img)
- {
+    public void setImage(BufferedImageName img){
      this.image = img;
  }
- 
-   public BufferedImage getImage()
-   {
+    public BufferedImage getImage(){
        return image.getImage();
    }
-   
-   public static String[] saveTile(Tile t)
-   {
+    public static String[] saveTile(Tile t){
        //0 is xPosition
        //1 is yPosition
        //2 is z Position
@@ -256,8 +222,7 @@ public class Tile extends Rectangle
     saver[7] = t.image.getName();
     return saver;
    }
-    public Unit checkUnitWithinBounds(Tile tile)
-    {
+    public Unit checkUnitWithinBounds(Tile tile){
 //        //if a unit's x+width and y+height intersects with the tiles position
 //        //return which unit that is
 //        for(int i=0;i<GUI.unitDraws.size();i++)
@@ -266,14 +231,11 @@ public class Tile extends Rectangle
 //        }
         return null;
     }
-    public void removeSoldier()
-    {
+    public void removeSoldier(){
         isOccupied=false;
         occupyingSoldier=null;
     }
-    
-    public void paintTile(Graphics2D g)
-    {
+    public void paintTile(Graphics2D g){
         g.drawImage(image.getImage(), this.xPosition,
                     this.yPosition, GUI.tileWidth,
                     GUI.tileWidth,null);

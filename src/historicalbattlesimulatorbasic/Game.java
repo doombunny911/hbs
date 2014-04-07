@@ -32,8 +32,7 @@ public class Game
 
     
 
-public static void main(String[] args)
-{
+public static void main(String[] args){
    
 Game game = new Game();
 Scanner in = new Scanner(System.in);
@@ -75,8 +74,7 @@ GUI.player2AllUnits=unitLoader2.getAllUnits();
 
 
 
- public void playGame(ArrayList<Player> playersForDemo)
-{
+ public void playGame(ArrayList<Player> playersForDemo){
    boolean hasWinner = false;
 //   while(!hasWinner)
 //   {
@@ -89,13 +87,11 @@ GUI.player2AllUnits=unitLoader2.getAllUnits();
 }
 //sets how many people are playing
 
-public void setNumPlayers(int numOfPlayers)
-{
+public void setNumPlayers(int numOfPlayers){
     Game.numOfPlayers=numOfPlayers;
     
 }
-public static ArrayList playerCreator(int numPlay)
-    {
+public static ArrayList playerCreator(int numPlay)    {
      
        ArrayList<Player> players = new ArrayList();     
        
@@ -114,14 +110,8 @@ public static ArrayList playerCreator(int numPlay)
    //if player surrenders or out of unitDraws
 
 
-    private boolean takeTurn(Player p)
-    {
+    private boolean takeTurn(Player p){
    //   hasWinner =  p.takeTurn();
       return hasWinner;
            }
-
-//    private void setUp(Player p1) 
-//    {
-//       JOptionPane.showMessageDialog(null, p1.playerName+" place your units!");
-//    }
 }

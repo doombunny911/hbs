@@ -25,27 +25,23 @@ public class Painter extends JPanel
     private double sHeight,sWidth;
     int x,y;
     Unit unit;
-    public Painter(int widthf)
-    {
+    public Painter(int widthf){
         this.tileWidth=widthf;
 //        tiles=Map.gameMap;
     }
-    public Painter(double sWidth,double sHeight)
-    {
+    public Painter(double sWidth,double sHeight){
         
         this.sWidth=sWidth;
         this.sHeight=sHeight;
     }
     
     //don't think this contructor is used
-    public Painter(int locationX,int locationY)
-    {
+    public Painter(int locationX,int locationY){
         x =locationX;
         y=locationY;
     }
     //untested
-    public Painter(Unit unit)
-    {
+    public Painter(Unit unit){
         this.unit=unit;
     }
     /**
@@ -53,8 +49,7 @@ public class Painter extends JPanel
      * @param g
      */
    @Override
-   public void paintComponent(Graphics g)
-   {
+public void paintComponent(Graphics g) {
 //       if(GUI.tileGameMap!=null) 
 //             System.out.println(GUI.tileGameMap[0][0].getOccupier());
       Graphics2D g2=(Graphics2D)g;
@@ -100,7 +95,7 @@ public class Painter extends JPanel
     protected boolean tileHasASpriteFromUnitSelectedat(int j, int i) {
              return GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied&& GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
     }
-   }
+ }
    
 
 

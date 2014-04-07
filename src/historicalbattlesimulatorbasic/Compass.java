@@ -202,7 +202,7 @@ public final class Compass extends JPanel{
             GUI.unitDraws.remove(index); //removes the previous unit
             GUI.repainter();
             previousMoveDirection= moveDirection ;
-//            GUI.unitSelected.moveMentCounter--; //removes one move counter from the unit 
+            GUI.unitSelected.moveMentCounter--; //removes one move counter from the unit 
             
       } 
    }
