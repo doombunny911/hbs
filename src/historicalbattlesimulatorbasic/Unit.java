@@ -137,7 +137,6 @@ public class Unit extends Soldier
         this.stamina=unitSoldiers[0].stamina;
         this.morale=unitSoldiers[0].morale;
         this.defense = unitSoldiers[0].defense;
-        System.out.println("defense what " + defense);
 
     }
     
