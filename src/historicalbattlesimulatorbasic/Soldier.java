@@ -116,7 +116,7 @@ public Soldier(String unitName,
      this.chargeBonus = chargeBonus;
      this.stamina = stamina;
      this.morale = morale;
-     
+     this.defense=defense;
      //these won't be modified at all
      baseAttack = attack;
      baseHP = hp;

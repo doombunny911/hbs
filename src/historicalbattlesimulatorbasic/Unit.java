@@ -44,7 +44,7 @@ public class Unit extends Soldier
     boolean unitDefeat = false;
     int unitPoints=2;
     int xPosition, yPosition;
-    int yHeight=40;
+    int yHeight=10;
     int xWidth=10;
     int unitFacing;
     UnitFormations currentFormation;
@@ -125,6 +125,20 @@ public class Unit extends Soldier
         }
         this.moveMentCounter=unitSoldiers[0].speed;
         this.unitFacing=unitSoldiers[0].facing;
+        this.unitType = unitSoldiers[0].unitType;
+        this.dmg=unitSoldiers[0].dmg; 
+        this. attack=unitSoldiers[0].attack;
+        this.dmgBonus=unitSoldiers[0].dmgBonus;
+        this.hp=unitSoldiers[0].hp;
+        this.armorClass=unitSoldiers[0].armorClass;
+        this.speed=unitSoldiers[0].speed;
+        this.range=unitSoldiers[0].range;
+        this.chargeBonus=unitSoldiers[0].chargeBonus;
+        this.stamina=unitSoldiers[0].stamina;
+        this.morale=unitSoldiers[0].morale;
+        this.defense = unitSoldiers[0].defense;
+        System.out.println("defense what " + defense);
+
     }
     
     
