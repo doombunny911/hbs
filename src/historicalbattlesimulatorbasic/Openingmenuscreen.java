@@ -140,8 +140,8 @@ public final class Openingmenuscreen extends JFrame
             Unit player2Unit = new Unit(s2,50);
             player2Unit.setSprite("redKnight.png");
             Unit unit3 = new Unit(s,10);
-            String name = "Player1";
-            String name2="Player2";
+            String name = "Player 1";
+            String name2="Player 2";
             ArrayList <Unit> u = new ArrayList(); 
             ArrayList <Unit> u2 = new ArrayList();
             u.add(player1Unit);

@@ -60,7 +60,7 @@ public class GUI implements MouseListener
     static ArrayList<Unit> player2AllUnits;//player 2's unitDraws
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
-    static UnitPlacer unitPlacerTest;
+  //  static UnitPlacer unitPlacerTest;
     static Unit enemySelected;
     static JPanel combatPanel;
     private static JPanel turnPanel;
@@ -698,7 +698,7 @@ public class GUI implements MouseListener
         //GUI.statPanel.add(new JLabel(" "));
         GUI.statPanel.add(close);
         //set the location and size of panel
-        GUI.statPanel.setBounds(GUI.panel.getWidth()-250,0,200,300);
+        GUI.statPanel.setBounds(statPanel.getWidth(),200/*(GUI.turnPanel.getHeight()+GUI.endTurn.getHeight())*/,200,300);
         //set the panel to true
         GUI.statPanel.setVisible(true);
         //add the panel to the big panel

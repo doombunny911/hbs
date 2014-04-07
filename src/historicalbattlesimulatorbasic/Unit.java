@@ -348,7 +348,7 @@ public class Unit extends Soldier
     public void resetUnitPoints()
     {
         this.unitPoints = 2;
-        System.out.println(this.nameOfUnit+ "reset movement points");
+        System.out.println(this.nameOfUnit+ " reset movement points");
     }
     public int returnUnitPoints()
     {
