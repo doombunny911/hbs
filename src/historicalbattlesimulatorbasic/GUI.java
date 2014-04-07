@@ -58,6 +58,7 @@ public class GUI implements MouseListener
     static UnitPlacer unitPlacerTest;
     static Unit enemySelected;
     static JPanel combatPanel;
+    private static PlayerTurnPanel turnPanel;
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel)
@@ -79,7 +80,6 @@ public class GUI implements MouseListener
        combatPanel2.initPanel();
        combatPanel = combatPanel2;
        
-      // combatPanel.initPanel();
    }
    private static void initFormPanel() 
    {
@@ -579,6 +579,8 @@ public class GUI implements MouseListener
 
        endTurn.setBounds(GUI.panel.getWidth()/2,0,100,45);
        GUI.panel.add(endTurn);
+       GUI.initTurnPanel();
+       GUI.panel.add(turnPanel);
        return button;
    }
 
@@ -601,7 +603,22 @@ public class GUI implements MouseListener
         buttonImages[5] = bil.getIconCancel();
         return buttonImages;
     }
+      public static int unitTally(ArrayList<Unit> units)
+      {
+          int tally =0;
+          for(Unit u : units)
+          {
+              tally++;
+          }
+          return tally;
+      }
+   public static void initTurnPanel()
+   {
+       turnPanel = new PlayerTurnPanel();
+       turnPanel.setBounds(0, 0, 100, 100);
       
+   }
+           
    //method that prints stats, gets the information from the unit and prints it
    private static void printStats(Unit unitSelected) 
     {
@@ -780,16 +797,16 @@ public class GUI implements MouseListener
         }
         return facing;
     }
-    protected static boolean player2Turn() {
+    public static boolean player2Turn() {
                return Game.playersForDemo.get(1).myTurn;
            }
-    protected static boolean player1Turn() {
+    public static boolean player1Turn() {
                return Game.playersForDemo.get(0).myTurn;
            }
-    protected static boolean player2HasNoUnits() {
+    public static boolean player2HasNoUnits() {
                return Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner;
            }
-    protected static boolean player1HasNoUnits() {
+    public static boolean player1HasNoUnits() {
                return Game.playersForDemo.get(0).allUnits.isEmpty()||Game.playersForDemo.get(1).isWinner;
            }
     protected static boolean componentNotNullAndIsVisible(Component c) {
@@ -827,6 +844,8 @@ public class GUI implements MouseListener
     protected static boolean thereIsASoldierWhereThereShouldNotBe(int j, int i) {
         return GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
     }
+    //makes sure all units are deployed before any can be selected
+  
      //paints the area around the unit that it can move, very useful.  broken atm
     public static void paintRange(Unit unitSelected,Graphics g) 
     {
