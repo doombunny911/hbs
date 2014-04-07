@@ -332,6 +332,7 @@ public class Unit extends Soldier
         return allUnitsInRange;
     }
     public void resetUnitPoints(){
+        this.endTurn();
         this.unitPoints = 2;
         System.out.println(this.nameOfUnit+ " reset movement points");
     }
@@ -478,6 +479,22 @@ if(!parent.exists() && !parent.mkdirs()){
             UnitDraw draw = new UnitDraw(unit,new Tile(unit.xPosition,unit.yPosition,GUI.tileWidth,GUI.tileWidth));
             GUI.unitDraws.add(draw);//adds the new unit
        }
-
+  public void endTurn() {
+        
+        //not sure how pervasive special ability is for this method
+        //i feel like special ability could be anything and so it is hard to
+        //determine what things are going to return to base and what doesn't
+         System.out.println("Your turn has ended");
+//         speed  =baseSpeed;
+//         range    =baseRange;
+         this.moveMentCounter=speed;
+         chargeBonus  =baseChargeBonus;
+         isCharging=false;
+         isSprinting=false;
+         hasSprinted=false;
+         hasMoved=false;
+           
+            
+    }
 }
 

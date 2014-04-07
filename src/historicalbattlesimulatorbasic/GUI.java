@@ -449,7 +449,8 @@ public class GUI implements MouseListener
                  }
                  GUI.tileClicked=null;
                  GUI.toggleButtons(buttonPanel, false);
-                 
+                 if(moveC!=null&&moveC.isVisible())
+                     moveC.setVisible(false);
                  if(player1HasNoUnits())
                  {
                       Game.playersForDemo.get(1).isWinner=true;
@@ -465,6 +466,7 @@ public class GUI implements MouseListener
                      for(Unit u: Game.playersForDemo.get(0).getUnitList())
                      {
                          u.resetUnitPoints();
+                         
                      }
                      Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
@@ -477,6 +479,7 @@ public class GUI implements MouseListener
                      for(Unit u: Game.playersForDemo.get(1).getUnitList())
                      {
                          u.resetUnitPoints();
+                         
                      }
                      Game.playersForDemo.get(1).myTurn=false;
                      Game.playersForDemo.get(0).myTurn=true;

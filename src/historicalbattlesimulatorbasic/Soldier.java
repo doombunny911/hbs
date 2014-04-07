@@ -482,22 +482,5 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
          t.occupyBy(this);
         this.tileOccupied=t;
     }
-  public void endTurn() {
-        
-        //not sure how pervasive special ability is for this method
-        //i feel like special ability could be anything and so it is hard to
-        //determine what things are going to return to base and what doesn't
-         System.out.println("Your turn has ended");
-         speed  =baseSpeed;
-         range    =baseRange;
-         chargeBonus  =baseChargeBonus;
-         isCharging=false;
-          isSprinting=false;
-            
-            
-            hasSprinted=false;
-            hasMoved=false;
-           
-            
-    }
+ 
 }
