@@ -32,8 +32,7 @@ public final class UnitFormations
     
     
     
-    public UnitFormations(Unit unit,Tile tile)
-    {
+    public UnitFormations(Unit unit,Tile tile){
         index=0;
 //        locations = new Tile[5000][5000];
         //set default formation
@@ -42,18 +41,14 @@ public final class UnitFormations
 //        setBoxFormation(tile);
 //        defaultFormation(tile);
     }
-    public void updateTileAndUnit(Unit unit, Tile tile)
-    {
+    public void updateTileAndUnit(Unit unit, Tile tile){
         thisTile = tile;
         this.unit = unit;
     }
-    public static void setPikeWall(Unit unit)
-    {
+    public static void setPikeWall(Unit unit){
         
     }
-    
-    public UnitFormations locateLocationOfSprites(Unit unit)
-    {
+    public UnitFormations locateLocationOfSprites(Unit unit) {
         //locate all the location of soldiers
         
         for(int i=0;i<GUI.numberOfTilesHeight;i++)
@@ -70,8 +65,7 @@ public final class UnitFormations
     }
     //the default formation for a unit
     //need to check to see if tile is occupied
-    public UnitFormations defaultFormation()
-    {
+    public UnitFormations defaultFormation(){
         
         System.out.println(this.unit.getSpriteName());
         
@@ -226,9 +220,7 @@ public final class UnitFormations
        return this;
     
     }
-    
-    public UnitFormations setBoxFormation()
-    {
+    public UnitFormations setBoxFormation(){
         whichFormation=1;
         soldiersPerSprite =  1;//each sprite represents this many soldiers
         int depth=0;
@@ -436,9 +428,7 @@ public final class UnitFormations
        
         return this;
     }
-    
-    public void paintFormation(Graphics g,int index)
-    {
+    public void paintFormation(Graphics g,int index) {
 //        System.out.println("spriteLocations is " + spriteLocations);
        if(value==0)
        {
@@ -475,9 +465,7 @@ public final class UnitFormations
         }
       }
     }
-
-    void setWedgeFormation() 
-    {
+    void setWedgeFormation() {
         whichFormation=2;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
