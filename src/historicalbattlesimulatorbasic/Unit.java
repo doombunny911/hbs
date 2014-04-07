@@ -523,14 +523,5 @@ if(!parent.exists() && !parent.mkdirs()){
             GUI.unitDraws.add(draw);//adds the new unit
        }
 
-    void highlightUnit() 
-    {
-        for(int i =0;i<this.unitSize;i++)
-        {
-//            this.tileOccupied.
-//            this.unitSoldiers[i].tileOccupied.setFrame(tileOccupied);
-        }
-    }
-   }
-  
+}
 
