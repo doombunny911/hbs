@@ -39,8 +39,7 @@ public class BufferedImageLoaders
     private BufferedImage endTurnB;
     private BufferedImage specialAbility;
     
-    public void loadDefenseButtons()
-    {
+    public void loadDefenseButtons(){
         try {
          specialAbility = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"SpecialAbility.png"));
          defendB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Defend.png"));
@@ -50,8 +49,7 @@ public class BufferedImageLoaders
            
      
     }
-    public void loadAllButtons()
-    {
+    public void loadAllButtons(){
      
      
       try {
@@ -82,11 +80,7 @@ public class BufferedImageLoaders
        }
      
     }
-    
-    
-    
-      public void loadMenuButtons()
-    {
+    public void loadMenuButtons(){
     
         try {
             runB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"runSimulation.png"));
@@ -99,88 +93,71 @@ public class BufferedImageLoaders
         } catch (IOException ex) {
             Logger.getLogger(BufferedImageLoaders.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
-      
     }
-    public ImageIcon getIconRunSimulation()
-    {
+    public ImageIcon getIconRunSimulation(){
           ImageIcon runBIcon = new ImageIcon(runB);
             Image img = runBIcon.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             runBIcon = new ImageIcon(newimg);
             return runBIcon;
     }
-    
-    public ImageIcon getIconSpecialAbility()
-    {
+    public ImageIcon getIconSpecialAbility(){
           ImageIcon specialAbility2 = new ImageIcon(specialAbility);
             Image img = specialAbility2.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             specialAbility2 = new ImageIcon(newimg);
             return specialAbility2;
     }
-    
-     public ImageIcon getIconCreateMap()
-    {
+    public ImageIcon getIconCreateMap(){
           ImageIcon createMapIcon = new ImageIcon(createMapB);
             Image img = createMapIcon.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             createMapIcon = new ImageIcon(newimg);
             return createMapIcon;
     }
-     public ImageIcon getIconEndTurn()
-    {
+    public ImageIcon getIconEndTurn(){
           ImageIcon endTurn = new ImageIcon(endTurnB);
             Image img = endTurn.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             endTurn = new ImageIcon(newimg);
             return endTurn;
     }
-     public ImageIcon getIconCreateScenario()
-    {
+    public ImageIcon getIconCreateScenario(){
           ImageIcon createScenarioIcon = new ImageIcon(createScenarioB);
             Image img = createScenarioIcon.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             createScenarioIcon = new ImageIcon(newimg);
             return createScenarioIcon;
     }
-     public ImageIcon getIconCreateUnit()
-    {
+    public ImageIcon getIconCreateUnit(){
           ImageIcon createUnitIcon = new ImageIcon(unitCreatorB);
             Image img = createUnitIcon.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             createUnitIcon = new ImageIcon(newimg);
             return createUnitIcon;
     }
-      public ImageIcon getIconLoadGame()
-    {
+    public ImageIcon getIconLoadGame(){
           ImageIcon loadGameIcon = new ImageIcon(loadB);
             Image img = loadGameIcon.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             loadGameIcon = new ImageIcon(newimg);
             return loadGameIcon;
     }
-     
-     public ImageIcon getIconLoadGameMap()
-    {
+    public ImageIcon getIconLoadGameMap(){
           ImageIcon createMapIcon = new ImageIcon(createMapB);
             Image img = createMapIcon.getImage();
             Image newimg = img.getScaledInstance(100, 30,  java.awt.Image.SCALE_SMOOTH); 
             createMapIcon = new ImageIcon(newimg);
             return createMapIcon;
     }
-    public void loadScroll()
-    {
+    public void loadScroll(){
          try {
            scroll = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"ScrollBG.png"));
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-    
-    public ImageIcon getIconAttack()
-    {
+    public ImageIcon getIconAttack(){
         
        ImageIcon attackImage = new ImageIcon(attackB);
             Image img = attackImage.getImage();
@@ -188,103 +165,87 @@ public class BufferedImageLoaders
             attackImage = new ImageIcon(newimg);
             return attackImage;
     }
-    public ImageIcon getIconDefend()
-    {
+    public ImageIcon getIconDefend(){
         ImageIcon defendImage = new ImageIcon(defendB);
             Image img = defendImage.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             defendImage = new ImageIcon(newimg);
             return defendImage;
-    }
-    
-    public ImageIcon getIconSetFormation()
-    {
+    } 
+    public ImageIcon getIconSetFormation(){
         ImageIcon setFormImage = new ImageIcon(setFormB);
             Image img = setFormImage.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             setFormImage = new ImageIcon(newimg);
             return setFormImage;
     }
-    public ImageIcon getIconCancel()
-    {
+    public ImageIcon getIconCancel(){
         ImageIcon cancelImage = new ImageIcon(cancelB);
             Image img = cancelImage.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             cancelImage = new ImageIcon(newimg);
             return cancelImage;
     }
-    public ImageIcon getIconMove()
-    {
+    public ImageIcon getIconMove(){
         ImageIcon moveImage = new ImageIcon(moveB);
             Image img = moveImage.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             moveImage = new ImageIcon(newimg);
             return moveImage;
     }
-    public ImageIcon getCheckStatsIcon()
-    {
+    public ImageIcon getCheckStatsIcon(){
         ImageIcon checkStatsImage = new ImageIcon(checkB);
             Image img = checkStatsImage.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             checkStatsImage = new ImageIcon(newimg);
             return checkStatsImage;
     }
-    public ImageIcon getSquareFormIcon()
-    {
+    public ImageIcon getSquareFormIcon(){
         ImageIcon squareFormation = new ImageIcon(squareB);
             Image img = squareFormation.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             squareFormation = new ImageIcon(newimg);
             return squareFormation;
     }
-     public ImageIcon getWedgeFormIcon()
-    {
+    public ImageIcon getWedgeFormIcon(){
         ImageIcon wedgeForm = new ImageIcon(wedgeB);
             Image img = wedgeForm.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             wedgeForm = new ImageIcon(newimg);
             return wedgeForm;
     }
-      public ImageIcon getLineFormIcon()
-    {
+    public ImageIcon getLineFormIcon(){
         ImageIcon lineFormation = new ImageIcon(lineB);
             Image img = lineFormation.getImage();
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             lineFormation = new ImageIcon(newimg);
             return lineFormation;
     }
-    public Image getScroll()
-    {
+    public Image getScroll(){
       ImageIcon scrollBG = new ImageIcon(scroll);
             Image img = scrollBG.getImage();
             Image newimg = img.getScaledInstance(1000, 1000,  java.awt.Image.SCALE_SMOOTH); 
             
             return newimg;
     }
-    public void loadAllImages()
-    {
+    public void loadAllImages(){
        imageList = BufferedImageMassImport.loadAllImages();
       
     }
-    
-    public ArrayList<BufferedImageName> getImages()
-    {
+    public ArrayList<BufferedImageName> getImages(){
         return imageList;
     }
-    public void loadTopScreen()
-    {
+    public void loadTopScreen(){
          try {
            welcomePanelImage = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"WelcomePanel.png"));
        } catch (IOException ex) {
            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-    public BufferedImage getTopScreen()
-    {
+    public BufferedImage getTopScreen(){
         return welcomePanelImage;
     }
-    public void loadBackground()
-    {
+    public void loadBackground(){
         try {
            background = ImageIO.read(new File("Sprites"+File.separator+"Background"+File.separator+"havok.jpg"));
        } catch (IOException ex) {
@@ -292,14 +253,12 @@ public class BufferedImageLoaders
        }
  
     }
-    public BufferedImage getBackground()
-    {
+    public BufferedImage getBackground(){
         
         //BufferedImage background1 = new BufferedImage(this.backg
         return background;
     }
-    public BufferedImage getImage(String imageName)
-    {
+    public BufferedImage getImage(String imageName){
         BufferedImage result = null;
         for(BufferedImageName bin: imageList)
         {
@@ -310,12 +269,10 @@ public class BufferedImageLoaders
         }
         return result;
     }
-    public BufferedImageName getGrass()
-    {
+    public BufferedImageName getGrass(){
         return grass;
     }
-       public static BufferedImageName grassLoader() 
-    {
+    public static BufferedImageName grassLoader() {
        BufferedImage grass1=null;
        try {
            grass1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"greenGround.png"));
@@ -325,8 +282,7 @@ public class BufferedImageLoaders
        BufferedImageName grass = new BufferedImageName(grass1, "greenGround.png");
        return grass;
     }
-      public static BufferedImageName rockLoader() 
-    {
+    public static BufferedImageName rockLoader() {
        BufferedImage rock1=null;
        try {
            rock1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"rocksGround.png"));
@@ -336,10 +292,7 @@ public class BufferedImageLoaders
        BufferedImageName rock = new BufferedImageName(rock1, "rocksGround.png");
        return rock;
     }
-      
-    
-      public static BufferedImageName dirtLoader() 
-    {
+    public static BufferedImageName dirtLoader() {
        BufferedImage brown1=null;
        try {
            brown1 = ImageIO.read(new File("Sprites"+File.separator+"Terrain"+File.separator+"brownGround.png"));
@@ -349,8 +302,7 @@ public class BufferedImageLoaders
        BufferedImageName dirt = new BufferedImageName(brown1, "brownGround.png");
        return dirt;
     }
-      public static BufferedImage blackKnightLoader() 
-    {
+    public static BufferedImage blackKnightLoader(){
        BufferedImage brown1=null;
        try {
            brown1 = ImageIO.read(new File("Sprites"+File.separator+"Unit Sprites"+File.separator+"blackKnight.png"));
@@ -359,8 +311,7 @@ public class BufferedImageLoaders
        }
        return brown1;
     }
-       public static BufferedImage redKnightLoader() 
-    {
+    public static BufferedImage redKnightLoader() {
        BufferedImage brown1=null;
        try {
            brown1 = ImageIO.read(new File("Sprites"+File.separator+"Unit Sprites"+File.separator+"redKnight.png"));
@@ -369,8 +320,7 @@ public class BufferedImageLoaders
        }
        return brown1;
     }
-       public static BufferedImage unitPicLoader(Unit unit)
-       {
+    public static BufferedImage unitPicLoader(Unit unit){
        BufferedImage img = new BufferedImage(unit.xWidth, unit.yHeight, 4);
         try {
              img = ImageIO.read(new File(unit.spriteName));
