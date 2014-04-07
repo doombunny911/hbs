@@ -15,8 +15,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import javax.swing.border.LineBorder;
 import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -62,7 +63,7 @@ public class GUI implements MouseListener
     static UnitPlacer unitPlacerTest;
     static Unit enemySelected;
     static JPanel combatPanel;
-    private static PlayerTurnPanel turnPanel;
+    private static JPanel turnPanel;
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel)
@@ -451,6 +452,7 @@ public class GUI implements MouseListener
              @Override
              public void actionPerformed(ActionEvent ae)
              {
+                 
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
                  if(GUI.unitSelected!=null)
@@ -465,12 +467,12 @@ public class GUI implements MouseListener
                  if(player1HasNoUnits())
                  {
                       Game.playersForDemo.get(1).isWinner=true;
-                      JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(1).playerName + " you are victorious");
+                      JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(1).playerName + " You are victorious");
                  }
                  else if(player2HasNoUnits())
                  {
                      Game.playersForDemo.get(0).isWinner=true;
-                     JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(0).playerName + " you are victorious");
+                     JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(0).playerName + " You are victorious");
                  }
                  if(player1Turn())
                  {
@@ -480,8 +482,9 @@ public class GUI implements MouseListener
                      }
                      Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
-                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
-
+                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
+                    
+                     initTurnPanel();
                  }
                  else if(player2Turn())
                  {
@@ -491,7 +494,9 @@ public class GUI implements MouseListener
                      }
                      Game.playersForDemo.get(1).myTurn=false;
                      Game.playersForDemo.get(0).myTurn=true;
-                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(1).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
+                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(1).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
+                   
+                     initTurnPanel();
                  }
              }
 
@@ -574,12 +579,15 @@ public class GUI implements MouseListener
        GUI.endTurn=new JButton(end);
        endTurn.setVisible(true);
        endTurn.setOpaque(false);
-       endTurn.setBorderPainted(false);
-
-       endTurn.setBounds(GUI.panel.getWidth()/2,0,100,45);
-       GUI.panel.add(endTurn);
+       endTurn.setBorderPainted(true);
+       endTurn.setContentAreaFilled(false);
+       javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
+       endTurn.setBorder(borderUsed);
        GUI.initTurnPanel();
-       GUI.panel.add(turnPanel);
+       endTurn.setBounds(GUI.panel.getWidth()-100,turnPanel.getHeight(),100,50);
+       GUI.panel.add(endTurn);
+       
+      
        return button;
    }
 
@@ -611,10 +619,27 @@ public class GUI implements MouseListener
           }
           return tally;
       }
+      
    public static void initTurnPanel()
    {
-       turnPanel = new PlayerTurnPanel();
-       turnPanel.setBounds(0, 0, 100, 100);
+     // GUI.panel.remove(turnPanel);
+       turnPanel = new JPanel();
+       turnPanel.setBackground(Color.black);
+       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 100);
+    
+      JLabel whichPlayersTurn = new JLabel();
+       if(player1Turn())
+       {
+           whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>1</font></h1>'s <br>Turn</font></h3></center></html>");
+       }
+       else if(player2Turn())
+       {
+            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>2</font></h1>'s<br> Turn</font></h3></center></html>");
+       }
+       javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
+       turnPanel.setBorder(borderUsed);
+       turnPanel.add(whichPlayersTurn);
+       GUI.panel.add(turnPanel);
       
    }
            
