@@ -191,9 +191,12 @@ public final class Compass extends JPanel{
          
           //figure out where the new unit will be located
           determineTheNewLocationOfTheUnit(tileMoveChange);
-          determineNewDirectionOfUnit();
+          int dir = determineNewDirectionOfUnit();
           GUI.removeSoldiersFromPreviousTiles();
           
+          
+          
+          Tile t = findTile(dir);
           //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             
@@ -286,12 +289,13 @@ public final class Compass extends JPanel{
         this.toggleSprint.setBorderPainted(false);
         setOpaque(false);
     }
-    private void  determineNewDirectionOfUnit() {
+    private int  determineNewDirectionOfUnit() {
        if(previousMoveDirection!=moveDirection)
        {
            if(moveDirection==1)
            {
                GUI.unitSelected.unitFacing=1;
+               
            }
            else if(moveDirection==3)
            {
@@ -306,8 +310,33 @@ public final class Compass extends JPanel{
                GUI.unitSelected.unitFacing=4;
            }
        }
+       return GUI.unitSelected.unitFacing;
        
     }
+
+    private Tile findTile(int direction){
+        
+        Tile t = new Tile(0,0,0,0);
+        
+       int index =GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
+       
+       for(int i=0;i<GUI.numberOfTilesHeight;i++)
+       {
+           for(int j=0;j<GUI.numberOfTilesWidth;j++)
+           {
+//               if(GUI.unitDraws.get(index).getThisUnit().getUnitID()==)
+           }
+       }
+           
+        
+        return t;
+        
+        
+        
+        
+        
+    }
+    
 }
 
 
