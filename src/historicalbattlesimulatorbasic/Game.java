@@ -71,9 +71,6 @@ public class Game
       //game begin
      game.playGame(playersForDemo);
      }
-
-
-
     public void playGame(ArrayList<Player> playersForDemo){
        boolean hasWinner = false;
     //   while(!hasWinner)

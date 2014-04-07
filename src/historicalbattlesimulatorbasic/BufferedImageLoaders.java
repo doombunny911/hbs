@@ -330,5 +330,4 @@ public class BufferedImageLoaders
         }
         return img;
        }
-        
 }

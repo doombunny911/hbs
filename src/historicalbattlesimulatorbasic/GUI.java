@@ -60,7 +60,6 @@ public class GUI implements MouseListener
     static ArrayList<Unit> player2AllUnits;//player 2's unitDraws
     static int player1UnitNum; //same as unitNum
     static int player2UnitNum; //same as above
-  //  static UnitPlacer unitPlacerTest;
     static Unit enemySelected;
     static JPanel combatPanel;
     private static JPanel turnPanel;
@@ -907,7 +906,6 @@ public class GUI implements MouseListener
    protected static boolean thereIsASoldierWhereThereShouldNotBe(int j, int i) {
         return GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
     }
-  
      //paints the area around the unit that it can move, very useful.  broken atm
    public static void paintRange(Unit unitSelected,Graphics g)  {
 //        Graphics2D g2=(Graphics2D)g;
@@ -1094,11 +1092,9 @@ public class GUI implements MouseListener
 ////     //not sure if necessary, i dont think it is but doesn't hurt   
 //    g2.setColor(temp);
     }
-    
  @Override
    public void mousePressed(MouseEvent me) {
     }
-    
     @Override
    public void mouseReleased(MouseEvent me) {
     }

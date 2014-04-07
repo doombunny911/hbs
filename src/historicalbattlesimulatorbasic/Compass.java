@@ -313,7 +313,6 @@ public final class Compass extends JPanel{
        return GUI.unitSelected.unitFacing;
        
     }
-
     private Tile findTile(int direction){
         
         Tile t = new Tile(0,0,0,0);
