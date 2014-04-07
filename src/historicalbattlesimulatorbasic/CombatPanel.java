@@ -36,7 +36,7 @@ public class CombatPanel extends JPanel
     public static void main(String[] args){
         JFrame newJ = new JFrame();
         CombatPanel cp = new CombatPanel();
-        cp.initPanel();
+        cp.initCPanel();
         newJ.setVisible(true);
         newJ.setSize(500,200);
         newJ.add(cp);
@@ -44,7 +44,7 @@ public class CombatPanel extends JPanel
         newJ.revalidate();
      }
      
-    public void initPanel() {
+    public void initCPanel() {
         
         this.setBackground(Color.BLACK);
         javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);

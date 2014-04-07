@@ -80,7 +80,7 @@ public class GUI implements MouseListener
        combatPanel2.setBounds(GUI.gameFrame.getWidth()/2-100,GUI.gameFrame.getHeight()-4*GUI.gameFrame.getHeight()/5,300,200);
        GUI.panel.add(combatPanel2);
        GUI.repainter();
-       combatPanel2.initPanel();
+       combatPanel2.initCPanel();
        combatPanel = combatPanel2;
        
    }

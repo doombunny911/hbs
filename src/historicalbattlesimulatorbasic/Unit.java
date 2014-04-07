@@ -35,7 +35,7 @@ public class Unit extends Soldier
    
     double moveMentCounter; //for now, very basic
     String nameOfUnit;
-    Soldier unitSoldiers[];
+    ArrayList<Soldier> unitSoldiers = new ArrayList<>();
     
     int unitSize; 
     int unitWidth;
@@ -73,6 +73,7 @@ public class Unit extends Soldier
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
+        
         unitFacing = soldierType.facing;
         this.range = (soldierType.range)*4;
         this.speed = soldierType.speed;
@@ -80,22 +81,26 @@ public class Unit extends Soldier
         this.unitSize = unitSize;
         this.unitStartLocationX=x;
         this.unitStartLocationY=y;
-        unitSoldiers = new Soldier[unitSize];
-        this.soldierType = soldierType;
+          
+        
+      
          //Creates a random Unit ID
         this.unitID=Unit.unitIDGen;
         this.moveMentCounter=soldierType.speed;
         Unit.unitIDGen++;
-        for(int i=0; i<unitSize; i++)
-        {
+for(int i=0; i<unitSize;i++)
+    {   
            
             //make each unit a soldier
-            unitSoldiers[i]= soldierType.clone();
-            unitSoldiers[i].setUnitID(this.unitID);
-            unitSoldiers[i].placeOnTile(tileOccupied);
+            Soldier clone= soldierType.clone();
+            clone.setUnitID(this.unitID);
+            clone.placeOnTile(tileOccupied);
+            unitSoldiers.add(clone);
         }
-        this.moveMentCounter=unitSoldiers[0].speed;
-        this.unitFacing=unitSoldiers[0].facing;
+
+
+        this.moveMentCounter=unitSoldiers.get(0).speed;
+        this.unitFacing=unitSoldiers.get(0).facing;
 
         
        System.out.println("unitID of " + this.nameOfUnit + " = " +this.unitID);
@@ -110,33 +115,34 @@ public class Unit extends Soldier
         speed = soldierType.speed;
         nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
-        unitSoldiers = new Soldier[unitSize];
+      
         this.soldierType = soldierType;
         this.unitID=Unit.unitIDGen;
-
+        
      
         Unit.unitIDGen++;
 
         for(int i=0; i<unitSize; i++)
         {
             //make each unit a soldier
-            unitSoldiers[i]= soldierType.clone();
-            unitSoldiers[i].setUnitID(this.unitID);
+            Soldier clone= soldierType.clone();
+            clone.setUnitID(this.unitID);
+            unitSoldiers.add(clone);
         }
-        this.moveMentCounter=unitSoldiers[0].speed;
-        this.unitFacing=unitSoldiers[0].facing;
-        this.unitType = unitSoldiers[0].unitType;
-        this.dmg=unitSoldiers[0].dmg; 
-        this. attack=unitSoldiers[0].attack;
-        this.dmgBonus=unitSoldiers[0].dmgBonus;
-        this.hp=unitSoldiers[0].hp;
-        this.armorClass=unitSoldiers[0].armorClass;
-        this.speed=unitSoldiers[0].speed;
-        this.range=unitSoldiers[0].range;
-        this.chargeBonus=unitSoldiers[0].chargeBonus;
-        this.stamina=unitSoldiers[0].stamina;
-        this.morale=unitSoldiers[0].morale;
-        this.defense = unitSoldiers[0].defense;
+        this.moveMentCounter=unitSoldiers.get(0).speed;
+        this.unitFacing=unitSoldiers.get(0).facing;
+        this.unitType = unitSoldiers.get(0).unitType;
+        this.dmg=unitSoldiers.get(0).dmg; 
+        this. attack=unitSoldiers.get(0).attack;
+        this.dmgBonus=unitSoldiers.get(0).dmgBonus;
+        this.hp=unitSoldiers.get(0).hp;
+        this.armorClass=unitSoldiers.get(0).armorClass;
+        this.speed=unitSoldiers.get(0).speed;
+        this.range=unitSoldiers.get(0).range;
+        this.chargeBonus=unitSoldiers.get(0).chargeBonus;
+        this.stamina=unitSoldiers.get(0).stamina;
+        this.morale=unitSoldiers.get(0).morale;
+        this.defense = unitSoldiers.get(0).defense;
 
     }
     
@@ -169,7 +175,7 @@ public class Unit extends Soldier
         int unitsAlive=0;
         for(int i=0; i<unitSize; i++)
         {
-            if(unitSoldiers[i].isAlive())
+            if(unitSoldiers.get(0).isAlive())
             {
                 unitsAlive = unitsAlive+1;
             }
@@ -221,12 +227,12 @@ public class Unit extends Soldier
                    j=0;
                }
             //   System.out.println("Defending units alive:"+defender.getUnitsAlive());
-                if(!this.unitSoldiers[i].isAlive()&&j!=0)
+                if(!this.unitSoldiers.get(0).isAlive()&&j!=0)
                 {
                     
                     i--;
                 }
-                Soldier s = this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
+                Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value
                  
                  if(!s.isAlive())
                  {
@@ -234,7 +240,7 @@ public class Unit extends Soldier
                  }
                  
                  System.out.println(s.unitName+" "+j+" has been attacked");
-                 defender.unitSoldiers[j]=s;
+                 defender.unitSoldiers.set(j, s);
                 
                 
                         
@@ -377,12 +383,12 @@ public class Unit extends Soldier
             {
             if(accessible)
             {
-                 if(!this.unitSoldiers[i].canMove(dir))
+                 if(!this.unitSoldiers.get(i).canMove(dir))
                  {
                     accessible=false;
                  }
                  else
-                    this.unitSoldiers[i].moveDirection(dir);
+                    this.unitSoldiers.get(i).moveDirection(dir);
             }
        }
     }
@@ -472,8 +478,8 @@ if(!parent.exists() && !parent.mkdirs()){
       for(int i=0; i<unitSize; i++)
       {
             //gives this id to the soldiers that make it up
-            unitSoldiers[i]= soldierType.clone();
-            unitSoldiers[i].setUnitID(this.unitID);
+            unitSoldiers.set(i,soldierType.clone());
+            unitSoldiers.get(i).setUnitID(this.unitID);
      }
   }
   public void setFormation(UnitFormations form) {
