@@ -25,49 +25,49 @@ public class Soldier
     / 4 is Spearmen
     / 5 is 'other'
     */
-   protected int facing;//1 is north, 2 is east, 3 is south, 4 is west
-   protected  double attack; // the bonus to the attack
-   protected int dmg; // the type of dice to be rolled for damage
-   protected  double dmgBonus; //bonus to damage
-   protected  double hp; // a soldiers health points
-   protected double armorClass; //a soldiers basic armor class
-   protected double defense; // a soldiers defense bonus
-   protected  double speed; // the distance of which a soldier can travel
-   protected  double range; // the range of a soldiers weapons
-   protected  double chargeBonus; //The bonus given to charging attack
-   protected double stamina; // The amount of stamina a soldier has
-   protected double morale; // The amount of moral a soldier has
+    int facing;//1 is north, 2 is east, 3 is south, 4 is west
+     double attack; // the bonus to the attack
+    int dmg; // the type of dice to be rolled for damage
+     double dmgBonus; //bonus to damage
+     double hp; // a soldiers health points
+    double armorClass; //a soldiers basic armor class
+    double defense; // a soldiers defense bonus
+     double speed; // the distance of which a soldier can travel
+     double range; // the range of a soldiers weapons
+     double chargeBonus; //The bonus given to charging attack
+    double stamina; // The amount of stamina a soldier has
+    double morale; // The amount of moral a soldier has
    
     //these won't be modified at all and are constants left to remain as the basis when modifiers are implemented
-   protected    double baseAttack;
-   protected double baseHP;
-   protected  int baseDmg;
-   protected  double baseDmgBonus;
-   protected  double baseDefense;
-   protected  double baseArmorClass;
-   protected  double baseSpeed;
-   protected   double baseRange;
-   protected  double baseChargeBonus;
-   protected  double baseStamina;
-   protected   double baseMorale;
+       double baseAttack;
+    double baseHP;
+     int baseDmg;
+     double baseDmgBonus;
+     double baseDefense;
+     double baseArmorClass;
+     double baseSpeed;
+      double baseRange;
+     double baseChargeBonus;
+     double baseStamina;
+      double baseMorale;
      //modifier booleans
-   protected boolean hasBalanceBonus = false;
-   protected boolean hasFlankingBonus = false;
-   protected boolean hasHeightBonus = false;
-   protected boolean hasTerrainModifier = false;
-   protected boolean hasMovementDefenseModifier = false;
-   protected boolean inCover = false;
-   protected boolean isWounded = false;
-   protected boolean isWavering = false;
+    boolean hasBalanceBonus = false;
+    boolean hasFlankingBonus = false;
+    boolean hasHeightBonus = false;
+    boolean hasTerrainModifier = false;
+    boolean hasMovementDefenseModifier = false;
+    boolean inCover = false;
+    boolean isWounded = false;
+    boolean isWavering = false;
    
-   protected boolean isCharging;
-   protected boolean isDefending;
-   protected boolean isSprinting;
+    boolean isCharging;
+    boolean isDefending;
+    boolean isSprinting;
 //   protected boolean isBracing;
    
    //make sure to set to false after each turn
-   protected boolean hasSprinted; //used at turn end.  If true, no stamina is increased
-   protected boolean hasMoved;//used at turn end, if true, and has sprinted is not true, gets a portion of stamina back.  if false, get more stamina back 
+    boolean hasSprinted; //used at turn end.  If true, no stamina is increased
+    boolean hasMoved;//used at turn end, if true, and has sprinted is not true, gets a portion of stamina back.  if false, get more stamina back 
    
    int idOfUnit;
 //Tile being occupied

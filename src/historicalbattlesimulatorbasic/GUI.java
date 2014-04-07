@@ -654,16 +654,16 @@ public class GUI implements MouseListener
        
        
         int unitNumLocal=unitSelected.getUnitsAlive();
-        double unitAttack=unitSelected.unitSoldiers[0].attack;
-        double unitDefense = unitSelected.unitSoldiers[0].defense;
+        int unitAttack=(int)unitSelected.attack;
+        int unitDefense = (int)unitSelected.defense;
         int facingInt = unitSelected.unitFacing;
-        double armorClass = unitSelected.unitSoldiers[0].armorClass;
-        double speed = unitSelected.unitSoldiers[0].speed;
-        double range = unitSelected.unitSoldiers[0].range;
-        double chargeBonus = unitSelected.unitSoldiers[0].chargeBonus;
-        double stamina = unitSelected.unitSoldiers[0].stamina;
+        int armorClass = (int)unitSelected.armorClass;
+        int speed = (int)unitSelected.speed;
+        int range = (int)unitSelected.range;
+        int chargeBonus = (int)unitSelected.chargeBonus;
+        int stamina = (int)unitSelected.stamina;
         String unitName = unitSelected.nameOfUnit;
-        double unitPoints = unitSelected.returnUnitPoints();
+        int unitPoints = unitSelected.returnUnitPoints();
         JButton close = new JButton("Close");
        // close.setBounds(GUI.statPanel.getWidth(), -4*GUI.statPanel.getHeight()/5, GUI.statPanel.getWidth(), 50);
 
