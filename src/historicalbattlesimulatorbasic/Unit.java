@@ -195,6 +195,7 @@ public class Unit extends Soldier
     */
     public void attack(Unit defender){
        
+        this.expendUnitPoint();
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
        
@@ -291,7 +292,7 @@ public class Unit extends Soldier
         double y2 = avgY;
       //  System.out.println(y2);
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-        System.out.println("DISTANCE - "+distance);
+    //    System.out.println("DISTANCE - "+distance);
        return distance;
     }
     public void calculateAveragePosition(){
@@ -308,7 +309,7 @@ public class Unit extends Soldier
         avgXPosition = xSum/divisor;
         
         avgYPosition = ySum/divisor;
-        System.out.println(this.unitName+"AVG X POSITION - " + avgXPosition + "AVG Y POSITION - "+ avgYPosition);
+     //   System.out.println(this.unitName+"AVG X POSITION - " + avgXPosition + "AVG Y POSITION - "+ avgYPosition);
         
         
     }
@@ -341,6 +342,17 @@ public class Unit extends Soldier
     }
     public void expendUnitPoint(){
         this.unitPoints = this.unitPoints -1;
+    }
+    public boolean hasUnitPoints()
+    {
+        if(this.unitPoints>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
             
     /*

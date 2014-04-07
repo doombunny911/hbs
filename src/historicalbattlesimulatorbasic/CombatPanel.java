@@ -115,7 +115,14 @@ public class CombatPanel extends JPanel
               
             
              });
-   JButton close = new JButton("Close");
+  
+       
+     if (!GUI.unitSelected.unitDefeat)
+                    {
+                    GUI.toggleButtons(GUI.buttonPanel,true);
+                    }
+    }
+           JButton close = new JButton("Close");
         
         close.addActionListener(new ActionListener() {
            @Override
@@ -125,12 +132,7 @@ public class CombatPanel extends JPanel
              
            }
        });
-        add(close);
-     if (!GUI.unitSelected.unitDefeat)
-                    {
-                    GUI.toggleButtons(GUI.buttonPanel,true);
-                    }
-    }
+           add(close);
     }
 }
     //When button is clicked, run 'attack' [subtract one point]

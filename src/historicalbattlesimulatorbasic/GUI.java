@@ -328,16 +328,27 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
+               if(GUI.unitSelected.hasUnitPoints())
+               {
                GUI.attackUnit=GUI.unitSelected;
                GUI.toggleButtons(GUI.buttonPanel,false);
                GUI.initCombatPanel();
+               }
+               else
+                   {
+                       JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
+                       GUI.toggleButtons(GUI.buttonPanel,false);
+                   }
            }
+           
        });
        
        button[1].addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae)
            {
+               if(GUI.unitSelected.hasUnitPoints())
+               {
                //can't prepare to defend if attacking
               GUI.toggleButtons(GUI.buttonPanel,false);
 
@@ -352,6 +363,12 @@ public class GUI implements MouseListener
                         GUI.panel.getComponentAt(GUI.buttonPanel.getComponent(2).getLocation()).setVisible(true);
                    GUI.unitSelected.brace();
                } 
+           }
+               else
+                   {
+                       JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
+                       GUI.toggleButtons(GUI.buttonPanel,false);
+                   }
            }
        });
        
@@ -373,6 +390,8 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
+               if(GUI.unitSelected.hasUnitPoints())
+               {
               //don't think this is necessary but I will look into it, I think i did this to help isolate a bug  
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
@@ -383,27 +402,39 @@ public class GUI implements MouseListener
                      GUI.moveC.setVisible(true);      
                   }
                   //if it is not visible, make it visible
-                  GUI.repainter();
+                  GUI.repainter();}
+                  else
+                   {
+                       JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
+                       GUI.toggleButtons(GUI.buttonPanel,false);
+                   }
            }
        });
        button[4].addActionListener(new ActionListener() {
-
+//Change formations
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
                    initFormPanel();
+                   if(GUI.unitSelected.hasUnitPoints())
                {
+                   
                    if(!formationPanel.isVisible())
                    {
                        formationPanel.setVisible(true);
                    }
-               }
+               
                GUI.toggleButtons(buttonPanel, false);
                
                if(componentNotNullAndIsVisible(moveC))
                    moveC.setVisible(false);
                if(componentNotNullAndIsVisible(attackButtonPanel))
-                   attackButtonPanel.setVisible(false);
+                   attackButtonPanel.setVisible(false);}
+           else
+                   {
+                       JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
+                       GUI.toggleButtons(GUI.buttonPanel,false);
+                   }
            } 
        });
        button[5].addActionListener(new ActionListener() 
