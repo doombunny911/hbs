@@ -4,6 +4,7 @@
  */
 package historicalbattlesimulatorbasic;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
@@ -14,6 +15,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javafx.scene.layout.Border;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,6 +35,7 @@ import javax.swing.SwingConstants;
 public class GUI implements MouseListener
 {
 //    JLabel bgL = new JLabel();
+    
     static double numberOfTilesWidth; //the number of tiles that make up the width
     static double numberOfTilesHeight;//the number of tiles that make up the height
     static JFrame gameFrame; //the gameframe, holds the panels/buttons
@@ -462,15 +466,19 @@ public class GUI implements MouseListener
                  if(player1HasNoUnits())
                  {
                       Game.playersForDemo.get(1).isWinner=true;
-                      JOptionPane.showMessageDialog(null, "congratulations " + Game.playersForDemo.get(1).playerName + " you are victorious");
+                      JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(1).playerName + " you are victorious");
                  }
                  else if(player2HasNoUnits())
                  {
                      Game.playersForDemo.get(0).isWinner=true;
-                     JOptionPane.showMessageDialog(null, "congratulations " + Game.playersForDemo.get(0).playerName + " you are victorious");
+                     JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(0).playerName + " you are victorious");
                  }
                  if(player1Turn())
                  {
+                     for(Unit u: Game.playersForDemo.get(0).getUnitList())
+                     {
+                         u.resetUnitPoints();
+                     }
                      Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
@@ -478,6 +486,10 @@ public class GUI implements MouseListener
                  }
                  else if(player2Turn())
                  {
+                     for(Unit u: Game.playersForDemo.get(1).getUnitList())
+                     {
+                         u.resetUnitPoints();
+                     }
                      Game.playersForDemo.get(1).myTurn=false;
                      Game.playersForDemo.get(0).myTurn=true;
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(1).playerName + " your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
@@ -615,11 +627,7 @@ public class GUI implements MouseListener
         statPanel = new JPanel();
       
     //GUI.statPanel.setLayout(new GridLayout(3,1));
-//        BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
-//        ImageIcon unitPic2 = new ImageIcon(unitPic);
-//        JLabel up = new JLabel(unitPic2);
-//        up.setBounds(, unitNum, tileWidth, unitNum);
-//        GUI.statPanel.add(up);
+       
        
         int unitNumLocal=unitSelected.getUnitsAlive();
         double unitAttack=unitSelected.unitSoldiers[0].attack;
@@ -630,9 +638,11 @@ public class GUI implements MouseListener
         double range = unitSelected.unitSoldiers[0].range;
         double chargeBonus = unitSelected.unitSoldiers[0].chargeBonus;
         double stamina = unitSelected.unitSoldiers[0].stamina;
+        String unitName = unitSelected.nameOfUnit;
+        double unitPoints = unitSelected.returnUnitPoints();
         JButton close = new JButton("Close");
-        close.setBounds(GUI.statPanel.getWidth(), -4*GUI.statPanel.getHeight()/5, GUI.statPanel.getWidth(), 50);
-//        close.setBounds(GUI.statPanel.width(), GUI.statPanel, tileWidth, facingInt);
+       // close.setBounds(GUI.statPanel.getWidth(), -4*GUI.statPanel.getHeight()/5, GUI.statPanel.getWidth(), 50);
+
         close.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) //box Formation
@@ -642,14 +652,25 @@ public class GUI implements MouseListener
        });
         String facing = unitIsFacing(facingInt);
         //using html allows me to carriage return
-        JLabel stats = new JLabel("<html> Soldiers in Unit: "+unitNumLocal+
-                "<br>AttackPower: "+unitAttack+"<br>DefensePower: "+unitDefense+
-                "<br>unit is facing "+facing+"<br>armorClass: "+armorClass+
-                "<br>speed: "+speed+"<br>range: "+range+"<br>chargeBonus: "+
-                chargeBonus+"<br>stamina "+stamina+"</html>", SwingConstants.CENTER);
+        statPanel.setBackground(Color.BLACK);
+        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
+        statPanel.setBorder(borderUsed);
+        JLabel nameSection = new JLabel("<html> <b><h3><font color = 'white'> "+unitName +"</h3></b></font></html>");
+        GUI.statPanel.add(nameSection);
+        
+        JLabel stats = new JLabel("<html><br> <font color = 'white'> Soldiers in Unit: "+unitNumLocal+
+                "<br>Attack Power: "+unitAttack+"<br>DefensePower: "+unitDefense+
+                "<br>Orientation "+facing+"<br>Armor Class: "+armorClass+
+                "<br>speed: "+speed+"<br>Range: "+range+"<br>Charge Bonus: "+
+                chargeBonus+"<br>Stamina "+stamina+"<br><br><br> Unit Points Remaining"+unitPoints+"</font></html>", SwingConstants.CENTER);
         
         //add the label to the panel
         GUI.statPanel.add(stats);
+         BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
+        ImageIcon unitPic2 = new ImageIcon(unitPic);
+        JLabel up = new JLabel(unitPic2);
+       //add image of unit selected
+        GUI.statPanel.add(up);
         //GUI.statPanel.add(new JLabel(" "));
         GUI.statPanel.add(close);
         //set the location and size of panel

@@ -184,6 +184,9 @@ public class Unit extends Soldier
     {
         return unitDefeat;
     }
+    /*
+    Attacks the defending units. 
+    */
     public void attack(Unit defender)
     {
        
@@ -214,9 +217,11 @@ public class Unit extends Soldier
             //   System.out.println("Defending units alive:"+defender.getUnitsAlive());
                 if(!this.unitSoldiers[i].isAlive()&&j!=0)
                 {
+                    
                     i--;
                 }
-                 Soldier s = this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
+                Soldier s = this.unitSoldiers[i].attack(defender.unitSoldiers[j]); //attacks the unit and edits the value
+                 
                  if(!s.isAlive())
                  {
                     
@@ -251,43 +256,9 @@ public class Unit extends Soldier
         
     
     
-    public void attackAtRange(Unit defender)
-    {
-       
-        int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
-        int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-       
-           
-        
-        if(this.unitDefeat==false)
-        {
-            
-            for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
-            {
-             int j = dSize-1; //the integer for the defenders unit size.
-             if(defender.getUnitsAlive()==0)
-                {
-                    //if all the defenders are dead, bring them all back again?
-                    System.out.println("The attackers won, all defenders are dead");
-                    break;
-                    // j= defender.getUnitsAlive(); //resets j for the rest of the attackers to target.
-                }
-             else{
-             defender.unitSoldiers[j]=this.unitSoldiers[i].rangeAttack(defender.unitSoldiers[j]); //attacks the unit and edits the value
-             }
-             //decrament j after every attack
-                        
-             
-            }
-            
-        System.out.println("After this round of attacks by the" + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+ defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + "remain.");
-        }
-        
-    }
-
+  
     /*
-    @aSize - Attacker size
-    @dSize - DefenderSize
+  Calculates whether the opponent is in range or not, based on getting the central position. (The math may be off on this one)
     */
     private boolean isInRange(Unit opponent) 
     {
@@ -364,6 +335,7 @@ public class Unit extends Soldier
     public void resetUnitPoints()
     {
         this.unitPoints = 2;
+        System.out.println(this.nameOfUnit+ "reset movement points");
     }
     public int returnUnitPoints()
     {
