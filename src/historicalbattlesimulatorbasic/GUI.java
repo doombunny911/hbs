@@ -823,8 +823,8 @@ public class GUI implements MouseListener
 //           System.out.println("in moveLogic before index selection");
             if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
             {
-                System.out.println("unitID of unitDraw at "+ i+ " = "+
-                        GUI.unitDraws.get(i).thisUnit.getUnitID());
+//                System.out.println("unitID of unitDraw at "+ i+ " = "+
+//                        GUI.unitDraws.get(i).thisUnit.getUnitID());
                 index=i;
                 break;
             }
