@@ -49,11 +49,11 @@ public class CombatPanel extends JPanel
         javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
         this.setBorder(borderUsed);
         
-        getAllUnitsOfEnemy();
-        setUpButtons();
+       Player enemy= getAllUnitsOfEnemy();
+        setUpButtons(enemy);
         
     }
-    public void getAllUnitsOfEnemy() {
+    public Player  getAllUnitsOfEnemy() {
         unitSelected = GUI.unitSelected;
         for(Player p: Game.playersForDemo)
         {
@@ -68,9 +68,10 @@ public class CombatPanel extends JPanel
         
         enemyUnits = enemyPlayer.allUnits;
 //        enemyUnits = unitSelected.getAllInRange(enemyPlayer);
+        return enemyPlayer;
     }
     //Generate buttons with stats on them as well
-    public void setUpButtons(){
+    public void setUpButtons(Player enemy){
         setLayout(new GridLayout(5,1));
         ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
         final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b><br></font></center></h4></html>") ;
@@ -107,7 +108,7 @@ public class CombatPanel extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    unitSelected.attack(u);
+                    unitSelected.attack(u,enemy);
                     visible= false;
                     
                     for(JButton b: buttons)
