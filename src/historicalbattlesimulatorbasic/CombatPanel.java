@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -50,6 +51,12 @@ public class CombatPanel extends JPanel
         this.setBorder(borderUsed);
         
         getAllUnitsOfEnemy();
+        if(enemyUnits.size()<1)
+        {
+            JOptionPane.showMessageDialog(GUI.panel, "No units are in range!");
+            GUI.toggleButtons(GUI.buttonPanel, visible);
+            GUI.unitSelected.addUnitPoint();
+        }
         setUpButtons();
         
     }
@@ -72,9 +79,12 @@ public class CombatPanel extends JPanel
     //Generate buttons with stats on them as well
     public void setUpButtons(){
         setLayout(new GridLayout(5,1));
-        ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
-        final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b><br></font></center></h4></html>") ;
-        final JLabel title1 = new JLabel(unitSelected.nameOfUnit,imageOfUnitSelected, JLabel.CENTER);
+        Image imgx = GUI.unitSelected.getUnitPic(GUI.unitSelected);
+            Image newimgx = imgx.getScaledInstance(10, 10,  java.awt.Image.SCALE_SMOOTH); 
+            ImageIcon imageOfUnit = new ImageIcon(newimgx);
+
+        final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b><br></font></center></h4></html>", JLabel.CENTER) ;
+        final JLabel title1 = new JLabel(unitSelected.nameOfUnit,imageOfUnit, JLabel.CENTER);
       //   title.setBackground(Color.white);
         final JLabel title2 = new JLabel("<html> <font color = 'white' face='Times New Roman'"
                 + "> Click on your target! If none are present, hit cancel</b></font></html>");

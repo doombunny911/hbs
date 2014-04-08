@@ -145,18 +145,25 @@ public final class Openingmenuscreen extends JFrame
                     Unit spartanHopliteUnit3 = new Unit(spartanHoplite,199);
                         greekUnits.add(spartanHopliteUnit3);
                     spartanHopliteUnit3.setSprite("greekYellow.png");
-                    Unit greekMilitias = new Unit(averageGreekHoplite,400);
+               //     Unit greekMilitias = new Unit(averageGreekHoplite,400);
                       
-                    greekMilitias.setSprite("greekGray.png");
-                      greekUnits.add(greekMilitias);
-                      
-                    Unit greekMilitias2 = new Unit(averageGreekHoplite,400);
-                    greekMilitias2.setSprite("greekGray.png");
-                      greekUnits.add(greekMilitias2);
+//                    greekMilitias.setSprite("greekGray.png");
+//                      greekUnits.add(greekMilitias);
+//                      
+//                    Unit greekMilitias2 = new Unit(averageGreekHoplite,400);
+//                    greekMilitias2.setSprite("greekGray.png");
+//                      greekUnits.add(greekMilitias2);
                     Unit leonidas = new Unit(leon,1);
                     leonidas.setSprite("greekRed.png");
                       greekUnits.add(leonidas);
                 
+                
+                
+                //persian units
+                ArrayList <Unit> persianUnits = new ArrayList();
+                String name2="Persian";
+                
+                //Soldiers
                 Soldier immortals = new Soldier("Immortals",
                         1,
                         1,
@@ -170,22 +177,23 @@ public final class Openingmenuscreen extends JFrame
                         1,
                         6,
                         5);
-                Unit immortalsUnit = new Unit(immortals,1000);
+               
                 
-                
-                //persian units
-                ArrayList <Unit> persianUnits = new ArrayList();
-                String name2="Persian";
+                Soldier persianArcher= new Soldier("Persian",1,1,1,1,25,1,1,1,2,2,5,5);
                 //immortals
+                 Unit immortalsUnit = new Unit(immortals,500);
+                 
                //bowmen
+               Unit persianArcherUnit = new Unit(persianArcher, 50);
+                 persianArcherUnit.setSprite("archerGray.png");
+                  
                 //xerxes
                 
                persianUnits.add(immortalsUnit);
+               persianUnits.add(persianArcherUnit);
                 
                 
-                
-                
-                greekUnits.add(spartanHopliteUnit);
+             
                 
                 
                 

@@ -205,6 +205,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) 
            {
                GUI.unitSelected.expendUnitPoint();
+               JOptionPane.showMessageDialog(GUI.panel, GUI.unitSelected+ " is now defending. This means that it gets a +"+GUI.unitSelected.defense+" bonus until the start of your next turn");
                System.out.println("Unit Defending");
                GUI.unitSelected.defend();
                 //reload the buttons that are loaded when a unit is clicked
