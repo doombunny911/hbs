@@ -340,12 +340,12 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     //calculate the dice roll for the attack
     int diceRoll = dice.nextInt(20);
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
-        System.out.println("Defender HP before the hit: "+defender.hp);
+        //System.out.println("Defender HP before the hit: "+defender.hp);
         if((diceRoll + this.attack) > (defender.armorClass))
         {
             defender.hp= defender.hp - dmgDice;
             //JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
-             System.out.println("Defender HP after the hit: "+defender.hp);
+          //   System.out.println("Defender HP after the hit: "+defender.hp);
         }
         else
         {

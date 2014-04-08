@@ -127,7 +127,37 @@ public final class Openingmenuscreen extends JFrame
                 
                 removePanels();
                 
-                Soldier s = new Soldier("Immortals",
+               
+                //Greek Units
+                    //Spartan Hoplites
+                    Soldier spartanHoplite = new Soldier("Spartan Hoplite",1,3,2,4,5,7,3,4,2,2,5,4);
+                    Soldier averageGreekHoplite = new Soldier("Greek Militia Hoplite",1,1,2,2,2,4,1,2,1,1,2,4);
+                    Soldier leon = new Soldier("King Leonidas",10,30,20,40,50,70,30,40,20,20,50,40);
+                    
+                    ArrayList <Unit> greekUnits = new ArrayList();
+                    String name = "Greek Forces";
+                    Unit spartanHopliteUnit = new Unit(spartanHoplite,100);
+                    spartanHopliteUnit.setSprite("greekYellow.png");
+                        greekUnits.add(spartanHopliteUnit);
+                    Unit spartanHopliteUnit2 = new Unit(spartanHoplite,100);
+                    spartanHopliteUnit2.setSprite("greekYellow.png");
+                        greekUnits.add(spartanHopliteUnit2);
+                    Unit spartanHopliteUnit3 = new Unit(spartanHoplite,199);
+                        greekUnits.add(spartanHopliteUnit3);
+                    spartanHopliteUnit3.setSprite("greekYellow.png");
+                    Unit greekMilitias = new Unit(averageGreekHoplite,400);
+                      
+                    greekMilitias.setSprite("greekGray.png");
+                      greekUnits.add(greekMilitias);
+                      
+                    Unit greekMilitias2 = new Unit(averageGreekHoplite,400);
+                    greekMilitias2.setSprite("greekGray.png");
+                      greekUnits.add(greekMilitias2);
+                    Unit leonidas = new Unit(leon,1);
+                    leonidas.setSprite("greekRed.png");
+                      greekUnits.add(leonidas);
+                
+                Soldier immortals = new Soldier("Immortals",
                         1,
                         1,
                         2,
@@ -140,21 +170,28 @@ public final class Openingmenuscreen extends JFrame
                         1,
                         6,
                         5);
-                Unit player2Unit = new Unit(s,50);
-                Soldier s1 = new Soldier("Greek BodyGuard",1,3,2,4,5,7,3,4,2,2,5,4);
-                Unit player1Unit = new Unit(s1,50);
-                player2Unit.setSprite("redKnight.png");
-                Unit unit3 = new Unit(s,10);
-                String name = "Player 1";
-                String name2="Player 2";
-                ArrayList <Unit> u = new ArrayList();
-                ArrayList <Unit> u2 = new ArrayList();
-                u.add(player1Unit);
-                u2.add(unit3);
-                u2.add(player2Unit);
-                Player p1 = new Player(name,u);
+                Unit immortalsUnit = new Unit(immortals,1000);
                 
-                Player p2 = new Player(name2,u2);
+                
+                //persian units
+                ArrayList <Unit> persianUnits = new ArrayList();
+                String name2="Persian";
+                //immortals
+               //bowmen
+                //xerxes
+                
+               persianUnits.add(immortalsUnit);
+                
+                
+                
+                
+                greekUnits.add(spartanHopliteUnit);
+                
+                
+                
+                Player p1 = new Player(name,greekUnits);
+                
+                Player p2 = new Player(name2,persianUnits);
                 
                 
                 p1.myTurn=true;
@@ -165,8 +202,8 @@ public final class Openingmenuscreen extends JFrame
                 
                 p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
                 p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-                GUI.panel.add(p1.up);
                 GUI.panel.add(p2.up);
+                GUI.panel.add(p1.up);
                 
                 game.gameMap=map;
                 GUI.buttonLoader();

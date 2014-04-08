@@ -72,10 +72,17 @@ public class Tile extends Rectangle
     public void occupyBy(Soldier soldier){
         occupyingSoldier = soldier;
         isOccupied = true;
+        setTileBlocked();
     }
     //set tileBlocked boolean variable to true, to be used for collision detection. 
     public void setTileBlocked(){
         tileBlocked=true;
+    }
+    
+    //sets tileBlocked boolean variable to false, to be used for when the unit steps off
+    public void setTileUnBlocked()
+    {
+        tileBlocked=false;
     }
     //test if someone is occupying it. Will be used to prevent collision
     public boolean getIsOccupied(){
@@ -234,6 +241,7 @@ public class Tile extends Rectangle
     public void removeSoldier(){
         isOccupied=false;
         occupyingSoldier=null;
+        this.setTileUnBlocked();
     }
     public void paintTile(Graphics2D g){
         g.drawImage(image.getImage(), this.xPosition,
