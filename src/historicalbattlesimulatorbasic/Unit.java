@@ -202,26 +202,21 @@ for(int i=0; i<unitSize;i++)
     /*
     Attacks the defending units. 
     */
-    public void attack(Unit defender){
+    public void attack(Unit defender,Player enemy){
        
         this.expendUnitPoint();
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
         int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
        
-//        System.out.println("Attacking units"+aSize);
-//        System.out.println("Defending units"+dSize);
-      
-//       if (isInRange(aSize, dSize, defender))
-//        {
         
-            int j=-1;
+            int j=0;
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
             {    
                 
              if(defender.unitDefeat)
              {
                  System.out.println("all defenders have been defeated");
-                 
+                 enemy.allUnits.remove(defender);
              }
              else
              {
@@ -229,25 +224,22 @@ for(int i=0; i<unitSize;i++)
                  
                dSize = defender.getUnitsAlive(); //gets the number of defending units alive
 //               System.out.println("count  =  "+ count);
-               if(j<dSize)
-               {  
-                     j++;
-//                   System.out.println("j is now eqaul to " + j);
-                 
-               }
-               else
-               {
-                   
-                   j=0;
-               }
+//               if(j<dSize)
+//               {  
+//                     j++;
+////                   System.out.println("j is now eqaul to " + j);
+//                 
+//               }
+//               else
+//               {
+//                   
+//                   j=0;
+//               }
 //                if(!this.unitSoldiers.get(i).isAlive()&&j!=0)
 //                {
 //                    
 //                    i--;
-//                }
-               System.out.println(this.unitSoldiers.get(i));
-               System.out.println(defender.unitSoldiers.get(j));
-                
+//                }                
                 Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value, returns defender
                  
                  if(!s.isAlive()) //if the defender died
@@ -259,6 +251,7 @@ for(int i=0; i<unitSize;i++)
                  }
                  else
                  {
+                     j++;
                     System.out.println(s.unitName+" "+j+" has been attacked and survived");
                     defender.unitSoldiers.set(j, s);
                  }
