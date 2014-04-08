@@ -43,7 +43,6 @@ public class CombatPanel extends JPanel
         newJ.repaint();
         newJ.revalidate();
      }
-     
     public void initCPanel() {
         
         this.setBackground(Color.BLACK);
@@ -54,7 +53,6 @@ public class CombatPanel extends JPanel
         setUpButtons();
         
     }
-
     public void getAllUnitsOfEnemy() {
         unitSelected = GUI.unitSelected;
         for(Player p: Game.playersForDemo)
