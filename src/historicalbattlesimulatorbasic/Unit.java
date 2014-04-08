@@ -313,56 +313,27 @@ for(int i=0; i<unitSize;i++)
     */
     private boolean isInRange(Unit opponent) {
         boolean inRange=false;
-        opponent.calculateAveragePosition();
-        this.calculateAveragePosition();
-       
-            if (getDistance(opponent.getAvgXPosition(), opponent.getAvgYPosition())<((this.soldierType.range))*100) {
-                inRange = true;
-            }
-          
+      
+       for(Soldier s : this.unitSoldiers)
+       {
+           if(!inRange)
+           {
+               for(Soldier u: opponent.unitSoldiers)
+               {
+                   if(!inRange)
+                   {
+                        
+                        if (s.getDistance(u)<= (this.soldierType.range+2)) 
+                        {
+                            System.out.println(s.getDistance(u));
+                            inRange = true;
+                        }
+                   }
+               }
+           }
+       }
        
         return inRange;
-    }
-    double avgXPosition, avgYPosition;
-    @Override
-     public double getDistance(double avgX, double avgY){
-        this.calculateAveragePosition();
-        
-        double x1 = this.avgXPosition;
-     
-        double y1 = this.avgYPosition;
-     
-        double x2 = avgX;
-       // System.out.println(x2);
-        double y2 = avgY;
-      //  System.out.println(y2);
-        double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-    //    System.out.println("DISTANCE - "+distance);
-       return distance;
-    }
-    public void calculateAveragePosition(){
-       
-        double xSum =0;
-        double ySum =0;
-        int divisor=0;
-        for(Soldier s: this.unitSoldiers)
-        {
-            xSum = s.tileOccupied.xPosition+xSum;
-            ySum =s.tileOccupied.yPosition+ySum;
-            divisor ++;
-        }
-        avgXPosition = xSum/divisor;
-        
-        avgYPosition = ySum/divisor;
-     //   System.out.println(this.unitName+"AVG X POSITION - " + avgXPosition + "AVG Y POSITION - "+ avgYPosition);
-        
-        
-    }
-    public double getAvgXPosition(){
-        return avgXPosition;
-    }
-    public double getAvgYPosition(){
-        return avgYPosition;
     }
     public ArrayList<Unit> getAllInRange(Player p2){
         ArrayList<Unit> allUnitsInRange = new ArrayList<>();

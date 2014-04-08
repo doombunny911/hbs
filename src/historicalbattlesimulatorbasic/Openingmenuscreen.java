@@ -114,60 +114,65 @@ public final class Openingmenuscreen extends JFrame
         //This refers to when the loadGame button is clicked 
        public void actionPerformed( ActionEvent e ) 
         {
-            //load the game, testButton for now
-            
-            
-            Game game = new Game(); 
-             Map map = new Map(10);
-
-            removePanels();
-            Soldier s = new Soldier("Immortals",
-                1,
-                1,
-                2,
-                4,
-                3,
-                2,
-                1,
-                6,
-                3,
-                1,
-                6,
-                5);
-            Unit player1Unit = new Unit(s,50);
-            Soldier s2 = new Soldier("Greek BodyGuard",1,3,2,4,5,7,3,4,2,2,5,4);
-            Unit player2Unit = new Unit(s2,50);
-            player2Unit.setSprite("redKnight.png");
-            Unit unit3 = new Unit(s,10);
-            String name = "Player 1";
-            String name2="Player 2";
-            ArrayList <Unit> u = new ArrayList(); 
-            ArrayList <Unit> u2 = new ArrayList();
-            u.add(player1Unit);
-            u.add(unit3);
-            u2.add(player2Unit);
-            Player p1 = new Player(name,u);
-            
-            Player p2 = new Player(name2,u2);
-           
-            
-            p1.myTurn=true;
-            Game.playersForDemo.add(p1);
-            Game.playersForDemo.add(p2);
-//            p1.up.setUpButtons();
-//            p2.up.setUpButtons();
-            
-            p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-            p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-            GUI.panel.add(p1.up);
-            GUI.panel.add(p2.up);   
-            
-            game.gameMap=map;
-            GUI.buttonLoader();
-            
-            //remove all panels
+            thermopylae();
 
         }
+
+            public void thermopylae() {
+                //load the game, testButton for now
+                
+                
+                Game game = new Game();
+                Map map = new Map(10);
+                
+                removePanels();
+                
+                Soldier s = new Soldier("Immortals",
+                        1,
+                        1,
+                        2,
+                        4,
+                        3,
+                        2,
+                        1,
+                        6,
+                        3,
+                        1,
+                        6,
+                        5);
+                Unit player1Unit = new Unit(s,50);
+                Soldier s2 = new Soldier("Greek BodyGuard",1,3,2,4,5,7,3,4,2,2,5,4);
+                Unit player2Unit = new Unit(s2,50);
+                player2Unit.setSprite("redKnight.png");
+                Unit unit3 = new Unit(s,10);
+                String name = "Player 1";
+                String name2="Player 2";
+                ArrayList <Unit> u = new ArrayList();
+                ArrayList <Unit> u2 = new ArrayList();
+                u.add(player1Unit);
+                u.add(unit3);
+                u2.add(player2Unit);
+                Player p1 = new Player(name,u);
+                
+                Player p2 = new Player(name2,u2);
+                
+                
+                p1.myTurn=true;
+                Game.playersForDemo.add(p1);
+                Game.playersForDemo.add(p2);
+//            p1.up.setUpButtons();
+//            p2.up.setUpButtons();
+                
+                p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+                p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+                GUI.panel.add(p1.up);
+                GUI.panel.add(p2.up);
+                
+                game.gameMap=map;
+                GUI.buttonLoader();
+                
+                //remove all panels
+            }
     });
     }
     public Openingmenuscreen(){       

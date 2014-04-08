@@ -514,8 +514,9 @@ public class GUI implements MouseListener
        {
              @Override
              public void actionPerformed(ActionEvent ae)
-             { GUI.refreshTurnPanel();
+             { 
                  
+                 GUI.refreshTurnPanel();
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
                  if(GUI.unitSelected!=null)
@@ -525,6 +526,7 @@ public class GUI implements MouseListener
                      
                       GUI.unitSelected=null;
                  }
+                 GUI.refreshTurnPanel();
                  GUI.tileClicked=null;
                  GUI.toggleButtons(buttonPanel, false);
                  if(moveC!=null&&moveC.isVisible())
@@ -725,13 +727,14 @@ public class GUI implements MouseListener
         {
             whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>2</font></h1><font color='white'>s Turn</font></h3></center></html>");
             turnPanel.add(whichPlayersTurn);
-            for(Unit u: Game.playersForDemo.get(0).getUnitList())
+            for(Unit u: Game.playersForDemo.get(1).getUnitList())
             {
                 JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br> <font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
                 turnPanel.add(unitPoints);
                 
             }
         }
+        
         GUI.panel.add(turnPanel);
     }
    //method that prints stats, gets the information from the unit and prints it
@@ -752,6 +755,7 @@ public class GUI implements MouseListener
         int range = (int)unitSelected.range;
         int chargeBonus = (int)unitSelected.chargeBonus;
         int stamina = (int)unitSelected.stamina;
+        
         String unitName = unitSelected.nameOfUnit;
         int unitPoints = unitSelected.returnUnitPoints();
         JButton close = new JButton("Close");
