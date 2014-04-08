@@ -88,9 +88,11 @@ public class Map
             for(int j=0;j<squareWidth;j++)
             {
                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
-                if(j>i)
+                if(i<GUI.numberOfTilesHeight/4 ||i>3*GUI.numberOfTilesHeight/4)
                 {
-                GUI.tileGameMap[j][i].setImage(grass);}
+                GUI.tileGameMap[j][i].setImage(rock);
+                GUI.tileGameMap[j][i].tileBlocked=true;
+                }
                 else
                 {
                     GUI.tileGameMap[j][i].setImage(dirt);

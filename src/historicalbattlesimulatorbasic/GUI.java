@@ -163,12 +163,14 @@ public class GUI implements MouseListener
         sAbility.setVisible(true);
         sAbility.setOpaque(false);
         sAbility.setBorderPainted(false);
+        sAbility.setContentAreaFilled(false);
    
         defendN.setBounds(GUI.buttonPanel.getComponent(2).getBounds());
         defendN.setLocation(GUI.buttonPanel.getComponent(2).getX()+GUI.buttonPanel.getComponent(2).getBounds().width,GUI.gameFrame.getHeight()-buttonPanel.getHeight());
         defendN.setVisible(true);
         defendN.setOpaque(false);
         defendN.setBorderPainted(false);
+        defendN.setContentAreaFilled(false);
         GUI.panel.add(sAbility);
         GUI.panel.add(defendN);
         

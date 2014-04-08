@@ -208,6 +208,19 @@ public final class Compass extends JPanel{
             
       } 
    }
+    /*
+    Returns true or false if the direction is blocked (ie: there is something on it)
+    @Tile t - the destination tile
+    */
+    protected boolean isDirectionBlocked(Tile t)
+    {
+        if(t.tileBlocked == true)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
     protected void determineTheNewLocationOfTheUnit(int tileMoveChange) {
         switch(moveDirection)
         {

@@ -236,11 +236,15 @@ for(int i=0; i<unitSize;i++)
                  
                  if(!s.isAlive())
                  {
+                     System.out.println(defender.unitSoldiers.get(j) + "IS KILLED");
+                    defender.unitSoldiers.remove(j);
+                      System.out.println(defender.unitSoldiers.get(j) + " --> SHOULD BE NULL");
                     
                  }
-                 
+                 else{
                  System.out.println(s.unitName+" "+j+" has been attacked");
                  defender.unitSoldiers.set(j, s);
+                 }
                 
                 
                         

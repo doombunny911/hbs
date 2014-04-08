@@ -86,10 +86,12 @@ public class Game
     //   }
     }
     //sets how many people are playin
+
     public void setNumPlayers(int numOfPlayers){
         Game.numOfPlayers=numOfPlayers;
 
     }
+    
     public static ArrayList playerCreator(int numPlay)    {
 
            ArrayList<Player> players = new ArrayList();     
@@ -107,8 +109,6 @@ public class Game
 
         //need win conditions
        //if player surrenders or out of unitDraws
-
-
     private boolean takeTurn(Player p){
        //   hasWinner =  p.takeTurn();
           return hasWinner;
