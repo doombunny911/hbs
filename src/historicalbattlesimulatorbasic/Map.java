@@ -91,7 +91,7 @@ public class Map
                 if(i<GUI.numberOfTilesHeight/4 ||i>3*GUI.numberOfTilesHeight/4)
                 {
                 GUI.tileGameMap[j][i].setImage(rock);
-                GUI.tileGameMap[j][i].tileBlocked=true;
+                GUI.tileGameMap[j][i].setTileBlocked();
                 }
                 else
                 {

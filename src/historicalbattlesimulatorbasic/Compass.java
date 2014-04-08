@@ -221,56 +221,97 @@ public final class Compass extends JPanel{
         else
             return false;
     }
-    protected void determineTheNewLocationOfTheUnit(int tileMoveChange) {
+    protected boolean  determineTheNewLocationOfTheUnit(int tileMoveChange) {
+        
+        boolean flag=false;
+        
         switch(moveDirection)
         {
             case 1: //north
             {
-                GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
+                if(!GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(GUI.unitSelected.yPosition-tileMoveChange)/GUI.tileWidth].tileBlocked)
+                {
+                      GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
+                      flag = true;
+                }
+
                 break;
             }
             case 2: //northEast
             {
-                GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
-                GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
+                 if(!GUI.tileGameMap[(GUI.unitSelected.xPosition+tileMoveChange)/GUI.tileWidth][(GUI.unitSelected.yPosition-tileMoveChange)/GUI.tileWidth].tileBlocked)
+                {
+                    GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+                    GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
+                    flag = true;
+                }
+                
+
                 break;
             }
             case 3: //East
             {
-                GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+                if(!GUI.tileGameMap[(GUI.unitSelected.xPosition+tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth].tileBlocked)
+                {
+                    GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+                    flag = true;
+                }          
                 break;
             }
             case 4: //southEast
             {
-                GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
-                GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+                if(!GUI.tileGameMap[(GUI.unitSelected.xPosition+tileMoveChange)/GUI.tileWidth][(GUI.unitSelected.yPosition+tileMoveChange)/GUI.tileWidth].tileBlocked)
+                {
+                    GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+                    GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+                    flag = true;
+                }
+
                 break;
             }
             case 5: //South
             {
-                GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+             if(!GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(GUI.unitSelected.yPosition+tileMoveChange)/GUI.tileWidth].tileBlocked)
+             {   
+                    GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+                    flag = true;
+                    
+              }
                 break;
             }
             case 6://southWest
             {
-                GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
-                GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+                if(!GUI.tileGameMap[(GUI.unitSelected.xPosition-tileMoveChange)/GUI.tileWidth][(GUI.unitSelected.yPosition+tileMoveChange)/GUI.tileWidth].tileBlocked)
+                {
+                    GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+                    GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+                    flag = true;
+                }
                 break;
             }
             case 7://West
             {
-                GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+                if(!GUI.tileGameMap[(GUI.unitSelected.xPosition-tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth].tileBlocked)
+                {
+                    GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+                    flag = true;
+                }
+
                 break;
             }
             case 8://NorthWest
             {
-                GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
-                GUI.unitSelected.yPosition-=tileMoveChange;//yPosition -10 = 1 tile North
+               if(!GUI.tileGameMap[(GUI.unitSelected.xPosition-tileMoveChange)/GUI.tileWidth][(GUI.unitSelected.yPosition-tileMoveChange)/GUI.tileWidth].tileBlocked)
+                {
+                    GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+                    GUI.unitSelected.yPosition-=tileMoveChange;//yPosition -10 = 1 tile North
+                }
+               
                 break;
             }
         }
          GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
-
+         return flag;
     }
     protected void removeJButtonDefaults() {
         this.north.setOpaque(false);
