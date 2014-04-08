@@ -475,32 +475,16 @@ if(!parent.exists() && !parent.mkdirs()){
         this.xPosition = x;
         this.yPosition = y;
     }
-
-        public int getUnitID() {
+    public int getUnitID() {
             return this.unitID;
         }
-   
-        
-  //if unit is not properally initialized (Unit unit = new Unit(parameters)), 
- //call this ONLY once.  can also set a boolean whenever ID is set the first time
-  public void setUnitUnitID(){
-      this.unitID=Unit.unitIDGen;
-      Unit.unitIDGen++;
-      for(int i=0; i<unitSize; i++)
-      {
-            //gives this id to the soldiers that make it up
-            unitSoldiers.set(i,soldierType.clone());
-            unitSoldiers.get(i).setUnitID(this.unitID);
-     }
-  }
-  public void setFormation(UnitFormations form) {
+    public void setFormation(UnitFormations form) {
       this.currentFormation=form;
   }
-  public void useSpecialAbility() {
+    public void useSpecialAbility() {
        //use specialAbility
    }
-  public void drawUnit(Unit unit) {
-       
+    public void drawUnit(Unit unit) {
        int  index=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
 
          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
