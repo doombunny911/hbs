@@ -39,7 +39,8 @@ public static void unCharge(Soldier soldier)
 public static boolean checkFlanking(Soldier selected, Soldier target)
 {
     boolean flanking = false;
-    
+    System.out.println("TARGET -"+target.unitName +" ++++++++++++++/n CHECKING FLANKING");
+    System.out.println("TTHIS -"+selected.unitName +" ++++++++++++++/n CHECKING FLANKING");
     //north
     if(target.facing==1&&selected.tileOccupied.yPosition>target.tileOccupied.yPosition)
     {//if target is behind, it would have to have a y value greater than it [ meaning if it is on top, it is below it]
@@ -95,12 +96,37 @@ public static boolean checkFlanking(Soldier selected, Soldier target)
     public static void setFlanking(Soldier soldier)
     {
         soldier.attack = soldier.attack + soldier.baseAttack/2;
+        soldier.isFlanking = true;
     }
     public static void removeFlanking(Soldier soldier)
     {
         soldier.attack =  soldier.attack -  soldier.baseAttack/2;
+        soldier.isFlanking = false;
     }
-
+    
+   public static boolean checkHeightAdvantage(Soldier selected, Soldier opponent)
+   {
+       boolean hasAdvantage = false;
+       if(opponent.tileOccupied!=null)
+       {
+       if(selected.tileOccupied.zPosition>opponent.tileOccupied.zPosition)
+       {
+           hasAdvantage = true;
+       }
+       }
+       return hasAdvantage;
+   }
+   public static boolean checkHeightDisadvantage(Soldier selected, Soldier opponent)
+   { boolean hasDisAdvantage = false;
+      
+   if(opponent.tileOccupied!=null)
+       {if(selected.tileOccupied.zPosition<opponent.tileOccupied.zPosition)
+       {
+           hasDisAdvantage = true;
+       }
+       }
+       return hasDisAdvantage;
+   }
     /*Name: Height advantage
     Type: Attack Bonus
     Bonus or Negative: Bonus
@@ -111,6 +137,12 @@ public static boolean checkFlanking(Soldier selected, Soldier target)
     public static void setHeightAdvantage(Soldier soldier) 
     {
          soldier.attack =  soldier.attack +  soldier.baseAttack/4;
+    }
+    public static void setHeightDisAdvantage(Soldier soldier)
+    {
+            
+         soldier.attack =  soldier.attack -  soldier.baseAttack/4;
+    
     }
     public static void removeHeightAdvantage(Soldier soldier)
     {

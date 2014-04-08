@@ -205,9 +205,10 @@ for(int i=0; i<unitSize;i++)
     public void attack(Unit defender,Player enemy){
        
         this.expendUnitPoint();
+        int dSize = 0;
         int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
-        int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-       
+        //int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
+       System.out.println("ATTACKING " +defender.nameOfUnit);
         
             int j=0;
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents

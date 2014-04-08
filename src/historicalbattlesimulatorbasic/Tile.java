@@ -22,10 +22,12 @@ public class Tile extends Rectangle
 
     
     boolean tileBlocked;
-    int xPosition, yPosition, zPosition;
+    int xPosition, yPosition;
+    int zPosition =0;
     int terrainEffect; //terrain effects will be all categorized as ints to allow easy return access.
     int levelOfCover; // 0 is none, 1 is light, 2 is full
     int  xLength, yHeight;
+    
     Soldier occupyingSoldier;
     Boolean isOccupied;
     Tile tileNorth, tileNorthEast, tileEast, tileSouthEast, tileSouth, tileSouthWest, tileWest, tileNorthWest;
@@ -44,12 +46,13 @@ public class Tile extends Rectangle
         this.xLength= xLength; 
         this.yHeight= yLength; 
         this.isOccupied=false; 
-       
+        this.zPosition =0;
     }
     
     //set the height
     public void setHeight(int Height){
         this.zPosition=Height;
+      //  this.height = Height;
     }
     //set level of cover. 0 is none, 1 is light, 2 is full
     public void setCover(int cover){

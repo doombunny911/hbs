@@ -101,10 +101,12 @@ public class Map
                     if(i<GUI.numberOfTilesHeight/4)
                     {
                      GUI.tileGameMap[j][i].setImage(dirt);
+                     GUI.tileGameMap[j][i].setHeight(2);
                     }
                     else 
                     {
                         GUI.tileGameMap[j][i].setImage(rock);
+                        GUI.tileGameMap[j][i].setHeight(2);
                     }
                 }
                // mountains 

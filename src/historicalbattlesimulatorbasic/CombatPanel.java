@@ -117,7 +117,8 @@ public class CombatPanel extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    unitSelected.attack(u);
+                    unitSelected.attack(u,enemyPlayer);
+                    
                     visible= false;
                     
                     for(JButton b: buttons)

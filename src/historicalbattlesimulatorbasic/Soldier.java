@@ -88,6 +88,7 @@ public static void main(String[] args)
  t2.occupyBy(s2);
  s1.rangeAttack(s2);
 }
+    boolean isFlanking;
 public Soldier(String unitName,
                 int unitType,
                 int dmg,
@@ -331,6 +332,8 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
   public void sprint(){
     Modifier.sprint(this);
 }
+  
+
 /*Die- the following method, when activated 'kills' the soldier*/
   public void die()        {
     alive = false;
@@ -339,8 +342,16 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
   public Soldier attack(Soldier defender){
     //calculate the dice roll for the attack
     int diceRoll = dice.nextInt(20);
+    if(this.dmg<0)
+    {
+        this.dmg=0;
+    }
     double dmgDice = dice.nextInt(this.dmg)+ this.dmgBonus;
+   
+    this.calculateModifiers(defender);
         //System.out.println("Defender HP before the hit: "+defender.hp);
+ 
+    
         if((diceRoll + this.attack) > (defender.armorClass))
         {
             defender.hp= defender.hp - dmgDice;
@@ -384,7 +395,7 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     
 }
   public void update(){
-    System.out.println("Update called");
+    //System.out.println("Update called");
         if (this.hp<=0)
         {
             this.die();
@@ -405,12 +416,41 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
 }
 //this is the method to calculate which modifiers get implemented. It is a series of if cases for the variety of settings.
   public void calculateModifiers(Soldier opponent){
+      //Flanking Bonus
         setBalanceBonus(opponent);
-        
-        
-    
         //Flanking Bonus
+        boolean checkFlanking = Modifier.checkFlanking(this,opponent);
+        if(checkFlanking)
+        {
+            Modifier.setFlanking(this);
+            System.out.println("FLANKING");
+        }
+        else
+        {
+            Modifier.removeFlanking(this);
+            System.out.println("REMOVED FLANKING");
+        }
+    
+        
         //Height Bonus
+       boolean checkHeightAdvantage = Modifier.checkHeightAdvantage(this, opponent);
+       boolean checkHeightDisAdvantage = Modifier.checkHeightDisadvantage(this, opponent);
+       if(checkHeightAdvantage)
+       {
+           Modifier.setHeightAdvantage(this);
+       }
+       else
+       {
+           Modifier.removeHeightAdvantage(this);
+       }
+       if(checkHeightDisAdvantage)
+       {
+           Modifier.setHeightDisAdvantage(this);
+       }
+       else
+       {
+           Modifier.removeHeightAdvantage(this);
+       }
         //Rough Terrain Movement
         //Moving Bonus
         //inCover
@@ -454,7 +494,9 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
         double y2 = opponent.tileOccupied.yPosition;
       //  System.out.println(y2);
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        System.out.println("DISTANCE- "+distance);
        return distance;
+       
     }
   public double getDistance(double avgX, double avgY){
         double x1 = this.tileOccupied.xPosition;

@@ -843,6 +843,7 @@ public class GUI implements MouseListener
    protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }
+   
    protected static boolean spartanVictory()
    {
        if(turnCountForPersians<0)
