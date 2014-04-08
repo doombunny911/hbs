@@ -171,7 +171,7 @@ public final class Compass extends JPanel{
     public void moveLogic(){
     
        GUI.unitSelected.hasMoved=true;
-       int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
+       int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
        int tileMoveChange = GUI.tileWidth;
        
        
@@ -192,7 +192,7 @@ public final class Compass extends JPanel{
           //figure out where the new unit will be located
           determineTheNewLocationOfTheUnit(tileMoveChange);
           int dir = determineNewDirectionOfUnit();
-          GUI.removeSoldiersFromPreviousTiles();
+          GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
           
           
           
@@ -372,7 +372,7 @@ public final class Compass extends JPanel{
         
         Tile t = new Tile(0,0,0,0);
         
-       int index =GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
+       int index =GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
        
        for(int i=0;i<GUI.numberOfTilesHeight;i++)
        {

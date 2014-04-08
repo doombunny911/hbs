@@ -67,7 +67,7 @@ public class CombatPanel extends JPanel
         }
         
         enemyUnits = enemyPlayer.allUnits;
-        enemyUnits = unitSelected.getAllInRange(enemyPlayer);
+//        enemyUnits = unitSelected.getAllInRange(enemyPlayer);
     }
     //Generate buttons with stats on them as well
     public void setUpButtons(){

@@ -120,7 +120,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) //line Formation
            {
                GUI.unitSelected.expendUnitPoint();
-               GUI.removeSoldiersFromPreviousTiles();
+               GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
                GUI.unitSelected.currentFormation.defaultFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
@@ -132,7 +132,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae) //box Formation
            {
                GUI.unitSelected.expendUnitPoint();
-               GUI.removeSoldiersFromPreviousTiles();
+               GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
                GUI.unitSelected.currentFormation.setBoxFormation();
                
                GUI.toggleButtons(formationPanel, false);
@@ -948,13 +948,13 @@ public class GUI implements MouseListener
    protected static boolean componentNotNullAndIsNotVisible(Component c) {
         return c!=null&&c.isVisible()==false;
     }
-   protected static int determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt() {
+   protected static int determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(Unit u) {
         //find the index of the unitDraw that needs to be removed
         int index=-1;
         for(int i=0;i<GUI.unitDraws.size();i++)
         {
 //           System.out.println("in moveLogic before index selection");
-            if(GUI.unitSelected.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
+            if(u.getUnitID()==GUI.unitDraws.get(i).thisUnit.getUnitID())
             {
 //                System.out.println("unitID of unitDraw at "+ i+ " = "+
 //                        GUI.unitDraws.get(i).thisUnit.getUnitID());
@@ -965,17 +965,20 @@ public class GUI implements MouseListener
            System.out.println("never found the right index in compass");
         return index;
     }
-   protected static void removeSoldiersFromPreviousTiles() {
+   protected static void removeSoldiersFromPreviousTiles(Unit u) {
         //remove the soldiers from the previous tiles
         for(int i=0;i<GUI.numberOfTilesHeight;i++)
-            for(int j=0;j<GUI.numberOfTilesWidth;j++)
+        {
+           for(int j=0;j<GUI.numberOfTilesWidth;j++)
             {
-                if(thereIsASoldierWhereThereShouldNotBe(j, i))
+                if(thereIsASoldierWhereThereShouldNotBe(j, i,u))
                     GUI.tileGameMap[j][i].removeSoldier();
-            }
+            } 
+        }
+            
     }
-   protected static boolean thereIsASoldierWhereThereShouldNotBe(int j, int i) {
-        return GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
+   protected static boolean thereIsASoldierWhereThereShouldNotBe(int j, int i,Unit u) {
+        return GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==u.getUnitID();
     }
      //paints the area around the unit that it can move, very useful.  broken atm
    public static void paintRange(Unit unitSelected,Graphics g)  {

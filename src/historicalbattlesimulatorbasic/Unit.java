@@ -173,9 +173,12 @@ for(int i=0; i<unitSize;i++)
     //this should determine how many units are still alive
     public int getUnitsAlive() {
         int unitsAlive=0;
-        for(int i=0; i<unitSize; i++)
+        System.out.println("unitSoldiers size = " + unitSoldiers.size() );
+        System.out.println("unitSize = " + unitSize );
+        for(int i=0; i<unitSize-1; i++)
         {
-            if(unitSoldiers.get(0).isAlive())
+//            System.out.println("i = " + i + " "+unitSoldiers.size());
+            if(unitSoldiers.get(i).isAlive())
             {
                 unitsAlive = unitsAlive+1;
             }
@@ -210,86 +213,59 @@ for(int i=0; i<unitSize;i++)
       
 //       if (isInRange(aSize, dSize, defender))
 //        {
-          int deadCount = 0; 
-        if(defender.unitDefeat==false)
-        {
-            int count= -1;
+        
             int j=-1;
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
             {    
-                count++;
-                System.out.println("count  =  "+ count);
+                
+             if(defender.unitDefeat)
+             {
+                 System.out.println("all defenders have been defeated");
+                 
+             }
+             else
+             {
+                 
+                 
+               dSize = defender.getUnitsAlive(); //gets the number of defending units alive
+//               System.out.println("count  =  "+ count);
                if(j<dSize)
                {  
-                   j++;
+                     j++;
+//                   System.out.println("j is now eqaul to " + j);
+                 
                }
                else
                {
+                   
                    j=0;
                }
-            //   System.out.println("Defending units alive:"+defender.getUnitsAlive());
-                if(!this.unitSoldiers.get(0).isAlive()&&j!=0)
-                {
-                    
-                    i--;
-                }
+//                if(!this.unitSoldiers.get(i).isAlive()&&j!=0)
+//                {
+//                    
+//                    i--;
+//                }
+               System.out.println(this.unitSoldiers.get(i));
+               System.out.println(defender.unitSoldiers.get(j));
                 
-                Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value
+                Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value, returns defender
                  
-                 if(!s.isAlive())
+                 if(!s.isAlive()) //if the defender died
                  {
-                    aSize--;
+                    defender.unitSize--;
                     System.out.println(defender.unitSoldiers.get(j) + " IS KILLED");
                     defender.unitSoldiers.remove(j);
-                    System.out.println(defender.unitSoldiers.get(j) + "  --> SHOULD BE NULL"); //actually i believe arraylists compress, so the soldier above it would fall into j's place
-                                                                                                //unless is the max j
+//                    System.out.println(defender.unitSoldiers.get(j) + "  --> SHOULD BE NULL"); //actually i believe arraylists compress, so the soldier above it would fall into j's place                                                                     //unless is the max j
                  }
-                 else{
-                 System.out.println(s.unitName+" "+j+" has been attacked");
-                 defender.unitSoldiers.set(j, s);
+                 else
+                 {
+                    System.out.println(s.unitName+" "+j+" has been attacked and survived");
+                    defender.unitSoldiers.set(j, s);
                  }
-          
-          
-//          if(defender.unitDefeat==false)
-//        {
-//            int count= -1;
-//            int j=-1;
-//            for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
-//            {    
-//                
-//                count++;
-//                j=dSize-3;
-//                System.out.println(defender.unitSoldiers.size());
-//            //   System.out.println("Defending units alive:"+defender.getUnitsAlive());  
-//                this.unitSoldiers.get(i);
-//                System.out.println("j= " + j);
-//                defender.unitSoldiers.get(j);
-//                Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value
-//                 
-//                 if(!s.isAlive())
-//                 {
-//                    
-//                    System.out.println("about to get element " + j);
-//                    System.out.println(defender.unitSoldiers.get(j) + " IS KILLED");
-//                    defender.unitSoldiers.remove(j);
-////                    System.out.println(defender.unitSoldiers.get(j) + "  --> SHOULD BE NULL"); //actually i believe arraylists compress, so the soldier above it would fall into j's place
-//                    j--;                                                                             //unless is the max j
-//                 }
-//                 else
-//                 {
-//                     
-//                    System.out.println(s.unitName+" "+j+" has been attacked");
-//                    defender.unitSoldiers.set(j, s);
-//                 }       
-//                
-//                  j--;      
-//             
-//            
-//        }
-            
+             }
         }
         //Message Afterwards
-        if(defender.getUnitsAlive()==0 && isUnitDefeated())
+        if(defender.getUnitsAlive()==0 && isUnitDefeated()) //saying the same thing twice
                 {
                     //System.out.println("Remaining defender"+dSize);
                     JOptionPane.showMessageDialog(null, "All the"+ defender.nameOfUnit +"s are dead!");
@@ -298,13 +274,19 @@ for(int i=0; i<unitSize;i++)
                     
                     
                 }
-      System.out.println("the number of soldiers left maybe = "  +this.unitSoldiers.size());
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
                     + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+
-                    defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + " remain. ");
+                    defender.unitSize + " units of "+ defender.nameOfUnit + " remain. ");
          //unitPoints = unitPoints -1;   
-        }
         
+        
+     int index=   GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(defender);
+     GUI.removeSoldiersFromPreviousTiles(defender);
+     System.out.println("defender size = " +defender.unitSize + " " + defender.unitSoldiers.size()); 
+     UnitDraw draw = new UnitDraw(defender,new Tile(defender.xPosition,defender.yPosition,GUI.tileWidth,GUI.tileWidth));
+     GUI.unitDraws.remove(index);
+     GUI.unitDraws.add(draw);
+     GUI.repainter();
     }
     
   
@@ -485,7 +467,7 @@ if(!parent.exists() && !parent.mkdirs()){
        //use specialAbility
    }
     public void drawUnit(Unit unit) {
-       int  index=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
+       int  index=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
 
          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
 

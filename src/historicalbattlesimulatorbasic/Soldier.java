@@ -11,7 +11,6 @@ package historicalbattlesimulatorbasic;
  * edit Andrew Phillips
  */
 import java.util.Random;
-import javax.swing.JOptionPane;
 //This is the basic constructor class of the soldier
 public class Soldier 
 {
@@ -27,30 +26,30 @@ public class Soldier
     */
     
     int facing;//1 is north, 2 is east, 3 is south, 4 is west
-     double attack; // the bonus to the attack
+    double attack; // the bonus to the attack
     int dmg; // the type of dice to be rolled for damage
-     double dmgBonus; //bonus to damage
-     double hp; // a soldiers health points
+    double dmgBonus; //bonus to damage
+    double hp; // a soldiers health points
     double armorClass; //a soldiers basic armor class
     double defense; // a soldiers defense bonus
-     double speed; // the distance of which a soldier can travel
-     double range; // the range of a soldiers weapons
-     double chargeBonus; //The bonus given to charging attack
+    double speed; // the distance of which a soldier can travel
+    double range; // the range of a soldiers weapons
+    double chargeBonus; //The bonus given to charging attack
     double stamina; // The amount of stamina a soldier has
     double morale; // The amount of moral a soldier has
    
     //these won't be modified at all and are constants left to remain as the basis when modifiers are implemented
-       double baseAttack;
+    double baseAttack;
     double baseHP;
-     int baseDmg;
-     double baseDmgBonus;
-     double baseDefense;
-     double baseArmorClass;
-     double baseSpeed;
-      double baseRange;
-     double baseChargeBonus;
-     double baseStamina;
-      double baseMorale;
+    int baseDmg;
+    double baseDmgBonus;
+    double baseDefense;
+    double baseArmorClass;
+    double baseSpeed;
+    double baseRange;
+    double baseChargeBonus;
+    double baseStamina;
+    double baseMorale;
      //modifier booleans
     boolean hasBalanceBonus = false;
     boolean hasFlankingBonus = false;
