@@ -73,7 +73,7 @@ public class CombatPanel extends JPanel
     public void setUpButtons(){
         setLayout(new GridLayout(5,1));
         ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
-        final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b></font></center></h4></html>") ;
+        final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b><br></font></center></h4></html>") ;
         final JLabel title1 = new JLabel(unitSelected.nameOfUnit,imageOfUnitSelected, JLabel.CENTER);
       //   title.setBackground(Color.white);
         final JLabel title2 = new JLabel("<html> <font color = 'white' face='Times New Roman'"

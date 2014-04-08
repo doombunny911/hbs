@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 
 
 /**
@@ -29,7 +30,11 @@ public class Map
    BufferedImageName dirt = BufferedImageLoaders.dirtLoader();
    BufferedImageName rock = BufferedImageLoaders.rockLoader();
    BufferedImageName grass =  BufferedImageLoaders.grassLoader();
-   
+   BufferedImageName water = BufferedImageLoaders.waterLoader();
+   BufferedImageName mountain = BufferedImageLoaders.imageLoader("mountainRock.png");
+   BufferedImageName wave = BufferedImageLoaders.imageLoader("wave.png");
+   BufferedImageName sand = BufferedImageLoaders.imageLoader("sand.png");
+   BufferedImageName rocksGround = BufferedImageLoaders.imageLoader("rocksGround2.png");
     public static void main(String[] args) throws IOException{
 //        Map m = MapCreator.createMap();
        // m.saveMap("file");
@@ -81,22 +86,101 @@ public class Map
         GUI.numberOfTilesWidth=squareWidth;
         GUI.numberOfTilesHeight=squareHeight;
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-
+    Random rng = new Random();
+    //boolean switcher = false;
     
          for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth;j++)
             {
                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
-                if(i<GUI.numberOfTilesHeight/4 ||i>3*GUI.numberOfTilesHeight/4)
+                
+                //secret path
+                if((i>8.5*GUI.numberOfTilesHeight/10 && i<9*GUI.numberOfTilesHeight/10 )|| (j>8.3*GUI.numberOfTilesWidth/10 && j<(8.5*GUI.numberOfTilesWidth/10)&&i<4.5*GUI.numberOfTilesHeight/5)&&i>3*GUI.numberOfTilesHeight/5)
                 {
-                GUI.tileGameMap[j][i].setImage(rock);
-                GUI.tileGameMap[j][i].setTileBlocked();
+                    if(i<GUI.numberOfTilesHeight/4)
+                    {
+                     GUI.tileGameMap[j][i].setImage(dirt);
+                    }
+                    else 
+                    {
+                        GUI.tileGameMap[j][i].setImage(rock);
+                    }
                 }
-                else
+               // mountains 
+                else if(i>3*GUI.numberOfTilesHeight/5&&(i-GUI.numberOfTilesWidth/4)<j)
                 {
+                        if(rng.nextBoolean())    
+                        { 
+                            GUI.tileGameMap[j][i].setImage(mountain);
+                        }
+                        else
+                        {
+                            GUI.tileGameMap[j][i].setImage(rocksGround);
+                        }
+                         GUI.tileGameMap[j][i].setTileBlocked();
+                }
+                
+                 else if(i>3*GUI.numberOfTilesHeight/5 &&j>i && (j<GUI.numberOfTilesWidth/5))
+                {
+                    if(i>j)
+                    {
+                        GUI.tileGameMap[j][i].setImage(mountain);
+                    }
+                    else 
+                    {
+                        GUI.tileGameMap[j][i].setImage(grass);
+                    }
+                }
+                
+                else if(i<GUI.numberOfTilesHeight/6&&!(j<GUI.numberOfTilesWidth/5))
+                {
+                    if(rng.nextBoolean())
+                    {
+                    GUI.tileGameMap[j][i].setImage(water);
+                    }
+                    else
+                    {
+                    GUI.tileGameMap[j][i].setImage(wave);
+                    }
+                    GUI.tileGameMap[j][i].setTileBlocked();
+                }
+              
+                else if(j<GUI.numberOfTilesWidth/5&&j>i&&i<GUI.numberOfTilesHeight/6)
+                {
+                   if(rng.nextBoolean())
+                    {
+                    GUI.tileGameMap[j][i].setImage(water);
+                    }
+                    else
+                    {
+                    GUI.tileGameMap[j][i].setImage(wave);
+                    }
+                    GUI.tileGameMap[j][i].setTileBlocked();
+                }
+                  else if(i<10*GUI.numberOfTilesHeight/60 && i<13*GUI.numberOfTilesHeight/60)
+                {
+                    if(rng.nextBoolean())
+                    GUI.tileGameMap[j][i].setImage(sand);
+                    else
                     GUI.tileGameMap[j][i].setImage(dirt);
                 }
+                else
+                { 
+                    
+                    if(rng.nextInt(15)>14)
+                    {
+                        GUI.tileGameMap[j][i].setImage(grass);
+                      //  switcher = false;
+                    }
+                    else 
+                    {
+                        GUI.tileGameMap[j][i].setImage(dirt);
+                        //switcher = true;
+                    }
+                    
+                }
+                
             }
         } 
     }

@@ -514,7 +514,7 @@ public class GUI implements MouseListener
        {
              @Override
              public void actionPerformed(ActionEvent ae)
-             {
+             { GUI.refreshTurnPanel();
                  
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
@@ -522,7 +522,7 @@ public class GUI implements MouseListener
                  {
                       GUI.unitSelected.resetUnitPoints();
                       GUI.unitSelected.endTurn();
-                      GUI.refreshTurnPanel();
+                     
                       GUI.unitSelected=null;
                  }
                  GUI.tileClicked=null;
@@ -544,18 +544,18 @@ public class GUI implements MouseListener
                      for(Unit u: Game.playersForDemo.get(0).getUnitList())
                      {
                          u.resetUnitPoints();
-                         
+                            
                      }
                      for(Unit u: Game.playersForDemo.get(1).getUnitList())
                      {
                          u.undefend();
                      }
                      
-                     Game.playersForDemo.get(0).myTurn=false;
+                    Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
                     
-                     initTurnPanel();
+                      GUI.refreshTurnPanel();
                  }
                  else if(player2Turn())
                  {
@@ -572,7 +572,7 @@ public class GUI implements MouseListener
                      Game.playersForDemo.get(0).myTurn=true;
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(1).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(0).playerName + " to take their turn" );
                    
-                     initTurnPanel();
+                    GUI.refreshTurnPanel();
                  }
              }
 
