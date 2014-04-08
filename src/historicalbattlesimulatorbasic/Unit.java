@@ -352,6 +352,7 @@ for(int i=0; i<unitSize;i++)
     }
     public void expendUnitPoint(){
         this.unitPoints = this.unitPoints -1;
+        GUI.refreshTurnPanel();
     }
     public boolean hasUnitPoints()
     {

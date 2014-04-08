@@ -100,14 +100,26 @@ public class GUI implements MouseListener
          button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
          button[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());
          button[2].setBounds(c.getX()+c.getWidth()*3,c.getY(),c.getWidth(),c.getHeight());
+        
          formationPanel.add(button[0]);
          formationPanel.add(button[1]);
          formationPanel.add(button[2]);
+         button[0].setBorderPainted(false);
+         button[0].setContentAreaFilled(false);
+         button[0].setOpaque(false);
+         button[1].setBorderPainted(false);
+         button[1].setContentAreaFilled(false);
+         button[1].setOpaque(false);
+         button[2].setBorderPainted(false);
+         button[2].setContentAreaFilled(false);
+         button[2].setOpaque(false);
+        formationPanel.setOpaque(false);
 //         busy=true;
          button[0].addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae) //line Formation
            {
+               GUI.unitSelected.expendUnitPoint();
                GUI.removeSoldiersFromPreviousTiles();
                GUI.unitSelected.currentFormation.defaultFormation();
                GUI.toggleButtons(formationPanel, false);
@@ -119,6 +131,7 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) //box Formation
            {
+               GUI.unitSelected.expendUnitPoint();
                GUI.removeSoldiersFromPreviousTiles();
                GUI.unitSelected.currentFormation.setBoxFormation();
                
@@ -191,6 +204,7 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
+               GUI.unitSelected.expendUnitPoint();
                System.out.println("Unit Defending");
                GUI.unitSelected.defend();
                 //reload the buttons that are loaded when a unit is clicked
@@ -422,6 +436,7 @@ public class GUI implements MouseListener
            {
                if(GUI.unitSelected.hasUnitPoints())
                {
+                   GUI.unitSelected.expendUnitPoint();
               //don't think this is necessary but I will look into it, I think i did this to help isolate a bug  
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
@@ -507,6 +522,7 @@ public class GUI implements MouseListener
                  {
                       GUI.unitSelected.resetUnitPoints();
                       GUI.unitSelected.endTurn();
+                      GUI.refreshTurnPanel();
                       GUI.unitSelected=null;
                  }
                  GUI.tileClicked=null;
@@ -530,6 +546,11 @@ public class GUI implements MouseListener
                          u.resetUnitPoints();
                          
                      }
+                     for(Unit u: Game.playersForDemo.get(1).getUnitList())
+                     {
+                         u.undefend();
+                     }
+                     
                      Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
                      JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
@@ -542,6 +563,10 @@ public class GUI implements MouseListener
                      {
                          u.resetUnitPoints();
                          
+                     }
+                     for(Unit u: Game.playersForDemo.get(0).getUnitList())
+                     {
+                         u.undefend();
                      }
                      Game.playersForDemo.get(1).myTurn=false;
                      Game.playersForDemo.get(0).myTurn=true;
@@ -668,23 +693,47 @@ public class GUI implements MouseListener
      // GUI.panel.remove(turnPanel);
        turnPanel = new JPanel();
        turnPanel.setBackground(Color.black);
-       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 100);
+       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
     
-      JLabel whichPlayersTurn = new JLabel();
-       if(player1Turn())
-       {
-           whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>1</font></h1>'s <br>Turn</font></h3></center></html>");
-       }
-       else if(player2Turn())
-       {
-            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>2</font></h1>'s<br> Turn</font></h3></center></html>");
-       }
+        refreshTurnPanel();
        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
        turnPanel.setBorder(borderUsed);
-       turnPanel.add(whichPlayersTurn);
+       
        GUI.panel.add(turnPanel);
       
    }          
+
+    public static void refreshTurnPanel() {
+        GUI.panel.remove(turnPanel);
+       turnPanel = new JPanel();
+       turnPanel.setBackground(Color.black);
+       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
+        JLabel whichPlayersTurn = new JLabel();
+        
+        if(player1Turn())
+        {
+            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<h1><font color = 'white'>1</h1><font color='white'>'s Turn</font></h3></center><br><b><font color='white'>-------------</b></font></html>");
+            turnPanel.add(whichPlayersTurn);
+            for(Unit u: Game.playersForDemo.get(0).getUnitList())
+            {
+                JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br><font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
+                turnPanel.add(unitPoints);
+                
+            }
+        }
+        else if(player2Turn())
+        {
+            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>2</font></h1><font color='white'>s Turn</font></h3></center></html>");
+            turnPanel.add(whichPlayersTurn);
+            for(Unit u: Game.playersForDemo.get(0).getUnitList())
+            {
+                JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br> <font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
+                turnPanel.add(unitPoints);
+                
+            }
+        }
+        GUI.panel.add(turnPanel);
+    }
    //method that prints stats, gets the information from the unit and prints it
    private static void printStats(Unit unitSelected){
         //unitSoldiers[0] won't work when soldier 0 dies

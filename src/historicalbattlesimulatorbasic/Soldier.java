@@ -25,6 +25,7 @@ public class Soldier
     / 4 is Spearmen
     / 5 is 'other'
     */
+    
     int facing;//1 is north, 2 is east, 3 is south, 4 is west
      double attack; // the bonus to the attack
     int dmg; // the type of dice to be rolled for damage
@@ -319,6 +320,9 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
   public void defend(){
     Modifier.defend(this);
 }
+  public void undefend(){
+      Modifier.unDefend(this);
+  }
   public void charge(){
     Modifier.charge(this);
 }

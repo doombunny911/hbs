@@ -31,13 +31,31 @@ public class PlayerTurnPanel extends JPanel
   // p2UnitCount = GUI.unitTally(player2Units);
  }
  
- public void initTPanel() {
+ public  void initTPanel() {
 
      this.setOpaque(false);
      
      JLabel text = new JLabel();
      text.setText("<html><h1>Player "+turnPlayer+" 's Turn</h1></html>");
      this.add(text);
+     if(turnPlayer==1)
+     {
+           for(Unit u: player1Units)
+            {
+              JLabel unitPoints = new JLabel("<html><font face='Times New Roman'>"+u.nameOfUnit+" has <font color='red'><b>"+u.unitPoints+"</b></font> unit points</html>");
+              this.add(unitPoints);
+              
+            }
+
+     }
+     else if(turnPlayer==2)
+     {
+         for(Unit u: player2Units)
+         {
+             JLabel unitPoints = new JLabel("<html><font face='Times New Roman'>"+u.nameOfUnit+" has <font color='red'><b>"+u.unitPoints+"</b></font> unit points</html>");
+              this.add(unitPoints);
+         }
+     }
 //     if(turnPlayer ==1)
 //     {
 //         this.add(new JLabel("Units Alive: "+p1UnitCount));
