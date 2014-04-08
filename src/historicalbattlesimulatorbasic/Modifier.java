@@ -36,7 +36,56 @@ public static void unCharge(Soldier soldier)
 //Attack
 
     //Bonuses
-
+public static boolean checkFlanking(Soldier selected, Soldier target)
+{
+    boolean flanking = false;
+    
+    //north
+    if(target.facing==1&&selected.tileOccupied.yPosition>target.tileOccupied.yPosition)
+    {//if target is behind, it would have to have a y value greater than it [ meaning if it is on top, it is below it]
+        flanking = true;
+    }
+    
+    //north east
+    else if(target.facing==2&&selected.tileOccupied.yPosition>target.tileOccupied.yPosition&&selected.tileOccupied.xPosition<target.tileOccupied.xPosition)
+    {//if target is behind, it would have to have a y value greater than it and a x less than 
+        flanking = true;
+    }
+    
+    //west if x is smaller, it is behind
+     else if(target.facing==3&&selected.tileOccupied.xPosition<target.tileOccupied.xPosition)
+    {
+        flanking = true;
+    }
+    //south east if x is smaller and y is smaller it is behind
+     else if(target.facing==4&&selected.tileOccupied.yPosition<target.tileOccupied.yPosition&&selected.tileOccupied.xPosition<target.tileOccupied.xPosition)
+    {
+        flanking = true;
+    }
+    //south is y is smaller it is behind
+     else if(target.facing==5&&selected.tileOccupied.yPosition>target.tileOccupied.yPosition)
+    {
+        flanking = true;
+    }
+    //south west if x is larger and y is smaller it is behind
+     else if(target.facing==6&&selected.tileOccupied.yPosition<target.tileOccupied.yPosition&&selected.tileOccupied.xPosition>target.tileOccupied.xPosition)
+    {
+        flanking = true;
+    }
+    //west  if x is larger it is behind
+     else if(target.facing==7&&selected.tileOccupied.xPosition>target.tileOccupied.xPosition)
+    {
+        flanking = true;
+    }
+     
+     //north west, if y>other x>other
+     else if(target.facing==8&&selected.tileOccupied.yPosition>target.tileOccupied.yPosition&&selected.tileOccupied.xPosition>target.tileOccupied.xPosition)
+    {
+        flanking = true;
+    }
+    return flanking;
+    
+}
     /*Name: Flanking
     Type: Attack Bonus
     Bonus or Negative: Bonus
