@@ -36,7 +36,7 @@ import javax.swing.border.LineBorder;
 public class GUI implements MouseListener
 {
 //    JLabel bgL = new JLabel();
-    
+    static double turnCountForPersians=25;
     static double numberOfTilesWidth; //the number of tiles that make up the width
     static double numberOfTilesHeight;//the number of tiles that make up the height
     static JFrame gameFrame; //the gameframe, holds the panels/buttons
@@ -531,7 +531,7 @@ public class GUI implements MouseListener
                  GUI.toggleButtons(buttonPanel, false);
                  if(moveC!=null&&moveC.isVisible())
                      moveC.setVisible(false);
-                 if(player1HasNoUnits())
+                 if(player1HasNoUnits()||spartanVictory())
                  {
                       Game.playersForDemo.get(1).isWinner=true;
                       JOptionPane.showMessageDialog(null, "Congratulations " + Game.playersForDemo.get(1).playerName + " You are victorious");
@@ -561,6 +561,7 @@ public class GUI implements MouseListener
                  }
                  else if(player2Turn())
                  {
+                     turnCountForPersians--;
                      for(Unit u: Game.playersForDemo.get(1).getUnitList())
                      {
                          u.resetUnitPoints();
@@ -702,6 +703,7 @@ public class GUI implements MouseListener
        turnPanel.setBorder(borderUsed);
        
        GUI.panel.add(turnPanel);
+       refreshTurnPanel();
       
    }          
 
@@ -711,7 +713,7 @@ public class GUI implements MouseListener
        turnPanel.setBackground(Color.black);
        turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
         JLabel whichPlayersTurn = new JLabel();
-        
+        JLabel turnCount = new JLabel();
         if(player1Turn())
         {
             whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<h1><font color = 'white'>1</h1><font color='white'>'s Turn</font></h3></center><br><b><font color='white'>-------------</b></font></html>");
@@ -722,6 +724,7 @@ public class GUI implements MouseListener
                 turnPanel.add(unitPoints);
                 
             }
+            
         }
         else if(player2Turn())
         {
@@ -734,6 +737,8 @@ public class GUI implements MouseListener
                 
             }
         }
+        turnCount.setText("<html><br><center><font face='Times New Roman' color='white'>Turns Till<br> The Spartans Win:<br> <h1><b><font color = 'red' face='Times New Roman'>"+turnCountForPersians+"</font></b></h1></center></font></html>");
+            turnPanel.add(turnCount);
         
         GUI.panel.add(turnPanel);
     }
@@ -837,6 +842,17 @@ public class GUI implements MouseListener
    protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }
+   protected static boolean spartanVictory()
+   {
+       if(turnCountForPersians<0)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
    protected boolean PlayerSelectedSameEnemyUnitAgain(int playerNum,int i) {
         return GUI.enemySelected!=null&&GUI.enemySelected==Game.playersForDemo.get(playerNum).allUnits.get(i);
     }
