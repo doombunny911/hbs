@@ -210,14 +210,15 @@ for(int i=0; i<unitSize;i++)
       
 //       if (isInRange(aSize, dSize, defender))
 //        {
-           
+          int deadCount = 0; 
         if(defender.unitDefeat==false)
         {
-            
-            int j=0;
+            int count= -1;
+            int j=-1;
             for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
             {    
-               dSize = defender.getUnitsAlive();
+                count++;
+                System.out.println("count  =  "+ count);
                if(j<dSize)
                {  
                    j++;
@@ -232,25 +233,59 @@ for(int i=0; i<unitSize;i++)
                     
                     i--;
                 }
+                
                 Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value
                  
                  if(!s.isAlive())
                  {
-                     System.out.println(defender.unitSoldiers.get(j) + "IS KILLED");
+                    aSize--;
+                    System.out.println(defender.unitSoldiers.get(j) + " IS KILLED");
                     defender.unitSoldiers.remove(j);
-                      System.out.println(defender.unitSoldiers.get(j) + " --> SHOULD BE NULL");
-                    
+                    System.out.println(defender.unitSoldiers.get(j) + "  --> SHOULD BE NULL"); //actually i believe arraylists compress, so the soldier above it would fall into j's place
+                                                                                                //unless is the max j
                  }
                  else{
                  System.out.println(s.unitName+" "+j+" has been attacked");
                  defender.unitSoldiers.set(j, s);
                  }
-                
-                
-                        
-             
-            
-        }
+          
+          
+//          if(defender.unitDefeat==false)
+//        {
+//            int count= -1;
+//            int j=-1;
+//            for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
+//            {    
+//                
+//                count++;
+//                j=dSize-3;
+//                System.out.println(defender.unitSoldiers.size());
+//            //   System.out.println("Defending units alive:"+defender.getUnitsAlive());  
+//                this.unitSoldiers.get(i);
+//                System.out.println("j= " + j);
+//                defender.unitSoldiers.get(j);
+//                Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value
+//                 
+//                 if(!s.isAlive())
+//                 {
+//                    
+//                    System.out.println("about to get element " + j);
+//                    System.out.println(defender.unitSoldiers.get(j) + " IS KILLED");
+//                    defender.unitSoldiers.remove(j);
+////                    System.out.println(defender.unitSoldiers.get(j) + "  --> SHOULD BE NULL"); //actually i believe arraylists compress, so the soldier above it would fall into j's place
+//                    j--;                                                                             //unless is the max j
+//                 }
+//                 else
+//                 {
+//                     
+//                    System.out.println(s.unitName+" "+j+" has been attacked");
+//                    defender.unitSoldiers.set(j, s);
+//                 }       
+//                
+//                  j--;      
+//             
+//            
+//        }
             
         }
         //Message Afterwards
@@ -263,14 +298,14 @@ for(int i=0; i<unitSize;i++)
                     
                     
                 }
-      
+      System.out.println("the number of soldiers left maybe = "  +this.unitSoldiers.size());
             JOptionPane.showMessageDialog(null, "After this round of attacks by the " 
                     + this.nameOfUnit + " against " + defender.nameOfUnit+ " "+
                     defender.getUnitsAlive() + " units of "+ defender.nameOfUnit + " remain. ");
          //unitPoints = unitPoints -1;   
- }
+        }
         
-    
+    }
     
   
     /*

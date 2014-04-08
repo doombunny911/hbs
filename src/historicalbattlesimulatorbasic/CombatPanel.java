@@ -65,6 +65,7 @@ public class CombatPanel extends JPanel
             }
             
         }
+        
         enemyUnits = enemyPlayer.allUnits;
         enemyUnits = unitSelected.getAllInRange(enemyPlayer);
     }
@@ -83,17 +84,13 @@ public class CombatPanel extends JPanel
          
           for(final Unit u: this.enemyUnits)
            {      
-
-
-                ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
-
+               ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
                System.out.println(u.nameOfUnit);
-             
-                Image img = unitImage.getImage();
-                Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
-                ImageIcon unitImage2 = new ImageIcon(newimg);
-                final JButton button = new JButton((u.nameOfUnit),unitImage2) ;
-                buttons.add(button);
+               Image img = unitImage.getImage();
+               Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
+               ImageIcon unitImage2 = new ImageIcon(newimg);
+               final JButton button = new JButton((u.nameOfUnit),unitImage2) ;
+               buttons.add(button);
 //            unitImages.add(button);
             
             
