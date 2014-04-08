@@ -71,7 +71,7 @@ public class CombatPanel extends JPanel
         return enemyPlayer;
     }
     //Generate buttons with stats on them as well
-    public void setUpButtons(Player enemy){
+    public void setUpButtons(final Player  enemy){
         setLayout(new GridLayout(5,1));
         ImageIcon imageOfUnitSelected = new ImageIcon(GUI.unitSelected.getUnitPic(GUI.unitSelected));
         final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b><br></font></center></h4></html>") ;
