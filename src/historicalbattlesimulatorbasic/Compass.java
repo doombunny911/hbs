@@ -173,9 +173,6 @@ public final class Compass extends JPanel{
        int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt();
        int tileMoveChange = GUI.tileWidth;
        
-       
-       
-       
        if(GUI.unitSelected.isSprinting)
        {
             tileMoveChange*=2;
