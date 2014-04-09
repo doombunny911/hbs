@@ -779,7 +779,7 @@ public class GUI implements MouseListener
     //GUI.statPanel.setLayout(new GridLayout(3,1));
        
        
-        int unitNumLocal=unitSelected.getUnitsAlive();
+        int unitNumLocal=unitSelected.unitSize;
         int unitAttack=(int)unitSelected.attack;
         int unitDefense = (int)unitSelected.defense;
         int facingInt = unitSelected.unitFacing;

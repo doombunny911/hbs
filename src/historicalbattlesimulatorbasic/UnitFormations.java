@@ -83,6 +83,7 @@ public final class UnitFormations
       int effectiveSoldiers = numberOfSoldiers/soldiersPerSprite;
       int halfway  = effectiveSoldiers/2;
       spriteLocations = new Tile[effectiveSoldiers];
+      int columnNum=0;
       this.index=0;
             switch(unit.unitFacing)
            { 
@@ -96,19 +97,25 @@ public final class UnitFormations
                           //make the button visible and undraw the sprites already drawn, currently not being done
                           System.out.println("I am out of bounds");
                       }
-                      else if(i<halfway)
+                      else
                       {
+                          System.out.println("this.index = " + this.index);
                            //soldier will be +1 tile to the "right"
                             spriteLocations[this.index]= 
-                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+this.index]
-                                     [thisTile.yPosition/GUI.tileWidth]; 
+                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+count]
+                                     [thisTile.yPosition/GUI.tileWidth+columnNum]; 
                             //put the soldier onto the tile
                             this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
                             spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i)); 
                             this.index++;
+                            count++;
+                            if((i+1)%(100*(columnNum+1))==0)
+                            {
+                                columnNum++;
+                                count =0;
+                            }
                       }
-                      else
-                      {
+                      
                           spriteLocations[this.index]= 
                           GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+count]
                                      [thisTile.yPosition/GUI.tileWidth+1]; 
@@ -117,7 +124,7 @@ public final class UnitFormations
                           spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(this.index)); 
                           this.index++;
                           count++;
-                      }
+                      
                   }
                     break;
                }
@@ -221,6 +228,161 @@ public final class UnitFormations
        return this;
     
     }
+//    public UnitFormations defaultFormation(){
+//        
+//        System.out.println(this.unit.getSpriteName());
+//        
+//        whichFormation =LINE;
+////        start at the unit start tile
+//       int numberOfSoldiers= unit.unitSize;
+//       System.out.println("numberOfSoldiers = " + numberOfSoldiers );
+//
+//      System.out.println("In default formation");
+//      
+//      int count=0;
+//       System.out.println("unit is facing " + unit.unitFacing);
+//       soldiersPerSprite =  1; //each sprite represents this many soldiers
+//      int effectiveSoldiers = numberOfSoldiers/soldiersPerSprite;
+//      int halfway  = effectiveSoldiers/2;
+//      spriteLocations = new Tile[effectiveSoldiers];
+//      this.index=0;
+//            switch(unit.unitFacing)
+//           { 
+//               case 1: //north
+//               {
+//                   for(int i=0;i<effectiveSoldiers;i=i+soldiersPerSprite)
+//                  {
+//                       
+//                      if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+//                      {
+//                          make the button visible and undraw the sprites already drawn, currently not being done
+//                          System.out.println("I am out of bounds");
+//                      }
+//                      else if(i<halfway)
+//                      {
+//                           soldier will be +1 tile to the "right"
+//                            spriteLocations[this.index]= 
+//                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+this.index]
+//                                     [thisTile.yPosition/GUI.tileWidth]; 
+//                            put the soldier onto the tile
+//                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
+//                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i)); 
+//                            this.index++;
+//                      }
+//                      else
+//                      {
+//                          spriteLocations[this.index]= 
+//                          GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+count]
+//                                     [thisTile.yPosition/GUI.tileWidth+1]; 
+//                          put the soldier onto the tile
+//                          this.unit.unitSoldiers.get(this.index).tileOccupied=spriteLocations[this.index];
+//                          spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(this.index)); 
+//                          this.index++;
+//                          count++;
+//                      }
+//                  }
+//                    break;
+//               }
+//               case 2: //east
+//               {
+//                   
+//                       for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+//                        {
+//                          if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+//                            {
+//                          make the button revisible and undraw the sprites already drawn, currently not being done
+//                          System.out.println("I am out of bounds");
+//                            }
+//                          else if(i<halfway)
+//                        {
+//                            spriteLocations[this.index]= 
+//                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth][thisTile.yPosition/GUI.tileWidth+this.index];
+//                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
+//                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i));
+//                            this.index++;
+//                        }
+//                       else
+//                       {
+//                            spriteLocations[this.index]= 
+//                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth-1][thisTile.yPosition/GUI.tileWidth+count];
+//                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
+//                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i));
+//                            this.index++;
+//                            count++;
+//                       }
+//                   }
+//                   
+//                    break;
+//               }
+//               case 3: //south
+//               {
+//                    for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+//                    {
+//                        if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+//                        {
+//                          make the button revisible and undraw the sprites already drawn, currently not being done
+//                              System.out.println("I am out of bounds");
+//                        }
+//                        else if(i<halfway)
+//                      {
+//                           soldier will be +1 tile to the "right"
+//                            spriteLocations[this.index]= 
+//                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+this.index]
+//                                     [thisTile.yPosition/GUI.tileWidth]; 
+//                            put the soldier onto the tile
+//                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
+//                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i)); 
+//                            this.index++;
+//                      }
+//                      else
+//                      {
+//                          spriteLocations[this.index]= 
+//                          GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+count]
+//                                     [thisTile.yPosition/GUI.tileWidth+1]; 
+//                          put the soldier onto the tile
+//                          this.unit.unitSoldiers.get(this.index).tileOccupied=spriteLocations[this.index];
+//                          spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(this.index)); 
+//                          this.index++;
+//                          count++;
+//                      }
+//                  }         
+//                   break;
+//               }
+//               case 4: //west
+//               {
+//                     for(int i=0;i<numberOfSoldiers;i=i+soldiersPerSprite)
+//                     {
+//                       if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+//                         {
+//                          make the button revisible and undraw the sprites already drawn, currently not being done
+//                          System.out.println("I am out of bounds");
+//                         }
+//                        else if(i<halfway)
+//                        {
+//                            spriteLocations[this.index]= 
+//                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth][thisTile.yPosition/GUI.tileWidth+this.index];
+//                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
+//                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i));
+//                            this.index++;
+//                        }
+//                       else
+//                       {
+//                            spriteLocations[this.index]= 
+//                            GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth-1][thisTile.yPosition/GUI.tileWidth+count];
+//                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
+//                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i));
+//                            this.index++;
+//                            count++;
+//                       }
+//                   }
+//                   break;
+//               }
+//           }
+//       value=0;
+//       GUI.repainter();
+//       return this;
+//    
+//    }
     public UnitFormations setBoxFormation(){
         whichFormation=1;
         soldiersPerSprite =  1;//each sprite represents this many soldiers
@@ -473,22 +635,22 @@ public final class UnitFormations
 
     public UnitFormations  setColumnFormation() {
         
-         System.out.println(this.unit.getSpriteName());
+       System.out.println(this.unit.getSpriteName());
         
-        whichFormation =COLUMN;
+       whichFormation =COLUMN;
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSize;
        System.out.println("numberOfSoldiers = " + numberOfSoldiers );
 
-      System.out.println("In column formation");
+       System.out.println("In column formation");
       
-      int count=0;
-      System.out.println("unit is facing " + unit.unitFacing);
-      soldiersPerSprite =  1; //each sprite represents this many soldiers
-      int effectiveSoldiers = numberOfSoldiers/soldiersPerSprite;
-      int halfway  = effectiveSoldiers/2;
-      spriteLocations = new Tile[effectiveSoldiers];
-      this.index=0;
+       int count=0;
+       System.out.println("unit is facing " + unit.unitFacing);
+       soldiersPerSprite =  1; //each sprite represents this many soldiers
+       int effectiveSoldiers = numberOfSoldiers/soldiersPerSprite;
+       int halfway  = effectiveSoldiers/2;
+       spriteLocations = new Tile[effectiveSoldiers];
+       this.index=0;
             switch(unit.unitFacing)
            { 
                case 1: //north
