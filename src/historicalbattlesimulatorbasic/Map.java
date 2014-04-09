@@ -48,7 +48,7 @@ public class Map
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.panel.setLayout(null);
-        GUI.copy(Openingmenuscreen.tilePanel,GUI.scroll);
+        GUI.copy(Openingmenuscreen.tilePanel,GUI.panel);
         
 //        GUI.placeUnitTester();
         GUI.gameFrame.add(gen);
