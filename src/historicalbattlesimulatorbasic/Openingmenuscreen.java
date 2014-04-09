@@ -130,50 +130,61 @@ public final class Openingmenuscreen extends JFrame
                 ArrayList <Unit> greekUnits = new ArrayList();
                
                 //Greek Units
+                String name = "Greek Forces ";
                     //Spartan Hoplites
-                    Soldier spartanHoplite = new Soldier("Spartan Hoplite 1",1,3,2,4,5,7,3,4,2,2,5,4);
-                    Soldier spartanHoplite2 = new Soldier("Spartan Hoplite 2",1,3,2,4,5,7,3,4,2,2,5,4);
-                    Soldier spartanHoplite3 = new Soldier("Spartan Hoplite 3",1,3,2,4,5,7,3,4,2,2,5,4);
-                    Soldier averageGreekHoplite = new Soldier("Greek Militia Hoplite 1",1,1,2,2,2,4,1,2,1,1,2,4);
-                    Soldier averageGreekHoplite2 = new Soldier("Greek Militia Hoplite 2",1,1,2,2,2,4,1,2,1,1,2,4);
-                    Soldier leon = new Soldier("King Leonidas",100,300,200,400,500,700,300,400,1,1,500,400);
-                    
-                    
-                    String name = "Greek Forces";
-                    Unit spartanHopliteUnit = new Unit(spartanHoplite,100);
-                   // spartanHopliteUnit.setPosition(GUI.panel.getWidth()/10, GUI.panel.getHeight()/10);
-                    //Tile t = new Tile(GUI.panel.getWidth()/10, GUI.panel.getHeight()/10, GUI.tileWidth, GUI.tileWidth);
-                    spartanHopliteUnit.setSprite("greekYellow.png");
-                    //UnitDraw spartanDraw = new UnitDraw(spartanHopliteUnit, t);
-                    //spartanDraw.
-                  //  GUI.unitDraws.add(spartanDraw);
-                    //GUI.repainter();
-                        greekUnits.add(spartanHopliteUnit);
-                    Unit spartanHopliteUnit2 = new Unit(spartanHoplite2,100);
-                    spartanHopliteUnit2.setSprite("greekYellow.png");
-                        greekUnits.add(spartanHopliteUnit2);
-                    Unit spartanHopliteUnit3 = new Unit(spartanHoplite3,100);
-                        greekUnits.add(spartanHopliteUnit3);
-                    spartanHopliteUnit3.setSprite("greekYellow.png");
-                    Unit greekMilitias = new Unit(averageGreekHoplite,150);
-                      
-                    greekMilitias.setSprite("greekGray.png");
-                      greekUnits.add(greekMilitias);
-                     
-                    Unit greekMilitias2 = new Unit(averageGreekHoplite,150);
+                UnitLoader ul = new UnitLoader();
+                ArrayList<Unit> greekUnitGetter = ul.loadAllUnits("AncientGreeks.txt");
+                
+                Unit leonidas = new Unit(greekUnitGetter.get(0).soldierType.clone(),greekUnitGetter.get(0).unitSize);
+                leonidas.setSprite("leon.png");
+                //greekUnits.add(leonidas);
+                    UnitDraw leo = new UnitDraw(leonidas, new Tile(1120, 260,10,10));
+                                                             GUI.unitDraws.add(leo);
+                Unit spartanHoplite1 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
+                spartanHoplite1.setSprite("greekYellow.png");
+                spartanHoplite1.setPosition(1120, 210);
+                                                             
+                                                             UnitDraw h1 = new UnitDraw(spartanHoplite1, new Tile(1120, 210,10,10));
+                                                             GUI.unitDraws.add(h1);
+                
+                Unit spartanHoplite2 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
+                spartanHoplite2.setSprite("greekYellow.png");
+                spartanHoplite2.setPosition(1090, 270);
+                UnitDraw h2 = new UnitDraw(spartanHoplite2, new Tile(1090, 270,10,10));
+                                                             GUI.unitDraws.add(h2);
+                Unit spartanHoplite3 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
+                
+                spartanHoplite3.setSprite("greekYellow.png");
+                spartanHoplite3.setPosition(1200, 340);   
+                UnitDraw h3 = new UnitDraw(spartanHoplite3, new Tile(1200, 340,10,10));
+                                                             GUI.unitDraws.add(h3);
+             
+                   
+                Unit thebanSlinger = new Unit(greekUnitGetter.get(2).soldierType.clone(), greekUnitGetter.get(2).unitSize);
+                thebanSlinger.setSprite("clubRed.png");
+                thebanSlinger.setPosition(1480,310);
+                UnitDraw t1 = new UnitDraw(thebanSlinger, new Tile(1480, 310,10,10));
+                                                             GUI.unitDraws.add(t1);
+             //   thebanSlinger.setFormation(COLUMN);
+              
+                
+                Unit greekMilitias1 = new Unit(greekUnitGetter.get(3).soldierType.clone(), greekUnitGetter.get(3).unitSize);
+                Unit greekMilitias2 =new Unit(greekUnitGetter.get(3).soldierType.clone(), greekUnitGetter.get(3).unitSize);      
+                    greekMilitias1.setSprite("greekOrange.png");
+                    greekMilitias1.setPosition(1390, 450);
                     greekMilitias2.setSprite("greekGray.png");
-                    greekUnits.add(greekMilitias2);
-                    Unit leonidas = new Unit(leon,1);
-                    leonidas.setSprite("greekRed.png");
-                      greekUnits.add(leonidas);
-                
-                
+                    greekMilitias2.setPosition(1550, 200);
+                     UnitDraw g1 = new UnitDraw(greekMilitias1, new Tile(1390, 450,10,10));
+                                                             GUI.unitDraws.add(g1);
+                     UnitDraw g2 = new UnitDraw(greekMilitias2, new Tile(1550, 200,10,10));
+                                                             GUI.unitDraws.add(g2);                                        
+                   
                 
                 //persian units
                 ArrayList <Unit> persianUnits = new ArrayList();
                 String name2="Persian";
-                UnitLoader ul = new UnitLoader();
-                ArrayList<Unit> persianUnitList = ul.loadAllUnits("PersianEmpire.txt");
+                UnitLoader ul2 = new UnitLoader();
+                ArrayList<Unit> persianUnitList = ul2.loadAllUnits("PersianEmpire.txt");
         
                 Unit infantry1 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
                 Unit infantry2 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
