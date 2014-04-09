@@ -53,7 +53,6 @@ public class GUI implements MouseListener
     static JPanel formationPanel;
     static Unit unitSelected; //the unit that is currently selected
     static Unit attackUnit; //may not be used, currently used for attacking
-    static boolean impendingAttack=false; //probably won't be used
     static Compass moveC; //the compass
     static ArrayList<Unit> player1AllUnits;//player 1's unitDraws
     static ArrayList<Unit> player2AllUnits;//player 2's unitDraws
@@ -275,26 +274,22 @@ public class GUI implements MouseListener
            Game.playersForDemo.get(1).up.unitToBeLoaded=null;
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-       
-        //if a tile has been clicked(should be always) and the tile clicked on
-        //has a soldier in it and there is not already a unit selected
-       
-        if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
-        {
-            
+       if(GUI.tileClicked!=null)
+        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
+      if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+      {
               if(player1Turn())   
               {
                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
                   {
                       if(player1UnitIsEqualToUnitSelectedAt(i))
                       {
-                        System.out.println("unitSelected is being initialized ");
+                          System.out.println("unitSelected is being initialized ");
                   
                         //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-                        GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
-                        toggleButtons(GUI.buttonPanel,true);
+                          GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                          toggleButtons(GUI.buttonPanel,true);
                       }
-                    
                   }
                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
                   {
@@ -311,7 +306,6 @@ public class GUI implements MouseListener
                                GUI.printStats(Game.playersForDemo.get(1).allUnits.get(i));
                           }
                       }
-                          //print the stats
                   }
               }
                else if(player2Turn())
@@ -340,16 +334,15 @@ public class GUI implements MouseListener
                                GUI.printStats(Game.playersForDemo.get(0).allUnits.get(0));
                           } 
                       }
-                          
-                          //print the stats
                    }
                }
            }
-        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
-        {
-            //user is trying to select a unit before all the units are loaded
-            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
-        }
+           
+//        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
+//        {
+//            //user is trying to select a unit before all the units are loaded
+//            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
+//        }
         
         //used for attacking only, if attack button is selected, The unitSelected
        // is stored in attackUnit and we wait until a user clicks the unit that 
@@ -814,9 +807,10 @@ public class GUI implements MouseListener
                 "<br>speed: "+speed+"<br>Range: "+range+"<br>Charge Bonus: "+
                 chargeBonus+"<br>Stamina "+stamina+"<br><br> Unit Points Remaining"+unitPoints+"</font></html>", SwingConstants.CENTER);
         
+      
         //add the label to the panel
         GUI.statPanel.add(stats);
-         BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
+        BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
         ImageIcon unitPic2 = new ImageIcon(unitPic);
         JLabel up = new JLabel(unitPic2);
        //add image of unit selected
@@ -867,7 +861,7 @@ public class GUI implements MouseListener
        }
    }
    protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
-        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
+        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }
    protected static boolean spartanVictory()
    {
@@ -893,7 +887,7 @@ public class GUI implements MouseListener
         return Game.playersForDemo.get(0).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
     }
    protected boolean thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile() {
-        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null;
+        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&GUI.unitSelected==null;
         
 //        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
     }
