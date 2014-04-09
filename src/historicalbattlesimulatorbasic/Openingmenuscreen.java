@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -171,37 +172,95 @@ public final class Openingmenuscreen extends JFrame
                 //persian units
                 ArrayList <Unit> persianUnits = new ArrayList();
                 String name2="Persian";
-                
-                //Soldiers
-                Soldier immortals = new Soldier("Immortals",
-                        1,
-                        1,
-                        2,
-                        4,
-                        3,
-                        2,
-                        1,
-                        6,
-                        3,
-                        1,
-                        6,
-                        5);
-               
-                
-                Soldier persianArcher= new Soldier("Archers",2,2,1,1,25,1,1,1,2,2,5,5);
-                //immortals
-                 Unit immortalsUnit = new Unit(immortals,500);
-                 
-               //bowmen
-               Unit persianArcherUnit = new Unit(persianArcher, 50);
-                 persianArcherUnit.setSprite("archerGray.png");
-                  
-                //xerxes
-                
-               persianUnits.add(immortalsUnit);
-               persianUnits.add(persianArcherUnit);
-                
-                
+                UnitLoader ul = new UnitLoader();
+                ArrayList<Unit> persianUnitList = ul.loadAllUnits("PersianEmpire.txt");
+        
+                Unit infantry1 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry2 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry3 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry4 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry5 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry6 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry7 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry8 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry9 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry10 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry11 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                Unit infantry12 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
+                                                            
+                                                             infantry1.setSprite("vikingGray.png");
+                                                             infantry2.setSprite("vikingGray.png");
+                                                             infantry3.setSprite("vikingGray.png");
+                                                             infantry4.setSprite("vikingGray.png");
+                                                             infantry5.setSprite("vikingGray.png");
+                                                             infantry6.setSprite("vikingGray.png");
+                                                             infantry7.setSprite("vikingGray.png");
+                                                             infantry8.setSprite("vikingGray.png");
+                                                             infantry9.setSprite("vikingGray.png");
+                                                             infantry10.setSprite("vikingGray.png");
+                                                             infantry11.setSprite("vikingGray.png");
+                                                             infantry12.setSprite("vikingGray.png");
+                                                             
+                                                             infantry1.setPosition(400,200);
+                                                             infantry2.setPosition(400,250);
+                                                             infantry3.setPosition(400,300);
+                                                             infantry4.setPosition(450, 370);
+                                                             infantry5.setPosition(440, 430);
+                                                             infantry6.setPosition(440, 480);
+                                                             infantry7.setPosition(150, 210);
+                                                             infantry8.setPosition(180, 490);
+                                                             
+                                                             UnitDraw in1 = new UnitDraw(infantry1, new Tile(400,200,10,10));
+                                                             GUI.unitDraws.add(in1);
+                                                             UnitDraw in2 = new UnitDraw(infantry2,new Tile(400,250,10,10));
+                                                             GUI.unitDraws.add(in2);
+                                                             UnitDraw in3 = new UnitDraw(infantry3,new Tile(400,300,10,10));
+                                                             GUI.unitDraws.add(in3);
+                                                             UnitDraw in4 = new UnitDraw(infantry4, new Tile(450,370,10,10));
+                                                             GUI.unitDraws.add(in4);
+                                                             UnitDraw in5 = new UnitDraw(infantry5, new Tile(440,430,10,10));
+                                                             GUI.unitDraws.add(in5);
+                                                             UnitDraw in6 = new UnitDraw(infantry6, new Tile(440,480,10,10));
+                                                             GUI.unitDraws.add(in6);
+                                                             UnitDraw in7 = new UnitDraw(infantry7, new Tile(150,210,10,10));
+                                                             GUI.unitDraws.add(in7);
+                                                             UnitDraw in8 = new UnitDraw(infantry8, new Tile(180,490,10,10));
+                                                             GUI.unitDraws.add(in8);
+//                                persianUnits.add(infantry1);
+//                                persianUnits.add(infantry2);
+//                                persianUnits.add(infantry3);
+//                                persianUnits.add(infantry4);
+//                                persianUnits.add(infantry5);
+//                                persianUnits.add(infantry6);
+//                                persianUnits.add(infantry7);
+//                                persianUnits.add(infantry8);
+                                                             
+                Unit immortals1 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
+                Unit immortals2 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
+                Unit immortals3 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
+                Unit immortals4 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
+               // Unit immortals1 = new Unit(persianUnitList.get(1).clone(),persianUnitList.get(1).unitSize);
+                                
+                immortals1.setSprite("immortal.png");
+                immortals2.setSprite("immortal.png");
+                immortals3.setSprite("immortal.png");
+                immortals4.setSprite("immortal.png");
+                                persianUnits.add(immortals1);
+                                persianUnits.add(immortals2);
+                                persianUnits.add(immortals3);
+                                persianUnits.add(immortals4);
+                                
+                                
+                    
+              Unit archer1 = new Unit(persianUnitList.get(2).soldierType.clone(),persianUnitList.get(2).unitSize*2);
+              Unit archer2 = new Unit(persianUnitList.get(2).soldierType.clone(),persianUnitList.get(2).unitSize*2);
+              Unit archer3 = new Unit(persianUnitList.get(2).soldierType.clone(),persianUnitList.get(2).unitSize*2);
+              archer1.setSprite("ArcherGray.png");
+              archer2.setSprite("ArcherGray.png");
+              archer3.setSprite("ArcherGray.png");
+                            persianUnits.add(archer1);
+                            persianUnits.add(archer2);
+                            persianUnits.add(archer3);
              
                 
                 

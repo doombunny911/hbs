@@ -21,12 +21,12 @@ public class UnitDraw
     public UnitDraw(Unit getUnit){
         this.xDraw=getUnit.xPosition;
         this.yDraw=getUnit.yPosition;
-        System.out.println("in UnitDraw, GUI.tileClicked is initailzed " + GUI.tileClicked);
+        System.out.println("In UnitDraw, GUI.tileClicked is initailzed " + GUI.tileClicked);
         if(getUnit.currentFormation==null)
         {
             System.out.println("currentFormation is null");
             UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
-            form.setBoxFormation();
+            form.rowFormation();
             getUnit.currentFormation=form;
         }
         else
