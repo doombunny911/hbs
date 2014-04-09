@@ -103,21 +103,20 @@ public final class UnitFormations
                    for(int i=0;i<effectiveSoldiers;i=i+soldiersPerSprite)
                   {
                        
-                      if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
-                      {
-                          //make the button visible and undraw the sprites already drawn, currently not being done
-                          System.out.println("I am out of bounds");
-                      }
-                      else
-                      {
+//                      if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+//                      {
+//                          //make the button visible and undraw the sprites already drawn, currently not being done
+//                          System.out.println("I am out of bounds");
+//                      }
+                      
 //                          System.out.println("this.index = " + this.index);
                            //soldier will be +1 tile to the "right"
-                            spriteLocations[this.index]= 
+                            spriteLocations[i]= 
                             GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+count]
                                      [thisTile.yPosition/GUI.tileWidth+rowNum]; 
                             //put the soldier onto the tile
-                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[this.index];
-                            spriteLocations[this.index].occupyBy(unit.unitSoldiers.get(i)); 
+                            this.unit.unitSoldiers.get(i).tileOccupied=spriteLocations[i];
+                            spriteLocations[i].occupyBy(unit.unitSoldiers.get(i)); 
                             this.index++;
                             count++;
                             if((i+1)%(soldiersPerRow*(rowNum+1))==0)
@@ -125,7 +124,7 @@ public final class UnitFormations
                                 rowNum++;
                                 count =0;
                             }
-                      } 
+                       
                   }
                     break;
                }
