@@ -205,14 +205,14 @@ for(int i=0; i<unitSize;i++)
        
      
         
-            int j=0;
+           
             if(defender.unitDefeat)
              {
                  System.out.println("All "+defender.unitName+" have been defeated");
                  enemy.allUnits.remove(defender);
              }
             for(Soldier attackerSoldier : this.unitSoldiers) //this algorithm will run until each of the attacking units have attacked one of their opponents
-            {    
+            {     int j=0;
               boolean hasAttacked = false;  
              if(!defender.unitDefeat)
              {
@@ -222,18 +222,19 @@ for(int i=0; i<unitSize;i++)
                    {
                         if(!hasAttacked)
                          {
-                            j++;
+                            
                             if(attackerSoldier.inRange(defenderSoldier))
                             {
                                 hasAttacked = true;
-                                System.out.println("++++++++++++++++++++++++++ WE ATTACKED ++++++++++++++++++++++++++++++++++++++++++");
+                                //System.out.println("++++++++++++++++++++++++++ WE ATTACKED ++++++++++++++++++++++++++++++++++++++++++");
 
                              s = attackerSoldier.attack(defenderSoldier);//attacks the unit and edits the value, returns defender
                             //JOptionPane.showConfirmDialog(null, "WE GOT HIM");
-                       
+                             
                             }
-                            
-                                System.out.println("Unit not in range");
+                            else
+                                j++;
+                               // System.out.println("Unit not in range");
                             }
                         else
                         {
@@ -243,7 +244,7 @@ for(int i=0; i<unitSize;i++)
                    
                
                }
-               if(s!=null)
+               if(s!=null || j<defender.unitSize)
                {
                  if(!s.isAlive()) //if the defender died
                  {
@@ -256,7 +257,7 @@ for(int i=0; i<unitSize;i++)
                  {
                      j++;
                     System.out.println(s.unitName+" "+j+" has been attacked and survived");
-                    defender.unitSoldiers.set(j, s);
+                    defender.unitSoldiers.set((j-1), s);
                  }
                }
              }
@@ -300,21 +301,40 @@ for(int i=0; i<unitSize;i++)
            {
                for(Soldier u: opponent.unitSoldiers)
                {
-                   if(!inRange)
-                   {
-                        
+                        if(!inRange)
+                        {
                         if (s.getDistance(u)<= (this.soldierType.range)) 
                         {
                             System.out.println(s.getDistance(u));
                             inRange = true;
                             
                         }
-                   }
+                        else
+                        {
+                           
+                        }
+                        }
+                                   
                }
            }
        }
        
         return inRange;
+    }
+    public boolean anyInRange(Player p2)
+    {
+        boolean anyInRange = false;
+        if(p2.getUnitList().size()>0)
+        {
+        for(Unit u: p2.getUnitList())
+        {
+           if(this.isInRange(u))
+           {
+               anyInRange = true;
+           }
+        }
+        }
+        return anyInRange;
     }
     public ArrayList<Unit> getAllInRange(Player p2){
         ArrayList<Unit> allUnitsInRange = new ArrayList<>();

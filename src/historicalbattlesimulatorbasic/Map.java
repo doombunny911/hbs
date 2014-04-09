@@ -88,7 +88,7 @@ public class Map
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
     Random rng = new Random();
     //boolean switcher = false;
-    boolean goatPath = true;
+   
          for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth;j++)
@@ -97,21 +97,23 @@ public class Map
                 
                 //secret path
                 
-                if((goatPath&&i>8.5*GUI.numberOfTilesHeight/10 && i<9*GUI.numberOfTilesHeight/10 )|| (j>8.3*GUI.numberOfTilesWidth/10 && j<(8.5*GUI.numberOfTilesWidth/10)&&i<4.5*GUI.numberOfTilesHeight/5)&&i>3*GUI.numberOfTilesHeight/5)
+                if(GUI.secretPathAvailable()&&i>4*GUI.numberOfTilesHeight/10&& j<GUI.numberOfTilesWidth/2 && j>GUI.numberOfTilesWidth/6&&
+                        j>5*GUI.numberOfTilesWidth/10 && i>4*GUI.numberOfTilesHeight/10&& j>=GUI.numberOfTilesWidth/2 &&
+                        j<=9*GUI.numberOfTilesWidth/10&&
+                        j<(6*GUI.numberOfTilesWidth/10)&&
+                        i>8.5*GUI.numberOfTilesHeight/10 &&
+                        i<9*GUI.numberOfTilesHeight/10||GUI.secretPathAvailable()&&
+                        i>8.5*GUI.numberOfTilesHeight/10 &&
+                        i<9*GUI.numberOfTilesHeight/10)
                 {
-                    if(i<GUI.numberOfTilesHeight/4)
-                    {
-                     GUI.tileGameMap[j][i].setImage(dirt);
+                    
+                     GUI.tileGameMap[j][i].setImage(rock);
                      GUI.tileGameMap[j][i].setHeight(2);
-                    }
-                    else 
-                    {
-                        GUI.tileGameMap[j][i].setImage(rock);
-                        GUI.tileGameMap[j][i].setHeight(2);
-                    }
+                    
+                  
                 }
                // mountains 
-                 if(i>4*GUI.numberOfTilesHeight/10&& j<GUI.numberOfTilesWidth/2 && j>GUI.numberOfTilesWidth/6)
+                else if(i>4*GUI.numberOfTilesHeight/10&& j<GUI.numberOfTilesWidth/2 && j>GUI.numberOfTilesWidth/6)
                 {
                     if(2*(GUI.numberOfTilesWidth/2-j)<i)
                     {

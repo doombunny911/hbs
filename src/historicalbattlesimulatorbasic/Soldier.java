@@ -11,6 +11,7 @@ package historicalbattlesimulatorbasic;
  * edit Andrew Phillips
  */
 import java.util.Random;
+import javax.swing.JOptionPane;
 //This is the basic constructor class of the soldier
 public class Soldier 
 {
@@ -116,15 +117,15 @@ public Soldier(String unitName,
      this.speed = speed;
      if(unitType==1)
      {
-         this.range=10;
+         this.range=20;
      }
      else if(unitType==4)
      {
-         this.range = 15;
+         this.range = 25;
      }
      else if(unitType==3)
      {
-     this.range = 15;
+     this.range = 25;
      }
      else if(unitType==2)
      {
@@ -132,7 +133,7 @@ public Soldier(String unitName,
      }
      else
     {
-        this.range = rangeV;
+        this.range = 25;
     }
      this.chargeBonus = chargeBonus;
      this.stamina = stamina;
@@ -355,7 +356,8 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
   
 
 /*Die- the following method, when activated 'kills' the soldier*/
-  public void die()        {
+  public void die()        
+  {
     alive = false;
 }
 //the method for attacking another soldier(individually)
@@ -375,8 +377,8 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
         if((diceRoll + this.attack) > (defender.armorClass))
         {
             defender.hp= defender.hp - dmgDice;
-            //JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
-          //   System.out.println("Defender HP after the hit: "+defender.hp);
+             //   JOptionPane.showMessageDialog(null,"The attack hits and "+defender.unitName +" takes " + dmgDice + " points of damage");
+           System.out.println("Defender HP after the hit: "+defender.hp);
         }
         else
         {
@@ -514,7 +516,7 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
         double y2 = opponent.tileOccupied.yPosition;
       //  System.out.println(y2);
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-        System.out.println("DISTANCE- "+distance);
+        //System.out.println("DISTANCE- "+distance);
        return distance;
        
     }
@@ -538,8 +540,8 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
        }
        else
        {
-           System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                   System.out.println("OUT OF RANGE");
+         //  System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                   //System.out.println("OUT OF RANGE");
            return false;
        }
        

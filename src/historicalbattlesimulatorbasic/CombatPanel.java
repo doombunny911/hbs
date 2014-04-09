@@ -44,18 +44,26 @@ public class CombatPanel extends JPanel
         newJ.repaint();
         newJ.revalidate();
      }
+  
     public void initCPanel() {
         
         this.setBackground(Color.BLACK);
         javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
         this.setBorder(borderUsed);
-        
         getAllUnitsOfEnemy();
-        if(enemyUnits.size()<1)
+        System.out.println(enemyPlayer.nameOfArmy);
+        enemyPlayer = getEnemy();
+        if(GUI.unitSelected.anyInRange(enemyPlayer))
         {
-            JOptionPane.showMessageDialog(GUI.panel, "No units are in range!");
+        enemyUnits = GUI.unitSelected.getAllInRange(enemyPlayer);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(GUI.panel, "No units are in range. Select another option");
             GUI.toggleButtons(GUI.buttonPanel, visible);
+            visible = false;
             GUI.unitSelected.addUnitPoint();
+            
         }
         setUpButtons();
         
@@ -70,11 +78,33 @@ public class CombatPanel extends JPanel
             
                 enemyPlayer = p;
             }
+            else
+            {
+                
+            }
             
         }
         
         enemyUnits = enemyPlayer.allUnits;
 //        enemyUnits = unitSelected.getAllInRange(enemyPlayer);
+    }
+    
+    public Player getEnemy(){
+        for(Player p: Game.playersForDemo)
+        {
+          
+            if(!p.myTurn)
+            {
+            
+                enemyPlayer = p;
+            }
+            else
+            {
+                
+            }
+            
+        }
+        return enemyPlayer;
     }
     //Generate buttons with stats on them as well
     public void setUpButtons(){

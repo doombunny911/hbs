@@ -130,8 +130,11 @@ public final class Openingmenuscreen extends JFrame
                
                 //Greek Units
                     //Spartan Hoplites
-                    Soldier spartanHoplite = new Soldier("Spartan Hoplite",1,3,2,4,5,7,3,4,2,2,5,4);
-                    Soldier averageGreekHoplite = new Soldier("Greek Militia Hoplite",1,1,2,2,2,4,1,2,1,1,2,4);
+                    Soldier spartanHoplite = new Soldier("Spartan Hoplite 1",1,3,2,4,5,7,3,4,2,2,5,4);
+                    Soldier spartanHoplite2 = new Soldier("Spartan Hoplite 2",1,3,2,4,5,7,3,4,2,2,5,4);
+                    Soldier spartanHoplite3 = new Soldier("Spartan Hoplite 3",1,3,2,4,5,7,3,4,2,2,5,4);
+                    Soldier averageGreekHoplite = new Soldier("Greek Militia Hoplite 1",1,1,2,2,2,4,1,2,1,1,2,4);
+                    Soldier averageGreekHoplite2 = new Soldier("Greek Militia Hoplite 2",1,1,2,2,2,4,1,2,1,1,2,4);
                     Soldier leon = new Soldier("King Leonidas",100,300,200,400,500,700,300,400,1,1,500,400);
                     
                     
@@ -145,10 +148,10 @@ public final class Openingmenuscreen extends JFrame
                   //  GUI.unitDraws.add(spartanDraw);
                     //GUI.repainter();
                         greekUnits.add(spartanHopliteUnit);
-                    Unit spartanHopliteUnit2 = new Unit(spartanHoplite,100);
+                    Unit spartanHopliteUnit2 = new Unit(spartanHoplite2,100);
                     spartanHopliteUnit2.setSprite("greekYellow.png");
                         greekUnits.add(spartanHopliteUnit2);
-                    Unit spartanHopliteUnit3 = new Unit(spartanHoplite,100);
+                    Unit spartanHopliteUnit3 = new Unit(spartanHoplite3,100);
                         greekUnits.add(spartanHopliteUnit3);
                     spartanHopliteUnit3.setSprite("greekYellow.png");
                     Unit greekMilitias = new Unit(averageGreekHoplite,150);
@@ -210,6 +213,7 @@ public final class Openingmenuscreen extends JFrame
                 
                 
                 p1.myTurn=true;
+                p2.myTurn=false;
            //  p2.myTurn=false;
                 Game.playersForDemo.add(p1);
                 Game.playersForDemo.add(p2);

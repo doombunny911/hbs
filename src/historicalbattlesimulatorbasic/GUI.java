@@ -83,6 +83,7 @@ public class GUI implements MouseListener
        combatPanel2.setBounds(GUI.gameFrame.getWidth()/2-100,GUI.gameFrame.getHeight()-4*GUI.gameFrame.getHeight()/5,300,200);
        GUI.panel.add(combatPanel2);
        GUI.repainter();
+       
        combatPanel2.initCPanel();
        combatPanel = combatPanel2;
        
@@ -261,7 +262,7 @@ public class GUI implements MouseListener
     //mouseClicked holds a lot of logic due to the event driven processes of our project
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
-    @Override
+    
    public void mouseClicked(MouseEvent mac) {
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
@@ -735,7 +736,14 @@ public class GUI implements MouseListener
        GUI.panel.add(turnPanel);
        refreshTurnPanel();
       
-   }          
+   } 
+   static boolean oneDisplay1 = true;
+          static  boolean oneDisplay2 = true;
+        static   boolean oneDisplay3 = true;
+        static   boolean oneDisplay4 = true;
+        static   boolean oneDisplay5 = true;
+          static boolean oneDisplay6 = true;
+   
     public static void refreshTurnPanel() {
         GUI.panel.remove(turnPanel);
        turnPanel = new JPanel();
@@ -766,9 +774,39 @@ public class GUI implements MouseListener
                 
             }
         }
-        turnCount.setText("<html><br><center><font face='Times New Roman' color='white'>Turns Till<br> The Spartans Win:<br> <h1><b><font color = 'red' face='Times New Roman'>"+turnCountForPersians+"</font></b></h1></center></font></html>");
+        //Turn Count
+        turnCount.setText("<html><br><center><font face='Times New Roman' color='white'>Turns Till<br>"
+                + " The Spartans Win:<br> <h1><b><font color = 'red' face='Times New Roman'>"+
+                turnCountForPersians+"</font></b></h1></center></font></html>");
             turnPanel.add(turnCount);
-        
+           
+            if(turnCountForPersians==30&&oneDisplay1)
+            {
+                JOptionPane.showMessageDialog(GUI.panel,"<html><i>The 'God King' Xerxes of Persia stands on the verge of conquering all of Greece."
+                        + " In between him and his goal is a group of 300 Spartans and approximately 7,000 other Greeks, lead by King Leonidas of Sparta prepared to face his army"
+                        + "of over a million military personnel</i></html>");
+                oneDisplay1 = false;
+            }
+            else if(turnCountForPersians==20&&oneDisplay2)
+            {
+                JOptionPane.showMessageDialog(GUI.panel,"<html><i>After assault by the Persian forces, the first day of fighting draws to a close...</i></html>");
+                oneDisplay2 = false;
+            }
+            else if(turnCountForPersians==10&&oneDisplay3)
+            {
+                JOptionPane.showMessageDialog(GUI.panel,"<html><i>After the failure of Xerxes deadly 'Immortals' to encircle and destroy the Spartan forces on the Second day of fighting, his forces were given an unexpected boon: "
+                        + "the discovery of a mountain path that would allow them to outflank the Greeks. Meanwhile, the majority of the Greek army retreated, but Leonidas and his Spartans and some of the Thebans remained as a rearguard... </i></html>");
+                oneDisplay3 = false;
+            }
+            else if(turnCountForPersians==0&&oneDisplay4)
+            {
+                JOptionPane.showMessageDialog(GUI.panel,"<html><i>Although all the Spartans and Thebans who remained perished, they held the pass for long enough to allow the rest of Greece to prepare for war. Herodatus, classical historian remarks<br>"
+                        + "</i></html>");
+                JOptionPane.showMessageDialog(GUI.panel,"<html><i>'Go tell the Spartans, passerby:\n" +
+                "That here, by Spartan law, we lie</i></html>");
+                oneDisplay4 = false;
+       
+            }
         GUI.panel.add(turnPanel);
         GUI.repainter();
     }
@@ -970,6 +1008,25 @@ public class GUI implements MouseListener
    public static boolean player1Turn() {
                return Game.playersForDemo.get(0).myTurn;
            }
+   public static boolean secretPathAvailable(){
+     boolean secret=false;
+       if(turnCountForPersians<20&&secret!=true)
+       {
+           System.out.println("TRUEEEE");
+            GUI.gameMap.generateTiles();
+           secret = true;
+          
+       }
+       else if(turnCountForPersians<20)
+       {
+           secret = true;
+       }
+       else
+       {
+          secret = false;
+       }
+       return secret;
+   }
    public static boolean player2HasNoUnits() {
                return Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner;
            }
