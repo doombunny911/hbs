@@ -31,6 +31,11 @@ public class UnitDraw
         }
         else
         {
+            
+            System.out.println("currentFormation is null");
+            UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
+            form.rowFormation();
+            getUnit.currentFormation=form;
             System.out.println("currentFormation is not null in UnitDraw giving only unit in parameter");
             //this will later call which formation it is and draw according to that pattern
 //            getUnit.currentFormation.paintFormation(GUI.panel.getGraphics());
@@ -56,7 +61,7 @@ public class UnitDraw
         {
             this.tileLocationOfUnit=tile;
             this.thisUnit=getUnit;
-            System.out.println("in unitDraw in a part that shouldn't happen, need fixing");
+//            System.out.println("in unitDraw in a part that shouldn't happen, need fixing");
             
             form = new UnitFormations(getUnit,tile);
             form.rowFormation();
