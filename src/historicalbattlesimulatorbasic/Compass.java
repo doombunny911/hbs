@@ -191,8 +191,8 @@ public final class Compass extends JPanel{
           GUI.unitSelected.hasMoved=true;
          if(GUI.unitSelected.isSprinting)
          {
-               GUI.unitSelected.stamina--;
-                GUI.unitSelected.hasSprinted=true;
+              GUI.unitSelected.stamina--;
+              GUI.unitSelected.hasSprinted=true;
           }
        
           //figure out where the new unit will be located

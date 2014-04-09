@@ -97,9 +97,9 @@ public class GUI implements MouseListener
          button[3] = new JButton("column");
          Component c = GUI.buttonPanel.getComponent(0);
          button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
-         button[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());
-         button[2].setBounds(c.getX()+c.getWidth()*3,c.getY(),c.getWidth(),c.getHeight());
-         button[3].setBounds(c.getX()+c.getWidth()*4,c.getY(),c.getWidth(),c.getHeight());
+         button[1].setBounds(c.getX()*2+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
+         button[2].setBounds(c.getX()*3+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
+         button[3].setBounds(c.getX()*4+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
          formationPanel.add(button[0]);
          formationPanel.add(button[1]);
          formationPanel.add(button[2]);
@@ -115,7 +115,7 @@ public class GUI implements MouseListener
          button[2].setOpaque(false);
          button[3].setBorderPainted(false);
          button[3].setContentAreaFilled(false);
-         button[3].setOpaque(false);
+         button[3].setOpaque(true);
         formationPanel.setOpaque(false);
 //         busy=true;
          button[0].addActionListener(new ActionListener() {
