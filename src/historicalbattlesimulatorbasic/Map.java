@@ -88,7 +88,7 @@ public class Map
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
     Random rng = new Random();
     //boolean switcher = false;
-    
+    boolean goatPath = true;
          for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth;j++)
@@ -96,7 +96,8 @@ public class Map
                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
                 
                 //secret path
-                if((i>8.5*GUI.numberOfTilesHeight/10 && i<9*GUI.numberOfTilesHeight/10 )|| (j>8.3*GUI.numberOfTilesWidth/10 && j<(8.5*GUI.numberOfTilesWidth/10)&&i<4.5*GUI.numberOfTilesHeight/5)&&i>3*GUI.numberOfTilesHeight/5)
+                
+                if((goatPath&&i>8.5*GUI.numberOfTilesHeight/10 && i<9*GUI.numberOfTilesHeight/10 )|| (j>8.3*GUI.numberOfTilesWidth/10 && j<(8.5*GUI.numberOfTilesWidth/10)&&i<4.5*GUI.numberOfTilesHeight/5)&&i>3*GUI.numberOfTilesHeight/5)
                 {
                     if(i<GUI.numberOfTilesHeight/4)
                     {
@@ -110,8 +111,10 @@ public class Map
                     }
                 }
                // mountains 
-                else if(i>3*GUI.numberOfTilesHeight/5&&(i-GUI.numberOfTilesWidth/4)<j)
+                 if(i>4*GUI.numberOfTilesHeight/10&& j<GUI.numberOfTilesWidth/2 && j>GUI.numberOfTilesWidth/6)
                 {
+                    if(2*(GUI.numberOfTilesWidth/2-j)<i)
+                    {
                         if(rng.nextBoolean())    
                         { 
                             GUI.tileGameMap[j][i].setImage(mountain);
@@ -121,20 +124,31 @@ public class Map
                             GUI.tileGameMap[j][i].setImage(rocksGround);
                         }
                          GUI.tileGameMap[j][i].setTileBlocked();
+                    }
+                    else
+                    {
+                        GUI.tileGameMap[j][i].setImage(dirt);
+                    }
                 }
-                
-                 else if(i>3*GUI.numberOfTilesHeight/5 &&j>i && (j<GUI.numberOfTilesWidth/5))
+                 else if(i>4*GUI.numberOfTilesHeight/10&& j>=GUI.numberOfTilesWidth/2 && j<=9*GUI.numberOfTilesWidth/10)
                 {
-                    if(i>j)
+                    if(2*(j-GUI.numberOfTilesWidth/2)<i)
                     {
-                        GUI.tileGameMap[j][i].setImage(mountain);
+                        if(rng.nextBoolean())    
+                        { 
+                            GUI.tileGameMap[j][i].setImage(mountain);
+                        }
+                        else
+                        {
+                            GUI.tileGameMap[j][i].setImage(rocksGround);
+                        }
+                         GUI.tileGameMap[j][i].setTileBlocked();
                     }
-                    else 
+                    else
                     {
-                        GUI.tileGameMap[j][i].setImage(grass);
+                        GUI.tileGameMap[j][i].setImage(dirt);
                     }
                 }
-                
                 else if(i<GUI.numberOfTilesHeight/6&&!(j<GUI.numberOfTilesWidth/5))
                 {
                     if(rng.nextBoolean())
