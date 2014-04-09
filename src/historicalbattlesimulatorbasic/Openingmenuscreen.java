@@ -174,7 +174,8 @@ public final class Openingmenuscreen extends JFrame
                 String name2="Persian";
                 UnitLoader ul = new UnitLoader();
                 ArrayList<Unit> persianUnitList = ul.loadAllUnits("PersianEmpire.txt");
-        
+                
+                
                 Unit infantry1 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
                 Unit infantry2 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
                 Unit infantry3 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
@@ -209,6 +210,10 @@ public final class Openingmenuscreen extends JFrame
                                                              infantry6.setPosition(440, 480);
                                                              infantry7.setPosition(150, 210);
                                                              infantry8.setPosition(180, 490);
+                                                             infantry9.setPosition(400, 540);
+                                                             infantry10.setPosition(170, 580);
+                                                             infantry11.setPosition(360, 620);
+                                                             infantry12.setPosition(200, 720);
                                                              
                                                              UnitDraw in1 = new UnitDraw(infantry1, new Tile(400,200,10,10));
                                                              GUI.unitDraws.add(in1);
@@ -226,25 +231,54 @@ public final class Openingmenuscreen extends JFrame
                                                              GUI.unitDraws.add(in7);
                                                              UnitDraw in8 = new UnitDraw(infantry8, new Tile(180,490,10,10));
                                                              GUI.unitDraws.add(in8);
-//                                persianUnits.add(infantry1);
-//                                persianUnits.add(infantry2);
-//                                persianUnits.add(infantry3);
-//                                persianUnits.add(infantry4);
-//                                persianUnits.add(infantry5);
-//                                persianUnits.add(infantry6);
-//                                persianUnits.add(infantry7);
-//                                persianUnits.add(infantry8);
+                                                             UnitDraw in9 = new UnitDraw(infantry9, new Tile(400,540,10,10));
+                                                             GUI.unitDraws.add(in9);
+                                                             UnitDraw in10 = new UnitDraw(infantry10, new Tile(170,580,10,10));
+                                                             GUI.unitDraws.add(in10);
+                                                             UnitDraw in11 = new UnitDraw(infantry11, new Tile(360,620,10,10));
+                                                             GUI.unitDraws.add(in11);
+                                                             UnitDraw in12 = new UnitDraw(infantry12, new Tile(200,720,10,10));
+                                                             GUI.unitDraws.add(in12);
+                                                             
+                                persianUnits.add(infantry1);
+                                persianUnits.add(infantry2);
+                                persianUnits.add(infantry3);
+                                persianUnits.add(infantry4);
+                                persianUnits.add(infantry5);
+                                persianUnits.add(infantry6);
+                                persianUnits.add(infantry7);
+                                persianUnits.add(infantry8);
+                                persianUnits.add(infantry9);
+                                persianUnits.add(infantry10);
+                                persianUnits.add(infantry11);
+                                persianUnits.add(infantry12);                                
                                                              
                 Unit immortals1 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
                 Unit immortals2 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
                 Unit immortals3 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
                 Unit immortals4 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
-               // Unit immortals1 = new Unit(persianUnitList.get(1).clone(),persianUnitList.get(1).unitSize);
                                 
                 immortals1.setSprite("immortal.png");
                 immortals2.setSprite("immortal.png");
                 immortals3.setSprite("immortal.png");
                 immortals4.setSprite("immortal.png");
+                
+                                                             immortals1.setPosition(120, 700);
+                                                             immortals2.setPosition(80, 860);
+                                                             immortals3.setPosition(220, 940);
+                                                             immortals4.setPosition(30, 900);
+                                                             
+                                                             UnitDraw im1 = new UnitDraw(immortals1, new Tile(120,700,10,10));
+                                                             GUI.unitDraws.add(im1);
+                                                             UnitDraw im2 = new UnitDraw(immortals2,new Tile(80,860,10,10));
+                                                             GUI.unitDraws.add(im2);
+                                                             UnitDraw im3 = new UnitDraw(immortals3,new Tile(220,940,10,10));
+                                                             GUI.unitDraws.add(im3);
+                                                             UnitDraw im4 = new UnitDraw(immortals4, new Tile(30,900,10,10));
+                                                             GUI.unitDraws.add(im4);
+   
+                
+                
                                 persianUnits.add(immortals1);
                                 persianUnits.add(immortals2);
                                 persianUnits.add(immortals3);
@@ -258,6 +292,20 @@ public final class Openingmenuscreen extends JFrame
               archer1.setSprite("ArcherGray.png");
               archer2.setSprite("ArcherGray.png");
               archer3.setSprite("ArcherGray.png");
+              
+              
+               archer1.setPosition(110, 280);
+               archer2.setPosition(110, 320);
+               archer3.setPosition(110, 360);
+                                                             
+                                                             UnitDraw a1 = new UnitDraw(archer1, new Tile(110,280,10,10));
+                                                             GUI.unitDraws.add(a1);
+                                                             UnitDraw a2 = new UnitDraw(archer2,new Tile(110,320,10,10));
+                                                             GUI.unitDraws.add(a2);
+                                                             UnitDraw a3 = new UnitDraw(archer3,new Tile(110,360,10,10));
+                                                             GUI.unitDraws.add(a3);
+              
+              
                             persianUnits.add(archer1);
                             persianUnits.add(archer2);
                             persianUnits.add(archer3);
@@ -280,10 +328,10 @@ public final class Openingmenuscreen extends JFrame
              // p1.up.setUpButtons();
              // p2.up.setUpButtons();
                 
-               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-                GUI.panel.add(p2.up);
-                GUI.panel.add(p1.up);
+//               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+//               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+//                GUI.panel.add(p2.up);
+//                GUI.panel.add(p1.up);
                 
                 game.gameMap=map;
                 GUI.buttonLoader();
