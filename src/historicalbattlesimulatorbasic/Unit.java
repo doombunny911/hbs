@@ -173,8 +173,6 @@ for(int i=0; i<unitSize;i++)
     //this should determine how many units are still alive
     public int getUnitsAlive() {
         int unitsAlive=0;
-        System.out.println("unitSoldiers size = " + unitSoldiers.size() );
-        System.out.println("unitSize = " + unitSize );
         for(int i=0; i<unitSize-1; i++)
         {
 //            System.out.println("i = " + i + " "+unitSoldiers.size());

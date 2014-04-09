@@ -400,6 +400,7 @@ public class GUI implements MouseListener
                    {
                        JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
                        GUI.toggleButtons(GUI.buttonPanel,false);
+                       GUI.unitSelected=null;
                    }
            }
            
@@ -430,6 +431,7 @@ public class GUI implements MouseListener
                    {
                        JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
                        GUI.toggleButtons(GUI.buttonPanel,false);
+                       GUI.unitSelected=null;
                    }
            }
        });
@@ -465,11 +467,13 @@ public class GUI implements MouseListener
                      GUI.moveC.setVisible(true);      
                   }
                   //if it is not visible, make it visible
-                  GUI.repainter();}
+                  GUI.repainter();
+               }
                   else
                    {
                        JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
                        GUI.toggleButtons(GUI.buttonPanel,false);
+                       GUI.unitSelected=null;
                    }
            }
        });
@@ -498,6 +502,7 @@ public class GUI implements MouseListener
                    {
                        JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
                        GUI.toggleButtons(GUI.buttonPanel,false);
+                       GUI.unitSelected=null;
                    }
            } 
        });
@@ -535,6 +540,10 @@ public class GUI implements MouseListener
              { 
                  
                  GUI.refreshTurnPanel();
+                 
+                 
+                 if(GUI.formationPanel!=null&&formationPanel.isVisible())
+                     GUI.toggleButtons(formationPanel, false);
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
                  if(GUI.unitSelected!=null)
@@ -759,6 +768,7 @@ public class GUI implements MouseListener
             turnPanel.add(turnCount);
         
         GUI.panel.add(turnPanel);
+        GUI.repainter();
     }
    //method that prints stats, gets the information from the unit and prints it
    private static void printStats(Unit unitSelected){

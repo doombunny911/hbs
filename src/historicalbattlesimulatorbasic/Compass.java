@@ -184,6 +184,7 @@ public final class Compass extends JPanel{
        
     //which direction was unit moved in
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
+     
       if(GUI.unitSelected.moveMentCounter>0&&determineTheNewLocationOfTheUnit(tileMoveChange))
       {
          GUI.unitSelected.hasMoved=true;
@@ -194,7 +195,7 @@ public final class Compass extends JPanel{
           }
        
           //figure out where the new unit will be located
-          determineTheNewLocationOfTheUnit(tileMoveChange);
+//          determineTheNewLocationOfTheUnit(tileMoveChange);
 //          int dir = determineNewDirectionOfUnit();
           GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
           
@@ -228,7 +229,7 @@ public final class Compass extends JPanel{
     protected boolean  determineTheNewLocationOfTheUnit(int tileMoveChange) {
         
         boolean flag=true;
-        
+        System.out.println("determining new location of unit");
         switch(moveDirection)
         {
             case 1: //north
@@ -237,12 +238,15 @@ public final class Compass extends JPanel{
                 {
                     for(int j=0;j<GUI.numberOfTilesWidth;j++)
                     {
+//                        System.out.println(GUI.tileGameMap[j][i].getIsOccupied());
                         if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
                         {
+                            System.out.println("tile at ("+i+","+j+") = " + GUI.tileGameMap[j][i]);
                             if(GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(GUI.unitSelected.yPosition-tileMoveChange)/GUI.tileWidth]==null||GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(GUI.unitSelected.yPosition-tileMoveChange)/GUI.tileWidth].tileBlocked)
                             {
+                                System.out.println("flag is false because of tile at ("+i+","+j+")" );
                                 flag = false;
-                                break;
+//                                break;
                             }
                         }
                     }
