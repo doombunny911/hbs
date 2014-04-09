@@ -789,6 +789,8 @@ public class GUI implements MouseListener
         int chargeBonus = (int)unitSelected.chargeBonus;
         int stamina = (int)unitSelected.stamina;
         
+//        double xPos = unitSelected.tileOccupied.xPosition;
+  //      double yPos = unitSelected.tileOccupied.yPosition;
         String unitName = unitSelected.nameOfUnit;
         int unitPoints = unitSelected.returnUnitPoints();
         JButton close = new JButton("Close");
@@ -813,7 +815,7 @@ public class GUI implements MouseListener
                 "<br>Attack Power: "+unitAttack+"<br>DefensePower: "+unitDefense+
                 "<br>Orientation "+facing+"<br>Armor Class: "+armorClass+
                 "<br>speed: "+speed+"<br>Range: "+range+"<br>Charge Bonus: "+
-                chargeBonus+"<br>Stamina "+stamina+"<br><br><br> Unit Points Remaining"+unitPoints+"</font></html>", SwingConstants.CENTER);
+                chargeBonus+"<br>Stamina "+stamina+"<br><br> Unit Points Remaining"+unitPoints+"</font></html>", SwingConstants.CENTER);
         
         //add the label to the panel
         GUI.statPanel.add(stats);

@@ -118,8 +118,8 @@ public final class UnitPlacer extends JPanel
                      unitToBeLoaded=u;
                  
                      title.setVisible(false);
-                     System.out.println("in unitPlacer, the speed of this unit is " + u.speed);
-                     System.out.println("in unitPlacer, the range of this unit is "+ u.range);
+                   //  System.out.println("in unitPlacer, the speed of this unit is " + u.speed);
+                   //  System.out.println("in unitPlacer, the range of this unit is "+ u.range);
                   }
                 }});
 //                if(indx ==this.unitArrayList.size())
