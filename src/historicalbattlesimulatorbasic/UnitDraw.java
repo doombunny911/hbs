@@ -26,7 +26,7 @@ public class UnitDraw
         {
             System.out.println("currentFormation is null");
             UnitFormations form = new UnitFormations(getUnit,GUI.tileClicked);
-            form.defaultFormation();
+            form.setBoxFormation();
             getUnit.currentFormation=form;
         }
         else
