@@ -197,12 +197,12 @@ public final class Compass extends JPanel{
        
           //figure out where the new unit will be located
           determineTheNewLocationOfTheUnit(tileMoveChange);
-          int dir = determineNewDirectionOfUnit();
+//          int dir = determineNewDirectionOfUnit();
           GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
           
           
-          
-          Tile t = findTile(dir);
+//          
+//          Tile t = findTile(dir);
           //updates the draw to show new location of unit
             UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
             

@@ -62,7 +62,7 @@ public class UnitDraw
         else
         {
             form.updateTileAndUnit(getUnit, tile); //updates the current unit and tile
-                if(form.whichFormation==UnitFormations.DEFAULT)
+                if(form.whichFormation==UnitFormations.LINE)
                 {
                     form.defaultFormation();
                 }
@@ -73,6 +73,10 @@ public class UnitDraw
                 else if(form.whichFormation==UnitFormations.WEDGE)
                 {
                     form.setWedgeFormation();
+                }
+                else if(form.whichFormation==UnitFormations.COLUMN)
+                {
+                    form.setColumnFormation();
                 }
         }
         this.tileLocationOfUnit=tile;

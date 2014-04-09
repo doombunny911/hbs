@@ -16,7 +16,6 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +23,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -89,21 +87,23 @@ public class GUI implements MouseListener
          formationPanel=new JPanel();
          formationPanel.setLayout(null);
          formationPanel.setBounds(GUI.buttonPanel.getBounds());
-         JButton[] button = new JButton[3];
+         JButton[] button = new JButton[4];
          ImageIcon lineB = bil.getLineFormIcon();
          ImageIcon boxB = bil.getSquareFormIcon();
          ImageIcon wedgeB = bil.getWedgeFormIcon();
          button[0]=  new JButton(lineB);
          button[1] = new JButton(boxB);
          button[2] = new JButton(wedgeB);
+         button[3] = new JButton("column");
          Component c = GUI.buttonPanel.getComponent(0);
          button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
          button[1].setBounds(c.getX()+c.getWidth()*2,c.getY(),c.getWidth(),c.getHeight());
          button[2].setBounds(c.getX()+c.getWidth()*3,c.getY(),c.getWidth(),c.getHeight());
-        
+         button[3].setBounds(c.getX()+c.getWidth()*4,c.getY(),c.getWidth(),c.getHeight());
          formationPanel.add(button[0]);
          formationPanel.add(button[1]);
          formationPanel.add(button[2]);
+         formationPanel.add(button[3]);
          button[0].setBorderPainted(false);
          button[0].setContentAreaFilled(false);
          button[0].setOpaque(false);
@@ -113,6 +113,9 @@ public class GUI implements MouseListener
          button[2].setBorderPainted(false);
          button[2].setContentAreaFilled(false);
          button[2].setOpaque(false);
+         button[3].setBorderPainted(false);
+         button[3].setContentAreaFilled(false);
+         button[3].setOpaque(false);
         formationPanel.setOpaque(false);
 //         busy=true;
          button[0].addActionListener(new ActionListener() {
@@ -152,7 +155,21 @@ public class GUI implements MouseListener
 
            }
        });
+       button[3].addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent ae){
+               
+               GUI.unitSelected.expendUnitPoint();
+              GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
+               GUI.unitSelected.currentFormation.setColumnFormation();
+               GUI.toggleButtons(formationPanel, false);
+               GUI.toggleButtons(buttonPanel, true);
+             
+               
+           }
        
+           });
        panel.add(formationPanel);
        
      }
