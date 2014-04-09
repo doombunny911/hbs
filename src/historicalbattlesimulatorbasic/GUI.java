@@ -449,9 +449,7 @@ public class GUI implements MouseListener
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
-               if(GUI.unitSelected.hasUnitPoints())
-               {
-                   GUI.unitSelected.expendUnitPoint();
+               
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
                      GUI.initializeCompass();
@@ -462,13 +460,7 @@ public class GUI implements MouseListener
                   }
                   //if it is not visible, make it visible
                   GUI.repainter();
-               }
-                  else
-                   {
-                       JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
-                       GUI.toggleButtons(GUI.buttonPanel,false);
-                       GUI.unitSelected=null;
-                   }
+               
            }
        });
        button[4].addActionListener(new ActionListener() {
@@ -567,7 +559,7 @@ public class GUI implements MouseListener
                      for(Unit u: Game.playersForDemo.get(0).getUnitList())
                      {
                          u.resetUnitPoints();
-                            
+                         u.endTurn();
                      }
                      for(Unit u: Game.playersForDemo.get(1).getUnitList())
                      {
@@ -586,6 +578,7 @@ public class GUI implements MouseListener
                      for(Unit u: Game.playersForDemo.get(1).getUnitList())
                      {
                          u.resetUnitPoints();
+                         u.endTurn();
                          
                      }
                      for(Unit u: Game.playersForDemo.get(0).getUnitList())
@@ -901,8 +894,7 @@ public class GUI implements MouseListener
    protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }
-   protected static boolean spartanVictory()
-   {
+   protected static boolean spartanVictory() {
        if(turnCountForPersians<0)
        {
            return true;

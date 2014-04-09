@@ -11,7 +11,6 @@ package historicalbattlesimulatorbasic;
  * edit Andrew Phillips
  */
 import java.util.Random;
-import javax.swing.JOptionPane;
 //This is the basic constructor class of the soldier
 public class Soldier 
 {
@@ -351,6 +350,7 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
     Modifier.setBracing(this);
 }
   public void sprint(){
+     this.isSprinting=true;
     Modifier.sprint(this);
 }
   

@@ -500,6 +500,19 @@ if(!parent.exists() && !parent.mkdirs()){
 //         speed  =baseSpeed;
 //         range    =baseRange;
          this.moveMentCounter=speed;
+         if(hasSprinted)
+         {
+             
+         }
+         else if(hasMoved)
+         {
+             stamina++;
+         }
+         else
+             stamina+=3;
+        
+         
+         
          chargeBonus  =baseChargeBonus;
          isCharging=false;
          isSprinting=false;

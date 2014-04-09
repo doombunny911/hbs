@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -65,9 +66,15 @@ public final class Compass extends JPanel{
             Image newimg8 = img8.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); 
             ImageIcon northWestImage2 = new ImageIcon(newimg8);
         JButton northWest = new JButton(northWestImage2);
-        JButton toggleSprint = new JButton();
+        ImageIcon sprintImage = new ImageIcon("Sprites/Compass/Circle.png");
+           Image img9 = sprintImage.getImage();
+           Image newimg9 = img9.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+           ImageIcon sprintImage2 = new ImageIcon(newimg9);
+        JButton toggleSprint = new JButton(sprintImage2);
         int moveDirection;
         int previousMoveDirection;
+        int newXPosition;
+        int newYPosition;
     public static void main(String[] args) {  
         JFrame newJ = new JFrame();
         newJ.setVisible(true);
@@ -121,18 +128,22 @@ public final class Compass extends JPanel{
                 }});
                 
          add(toggleSprint);
-         
               toggleSprint.addActionListener(new ActionListener(){
                   @Override
                   public void actionPerformed(ActionEvent e)
                   {
-                      System.out.println("Toggle Sprint in Compass button");
+
                       if(GUI.unitSelected.isSprinting)
                       {
+                         JOptionPane.showMessageDialog(null, "Unit is no longer sprinting ");
                           Modifier.removeSprint(GUI.unitSelected);
                       }
                       else
-                          GUI.unitSelected.sprint();
+                      {
+                           JOptionPane.showMessageDialog(null, "Unit is now sprinting ");
+                           GUI.unitSelected.sprint();
+                      }
+                          
                   }});
               
          add(east);
@@ -176,7 +187,7 @@ public final class Compass extends JPanel{
        
        
        
-       
+       System.out.println("is sprinting " + GUI.unitSelected.isSprinting);
        if(GUI.unitSelected.isSprinting)
        {
             tileMoveChange*=2;
@@ -185,8 +196,12 @@ public final class Compass extends JPanel{
     //which direction was unit moved in
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
       System.out.println("movementcounter value = " + GUI.unitSelected.moveMentCounter);
-      if(GUI.unitSelected.moveMentCounter>0)
+      if(GUI.unitSelected.moveMentCounter>0&&determineTheNewLocationOfTheUnit(tileMoveChange))
       {
+         if(!GUI.unitSelected.hasMoved) 
+            GUI.unitSelected.expendUnitPoint();
+         
+         GUI.unitSelected.setPosition(newXPosition,newYPosition);
          GUI.unitSelected.hasMoved=true;
          if(GUI.unitSelected.isSprinting)
          {
@@ -195,7 +210,6 @@ public final class Compass extends JPanel{
           }
        
           //figure out where the new unit will be located
-          determineTheNewLocationOfTheUnit(tileMoveChange);
 //          int dir = determineNewDirectionOfUnit();
           GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
           
@@ -217,8 +231,7 @@ public final class Compass extends JPanel{
     Returns true or false if the direction is blocked (ie: there is something on it)
     @Tile t - the destination tile
     */
-    protected boolean isDirectionBlocked(Tile t)
-    {
+    protected boolean isDirectionBlocked(Tile t){
         if(t.tileBlocked == true)
         {
             return true;
@@ -255,7 +268,9 @@ public final class Compass extends JPanel{
                 }
                 if(flag)
                 {
-                    GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
+                    newXPosition=GUI.unitSelected.xPosition;
+                    newYPosition=GUI.unitSelected.yPosition-tileMoveChange; //yPosition - 10 = 1 tile north
+                    
                 }
 
                 break;
@@ -278,8 +293,8 @@ public final class Compass extends JPanel{
                 }
                 if(flag)
                 {
-                    GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
-                    GUI.unitSelected.yPosition-=tileMoveChange; //yPosition - 10 = 1 tile north
+                    newXPosition=GUI.unitSelected.xPosition+tileMoveChange;//xPosition + 10 = 1 tile east
+                   newYPosition= GUI.unitSelected.yPosition-tileMoveChange; //yPosition - 10 = 1 tile north
                 }
                 break;
             }
@@ -309,7 +324,8 @@ public final class Compass extends JPanel{
                 }
                 if(flag)
                 {
-                    GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
+                   newXPosition= GUI.unitSelected.xPosition+tileMoveChange;//xPosition + 10 = 1 tile east
+                   newYPosition = GUI.unitSelected.yPosition;
                 }
                 
                 break;
@@ -334,8 +350,8 @@ public final class Compass extends JPanel{
                 }   
                 if(flag)
                 {
-                   GUI.unitSelected.xPosition+=tileMoveChange;//xPosition + 10 = 1 tile east
-                   GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South 
+                  newXPosition= GUI.unitSelected.xPosition+tileMoveChange;//xPosition + 10 = 1 tile east
+                  newYPosition= GUI.unitSelected.yPosition+tileMoveChange;//yPosition + 10 = 1 tile South 
                 }
                 break;
             }
@@ -362,7 +378,8 @@ public final class Compass extends JPanel{
  
              if(flag)
              {
-                GUI.unitSelected.yPosition+=tileMoveChange;  //1 tile to south 
+                newXPosition = GUI.unitSelected.xPosition;
+               newYPosition= GUI.unitSelected.yPosition+tileMoveChange;  //1 tile to south 
              }
                 break;
             }
@@ -384,8 +401,8 @@ public final class Compass extends JPanel{
                 }
                 if(flag)
                 {
-                    GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
-                    GUI.unitSelected.yPosition+=tileMoveChange;//yPosition + 10 = 1 tile South
+                   newXPosition= GUI.unitSelected.xPosition-tileMoveChange;//xPosition -10 = 1 tile West
+                   newYPosition= GUI.unitSelected.yPosition+tileMoveChange;//yPosition + 10 = 1 tile South
                 }
                 break;
             }
@@ -402,18 +419,18 @@ public final class Compass extends JPanel{
                                 xMin=j;
                             if(j<=xMin&&GUI.tileGameMap[(j*GUI.tileWidth-tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth]==null||j<=xMin&&GUI.tileGameMap[(j*GUI.tileWidth-tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth].tileBlocked)
                             {
+                                System.out.println("west is false");
                                 flag = false;
                                
                             }
                         }
                     }
-                }
-                
+                } 
                 if(flag)
                 {
-                    GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
+                   newXPosition= GUI.unitSelected.xPosition-tileMoveChange;//xPosition -10 = 1 tile West
+                    newYPosition = GUI.unitSelected.yPosition;
                 }
-
                 break;
             }
             case 8://NorthWest
@@ -436,13 +453,12 @@ public final class Compass extends JPanel{
                 
                 if(flag)
                 {
-                    GUI.unitSelected.xPosition-=tileMoveChange;//xPosition -10 = 1 tile West
-                    GUI.unitSelected.yPosition-=tileMoveChange;//yPosition -10 = 1 tile North
+                    newXPosition = GUI.unitSelected.xPosition-tileMoveChange;//xPosition -10 = 1 tile West
+                    newYPosition =GUI.unitSelected.yPosition-tileMoveChange;//yPosition -10 = 1 tile North
                 }
                 break;
             }
         }
-         GUI.unitSelected.setPosition(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition);
          return flag;
     }
     protected void removeJButtonDefaults() {
@@ -473,7 +489,7 @@ public final class Compass extends JPanel{
         this.toggleSprint.setOpaque(false);
         this.toggleSprint.setContentAreaFilled(false);
         this.toggleSprint.setBorderPainted(false);
-        setOpaque(false);
+        this.setOpaque(false);
     }
     private int  determineNewDirectionOfUnit() {
        if(previousMoveDirection!=moveDirection)
