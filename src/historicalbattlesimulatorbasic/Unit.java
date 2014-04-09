@@ -202,11 +202,8 @@ for(int i=0; i<unitSize;i++)
     */
     public void attack(Unit defender,Player enemy){
        
-        this.expendUnitPoint();
-        int dSize = 0;
-        int aSize = this.getUnitsAlive(); //gets the number of attacking units alive
-        //int dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-       System.out.println("ATTACKING " +defender.nameOfUnit);
+       
+     
         
             int j=0;
             if(defender.unitDefeat)
@@ -225,7 +222,7 @@ for(int i=0; i<unitSize;i++)
                    {
                         if(!hasAttacked)
                          {
-                 
+                            j++;
                             if(attackerSoldier.inRange(defenderSoldier))
                             {
                                 hasAttacked = true;
@@ -235,6 +232,7 @@ for(int i=0; i<unitSize;i++)
                             //JOptionPane.showConfirmDialog(null, "WE GOT HIM");
                        
                             }
+                            
                                 System.out.println("Unit not in range");
                             }
                         else
@@ -475,7 +473,7 @@ if(!parent.exists() && !parent.mkdirs()){
             UnitDraw draw = new UnitDraw(unit,new Tile(unit.xPosition,unit.yPosition,GUI.tileWidth,GUI.tileWidth));
             GUI.unitDraws.add(draw);//adds the new unit
        }
-  public void endTurn() {
+    public void endTurn() {
         
         //not sure how pervasive special ability is for this method
         //i feel like special ability could be anything and so it is hard to

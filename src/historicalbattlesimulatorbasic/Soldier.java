@@ -114,7 +114,26 @@ public Soldier(String unitName,
      this.hp = hp;
      this.armorClass = armorClass;
      this.speed = speed;
-     this.range = range*10;
+     if(unitType==1)
+     {
+         this.range=10;
+     }
+     else if(unitType==4)
+     {
+         this.range = 15;
+     }
+     else if(unitType==3)
+     {
+     this.range = 15;
+     }
+     else if(unitType==2)
+     {
+         this.range=range*10;
+     }
+     else
+    {
+        this.range = range*10;
+    }
      this.chargeBonus = chargeBonus;
      this.stamina = stamina;
      this.morale = morale;
@@ -127,7 +146,7 @@ public Soldier(String unitName,
      baseDefense = defense;
      baseArmorClass = armorClass;
      baseSpeed = speed;
-     baseRange = range*10;
+     baseRange = this.range;
      baseChargeBonus = chargeBonus;
      baseStamina = stamina;
      baseMorale = morale;

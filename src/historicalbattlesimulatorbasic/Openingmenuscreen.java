@@ -125,7 +125,7 @@ public final class Openingmenuscreen extends JFrame
                 Game game = new Game();
                 Map map = new Map(10);
                 
-                removePanels();
+                
                 ArrayList <Unit> greekUnits = new ArrayList();
                
                 //Greek Units
@@ -228,6 +228,7 @@ public final class Openingmenuscreen extends JFrame
                 
                 
                 //remove all panels
+                removePanels();
             }
     });
     }
