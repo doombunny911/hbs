@@ -75,7 +75,7 @@ public class Unit extends Soldier
     {
         
         unitFacing = soldierType.facing;
-        this.range = (soldierType.range)*4;
+        this.range = (soldierType.range);
         this.speed = soldierType.speed;
         this.nameOfUnit = soldierType.unitName;
         this.unitSize = unitSize;
@@ -209,38 +209,44 @@ for(int i=0; i<unitSize;i++)
        System.out.println("ATTACKING " +defender.nameOfUnit);
         
             int j=0;
-            for(int i=0; i<aSize; i++) //this algorithm will run until each of the attacking units have attacked one of their opponents
-            {    
-                
-             if(defender.unitDefeat)
+            if(defender.unitDefeat)
              {
-                 System.out.println("all defenders have been defeated");
+                 System.out.println("All "+defender.unitName+" have been defeated");
                  enemy.allUnits.remove(defender);
              }
-             else
+            for(Soldier attackerSoldier : this.unitSoldiers) //this algorithm will run until each of the attacking units have attacked one of their opponents
+            {    
+              boolean hasAttacked = false;  
+             if(!defender.unitDefeat)
              {
+               Soldier s = null;
+               
+                for(Soldier defenderSoldier : defender.unitSoldiers)
+                   {
+                        if(!hasAttacked)
+                         {
                  
-                 
-               dSize = defender.getUnitsAlive(); //gets the number of defending units alive
-//               System.out.println("count  =  "+ count);
-//               if(j<dSize)
-//               {  
-//                     j++;
-////                   System.out.println("j is now eqaul to " + j);
-//                 
-//               }
-//               else
-//               {
-//                   
-//                   j=0;
-//               }
-//                if(!this.unitSoldiers.get(i).isAlive()&&j!=0)
-//                {
-//                    
-//                    i--;
-//                }                
-                Soldier s = this.unitSoldiers.get(i).attack(defender.unitSoldiers.get(j)); //attacks the unit and edits the value, returns defender
-                 
+                            if(attackerSoldier.inRange(defenderSoldier))
+                            {
+                                hasAttacked = true;
+                                System.out.println("++++++++++++++++++++++++++ WE ATTACKED ++++++++++++++++++++++++++++++++++++++++++");
+
+                             s = attackerSoldier.attack(defenderSoldier);//attacks the unit and edits the value, returns defender
+                            //JOptionPane.showConfirmDialog(null, "WE GOT HIM");
+                       
+                            }
+                                System.out.println("Unit not in range");
+                            }
+                        else
+                        {
+                            
+                        }
+                  
+                   
+               
+               }
+               if(s!=null)
+               {
                  if(!s.isAlive()) //if the defender died
                  {
                     defender.unitSize--;
@@ -254,7 +260,9 @@ for(int i=0; i<unitSize;i++)
                     System.out.println(s.unitName+" "+j+" has been attacked and survived");
                     defender.unitSoldiers.set(j, s);
                  }
+               }
              }
+               
         }
         //Message Afterwards
         if(defender.getUnitsAlive()==0 && isUnitDefeated()) //saying the same thing twice
@@ -297,10 +305,11 @@ for(int i=0; i<unitSize;i++)
                    if(!inRange)
                    {
                         
-                        if (s.getDistance(u)<= (this.soldierType.range+2)) 
+                        if (s.getDistance(u)<= (this.soldierType.range)) 
                         {
                             System.out.println(s.getDistance(u));
                             inRange = true;
+                            
                         }
                    }
                }

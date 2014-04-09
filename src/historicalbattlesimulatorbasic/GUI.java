@@ -35,7 +35,7 @@ import javax.swing.SwingConstants;
 public class GUI implements MouseListener
 {
 //    JLabel bgL = new JLabel();
-    static double turnCountForPersians=25;
+    static double turnCountForPersians=30;
     static double numberOfTilesWidth; //the number of tiles that make up the width
     static double numberOfTilesHeight;//the number of tiles that make up the height
     static JFrame gameFrame; //the gameframe, holds the panels/buttons

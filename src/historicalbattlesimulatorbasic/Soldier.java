@@ -33,7 +33,8 @@ public class Soldier
     double armorClass; //a soldiers basic armor class
     double defense; // a soldiers defense bonus
     double speed; // the distance of which a soldier can travel
-    double range; // the range of a soldiers weapons
+    double range
+            ; // the range of a soldiers weapons
     double chargeBonus; //The bonus given to charging attack
     double stamina; // The amount of stamina a soldier has
     double morale; // The amount of moral a soldier has
@@ -68,7 +69,7 @@ public class Soldier
    //make sure to set to false after each turn
     boolean hasSprinted; //used at turn end.  If true, no stamina is increased
     boolean hasMoved;//used at turn end, if true, and has sprinted is not true, gets a portion of stamina back.  if false, get more stamina back 
-   
+    
    int idOfUnit;
 //Tile being occupied
     Tile tileOccupied;
@@ -113,7 +114,7 @@ public Soldier(String unitName,
      this.hp = hp;
      this.armorClass = armorClass;
      this.speed = speed;
-     this.range = range;
+     this.range = range*10;
      this.chargeBonus = chargeBonus;
      this.stamina = stamina;
      this.morale = morale;
@@ -126,7 +127,7 @@ public Soldier(String unitName,
      baseDefense = defense;
      baseArmorClass = armorClass;
      baseSpeed = speed;
-     baseRange = range;
+     baseRange = range*10;
      baseChargeBonus = chargeBonus;
      baseStamina = stamina;
      baseMorale = morale;
@@ -510,14 +511,16 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
        return distance;
     }
-  private boolean inRange(Soldier opponent) {
+  public boolean inRange(Soldier opponent)
+  {
        if(this.range >= this.getDistance(opponent))
        {
            return true;
        }
        else
        {
-           System.out.println("OUT OF RANGE");
+           System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                   System.out.println("OUT OF RANGE");
            return false;
        }
        
