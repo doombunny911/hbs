@@ -161,7 +161,7 @@ public class GUI implements MouseListener
            public void actionPerformed(ActionEvent ae){
                
                GUI.unitSelected.expendUnitPoint();
-              GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
+               GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
                GUI.unitSelected.currentFormation.setColumnFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
