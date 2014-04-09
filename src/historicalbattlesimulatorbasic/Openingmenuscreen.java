@@ -185,7 +185,7 @@ public final class Openingmenuscreen extends JFrame
                         5);
                
                 
-                Soldier persianArcher= new Soldier("Persian",1,1,1,1,25,1,1,1,2,2,5,5);
+                Soldier persianArcher= new Soldier("Archers",2,2,1,1,25,1,1,1,2,2,5,5);
                 //immortals
                  Unit immortalsUnit = new Unit(immortals,500);
                  

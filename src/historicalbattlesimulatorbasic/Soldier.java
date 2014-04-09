@@ -99,7 +99,7 @@ public Soldier(String unitName,
                 double armorClass,
                 double defense,
                 double speed,
-                double range,
+                double rangeV,
                 double chargeBonus,
                 double stamina,
                 double morale)
@@ -128,11 +128,11 @@ public Soldier(String unitName,
      }
      else if(unitType==2)
      {
-         this.range=range*10;
+         this.range = 150;
      }
      else
     {
-        this.range = range*10;
+        this.range = rangeV;
     }
      this.chargeBonus = chargeBonus;
      this.stamina = stamina;

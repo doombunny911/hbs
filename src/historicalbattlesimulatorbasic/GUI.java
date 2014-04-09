@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /**
@@ -63,14 +64,18 @@ public class GUI implements MouseListener
     static JPanel combatPanel;
     private static JPanel turnPanel;
     static ImageIcon specialAbility;
+    public static JScrollPane scroll;
     
+   
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel) {
        GUI.panel=panel;
+       GUI.scroll = new JScrollPane(GUI.panel);
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
        
    }
+   
    private static void initCombatPanel(){
        CombatPanel combatPanel2 = new CombatPanel();
        combatPanel2.setLayout(null);
