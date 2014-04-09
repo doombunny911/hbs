@@ -238,7 +238,7 @@ public final class Openingmenuscreen extends JFrame
     }
     public Openingmenuscreen(){       
        initFrame();
-     
+//     setFullScreen();
      
        
       

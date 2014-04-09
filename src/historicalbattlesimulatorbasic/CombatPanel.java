@@ -28,11 +28,13 @@ import javax.swing.JPanel;
  */
 public class CombatPanel extends JPanel
 {
+    static Unit enemyUnitFound;
     Unit unitSelected;
     Player enemyPlayer;
     ArrayList<Unit> enemyUnits;
      boolean visible = true;
      ArrayList<JButton> buttons = new ArrayList<>();
+   
     //get all units in range
     public static void main(String[] args){
         JFrame newJ = new JFrame();
@@ -147,7 +149,12 @@ public class CombatPanel extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
+                    enemyUnitFound = u;
+                    GUI.panel.paintImmediately(GUI.panel.getX(), GUI.panel.getY(), GUI.panel.getWidth(),GUI.panel.getHeight());
+                    
                     unitSelected.attack(u,enemyPlayer);
+                    
+                    
                     
                     visible= false;
                     

@@ -278,7 +278,8 @@ for(int i=0; i<unitSize;i++)
                     defender.unitSize + " units of "+ defender.nameOfUnit + " remain. ");
          //unitPoints = unitPoints -1;   
         
-        
+     if(CombatPanel.enemyUnitFound!=null)
+         CombatPanel.enemyUnitFound=null;
      int index=   GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(defender);
      GUI.removeSoldiersFromPreviousTiles(defender);
      System.out.println("defender size = " +defender.unitSize + " " + defender.unitSoldiers.size()); 

@@ -5,6 +5,7 @@
 package historicalbattlesimulatorbasic;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
@@ -53,19 +54,28 @@ public void paintComponent(Graphics g) {
 //       if(GUI.tileGameMap!=null) 
 //             System.out.println(GUI.tileGameMap[0][0].getOccupier());
       Graphics2D g2=(Graphics2D)g;
-       
       //tileMap
       for(int i=0;i<sHeight;i++)
       {
          for(int j=0;j<sWidth;j++)
          {
-           
+            
                 if(tileHasASpriteFromUnitSelectedat(j, i))
                 {
                     Stroke originalStroke = g2.getStroke();
                     g2.setStroke(new BasicStroke(4));
                     g2.draw(GUI.tileGameMap[j][i]);
                     g2.setStroke(originalStroke);
+                }
+                else if(isEnemyUnitThatIsBeingAttackedFoundAt(j, i))
+                {
+                    Color originalColor =g2.getColor();
+                    Stroke originalStroke = g2.getStroke();
+                    g2.setStroke(new BasicStroke(4));
+                    g2.setColor(Color.RED);
+                    g2.draw(GUI.tileGameMap[j][i]);
+                    g2.setStroke(originalStroke);
+                    g2.setColor(originalColor);
                 }
                 else
                 {
@@ -90,6 +100,10 @@ public void paintComponent(Graphics g) {
 //      {
 //          GUI.paintRange(GUI.unitSelected,g);
 //      }
+    }
+
+    protected boolean isEnemyUnitThatIsBeingAttackedFoundAt(int j, int i) {
+        return CombatPanel.enemyUnitFound!=null&&GUI.tileGameMap[j][i].isOccupied&& GUI.tileGameMap[j][i].getOccupier().getUnitID()==CombatPanel.enemyUnitFound.getUnitID();
     }
 
     protected boolean tileHasASpriteFromUnitSelectedat(int j, int i) {
