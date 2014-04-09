@@ -148,7 +148,7 @@ public final class Openingmenuscreen extends JFrame
                     Unit spartanHopliteUnit2 = new Unit(spartanHoplite,100);
                     spartanHopliteUnit2.setSprite("greekYellow.png");
                         greekUnits.add(spartanHopliteUnit2);
-                    Unit spartanHopliteUnit3 = new Unit(spartanHoplite,99);
+                    Unit spartanHopliteUnit3 = new Unit(spartanHoplite,100);
                         greekUnits.add(spartanHopliteUnit3);
                     spartanHopliteUnit3.setSprite("greekYellow.png");
                     Unit greekMilitias = new Unit(averageGreekHoplite,150);

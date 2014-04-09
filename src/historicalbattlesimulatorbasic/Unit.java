@@ -341,8 +341,7 @@ for(int i=0; i<unitSize;i++)
         this.unitPoints = this.unitPoints -1;
         GUI.refreshTurnPanel();
     }
-    public boolean hasUnitPoints()
-    {
+    public boolean hasUnitPoints(){
         if(this.unitPoints>0)
         {
             return true;
@@ -351,8 +350,7 @@ for(int i=0; i<unitSize;i++)
         {
             return false;
         }
-    }
-            
+    } 
     /*
     Used to move the entire unit in a direction. Sets the unit to be facing this direction.
     @dir - Direction:
@@ -365,7 +363,6 @@ for(int i=0; i<unitSize;i++)
     7 is west
     8 is northwest
     */
-  
     public void moveDirection(int dir){
        boolean accessible=true; //the value for if every soldier can move
        
@@ -490,7 +487,6 @@ if(!parent.exists() && !parent.mkdirs()){
            
             
     }
-
     void addUnitPoint() {
      unitPoints++;    
     }

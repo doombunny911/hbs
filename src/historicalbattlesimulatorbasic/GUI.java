@@ -458,7 +458,6 @@ public class GUI implements MouseListener
                if(GUI.unitSelected.hasUnitPoints())
                {
                    GUI.unitSelected.expendUnitPoint();
-              //don't think this is necessary but I will look into it, I think i did this to help isolate a bug  
                   if(GUI.moveC==null) //if the compass has yet to be initalized the first time, init it
                   {
                      GUI.initializeCompass();
@@ -479,12 +478,10 @@ public class GUI implements MouseListener
            }
        });
        button[4].addActionListener(new ActionListener() {
-//Change formations
            @Override
            public void actionPerformed(ActionEvent ae) 
            {
                    initFormPanel();
-                   GUI.unitSelected.expendUnitPoint();
                    if(GUI.unitSelected.hasUnitPoints())
                {
                    
@@ -493,12 +490,14 @@ public class GUI implements MouseListener
                        formationPanel.setVisible(true);
                    }
                
-               GUI.toggleButtons(buttonPanel, false);
-               
-               if(componentNotNullAndIsVisible(moveC))
-                   moveC.setVisible(false);
-               if(componentNotNullAndIsVisible(attackButtonPanel))
-                   attackButtonPanel.setVisible(false);}
+                    GUI.toggleButtons(buttonPanel, false);
+
+                    if(componentNotNullAndIsVisible(moveC))
+                        moveC.setVisible(false);
+                    if(componentNotNullAndIsVisible(attackButtonPanel))
+                        attackButtonPanel.setVisible(false);
+               }
+                   
            else
                    {
                        JOptionPane.showMessageDialog(formationPanel, GUI.unitSelected.nameOfUnit+" is out of unit points. Select a different unit, or end your turn" );
@@ -605,9 +604,7 @@ public class GUI implements MouseListener
                    
                     GUI.refreshTurnPanel();
                  }
-             }
-
-          
+             } 
        });
    }
    public static void addButtonsToPanel(JButton[] button) {
@@ -734,7 +731,6 @@ public class GUI implements MouseListener
        refreshTurnPanel();
       
    }          
-
     public static void refreshTurnPanel() {
         GUI.panel.remove(turnPanel);
        turnPanel = new JPanel();
@@ -873,7 +869,6 @@ public class GUI implements MouseListener
    protected boolean userTriesToSelectUnitBeforeAllUnitsArePlaced() {
         return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&(Game.playersForDemo.get(1).up.numOfUnitsToPlace>0||Game.playersForDemo.get(0).up.numOfUnitsToPlace>0);
     }
-   
    protected static boolean spartanVictory()
    {
        if(turnCountForPersians<0)
@@ -1011,8 +1006,7 @@ public class GUI implements MouseListener
         }
             
     }
-   protected static ArrayList<Point>  findSoldiersOfThisUnit(Unit unit)
-   {
+   protected static ArrayList<Point>  findSoldiersOfThisUnit(Unit unit){
        ArrayList<Point> list = new ArrayList<>();
        for(int i=0;i<GUI.numberOfTilesHeight;i++)
        {
@@ -1215,16 +1209,16 @@ public class GUI implements MouseListener
 ////     //not sure if necessary, i dont think it is but doesn't hurt   
 //    g2.setColor(temp);
     }
- @Override
+   @Override
    public void mousePressed(MouseEvent me) {
     }
-    @Override
+   @Override
    public void mouseReleased(MouseEvent me) {
     }
-    @Override
+   @Override
    public void mouseEntered(MouseEvent me) {
     }
-    @Override
+   @Override
    public void mouseExited(MouseEvent me){
     }
 }

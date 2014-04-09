@@ -489,13 +489,13 @@ public UnitFormations setBoxFormation(){
        
        for(int i=0;i<effectiveSoldiers;i=i+soldiersPerSprite)
        {
-                       
-         if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
-         {
-                          //make the button visible and undraw the sprites already drawn, currently not being done
-             System.out.println("I am out of bounds");
-         }
-                      else
+//                       
+//         if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
+//         {
+//                          //make the button visible and undraw the sprites already drawn, currently not being done
+//             System.out.println("I am out of bounds");
+//         }
+                      
                       {
                           spriteLocations[this.index]= 
                           GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+columnNum]
