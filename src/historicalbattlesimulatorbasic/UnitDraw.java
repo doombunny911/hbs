@@ -54,9 +54,12 @@ public class UnitDraw
         UnitFormations form = getUnit.currentFormation;
         if(getUnit.currentFormation==null)
         {
+            this.tileLocationOfUnit=tile;
+            this.thisUnit=getUnit;
             System.out.println("in unitDraw in a part that shouldn't happen, need fixing");
-//            UnitFormations form = new UnitFormations(getUnit,tile);
-            form.defaultFormation();
+            
+            form = new UnitFormations(getUnit,tile);
+            form.rowFormation();
             getUnit.currentFormation=form;
         }
         else
@@ -64,7 +67,7 @@ public class UnitDraw
             form.updateTileAndUnit(getUnit, tile); //updates the current unit and tile
                 if(form.whichFormation==UnitFormations.LINE)
                 {
-                    form.defaultFormation();
+                    form.rowFormation();
                 }
                 else if(form.whichFormation==UnitFormations.SQUARE)
                 {

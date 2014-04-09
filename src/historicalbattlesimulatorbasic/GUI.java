@@ -124,7 +124,7 @@ public class GUI implements MouseListener
            {
                GUI.unitSelected.expendUnitPoint();
                GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
-               GUI.unitSelected.currentFormation.defaultFormation();
+               GUI.unitSelected.currentFormation.rowFormation();
                GUI.toggleButtons(formationPanel, false);
                GUI.toggleButtons(buttonPanel, true);
           }
