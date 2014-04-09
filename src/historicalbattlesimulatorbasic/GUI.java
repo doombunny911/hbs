@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -889,6 +890,8 @@ public class GUI implements MouseListener
     }
    protected boolean player2UnitIsEqualToUnitSelectedAt(int i) {
         return Game.playersForDemo.get(1).allUnits.get(i).getUnitID()==GUI.tileClicked.getOccupier().getUnitID();
+//        return Game.playersForDemo.get(1).allUnits.get(i).yPosition==GUI.tileClicked.yPosition&&Game.playersForDemo.get(1).allUnits.get(i).xPosition==GUI.tileClicked.xPosition;
+
     }
    protected boolean player1UnitIsEqualToUnitSelectedAt(int i) {
 //        return Game.playersForDemo.get(0).allUnits.get(i).yPosition==GUI.tileClicked.yPosition&&Game.playersForDemo.get(0).allUnits.get(i).xPosition==GUI.tileClicked.xPosition;
@@ -1008,6 +1011,21 @@ public class GUI implements MouseListener
         }
             
     }
+   protected static ArrayList<Point>  findSoldiersOfThisUnit(Unit unit)
+   {
+       ArrayList<Point> list = new ArrayList<>();
+       for(int i=0;i<GUI.numberOfTilesHeight;i++)
+       {
+           for(int j=0;j<GUI.numberOfTilesWidth;j++)
+           {
+               if(GUI.tileGameMap[j][i].isOccupied&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==unit.getUnitID())
+                   list.add(new Point(j,i));
+           }
+       }
+       
+       
+       return list;
+   }
    protected static boolean thereIsASoldierWhereThereShouldNotBe(int j, int i,Unit u) {
         return GUI.tileGameMap[j][i].getOccupier()!=null&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==u.getUnitID();
     }

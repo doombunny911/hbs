@@ -185,7 +185,7 @@ public final class Compass extends JPanel{
     //which direction was unit moved in
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
      
-      if(GUI.unitSelected.moveMentCounter>0&&determineTheNewLocationOfTheUnit(tileMoveChange))
+      if(GUI.unitSelected.moveMentCounter>0)
       {
          GUI.unitSelected.hasMoved=true;
          if(GUI.unitSelected.isSprinting)
