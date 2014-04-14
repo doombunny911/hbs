@@ -107,8 +107,7 @@ for(int i=0; i<unitSize;i++)
     }
    
     //Create a unit with out position.
-     public Unit(Soldier soldierType, int unitSize)
-    {
+    public Unit(Soldier soldierType, int unitSize){
 
         unitFacing = soldierType.facing;
         range = soldierType.range;
@@ -145,8 +144,6 @@ for(int i=0; i<unitSize;i++)
         this.defense = unitSoldiers.get(0).defense;
 
     }
-    
-    
     public void setSprite(String sprite){
         this.spriteName = sprite;
     }
@@ -169,7 +166,6 @@ for(int i=0; i<unitSize;i++)
         }
         return img;
     }
-    
     //this should determine how many units are still alive
     public int getUnitsAlive() {
         int unitsAlive=0;
@@ -204,37 +200,37 @@ for(int i=0; i<unitSize;i++)
        
 
        if(defender.unitDefeat)
-      {
+       {
            System.out.println("All "+defender.unitName+" have been defeated");
-            enemy.allUnits.remove(defender);
-      }
+           enemy.allUnits.remove(defender);
+       }
        else
        {
             for(Soldier attackerSoldier : this.unitSoldiers) //this algorithm will run until each of the attacking units have attacked one of their opponents
             {     
                int j=0;
-               boolean defenderHasBeenAttacked = false;  
+               boolean attackerHasAttacked = false;  
                Soldier s = null;
                for(Soldier defenderSoldier : defender.unitSoldiers)
                {
-                  if(!defenderHasBeenAttacked)
+                  if(!attackerHasAttacked)
                   {
                             
                      if(attackerSoldier.inRange(defenderSoldier))
                      { 
-                                defenderHasBeenAttacked = true;
+                         attackerHasAttacked = true;
                                 //System.out.println("++++++++++++++++++++++++++ WE ATTACKED ++++++++++++++++++++++++++++++++++++++++++");
-                                  s = attackerSoldier.attack(defenderSoldier);//attacks the unit and edits the value, returns defender
+                         s = attackerSoldier.attack(defenderSoldier);//attacks the unit and edits the value, returns defender
                             //JOptionPane.showConfirmDialog(null, "WE GOT HIM");
                      }
                      else
                         j++;
                                // System.out.println("Unit not in range");
-                 }
-                 else
-                 {
-                            
-                 }
+                  }
+                  else
+                  {
+                             
+                  }
                   
                    
                
