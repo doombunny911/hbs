@@ -121,8 +121,6 @@ public final class Openingmenuscreen extends JFrame
 
             public void thermopylae() {
                 //load the game, testButton for now
-                
-                
                 Game game = new Game();
                 Map map = new Map(10);
                 
@@ -140,31 +138,37 @@ public final class Openingmenuscreen extends JFrame
                 //greekUnits.add(leonidas);
                     UnitDraw leo = new UnitDraw(leonidas, new Tile(1120, 260,10,10));
                                                              GUI.unitDraws.add(leo);
+                    greekUnits.add(leonidas);
                 Unit spartanHoplite1 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
                 spartanHoplite1.setSprite("greekYellow.png");
                 spartanHoplite1.setPosition(1120, 210);
                                                              
                                                              UnitDraw h1 = new UnitDraw(spartanHoplite1, new Tile(1120, 210,10,10));
                                                              GUI.unitDraws.add(h1);
-                
+                                                             greekUnits.add(spartanHoplite1);
+                                                             
                 Unit spartanHoplite2 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
                 spartanHoplite2.setSprite("greekYellow.png");
                 spartanHoplite2.setPosition(1090, 270);
                 UnitDraw h2 = new UnitDraw(spartanHoplite2, new Tile(1090, 270,10,10));
                                                              GUI.unitDraws.add(h2);
+                                                             greekUnits.add(spartanHoplite2);
                 Unit spartanHoplite3 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
                 
                 spartanHoplite3.setSprite("greekYellow.png");
                 spartanHoplite3.setPosition(1200, 340);   
                 UnitDraw h3 = new UnitDraw(spartanHoplite3, new Tile(1200, 340,10,10));
                                                              GUI.unitDraws.add(h3);
-             
+                                                             greekUnits.add(spartanHoplite3);
+                                                             
                    
                 Unit thebanSlinger = new Unit(greekUnitGetter.get(2).soldierType.clone(), greekUnitGetter.get(2).unitSize);
                 thebanSlinger.setSprite("clubRed.png");
                 thebanSlinger.setPosition(1480,310);
                 UnitDraw t1 = new UnitDraw(thebanSlinger, new Tile(1480, 310,10,10));
                                                              GUI.unitDraws.add(t1);
+                                                             greekUnits.add(thebanSlinger);
+                                                             
              //   thebanSlinger.setFormation(COLUMN);
               
                 
@@ -176,10 +180,11 @@ public final class Openingmenuscreen extends JFrame
                     greekMilitias2.setPosition(1550, 200);
                      UnitDraw g1 = new UnitDraw(greekMilitias1, new Tile(1390, 450,10,10));
                                                              GUI.unitDraws.add(g1);
+                                                             greekUnits.add(greekMilitias1);
+                                                             greekUnits.add(greekMilitias2);
+                                                             
                      UnitDraw g2 = new UnitDraw(greekMilitias2, new Tile(1550, 200,10,10));
                                                              GUI.unitDraws.add(g2);                                        
-                   
-                
                 //persian units
                 ArrayList <Unit> persianUnits = new ArrayList();
                 String name2="Persian";
@@ -237,14 +242,14 @@ public final class Openingmenuscreen extends JFrame
                                                              GUI.unitDraws.add(in7);
                                                              UnitDraw in8 = new UnitDraw(infantry8, new Tile(180,490,10,10));
                                                              GUI.unitDraws.add(in8);
-//                                persianUnits.add(infantry1);
-//                                persianUnits.add(infantry2);
-//                                persianUnits.add(infantry3);
-//                                persianUnits.add(infantry4);
-//                                persianUnits.add(infantry5);
-//                                persianUnits.add(infantry6);
-//                                persianUnits.add(infantry7);
-//                                persianUnits.add(infantry8);
+                                persianUnits.add(infantry1);
+                                persianUnits.add(infantry2);
+                                persianUnits.add(infantry3);
+                                persianUnits.add(infantry4);
+                                persianUnits.add(infantry5);
+                                persianUnits.add(infantry6);
+                                persianUnits.add(infantry7);
+                                persianUnits.add(infantry8);
                                                              
                 Unit immortals1 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
                 Unit immortals2 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
@@ -291,10 +296,10 @@ public final class Openingmenuscreen extends JFrame
              // p1.up.setUpButtons();
              // p2.up.setUpButtons();
                 
-               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-                GUI.panel.add(p2.up);
-                GUI.panel.add(p1.up);
+//               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+//               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+//                GUI.panel.add(p2.up);
+//                GUI.panel.add(p1.up);
                 
                 game.gameMap=map;
                 GUI.buttonLoader();

@@ -202,44 +202,39 @@ for(int i=0; i<unitSize;i++)
     */
     public void attack(Unit defender,Player enemy){
        
-       
-     
-        
-           
-            if(defender.unitDefeat)
-             {
-                 System.out.println("All "+defender.unitName+" have been defeated");
-                 enemy.allUnits.remove(defender);
-             }
-            for(Soldier attackerSoldier : this.unitSoldiers) //this algorithm will run until each of the attacking units have attacked one of their opponents
-            {     int j=0;
-              boolean hasAttacked = false;  
-             if(!defender.unitDefeat)
-             {
-               Soldier s = null;
-               
-                for(Soldier defenderSoldier : defender.unitSoldiers)
-                   {
-                        if(!hasAttacked)
-                         {
-                            
-                            if(attackerSoldier.inRange(defenderSoldier))
-                            {
-                                hasAttacked = true;
-                                //System.out.println("++++++++++++++++++++++++++ WE ATTACKED ++++++++++++++++++++++++++++++++++++++++++");
 
-                             s = attackerSoldier.attack(defenderSoldier);//attacks the unit and edits the value, returns defender
-                            //JOptionPane.showConfirmDialog(null, "WE GOT HIM");
-                             
-                            }
-                            else
-                                j++;
-                               // System.out.println("Unit not in range");
-                            }
-                        else
-                        {
+       if(defender.unitDefeat)
+      {
+           System.out.println("All "+defender.unitName+" have been defeated");
+            enemy.allUnits.remove(defender);
+      }
+       else
+       {
+            for(Soldier attackerSoldier : this.unitSoldiers) //this algorithm will run until each of the attacking units have attacked one of their opponents
+            {     
+               int j=0;
+               boolean defenderHasBeenAttacked = false;  
+               Soldier s = null;
+               for(Soldier defenderSoldier : defender.unitSoldiers)
+               {
+                  if(!defenderHasBeenAttacked)
+                  {
                             
-                        }
+                     if(attackerSoldier.inRange(defenderSoldier))
+                     { 
+                                defenderHasBeenAttacked = true;
+                                //System.out.println("++++++++++++++++++++++++++ WE ATTACKED ++++++++++++++++++++++++++++++++++++++++++");
+                                  s = attackerSoldier.attack(defenderSoldier);//attacks the unit and edits the value, returns defender
+                            //JOptionPane.showConfirmDialog(null, "WE GOT HIM");
+                     }
+                     else
+                        j++;
+                               // System.out.println("Unit not in range");
+                 }
+                 else
+                 {
+                            
+                 }
                   
                    
                
@@ -260,8 +255,8 @@ for(int i=0; i<unitSize;i++)
                     defender.unitSoldiers.set((j-1), s);
                  }
                }
-             }
-               
+             
+            }
         }
         //Message Afterwards
         if(defender.getUnitsAlive()==0 && isUnitDefeated()) //saying the same thing twice

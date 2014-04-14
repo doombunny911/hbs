@@ -507,16 +507,16 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
         return true;
     }
   public double getDistance(Soldier opponent){
-        double x1 = this.tileOccupied.xPosition;
+       double x1 = this.tileOccupied.xPosition;
+    
+       double y1 = this.tileOccupied.yPosition;
      
-        double y1 = this.tileOccupied.yPosition;
-     
-        double x2 = opponent.tileOccupied.xPosition;
+       double x2 = opponent.tileOccupied.xPosition;
        // System.out.println(x2);
-        double y2 = opponent.tileOccupied.yPosition;
+       double y2 = opponent.tileOccupied.yPosition;
       //  System.out.println(y2);
-        double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-        //System.out.println("DISTANCE- "+distance);
+       double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+       System.out.println("DISTANCE- "+distance);
        return distance;
        
     }
