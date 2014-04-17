@@ -294,7 +294,7 @@ for(int i=0; i<unitSize;i++)
   Calculates whether the opponent is in range or not, based on getting the central position. (The math may be off on this one)
     */
     private boolean isInRange(Unit opponent) {
-        boolean inRange=false;
+        boolean inRange=true;
       
        for(Soldier s : this.unitSoldiers)
        {
@@ -324,7 +324,7 @@ for(int i=0; i<unitSize;i++)
     }
     public boolean anyInRange(Player p2)
     {
-        boolean anyInRange = false;
+        boolean anyInRange = true;
         if(p2.getUnitList().size()>0)
         {
         for(Unit u: p2.getUnitList())

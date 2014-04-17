@@ -13,7 +13,7 @@ Persian Basic Infantry
 2.0
 2.0
 50
-vikingGray.png
+grayMelee.png
 ---
 Immortals
 4
@@ -29,7 +29,7 @@ Immortals
 2.0
 100.0
 25
-immortal.png
+blueMelee.png
 ---
 Archers
 2
@@ -45,4 +45,4 @@ Archers
 2.0
 22.0
 25
-ArcherGray.png
+blueRange.png

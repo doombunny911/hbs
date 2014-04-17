@@ -13,7 +13,7 @@ King Leonidas
 2.0
 100.0
 1
-leon.png
+orangeGeneral.png
 ---
 Spartan Hoplite
 4
@@ -29,7 +29,7 @@ Spartan Hoplite
 2.0
 100.0
 100
-greekOrange.png
+spearOrange.png
 ---
 Theban Slingers
 2
@@ -45,7 +45,7 @@ Theban Slingers
 3.0
 10.0
 30
-clubRed.png
+redRange.png
 ---
 Greek Auxiliary Hoplites 
 4
@@ -61,4 +61,4 @@ Greek Auxiliary Hoplites
 2.0
 22.0
 50
-greekGray.png
+orangeSpear.png

@@ -844,11 +844,11 @@ public class GUI implements MouseListener
       
         //add the label to the panel
         GUI.statPanel.add(stats);
-        BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
-        ImageIcon unitPic2 = new ImageIcon(unitPic);
-        JLabel up = new JLabel(unitPic2);
+        //BufferedImage unitPic = unitSelected.getUnitPic(unitSelected);
+        //ImageIcon unitPic2 = new ImageIcon(unitPic);
+        //JLabel up = new JLabel(unitPic2);
        //add image of unit selected
-        GUI.statPanel.add(up);
+        //GUI.statPanel.add(up);
         //GUI.statPanel.add(new JLabel(" "));
         GUI.statPanel.add(close);
         //set the location and size of panel

@@ -136,48 +136,52 @@ public final class Openingmenuscreen extends JFrame
                 ArrayList<Unit> greekUnitGetter = ul.loadAllUnits("AncientGreeks.txt");
                 
                 Unit leonidas = new Unit(greekUnitGetter.get(0).soldierType.clone(),greekUnitGetter.get(0).unitSize);
-                leonidas.setSprite("leon.png");
+                leonidas.setSprite("orangeGeneral.png");
                 //greekUnits.add(leonidas);
                     UnitDraw leo = new UnitDraw(leonidas, new Tile(1120, 260,10,10));
                                                              GUI.unitDraws.add(leo);
+                                                             greekUnits.add(leonidas);
                 Unit spartanHoplite1 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
-                spartanHoplite1.setSprite("greekYellow.png");
+                spartanHoplite1.setSprite("orangeSpear.png");
                 spartanHoplite1.setPosition(1120, 210);
-                                                             
-                                                             UnitDraw h1 = new UnitDraw(spartanHoplite1, new Tile(1120, 210,10,10));
-                                                             GUI.unitDraws.add(h1);
+                                                             greekUnits.add(spartanHoplite1);
+                                                             UnitDraw h5 = new UnitDraw(spartanHoplite1, new Tile(1120, 210,10,10));
+                                                             GUI.unitDraws.add(h5);
                 
                 Unit spartanHoplite2 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
-                spartanHoplite2.setSprite("greekYellow.png");
+                spartanHoplite2.setSprite("orangeSpear.png");
                 spartanHoplite2.setPosition(1090, 270);
                 UnitDraw h2 = new UnitDraw(spartanHoplite2, new Tile(1090, 270,10,10));
                                                              GUI.unitDraws.add(h2);
+                                                             greekUnits.add(spartanHoplite2);
                 Unit spartanHoplite3 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
                 
-                spartanHoplite3.setSprite("greekYellow.png");
+                spartanHoplite3.setSprite("orangeSpear.png");
                 spartanHoplite3.setPosition(1200, 340);   
                 UnitDraw h3 = new UnitDraw(spartanHoplite3, new Tile(1200, 340,10,10));
                                                              GUI.unitDraws.add(h3);
-             
+             greekUnits.add(spartanHoplite3);
                    
                 Unit thebanSlinger = new Unit(greekUnitGetter.get(2).soldierType.clone(), greekUnitGetter.get(2).unitSize);
-                thebanSlinger.setSprite("clubRed.png");
+                thebanSlinger.setSprite("redRange.png");
                 thebanSlinger.setPosition(1480,310);
                 UnitDraw t1 = new UnitDraw(thebanSlinger, new Tile(1480, 310,10,10));
+                greekUnits.add(thebanSlinger);
                                                              GUI.unitDraws.add(t1);
              //   thebanSlinger.setFormation(COLUMN);
               
                 
                 Unit greekMilitias1 = new Unit(greekUnitGetter.get(3).soldierType.clone(), greekUnitGetter.get(3).unitSize);
                 Unit greekMilitias2 =new Unit(greekUnitGetter.get(3).soldierType.clone(), greekUnitGetter.get(3).unitSize);      
-                    greekMilitias1.setSprite("greekOrange.png");
+                    greekMilitias1.setSprite("redSpear.png");
                     greekMilitias1.setPosition(1390, 450);
-                    greekMilitias2.setSprite("greekGray.png");
+                    greekMilitias2.setSprite("redSpear.png");
                     greekMilitias2.setPosition(1550, 200);
                      UnitDraw g1 = new UnitDraw(greekMilitias1, new Tile(1390, 450,10,10));
                                                              GUI.unitDraws.add(g1);
+                                                             greekUnits.add(greekMilitias1);
                      UnitDraw g2 = new UnitDraw(greekMilitias2, new Tile(1550, 200,10,10));
-                                                             GUI.unitDraws.add(g2);                                        
+                                                             GUI.unitDraws.add(g2);       greekUnits.add(greekMilitias2);                                 
                    
                 
                 //persian units
@@ -199,18 +203,18 @@ public final class Openingmenuscreen extends JFrame
                 Unit infantry11 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
                 Unit infantry12 = new Unit(persianUnitList.get(0).soldierType.clone(),persianUnitList.get(0).unitSize*2);
                                                             
-                                                             infantry1.setSprite("vikingGray.png");
-                                                             infantry2.setSprite("vikingGray.png");
-                                                             infantry3.setSprite("vikingGray.png");
-                                                             infantry4.setSprite("vikingGray.png");
-                                                             infantry5.setSprite("vikingGray.png");
-                                                             infantry6.setSprite("vikingGray.png");
-                                                             infantry7.setSprite("vikingGray.png");
-                                                             infantry8.setSprite("vikingGray.png");
-                                                             infantry9.setSprite("vikingGray.png");
-                                                             infantry10.setSprite("vikingGray.png");
-                                                             infantry11.setSprite("vikingGray.png");
-                                                             infantry12.setSprite("vikingGray.png");
+                                                             infantry1.setSprite("greyMelee.png");
+                                                             infantry2.setSprite("greyMelee.png");
+                                                             infantry3.setSprite("greyMelee.png");
+                                                             infantry4.setSprite("greyMelee.png");
+                                                             infantry5.setSprite("greyMelee.png");
+                                                             infantry6.setSprite("greyMelee.png");
+                                                             infantry7.setSprite("greyMelee.png");
+                                                             infantry8.setSprite("greyMelee.png");
+                                                             infantry9.setSprite("greyMelee.png");
+                                                             infantry10.setSprite("greyMelee.png");
+                                                             infantry11.setSprite("greyMelee.png");
+                                                             infantry12.setSprite("greyMelee.png");
                                                              
                                                              infantry1.setPosition(400,200);
                                                              infantry2.setPosition(400,250);
@@ -237,14 +241,14 @@ public final class Openingmenuscreen extends JFrame
                                                              GUI.unitDraws.add(in7);
                                                              UnitDraw in8 = new UnitDraw(infantry8, new Tile(180,490,10,10));
                                                              GUI.unitDraws.add(in8);
-//                                persianUnits.add(infantry1);
-//                                persianUnits.add(infantry2);
-//                                persianUnits.add(infantry3);
-//                                persianUnits.add(infantry4);
-//                                persianUnits.add(infantry5);
-//                                persianUnits.add(infantry6);
-//                                persianUnits.add(infantry7);
-//                                persianUnits.add(infantry8);
+                                persianUnits.add(infantry1);
+                                persianUnits.add(infantry2);
+                                persianUnits.add(infantry3);
+                                persianUnits.add(infantry4);
+                                persianUnits.add(infantry5);
+                                persianUnits.add(infantry6);
+                                persianUnits.add(infantry7);
+                                persianUnits.add(infantry8);
                                                              
                 Unit immortals1 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
                 Unit immortals2 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
@@ -252,10 +256,10 @@ public final class Openingmenuscreen extends JFrame
                 Unit immortals4 = new Unit(persianUnitList.get(1).soldierType.clone(),persianUnitList.get(1).unitSize*2);
                // Unit immortals1 = new Unit(persianUnitList.get(1).clone(),persianUnitList.get(1).unitSize);
                                 
-                immortals1.setSprite("immortal.png");
-                immortals2.setSprite("immortal.png");
-                immortals3.setSprite("immortal.png");
-                immortals4.setSprite("immortal.png");
+                immortals1.setSprite("greyGeneral.png");
+                immortals2.setSprite("greyGeneral.png");
+                immortals3.setSprite("greyGeneral.png");
+                immortals4.setSprite("greyGeneral.png");
                                 persianUnits.add(immortals1);
                                 persianUnits.add(immortals2);
                                 persianUnits.add(immortals3);
@@ -266,9 +270,9 @@ public final class Openingmenuscreen extends JFrame
               Unit archer1 = new Unit(persianUnitList.get(2).soldierType.clone(),persianUnitList.get(2).unitSize*2);
               Unit archer2 = new Unit(persianUnitList.get(2).soldierType.clone(),persianUnitList.get(2).unitSize*2);
               Unit archer3 = new Unit(persianUnitList.get(2).soldierType.clone(),persianUnitList.get(2).unitSize*2);
-              archer1.setSprite("ArcherGray.png");
-              archer2.setSprite("ArcherGray.png");
-              archer3.setSprite("ArcherGray.png");
+              archer1.setSprite("greyRange.png");
+              archer2.setSprite("greyRange.png");
+              archer3.setSprite("greyRange.png");
                             persianUnits.add(archer1);
                             persianUnits.add(archer2);
                             persianUnits.add(archer3);
@@ -288,13 +292,13 @@ public final class Openingmenuscreen extends JFrame
                 Game.playersForDemo.add(p1);
                 Game.playersForDemo.add(p2);
                 
-             // p1.up.setUpButtons();
-             // p2.up.setUpButtons();
+            // p1.up.setUpButtons();
+           //  p2.up.setUpButtons();
                 
                p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
                p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
                 GUI.panel.add(p2.up);
-                GUI.panel.add(p1.up);
+                //GUI.panel.add(p1.up);
                 
                 game.gameMap=map;
                 GUI.buttonLoader();
