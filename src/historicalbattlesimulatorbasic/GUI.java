@@ -275,8 +275,8 @@ public class GUI implements MouseListener
            Game.playersForDemo.get(1).up.unitToBeLoaded=null;
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-       if(GUI.tileClicked!=null)
-        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
+//       if(GUI.tileClicked!=null)
+//        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
       if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
       {
               if(player1Turn())   
