@@ -137,6 +137,7 @@ public final class Compass extends JPanel{
                       {
                          JOptionPane.showMessageDialog(null, "Unit is no longer sprinting ");
                           Modifier.removeSprint(GUI.unitSelected);
+                          GUI.unitSelected.isSprinting=false;
                       }
                       else
                       {
