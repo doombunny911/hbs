@@ -367,7 +367,7 @@ public final class Compass extends JPanel{
                 {
                     if(i>yMax)
                         yMax=i;
-                    System.out.println("yMax = "  +yMax);
+//                    System.out.println("yMax = "  +yMax);
                     if(i>=yMax&&GUI.tileGameMap[j*GUI.tileWidth/GUI.tileWidth][(i*GUI.tileWidth+tileMoveChange)/GUI.tileWidth]==null
                             ||i>=yMax&&GUI.tileGameMap[j*GUI.tileWidth/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
                     {

@@ -516,7 +516,7 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
        double y2 = opponent.tileOccupied.yPosition;
       //  System.out.println(y2);
        double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-       System.out.println("DISTANCE- "+distance);
+//       System.out.println("DISTANCE- "+distance);
        return distance;
        
     }
@@ -532,8 +532,7 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
         double distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
        return distance;
     }
-  public boolean inRange(Soldier opponent)
-  {
+  public boolean inRange(Soldier opponent){
        if(this.range >= this.getDistance(opponent))
        {
            return true;

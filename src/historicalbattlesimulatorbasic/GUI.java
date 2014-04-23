@@ -545,7 +545,8 @@ public class GUI implements MouseListener
              { 
                  
                  GUI.refreshTurnPanel();
-                 GUI.moveCountPanel.setVisible(false);
+                 if(moveCountPanel!=null)
+                     GUI.moveCountPanel.setVisible(false);
                  
                  if(GUI.formationPanel!=null&&formationPanel.isVisible())
                      GUI.toggleButtons(formationPanel, false);
