@@ -192,11 +192,10 @@ public final class Compass extends JPanel{
        {
             tileMoveChange*=2;
        }
-//       GUI.unitSelected.moveMentCounter>0
     //which direction was unit moved in
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
       System.out.println("movementcounter value = " + GUI.unitSelected.moveMentCounter);
-      if(determineTheNewLocationOfTheUnit(tileMoveChange))
+      if(GUI.unitSelected.moveMentCounter>0&&determineTheNewLocationOfTheUnit(tileMoveChange))
       {
          GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
          if(!GUI.unitSelected.hasMoved) 
