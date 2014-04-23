@@ -724,11 +724,11 @@ public class GUI implements MouseListener
       
    } 
    static boolean oneDisplay1 = true;
-          static  boolean oneDisplay2 = true;
-        static   boolean oneDisplay3 = true;
-        static   boolean oneDisplay4 = true;
-        static   boolean oneDisplay5 = true;
-          static boolean oneDisplay6 = true;
+   static boolean oneDisplay2 = true;
+   static boolean oneDisplay3 = true;
+   static boolean oneDisplay4 = true;
+   static boolean oneDisplay5 = true;
+   static boolean oneDisplay6 = true;
    
     public static void refreshTurnPanel() {
         GUI.panel.remove(turnPanel);
