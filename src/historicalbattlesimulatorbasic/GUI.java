@@ -8,14 +8,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,7 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 /**
  *
  * @author Andrew
@@ -403,10 +399,8 @@ public class GUI implements MouseListener
                        GUI.toggleButtons(GUI.buttonPanel,false);
                        GUI.unitSelected=null;
                    }
-           }
-           
+           } 
        });
-       
        button[1].addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent ae)
@@ -519,12 +513,12 @@ public class GUI implements MouseListener
                    }
                    if(GUI.moveCountPanel!=null)
                    {
+                       GUI.moveCountPanel.setVisible(false);
                        GUI.moveCountPanel=null;
                    }
                }
                else
                {
-                   //should not be possible
                    System.out.println("logic is broken in cancel selection");
                }
            }
@@ -1268,6 +1262,7 @@ public class GUI implements MouseListener
     }
    @Override
    public void mouseEntered(MouseEvent me) {
+       
     }
    @Override
    public void mouseExited(MouseEvent me){
