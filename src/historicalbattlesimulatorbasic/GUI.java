@@ -357,18 +357,20 @@ public class GUI implements MouseListener
     public static void initMoveCountPanel() {
         moveCountPanel = new JPanel();
         moveCountPanel.setLayout(null);
+        moveCountPanel.setEnabled(false);
+        moveCountPanel.setOpaque(false);
         JLabel text = new JLabel(Integer.toString((int)GUI.unitSelected.moveMentCounter));
-        moveCountPanel.setBounds(GUI.gameFrame.getWidth()/3,GUI.gameFrame.getHeight()/2,
-                GUI.gameFrame.getWidth()/5,GUI.gameFrame.getHeight()/4);
+        moveCountPanel.setBounds(GUI.gameFrame.getWidth()/2,GUI.gameFrame.getHeight()/2,
+                GUI.gameFrame.getWidth()/15,GUI.gameFrame.getHeight()/15);
         text.setSize(moveCountPanel.getSize());
-        System.out.println("the size of moveCountPanel = " + moveCountPanel.getSize());
-        text.setFont(new Font("",Font.PLAIN,10));
+        text.setForeground(Color.red);
+        text.setOpaque(false);
+        text.setFont(new Font("serif",Font.BOLD,50));
         
         moveCountPanel.add(text);
         moveCountPanel.setVisible(true);
         GUI.panel.add(moveCountPanel);
         
-        GUI.repainter();
     }
    
    
@@ -523,6 +525,10 @@ public class GUI implements MouseListener
                    {
                        formationPanel.setVisible(false);
                        toggleButtons(formationPanel,false);
+                   }
+                   if(GUI.moveCountPanel!=null)
+                   {
+                       GUI.moveCountPanel=null;
                    }
                }
                else

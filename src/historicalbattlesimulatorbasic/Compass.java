@@ -185,8 +185,7 @@ public final class Compass extends JPanel{
        
        int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
        int tileMoveChange = GUI.tileWidth;
-       GUI.moveCountPanel=null;
-       GUI.initMoveCountPanel();
+       GUI.moveCountPanel.setVisible(false);
        
        if(GUI.unitSelected.isSprinting)
        {
@@ -197,6 +196,8 @@ public final class Compass extends JPanel{
       System.out.println("movementcounter value = " + GUI.unitSelected.moveMentCounter);
       if(GUI.unitSelected.moveMentCounter>0&&determineTheNewLocationOfTheUnit(tileMoveChange))
       {
+           GUI.moveCountPanel.setVisible(false);
+         
          GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
          if(!GUI.unitSelected.hasMoved) 
          {
@@ -222,10 +223,10 @@ public final class Compass extends JPanel{
             
             GUI.unitDraws.add(draw);//adds the new unit
             GUI.unitDraws.remove(index); //removes the previous unit
-            GUI.repainter();
             previousMoveDirection= moveDirection ;
             GUI.unitSelected.moveMentCounter--; //removes one move counter from the unit 
-            
+            GUI.initMoveCountPanel();
+            GUI.repainter();
       } 
    }
     /*
