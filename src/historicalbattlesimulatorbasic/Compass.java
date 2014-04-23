@@ -391,8 +391,8 @@ public final class Compass extends JPanel{
                     if(j>xMax)
                         j=xMax;
 //                            System.out.println("tile at ("+j+","+i+") = " + GUI.tileGameMap[j][i]);
-                    if(j>=xMax&&GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][i*GUI.tileWidth/GUI.tileWidth]==null
-                            ||GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][i*GUI.tileWidth/GUI.tileWidth].tileBlocked)
+                    if(GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][i*GUI.tileWidth/GUI.tileWidth]==null
+                            ||j>=xMax&&GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][i*GUI.tileWidth/GUI.tileWidth].tileBlocked)
                     {
                         System.out.println((j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth);
                         flag = false;
