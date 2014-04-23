@@ -135,12 +135,12 @@ public final class Openingmenuscreen extends JFrame
                 UnitLoader ul = new UnitLoader();
                 ArrayList<Unit> greekUnitGetter = ul.loadAllUnits("AncientGreeks.txt");
                 
-                Unit leonidas = new Unit(greekUnitGetter.get(0).soldierType.clone(),greekUnitGetter.get(0).unitSize);
-                leonidas.setSprite("orangeGeneral.png");
+//                Unit leonidas = new Unit(greekUnitGetter.get(0).soldierType.clone(),greekUnitGetter.get(0).unitSize);
+//                leonidas.setSprite("orangeGeneral.png");
                 //greekUnits.add(leonidas);
-                    UnitDraw leo = new UnitDraw(leonidas, new Tile(1120, 260,10,10));
-                                                             GUI.unitDraws.add(leo);
-                                                             greekUnits.add(leonidas);
+//                    UnitDraw leo = new UnitDraw(leonidas, new Tile(1120, 260,10,10));
+//                                                             GUI.unitDraws.add(leo);
+//                                                             greekUnits.add(leonidas);
                 Unit spartanHoplite1 =  new Unit(greekUnitGetter.get(1).soldierType.clone(),greekUnitGetter.get(1).unitSize);
                 spartanHoplite1.setSprite("orangeSpear.png");
                 spartanHoplite1.setPosition(1120, 210);
@@ -295,9 +295,9 @@ public final class Openingmenuscreen extends JFrame
             // p1.up.setUpButtons();
            //  p2.up.setUpButtons();
                 
-               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-                GUI.panel.add(p2.up);
+//               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+//               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+//                GUI.panel.add(p2.up);
                 //GUI.panel.add(p1.up);
                 
                 game.gameMap=map;

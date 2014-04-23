@@ -187,8 +187,6 @@ public final class Compass extends JPanel{
        int tileMoveChange = GUI.tileWidth;
        
        
-       
-       System.out.println("is sprinting " + GUI.unitSelected.isSprinting);
        if(GUI.unitSelected.isSprinting)
        {
             tileMoveChange*=2;
@@ -197,13 +195,15 @@ public final class Compass extends JPanel{
     //which direction was unit moved in
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
       System.out.println("movementcounter value = " + GUI.unitSelected.moveMentCounter);
-      if(GUI.unitSelected.moveMentCounter>0&&determineTheNewLocationOfTheUnit(tileMoveChange))
+      if(determineTheNewLocationOfTheUnit(tileMoveChange))
       {
          if(!GUI.unitSelected.hasMoved) 
+         {
             GUI.unitSelected.expendUnitPoint();
+            GUI.unitSelected.hasMoved=true;
+         }
          
          GUI.unitSelected.setPosition(newXPosition,newYPosition);
-         GUI.unitSelected.hasMoved=true;
          if(GUI.unitSelected.isSprinting)
          {
               GUI.unitSelected.stamina--;
@@ -246,52 +246,35 @@ public final class Compass extends JPanel{
         System.out.println("determining new location of unit");
         switch(moveDirection)
         {
-            case 1: //north
+            case 1:            
             {
-                int yMin=Integer.MAX_VALUE;
-                for(int i=0;i<GUI.numberOfTilesHeight;i++)
-                {
-                    for(int j=0;j<GUI.numberOfTilesWidth;j++)
-                    {
-//                        System.out.println(GUI.tileGameMap[j][i].getIsOccupied());
-                        if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
-                        {
-                            if(i<yMin)
-                                yMin=i;
-//                            System.out.println("tile at ("+j+","+i+") = " + GUI.tileGameMap[j][i]);
-                            if(i<=yMin&&GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(i*GUI.tileWidth-tileMoveChange)/GUI.tileWidth]==null||i<=yMin&&GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(i*GUI.tileWidth-tileMoveChange)/GUI.tileWidth].tileBlocked)
-                            {
-                                System.out.println("flag is false because of tile at ("+j+","+i+")" );
-                                flag = false;
-                            }
-                        }
-                    }
-                }
-                if(flag)
-                {
-                    newXPosition=GUI.unitSelected.xPosition;
-                    newYPosition=GUI.unitSelected.yPosition-tileMoveChange; //yPosition - 10 = 1 tile north
-                    
-                }
-
+//            flag = canMoveNorth(tileMoveChange, flag);
+            if(canMoveNorth(tileMoveChange, flag))
+            {
+               newXPosition=GUI.unitSelected.xPosition;
+               newYPosition=GUI.unitSelected.yPosition-tileMoveChange; //yPosition - 10 = 1 tile north
+            }
                 break;
             }
             case 2: //northEast
             {
+                flag=canMoveNorth(tileMoveChange,flag);
+                
                 for(int i=0;i<GUI.numberOfTilesHeight;i++)
                 {
-                    for(int j=(int)GUI.numberOfTilesWidth-1;j<=0;j--)
+                    for(int j=(int)GUI.numberOfTilesWidth-1;j>=0;j--)
                     {
-                        if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
+                        if(GUI.tileGameMap[j][i].isOccupied&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
                         {
-                            if(GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][(i*GUI.tileWidth-tileMoveChange)/GUI.tileWidth]==null||GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i-tileMoveChange)/GUI.tileWidth].tileBlocked)
-                            {
-                                flag = false;
-                            }
+                            if(GUI.tileGameMap[(GUI.tileWidth*j+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i-tileMoveChange)/GUI.tileWidth]==null
+                                    ||GUI.tileGameMap[(GUI.tileWidth*j+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i-tileMoveChange)/GUI.tileWidth].tileBlocked)
+                                flag=false;
+                            
                             break;
-                        } 
-                    }  
+                        }
+                    }
                 }
+                
                 if(flag)
                 {
                     newXPosition=GUI.unitSelected.xPosition+tileMoveChange;//xPosition + 10 = 1 tile east
@@ -299,31 +282,9 @@ public final class Compass extends JPanel{
                 }
                 break;
             }
-            case 3: //East
-            {
-                int xMax=0;
-                System.out.println(GUI.numberOfTilesHeight);
-                System.out.println(GUI.numberOfTilesWidth);
-                for(int i=0;i<GUI.numberOfTilesHeight;i++)
-                {
-                    for(int j=(int)GUI.numberOfTilesWidth-1;j>=0;j--)
-                    {
-//                        System.out.println(GUI.tileGameMap[j][i].getIsOccupied());
-                        if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
-                        {
-                            if(j>xMax)
-                                j=xMax;
-//                            System.out.println("tile at ("+j+","+i+") = " + GUI.tileGameMap[j][i]);
-                            if(j>=xMax&&GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth]==null||GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth].tileBlocked)
-                            {
-                                System.out.println((j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth);
-                                flag = false;
-//                                break;
-                            }
-                        }
-                    }
-                }
-                if(flag)
+            case 3:             {
+            
+                if(canMoveEast(tileMoveChange, flag))
                 {
                    newXPosition= GUI.unitSelected.xPosition+tileMoveChange;//xPosition + 10 = 1 tile east
                    newYPosition = GUI.unitSelected.yPosition;
@@ -335,13 +296,15 @@ public final class Compass extends JPanel{
             case 4: //southEast
             {
                 
+                flag=canMoveEast(tileMoveChange,flag);
                 for(int i=(int)GUI.numberOfTilesHeight-1;i>=0;i--)
                 {
                     for(int j=(int)GUI.numberOfTilesWidth-1;j>=0;j--)
                     {
                         if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
                         {
-                            if(GUI.tileGameMap[(GUI.tileWidth*j+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth]==null||GUI.tileGameMap[(GUI.tileWidth*j+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
+                            if(GUI.tileGameMap[(GUI.tileWidth*j+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth]==null
+                                    ||GUI.tileGameMap[(GUI.tileWidth*j+tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
                             {
                                 flag = false;
                             }
@@ -368,7 +331,8 @@ public final class Compass extends JPanel{
                             if(i>yMax)
                                 yMax=i;
                             System.out.println("yMax = "  +yMax);
-                            if(i>=yMax&&GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(i*GUI.tileWidth+tileMoveChange)/GUI.tileWidth]==null||i>=yMax&&GUI.tileGameMap[GUI.unitSelected.xPosition/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
+                            if(i>=yMax&&GUI.tileGameMap[j*GUI.tileWidth/GUI.tileWidth][(i*GUI.tileWidth+tileMoveChange)/GUI.tileWidth]==null
+                                    ||i>=yMax&&GUI.tileGameMap[j*GUI.tileWidth/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
                             {
                                 flag = false;
                             }
@@ -392,7 +356,8 @@ public final class Compass extends JPanel{
                     {
                         if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
                         {
-                            if(GUI.tileGameMap[(GUI.tileWidth*j-tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth]==null||GUI.tileGameMap[(GUI.tileWidth*j-tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
+                            if(GUI.tileGameMap[(GUI.tileWidth*j-tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth]==null
+                                    ||GUI.tileGameMap[(GUI.tileWidth*j-tileMoveChange)/GUI.tileWidth][(GUI.tileWidth*i+tileMoveChange)/GUI.tileWidth].tileBlocked)
                             {
                                 flag = false;
                             }
@@ -418,7 +383,8 @@ public final class Compass extends JPanel{
                         {
                             if(j<xMin)
                                 xMin=j;
-                            if(j<=xMin&&GUI.tileGameMap[(j*GUI.tileWidth-tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth]==null||j<=xMin&&GUI.tileGameMap[(j*GUI.tileWidth-tileMoveChange)/GUI.tileWidth][GUI.unitSelected.yPosition/GUI.tileWidth].tileBlocked)
+                            if(j<=xMin&&GUI.tileGameMap[(j*GUI.tileWidth-tileMoveChange)/GUI.tileWidth][GUI.tileWidth*i/GUI.tileWidth]==null
+                                    ||j<=xMin&&GUI.tileGameMap[(j*GUI.tileWidth-tileMoveChange)/GUI.tileWidth][GUI.tileWidth*i/GUI.tileWidth].tileBlocked)
                             {
                                 System.out.println("west is false");
                                 flag = false;
@@ -461,6 +427,55 @@ public final class Compass extends JPanel{
             }
         }
          return flag;
+    }
+
+    protected boolean canMoveEast(int tileMoveChange, boolean flag) {
+        int xMax=0;
+        for(int i=0;i<GUI.numberOfTilesHeight;i++)
+        {
+            for(int j=(int)GUI.numberOfTilesWidth-1;j>=0;j--)
+            {
+//                        System.out.println(GUI.tileGameMap[j][i].getIsOccupied());
+                if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
+                {
+                    if(j>xMax)
+                        j=xMax;
+//                            System.out.println("tile at ("+j+","+i+") = " + GUI.tileGameMap[j][i]);
+                    if(j>=xMax&&GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][i*GUI.tileWidth/GUI.tileWidth]==null
+                            ||GUI.tileGameMap[(j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth][i*GUI.tileWidth/GUI.tileWidth].tileBlocked)
+                    {
+                        System.out.println((j*GUI.tileWidth+tileMoveChange)/GUI.tileWidth);
+                        flag = false;
+//                                break;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+    protected boolean canMoveNorth(int tileMoveChange, boolean flag) {
+        int yMin=Integer.MAX_VALUE;
+        for(int i=0;i<GUI.numberOfTilesHeight;i++)
+        {
+            for(int j=0;j<GUI.numberOfTilesWidth;j++) //loop through tiles
+            {
+//                        System.out.println(GUI.tileGameMap[j][i].getIsOccupied());
+                if(GUI.tileGameMap[j][i].getIsOccupied()&&GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID())
+                {
+                    if(i<yMin)
+                        yMin=i;
+//                            System.out.println("tile at ("+j+","+i+") = " + GUI.tileGameMap[j][i]);
+                    if(i<=yMin&&GUI.tileGameMap[j*GUI.tileWidth/GUI.tileWidth][(i*GUI.tileWidth-tileMoveChange)/GUI.tileWidth]==null
+                            ||i<=yMin&&GUI.tileGameMap[j*GUI.tileWidth/GUI.tileWidth][(i*GUI.tileWidth-tileMoveChange)/GUI.tileWidth].tileBlocked)
+                    {
+                        System.out.println("flag is false because of tile at ("+j+","+i+")" );
+                        flag = false;
+                    }
+                }
+            }
+        }
+        return flag;
     }
     protected void removeJButtonDefaults() {
         this.north.setOpaque(false);

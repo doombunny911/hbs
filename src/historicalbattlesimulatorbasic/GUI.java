@@ -267,7 +267,6 @@ public class GUI implements MouseListener
            
            Game.playersForDemo.get(0).up.check=false;
            Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-           ;
            System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
            System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
@@ -280,7 +279,7 @@ public class GUI implements MouseListener
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
 //       if(GUI.tileClicked!=null)
-//        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
+        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
       if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
       {
               if(player1Turn())   
