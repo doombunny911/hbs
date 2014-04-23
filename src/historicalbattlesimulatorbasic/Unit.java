@@ -285,7 +285,7 @@ for(int i=0; i<unitSize;i++)
   Calculates whether the opponent is in range or not, based on getting the central position. (The math may be off on this one)
     */
     private boolean isInRange(Unit opponent) {
-        boolean inRange=true;
+        boolean inRange=false;
       
        for(Soldier s : this.unitSoldiers)
        {
@@ -295,7 +295,8 @@ for(int i=0; i<unitSize;i++)
                {
                         if(!inRange)
                         {
-                        if (s.getDistance(u)<= (this.soldierType.range)) 
+                        if (u.tileOccupied!=null && s.getDistance(u)<= (this.soldierType.range))
+                              
                         {
                             System.out.println(s.getDistance(u));
                             inRange = true;
@@ -322,15 +323,23 @@ for(int i=0; i<unitSize;i++)
         {
            if(this.isInRange(u))
            {
+             
                anyInRange = true;
            }
         }
+        
         }
+          
         return anyInRange;
     }
     public ArrayList<Unit> getAllInRange(Player p2){
+        
         ArrayList<Unit> allUnitsInRange = new ArrayList<>();
+         if(anyInRange(p2))
+        {
+       // System.out.println("Something is in range");
         ArrayList<Unit> p2AllUnits = p2.getUnitList();
+              
         for(Unit u: p2AllUnits)
         {
            if(this.isInRange(u))
@@ -338,7 +347,8 @@ for(int i=0; i<unitSize;i++)
                allUnitsInRange.add(u);
            }
         }
-        
+        }
+         
         return allUnitsInRange;
     }
     public void resetUnitPoints(){

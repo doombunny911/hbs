@@ -510,7 +510,10 @@ if(tileOccupied.hasNorth()&&!tileOccupied.tileNorth.isOccupied)
        double x1 = this.tileOccupied.xPosition;
     
        double y1 = this.tileOccupied.yPosition;
-     
+     if(opponent.tileOccupied==null)
+     {
+         System.out.println("+++++++++++++++++++++++++++++++++++++++++ \n TILE OCCUPIED NULL \n++++++++++");
+     }
        double x2 = opponent.tileOccupied.xPosition;
        // System.out.println(x2);
        double y2 = opponent.tileOccupied.yPosition;

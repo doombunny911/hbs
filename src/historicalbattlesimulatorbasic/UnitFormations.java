@@ -470,12 +470,12 @@ public final class UnitFormations
        whichFormation =COLUMN;
         //start at the unit start tile
        int numberOfSoldiers= unit.unitSize;
-       System.out.println("numberOfSoldiers = " + numberOfSoldiers );
+      // System.out.println("numberOfSoldiers = " + numberOfSoldiers );
 
-       System.out.println("In column formation");
+     //  System.out.println("In column formation");
       
        int count=0;
-       System.out.println("unit is facing " + unit.unitFacing);
+      // System.out.println("unit is facing " + unit.unitFacing);
        soldiersPerSprite =  1; //each sprite represents this many soldiers
        int effectiveSoldiers = numberOfSoldiers/soldiersPerSprite;
        int halfway  = effectiveSoldiers/2;

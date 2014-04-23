@@ -56,6 +56,7 @@ public class CombatPanel extends JPanel
         if(GUI.unitSelected.anyInRange(enemyPlayer))
         {
         enemyUnits = GUI.unitSelected.getAllInRange(enemyPlayer);
+        System.out.println("Something is inrange");
         }
         else
         {
