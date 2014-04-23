@@ -6,9 +6,7 @@
 
 package historicalbattlesimulatorbasic;
 
-import static historicalbattlesimulatorbasic.GUI.statPanel;
 import java.awt.Color;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
