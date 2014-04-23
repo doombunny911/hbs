@@ -107,7 +107,7 @@ public class GUI implements MouseListener
          button[3].setBounds(c.getX()*4+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
          formationPanel.add(button[0]);
          formationPanel.add(button[1]);
-         formationPanel.add(button[2]);
+//         formationPanel.add(button[2]);
          formationPanel.add(button[3]);
          button[0].setBorderPainted(false);
          button[0].setContentAreaFilled(false);
@@ -148,18 +148,18 @@ public class GUI implements MouseListener
            }
        });
        
-       button[2].addActionListener(new ActionListener() {
-
-           @Override
-           public void actionPerformed(ActionEvent ae) //Wedge Formation
-           {
-               
-               GUI.unitSelected.currentFormation.setWedgeFormation();
-               GUI.toggleButtons(formationPanel, false);
-               GUI.toggleButtons(buttonPanel, true);
-
-           }
-       });
+//       button[2].addActionListener(new ActionListener() {
+//
+//           @Override
+//           public void actionPerformed(ActionEvent ae) //Wedge Formation
+//           {
+//               
+//               GUI.unitSelected.currentFormation.setWedgeFormation();
+//               GUI.toggleButtons(formationPanel, false);
+//               GUI.toggleButtons(buttonPanel, true);
+//
+//           }
+//       });
        button[3].addActionListener(new ActionListener(){
            
            @Override
@@ -372,14 +372,9 @@ public class GUI implements MouseListener
         GUI.panel.add(moveCountPanel);
         
     }
-   
-   
-   
-   
-   
     //toggles whether buttons are seen or not seen
     //gets buttons by checking to see components on the panel
-      //buttonLoader, used for button action listening
+    //buttonLoader, used for button action listening
    
    public static void buttonLoader(){
        GUI.panel.setLayout(null);
@@ -390,11 +385,7 @@ public class GUI implements MouseListener
        buttonPanel.setOpaque(false);
        JButton[] button=new JButton[6]; //the array of all the "bottom" buttons
        button=initializeButtons(button); //method that creates the buttons, than returned to the variable
-       
-       
        addButtonsToPanel(button); //this method adds the buttons to the panel
-       
-       
        //the rest of the method deals with what happens when you push each button
        button[0].addActionListener(new ActionListener() {
            @Override
@@ -553,12 +544,8 @@ public class GUI implements MouseListener
                 //this button will end the turn of the player and go to next player's turn
 //                 System.out.println("test for end Turn Button");
                  if(GUI.unitSelected!=null)
-                 {
-                      GUI.unitSelected.resetUnitPoints();
-                      GUI.unitSelected.endTurn();
-                     
                       GUI.unitSelected=null;
-                 }
+                 
                  GUI.tileClicked=null;
                  GUI.toggleButtons(buttonPanel, false);
                  if(moveC!=null&&moveC.isVisible())
@@ -584,7 +571,6 @@ public class GUI implements MouseListener
                      {
                          u.undefend();
                      }
-                     
                     Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
