@@ -13,7 +13,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -48,8 +47,8 @@ public final class Openingmenuscreen extends JFrame
             
             Game game = new Game(); 
             removePanels();
-             String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
-           JOptionPane.showMessageDialog(null, name   +" choose your army:");
+            String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
+            JOptionPane.showMessageDialog(null, name   +" choose your army:");
             Player p1 = new Player(name);
             name = JOptionPane.showInputDialog(null, " Enter your name player 2");
             JOptionPane.showMessageDialog(null,name +"  choose your army:");

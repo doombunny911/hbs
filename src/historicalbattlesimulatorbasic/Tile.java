@@ -83,8 +83,7 @@ public class Tile extends Rectangle
     }
     
     //sets tileBlocked boolean variable to false, to be used for when the unit steps off
-    public void setTileUnBlocked()
-    {
+    public void setTileUnBlocked(){
         tileBlocked=false;
     }
     //test if someone is occupying it. Will be used to prevent collision

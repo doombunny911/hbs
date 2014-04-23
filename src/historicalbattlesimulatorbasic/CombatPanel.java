@@ -32,8 +32,8 @@ public class CombatPanel extends JPanel
     Unit unitSelected;
     Player enemyPlayer;
     ArrayList<Unit> enemyUnits;
-     boolean visible = true;
-     ArrayList<JButton> buttons = new ArrayList<>();
+    boolean visible = true;
+    ArrayList<JButton> buttons = new ArrayList<>();
    
     //get all units in range
     public static void main(String[] args){
@@ -112,43 +112,43 @@ public class CombatPanel extends JPanel
     public void setUpButtons(){
         setLayout(new GridLayout(5,1));
         Image imgx = GUI.unitSelected.getUnitPic(GUI.unitSelected);
-            Image newimgx = imgx.getScaledInstance(10, 10,  java.awt.Image.SCALE_SMOOTH); 
-            ImageIcon imageOfUnit = new ImageIcon(newimgx);
+        Image newimgx = imgx.getScaledInstance(10, 10,  java.awt.Image.SCALE_SMOOTH); 
+        ImageIcon imageOfUnit = new ImageIcon(newimgx);
 
         final JLabel title0 = new JLabel("<html><h4><b><center><font color = 'red' face='Times New Roman'> Combat</b><br></font></center></h4></html>", JLabel.CENTER) ;
         final JLabel title1 = new JLabel(unitSelected.nameOfUnit,imageOfUnit, JLabel.CENTER);
       //   title.setBackground(Color.white);
         final JLabel title2 = new JLabel("<html> <font color = 'white' face='Times New Roman'"
                 + "> Click on your target! If none are present, hit cancel</b></font></html>");
-          add(title0);
-          add(title1);
-          add(title2);
+        add(title0);
+        add(title1);
+        add(title2);
          
-          for(final Unit u: this.enemyUnits)
-           {      
-               ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
-               System.out.println(u.nameOfUnit);
-               Image img = unitImage.getImage();
-               Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
-               ImageIcon unitImage2 = new ImageIcon(newimg);
-               final JButton button = new JButton((u.nameOfUnit),unitImage2) ;
-               buttons.add(button);
+        for(final Unit u: this.enemyUnits)
+        {      
+              ImageIcon unitImage = new ImageIcon(u.getUnitPic(u));
+              System.out.println(u.nameOfUnit);
+              Image img = unitImage.getImage();
+              Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); 
+              ImageIcon unitImage2 = new ImageIcon(newimg);
+              final JButton button = new JButton((u.nameOfUnit),unitImage2) ;
+              buttons.add(button);
 //            unitImages.add(button);
             
             
            // button.setOpaque(false);
            // button.setContentAreaFilled(false);
-            button.setBorderPainted(true);
-            button.setBackground(Color.black);
-            button.setForeground(Color.white);
+              button.setBorderPainted(true);
+              button.setBackground(Color.black);
+              button.setForeground(Color.white);
             // button.setBorderPainted(false);
 
-            add(button);
-                button.addActionListener(new ActionListener() 
-                {
-                    @Override
-                public void actionPerformed(ActionEvent e)
-                {
+              add(button);
+              button.addActionListener(new ActionListener() 
+              {
+                 @Override
+              public void actionPerformed(ActionEvent e)
+              {
                     enemyUnitFound = u;
                     GUI.panel.paintImmediately(GUI.panel.getX(), GUI.panel.getY(), GUI.panel.getWidth(),GUI.panel.getHeight());
                     
@@ -173,27 +173,23 @@ public class CombatPanel extends JPanel
              });
   
        
-     if (!GUI.unitSelected.unitDefeat)
-                    {
-                    GUI.toggleButtons(GUI.buttonPanel,true);
-                    }
-    }
-           JButton close = new JButton("Close");
+       if (!GUI.unitSelected.unitDefeat)
+       {
+           GUI.toggleButtons(GUI.buttonPanel,true);
+       }
+      }
+        JButton close = new JButton("Close");
         close.setForeground(Color.white);
         close.setBackground(Color.red);
         close.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent ae) //box Formation
-           {
-               
-              setVisible(false);
-             
-           }
+        @Override
+        public void actionPerformed(ActionEvent ae) //box Formation
+        {
+           setVisible(false);
+        }
        });
            add(close);
     }
 }
-    //When button is clicked, run 'attack' [subtract one point]
-    //
     
 

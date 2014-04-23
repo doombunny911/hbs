@@ -52,12 +52,10 @@ public final class UnitFormations
     public static void setPikeWall(Unit unit){
         
     }
-    public void setSoldiersPerRow(int sPerLine)
-    {
+    public void setSoldiersPerRow(int sPerLine){
         soldiersPerRow = sPerLine;
     }
-    public void setSoldiersPerColumn(int num)
-    {
+    public void setSoldiersPerColumn(int num){
         soldiersPerColumn=num;
     }
     public UnitFormations locateLocationOfSprites(Unit unit) {
@@ -216,7 +214,7 @@ public final class UnitFormations
     
     }
 
-public UnitFormations setBoxFormation(){
+    public UnitFormations setBoxFormation(){
         whichFormation=1;
         soldiersPerSprite =  1;//each sprite represents this many soldiers
         int depth=0;
@@ -465,7 +463,6 @@ public UnitFormations setBoxFormation(){
         whichFormation=2;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     public UnitFormations  setColumnFormation() {
         
        System.out.println(this.unit.getSpriteName());
@@ -623,7 +620,7 @@ public UnitFormations setBoxFormation(){
         
         return this;
     }
-        public UnitFormations defaultFormation(){
+    public UnitFormations defaultFormation(){
 //        
 //        System.out.println(this.unit.getSpriteName());
 //        
@@ -778,7 +775,7 @@ public UnitFormations setBoxFormation(){
        return this;
 //    
     }
-        public UnitFormations setColumnFormation2(){
+    public UnitFormations setColumnFormation2(){
             System.out.println(this.unit.getSpriteName());
         
        whichFormation =COLUMN;
