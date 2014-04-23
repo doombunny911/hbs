@@ -6,6 +6,7 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -62,6 +63,9 @@ public class GUI implements MouseListener
     static JPanel combatPanel;
     private static JPanel turnPanel;
     static ImageIcon specialAbility;
+    static JPanel moveCountPanel;
+
+   
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel) {
@@ -257,6 +261,7 @@ public class GUI implements MouseListener
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
     
+    @Override
    public void mouseClicked(MouseEvent mac) {
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
@@ -340,25 +345,7 @@ public class GUI implements MouseListener
                       }
                    }
                }
-           }
-           
-//        else if(userTriesToSelectUnitBeforeAllUnitsArePlaced())  
-//        {
-//            //user is trying to select a unit before all the units are loaded
-//            JOptionPane.showMessageDialog(null, "please load all units before trying to select a unit ");
-//        }
-        
-        //used for attacking only, if attack button is selected, The unitSelected
-       // is stored in attackUnit and we wait until a user clicks the unit that 
-       // they want to attack.  Currently no range check to see if they are
-       //able to reach them
-//        if(thereIsAnAttackReadyToHappenAndTileClickedIsOccupied())
-//        {
-//            GUI.attackUnit.attack(GUI.unitSelected);
-//            GUI.attackUnit=null;
-//            impendingAttack=false;
-//        }
-        
+           } 
         GUI.repainter();
     }
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
@@ -366,9 +353,32 @@ public class GUI implements MouseListener
         System.out.println("in there is a unit ready to be loaded");
         return GUI.tileClicked!=null&&unitNum!=0;
     }
+   
+    public static void initMoveCountPanel() {
+        moveCountPanel = new JPanel();
+        moveCountPanel.setLayout(null);
+        JLabel text = new JLabel(Integer.toString((int)GUI.unitSelected.moveMentCounter));
+        moveCountPanel.setBounds(GUI.gameFrame.getWidth()/3,GUI.gameFrame.getHeight()/2,
+                GUI.gameFrame.getWidth()/5,GUI.gameFrame.getHeight()/4);
+        text.setSize(moveCountPanel.getSize());
+        System.out.println("the size of moveCountPanel = " + moveCountPanel.getSize());
+        text.setFont(new Font("",Font.PLAIN,10));
+        
+        moveCountPanel.add(text);
+        moveCountPanel.setVisible(true);
+        GUI.panel.add(moveCountPanel);
+        
+        GUI.repainter();
+    }
+   
+   
+   
+   
+   
     //toggles whether buttons are seen or not seen
     //gets buttons by checking to see components on the panel
       //buttonLoader, used for button action listening
+   
    public static void buttonLoader(){
        GUI.panel.setLayout(null);
        GUI.buttonPanel.setLayout(null);
@@ -461,7 +471,7 @@ public class GUI implements MouseListener
                   {
                      GUI.moveC.setVisible(true);      
                   }
-                  //if it is not visible, make it visible
+                  GUI.initMoveCountPanel();
                   GUI.repainter();
                
            }
@@ -529,7 +539,7 @@ public class GUI implements MouseListener
              { 
                  
                  GUI.refreshTurnPanel();
-                 
+                 GUI.moveCountPanel.setVisible(false);
                  
                  if(GUI.formationPanel!=null&&formationPanel.isVisible())
                      GUI.toggleButtons(formationPanel, false);
@@ -542,7 +552,6 @@ public class GUI implements MouseListener
                      
                       GUI.unitSelected=null;
                  }
-                 GUI.refreshTurnPanel();
                  GUI.tileClicked=null;
                  GUI.toggleButtons(buttonPanel, false);
                  if(moveC!=null&&moveC.isVisible())
@@ -571,7 +580,7 @@ public class GUI implements MouseListener
                      
                     Game.playersForDemo.get(0).myTurn=false;
                     Game.playersForDemo.get(1).myTurn=true;
-                     JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
+                    JOptionPane.showMessageDialog(null, Game.playersForDemo.get(0).playerName + " Your turn is now over. It is now time for " + Game.playersForDemo.get(1).playerName + " to take their turn" );
                     
                       GUI.refreshTurnPanel();
                  }
