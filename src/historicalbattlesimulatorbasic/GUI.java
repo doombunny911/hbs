@@ -13,7 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -995,8 +998,13 @@ public class GUI implements MouseListener
      boolean secret=false;
        if(turnCountForPersians<20&&secret!=true)
        {
-           System.out.println("TRUEEEE");
+         //  System.out.println("TRUEEEE");
             GUI.gameMap.generateTiles();
+         try {
+             GUI.gameMap.saveMap("MapSaveTest");
+         } catch (IOException ex) {
+             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
            secret = true;
           
        }
