@@ -60,7 +60,8 @@ public void paintComponent(Graphics g) {
          for(int j=0;j<sWidth;j++)
          {
             
-                if(tileHasASpriteFromUnitSelectedat(j, i))
+             
+                 if(tileHasASpriteFromUnitSelectedat(j, i))
                 {
                     Stroke originalStroke = g2.getStroke();
                     g2.setStroke(new BasicStroke(4));
@@ -83,7 +84,10 @@ public void paintComponent(Graphics g) {
                 }
                 
                  GUI.tileGameMap[j][i].paintTile((g2));  
-         
+              if(GUI.tileGameMap[j][i].tileBlocked)
+               {
+                   g2.fill(GUI.tileGameMap[j][i]);
+               }
          }
       }
       //sprites
