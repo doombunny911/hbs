@@ -28,7 +28,7 @@ public final class UnitPlacer extends JPanel
     Unit unitToBeLoaded;
     ArrayList<Unit> unitArrayList;
     int index =0;
-    boolean check = false;
+    static boolean check = false;
     String player = "";
    public static void main(String[] args){
         UnitLoader ul = new UnitLoader();
@@ -104,17 +104,16 @@ public final class UnitPlacer extends JPanel
                     @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                  if(check)
+                  if(UnitPlacer.check)
                   {
                       //nothing
                   }
                   else
                   {
-                     check=true;
+                     UnitPlacer.check=true;
                      System.out.println(u.nameOfUnit);
                      button.setVisible(false);
-                    numOfUnitsToPlace--;
-      //              System.out.println("new num in unitPlacer = "+numOfUnitsToPlace );
+                     numOfUnitsToPlace--;
                      unitToBeLoaded=u;
                  
                      title.setVisible(false);

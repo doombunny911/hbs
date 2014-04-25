@@ -60,7 +60,7 @@ public class GUI implements MouseListener
     private static JPanel turnPanel;
     static ImageIcon specialAbility;
     static JPanel moveCountPanel;
-
+    static Scenario scenario;
    
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
@@ -261,17 +261,50 @@ public class GUI implements MouseListener
     
     @Override
    public void mouseClicked(MouseEvent mac) {
+       
+       
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
-       GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-       if(player1IsReadyToLoadUnits()) 
+       GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY];
+       if(GUI.scenario!=null)
        {
+          
+          
+          if(player1IsReadyToLoadUnits())
+          {
+              System.out.println("unitLoaded  = " + Game.playersForDemo.get(0).up.unitToBeLoaded);
+              System.out.println(GUI.tileClicked.xPosition);
+              System.out.println( GUI.tileClicked.yPosition);
+              loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+              UnitPlacer.check=false;
+              Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+          }
+          else if(player2IsReadyToLoadUnits())
+          {
+              loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+              UnitPlacer.check=false;        
+              Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+              
+          }
+          
+          if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+          {
+              
+              GUI.unitSelected = determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
+              toggleButtons(GUI.buttonPanel,true);
+          }
+       }
+       else
+       {
+           
+           if(player1IsReadyToLoadUnits()) 
+           {
            loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
            
            Game.playersForDemo.get(0).up.check=false;
            Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-           System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
-           System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
+//           System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
+//           System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
        else if(player2IsReadyToLoadUnits())
@@ -344,6 +377,8 @@ public class GUI implements MouseListener
                    }
                }
            } 
+       }
+       
         GUI.repainter();
     }
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
@@ -353,21 +388,25 @@ public class GUI implements MouseListener
     }
    
     public static void initMoveCountPanel() {
-        moveCountPanel = new JPanel();
-        moveCountPanel.setLayout(null);
-        moveCountPanel.setEnabled(false);
-        moveCountPanel.setOpaque(false);
-        JLabel text = new JLabel(Integer.toString((int)GUI.unitSelected.moveMentCounter));
-        moveCountPanel.setBounds(GUI.gameFrame.getWidth()/2,GUI.gameFrame.getHeight()/2,
-                GUI.gameFrame.getWidth()/15,GUI.gameFrame.getHeight()/15);
-        text.setSize(moveCountPanel.getSize());
-        text.setForeground(Color.red);
-        text.setOpaque(false);
-        text.setFont(new Font("serif",Font.BOLD,50));
-        
-        moveCountPanel.add(text);
-        moveCountPanel.setVisible(true);
-        GUI.panel.add(moveCountPanel);
+        if(scenario==null)
+        {
+            moveCountPanel = new JPanel();
+            moveCountPanel.setLayout(null);
+            moveCountPanel.setEnabled(false);
+            moveCountPanel.setOpaque(false);
+            JLabel text = new JLabel(Integer.toString((int)GUI.unitSelected.moveMentCounter));
+            moveCountPanel.setBounds(GUI.gameFrame.getWidth()/2,GUI.gameFrame.getHeight()/2,
+                    GUI.gameFrame.getWidth()/15,GUI.gameFrame.getHeight()/15);
+            text.setSize(moveCountPanel.getSize());
+            text.setForeground(Color.red);
+            text.setOpaque(false);
+            text.setFont(new Font("serif",Font.BOLD,50));
+
+            moveCountPanel.add(text);
+            moveCountPanel.setVisible(true);
+            GUI.panel.add(moveCountPanel); 
+        }
+       
         
     }
     //toggles whether buttons are seen or not seen
@@ -599,13 +638,23 @@ public class GUI implements MouseListener
         
         button = setButtonsWithoutDefaults(button);
             
-        
-        buttonPanel.add(button[0]);
-        buttonPanel.add(button[1]);
-        buttonPanel.add(button[2]);
-        buttonPanel.add(button[3]);
-        buttonPanel.add(button[4]);
-        buttonPanel.add(button[5]);
+        if(GUI.scenario!=null)
+        {
+            buttonPanel.add(button[2]);
+            buttonPanel.add(button[3]);
+            buttonPanel.add(button[4]);
+            buttonPanel.add(button[5]);
+        }
+        else
+        {
+             buttonPanel.add(button[0]);
+            buttonPanel.add(button[1]);
+            buttonPanel.add(button[2]);
+            buttonPanel.add(button[3]);
+            buttonPanel.add(button[4]);
+            buttonPanel.add(button[5]);
+        }
+       
        GUI.panel.add(buttonPanel);
        GUI.repainter();
     }
@@ -663,16 +712,21 @@ public class GUI implements MouseListener
        
        ImageIcon end = bil.getIconEndTurn();
        GUI.endTurn=new JButton(end);
-       endTurn.setVisible(true);
-       //endTurn.setOpaque(false);
-       endTurn.setBorderPainted(true);
-       endTurn.setBackground(Color.black);
+       
      //  endTurn.setContentAreaFilled(false);
        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
-       endTurn.setBorder(borderUsed);
        GUI.initTurnPanel();
-       endTurn.setBounds(GUI.panel.getWidth()-100,turnPanel.getHeight(),100,50);
-       GUI.panel.add(endTurn);
+       if(scenario==null)
+       {
+           endTurn.setVisible(true);
+            //endTurn.setOpaque(false);
+             endTurn.setBorderPainted(true);
+            endTurn.setBackground(Color.black);
+            endTurn.setBorder(borderUsed);      
+             endTurn.setBounds(GUI.panel.getWidth()-100,turnPanel.getHeight(),100,50);
+             GUI.panel.add(endTurn);
+          
+       }
        
       
        return button;
@@ -707,16 +761,20 @@ public class GUI implements MouseListener
       }   
    public static void initTurnPanel(){
      // GUI.panel.remove(turnPanel);
-       turnPanel = new JPanel();
-       turnPanel.setBackground(Color.black);
-       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
-    
-        refreshTurnPanel();
-       javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
-       turnPanel.setBorder(borderUsed);
+       if(GUI.scenario==null)
+       {
+            turnPanel = new JPanel();
+            turnPanel.setBackground(Color.black);
+            turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
+
+             refreshTurnPanel();
+            javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
+            turnPanel.setBorder(borderUsed);
+
+            GUI.panel.add(turnPanel);
+            refreshTurnPanel();
+       }
        
-       GUI.panel.add(turnPanel);
-       refreshTurnPanel();
       
    } 
    static boolean oneDisplay1 = true;
@@ -926,10 +984,10 @@ public class GUI implements MouseListener
 //        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
     }
    protected boolean player2IsReadyToLoadUnits() {
-        return Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;
+        return Game.playersForDemo!=null&&UnitPlacer.check&&GUI.tileClicked!=null&&Game.playersForDemo.get(1).up.unitToBeLoaded!=null;
     }
    protected boolean player1IsReadyToLoadUnits() {
-        return Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null;
+        return Game.playersForDemo!=null&&UnitPlacer.check&&GUI.tileClicked!=null&&Game.playersForDemo.get(0).up.unitToBeLoaded!=null;
     }
    protected static JButton[] removeDefaultLookOfJButtons(JButton[] button) {
         button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
@@ -1005,7 +1063,7 @@ public class GUI implements MouseListener
    protected static boolean componentNotNullAndIsNotVisible(Component c) {
         return c!=null&&c.isVisible()==false;
     }
-   protected static int determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(Unit u) {
+   protected static int determineWhichUnitDrawContainsUnitIdEqaulToUnitSelected(Unit u) {
         //find the index of the unitDraw that needs to be removed
         int index=-1;
         for(int i=0;i<GUI.unitDraws.size();i++)
@@ -1021,6 +1079,24 @@ public class GUI implements MouseListener
         }if(index==-1)
            System.out.println("never found the right index in compass");
         return index;
+    }
+   protected static Unit determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(int unitID) {
+        //find the index of the unitDraw that needs to be removed
+        int index=-1;
+        Unit u;
+        for(int i=0;i<GUI.unitDraws.size();i++)
+        {
+//           System.out.println("in moveLogic before index selection");
+            if(unitID==GUI.unitDraws.get(i).thisUnit.getUnitID())
+            {
+//                System.out.println("unitID of unitDraw at "+ i+ " = "+
+//                        GUI.unitDraws.get(i).thisUnit.getUnitID());
+                u=GUI.unitDraws.get(i).thisUnit;
+                return u;
+            }
+        }if(index==-1)
+           System.out.println("never found the right index in compass");
+        return null;
     }
    protected static void removeSoldiersFromPreviousTiles(Unit u) {
         //remove the soldiers from the previous tiles

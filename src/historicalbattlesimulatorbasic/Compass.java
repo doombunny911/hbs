@@ -183,10 +183,14 @@ public final class Compass extends JPanel{
     public void moveLogic(){
     
        
-       int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
+       int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelected(GUI.unitSelected);
        int tileMoveChange;
-       GUI.moveCountPanel.setVisible(false);
-       GUI.moveCountPanel.setVisible(true);
+       if(GUI.scenario==null)
+       {
+           GUI.moveCountPanel.setVisible(false);
+           GUI.moveCountPanel.setVisible(true); 
+       }
+      
        if(GUI.unitSelected.isSprinting)
        {
             tileMoveChange=GUI.tileWidth*2;
@@ -200,6 +204,7 @@ public final class Compass extends JPanel{
       {
           
           System.out.println("in compass logic, should be free to move");
+          if(GUI.scenario==null)
            GUI.moveCountPanel.setVisible(false);
          GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
          if(!GUI.unitSelected.hasMoved) 
@@ -226,7 +231,9 @@ public final class Compass extends JPanel{
             GUI.unitDraws.add(draw);//adds the new unit
             previousMoveDirection= moveDirection ;
             GUI.unitSelected.moveMentCounter--; //removes one move counter from the unit 
-            GUI.initMoveCountPanel();
+            
+            if(GUI.scenario==null)
+                GUI.initMoveCountPanel();
             GUI.repainter();
       } 
    }
@@ -559,7 +566,7 @@ public final class Compass extends JPanel{
         
         Tile t = new Tile(0,0,0,0);
         
-       int index =GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
+       int index =GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelected(GUI.unitSelected);
        
        for(int i=0;i<GUI.numberOfTilesHeight;i++)
        {
