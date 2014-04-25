@@ -49,6 +49,11 @@ public class Tile extends Rectangle
         this.zPosition =0;
     }
     
+    public void setPosition(int xPosition, int yPosition)
+    {
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+    }
     //set the height
     public void setHeight(int Height){
         this.zPosition=Height;

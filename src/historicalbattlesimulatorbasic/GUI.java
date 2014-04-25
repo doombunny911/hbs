@@ -60,6 +60,22 @@ public class GUI implements MouseListener
     private static JPanel turnPanel;
     static ImageIcon specialAbility;
     static JPanel moveCountPanel;
+    static TerrainPlacer tp;
+    static boolean terrainPlacerActive;
+    static void terrainPlacer()
+    { 
+        BufferedImageLoaders bil = new BufferedImageLoaders();
+        bil.loadAllImages();
+        ArrayList<BufferedImageName> image = bil.getImages();
+        tp = new TerrainPlacer(image);
+      
+       // tp.setUpButtons(image);
+       terrainPlacerActive= true;
+        GUI.panel.add(tp);
+        GUI.repainter();
+      
+    }
+   
 
    
     
@@ -241,7 +257,7 @@ public class GUI implements MouseListener
    //this is called when the original unitDraws need to be loaded the first time, 
    //will probably become useless in final project but still pivotal now
    public void loadUnit(Unit unit) {
-        System.out.println("in loadUnit");
+ //       System.out.println("in loadUnit");
         //gets the arrayList stored in unitLoader
 //        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
         //sets the tile location of where they are at
@@ -258,13 +274,33 @@ public class GUI implements MouseListener
     //mouseClicked holds a lot of logic due to the event driven processes of our project
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
-    
+      public void loadTerrainPiece(Tile t) {
+ //       System.out.println("in loadUnit");
+        //gets the arrayList stored in unitLoader
+//        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
+        //sets the tile location of where they are at
+        t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+        //adds it to the arrayList in GUI that is currently storing the unitDraws
+       
+        
+        GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+       if(t.tileBlocked)
+       {
+           GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+       }
+       tp.addToSaver(t);
+        GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
+//        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
+        //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
+//        GUI.repainter(); //repaints
+    }
+   
     @Override
    public void mouseClicked(MouseEvent mac) {
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-       if(player1IsReadyToLoadUnits()) 
+       if(player1IsReadyToLoadUnits()&& terrainPlacerActive == false) 
        {
            loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
            
@@ -274,15 +310,23 @@ public class GUI implements MouseListener
            System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-       else if(player2IsReadyToLoadUnits())
+       else if(player2IsReadyToLoadUnits()&& terrainPlacerActive == false)
        {
            loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
            Game.playersForDemo.get(1).up.check=false;
            Game.playersForDemo.get(1).up.unitToBeLoaded=null;
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
+       else if(terrainLoading()) 
+       {
+           loadTerrainPiece(tp.terrainToBeLoaded);
+           
+       //    System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
+         //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
+//           System.out.println("in mouseClicked going to unitplacer ");
+       }
 //       if(GUI.tileClicked!=null)
-        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
+//        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
       if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
       {
               if(player1Turn())   
@@ -926,10 +970,10 @@ public class GUI implements MouseListener
 //        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
     }
    protected boolean player2IsReadyToLoadUnits() {
-        return Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;
+        return terrainPlacerActive==false&&Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;
     }
    protected boolean player1IsReadyToLoadUnits() {
-        return Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null;
+        return terrainPlacerActive==false&&Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null;
     }
    protected static JButton[] removeDefaultLookOfJButtons(JButton[] button) {
         button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
@@ -1250,4 +1294,9 @@ public class GUI implements MouseListener
    @Override
    public void mouseExited(MouseEvent me){
     }
+
+    private boolean terrainLoading() 
+    {
+     return true;   
+      }
 }

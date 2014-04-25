@@ -34,8 +34,9 @@ public class Map
    BufferedImageName mountain = BufferedImageLoaders.imageLoader("mountainRock.png");
    BufferedImageName wave = BufferedImageLoaders.imageLoader("wave.png");
    BufferedImageName sand = BufferedImageLoaders.imageLoader("sand.png");
+     BufferedImageName tree2 = BufferedImageLoaders.imageLoader("tree.png");
    BufferedImageName rocksGround = BufferedImageLoaders.imageLoader("rocksGround2.png");
-   BufferedImageName tree = BufferedImageLoaders.imageLoader("tree.png");
+ 
     public static void main(String[] args) throws IOException{
 //        Map m = MapCreator.createMap();
        // m.saveMap("file");
@@ -147,14 +148,15 @@ public class Map
         if(i<(1*GUI.numberOfTilesHeight/5)||i>4*GUI.numberOfTilesHeight/5)
         {
             if(rng.nextInt(10)<8)
-            {
-             GUI.tileGameMap[j][i].setImage(tree);
-             GUI.tileGameMap[j][i].setTileBlocked();
+           {
+           
+             GUI.tileGameMap[j][i].setImage(tree2);
+             GUI.tileGameMap[j][i].setTileBlocked(); 
             }
            else
             {
-                 GUI.tileGameMap[j][i].setImage(grass);
-            }
+                GUI.tileGameMap[j][i].setImage(grass);
+          }
         }
         else if((j>(9.75*GUI.numberOfTilesWidth/20)&&j<10.25*GUI.numberOfTilesWidth/20))
         {
@@ -162,17 +164,12 @@ public class Map
         }
         else 
         {
-            if(rng.nextInt(10)<8)
-            {
+            
              GUI.tileGameMap[j][i].setImage(dirt);
              GUI.tileGameMap[j][i].setTerrainDifficultyLevel(2);
             // GUI.tileGameMap[j][i].setTileBlocked();
-            }
-           else
-            {
-                 GUI.tileGameMap[j][i].setImage(grass);
-                 
-            }
+            
+           
              
         }
     }
