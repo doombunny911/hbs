@@ -271,7 +271,7 @@ for(int i=0; i<unitSize;i++)
         
      if(CombatPanel.enemyUnitFound!=null)
          CombatPanel.enemyUnitFound=null;
-     int index=   GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(defender);
+     int index=   GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelected(defender);
      GUI.removeSoldiersFromPreviousTiles(defender);
      System.out.println("defender size = " +defender.unitSize + " " + defender.unitSoldiers.size()); 
      UnitDraw draw = new UnitDraw(defender,new Tile(defender.xPosition,defender.yPosition,GUI.tileWidth,GUI.tileWidth));
@@ -360,8 +360,12 @@ for(int i=0; i<unitSize;i++)
         return unitPoints;
     }
     public void expendUnitPoint(){
-        this.unitPoints = this.unitPoints -1;
-        GUI.refreshTurnPanel();
+        if(GUI.scenario==null)
+        {
+           this.unitPoints = this.unitPoints -1;
+           GUI.refreshTurnPanel();
+        }
+        
     }
     public boolean hasUnitPoints(){
         if(this.unitPoints>0)
@@ -485,7 +489,7 @@ if(!parent.exists() && !parent.mkdirs()){
        //use specialAbility
    }
     public void drawUnit(Unit unit) {
-       int  index=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedAt(GUI.unitSelected);
+       int  index=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelected(GUI.unitSelected);
 
          unit.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
 

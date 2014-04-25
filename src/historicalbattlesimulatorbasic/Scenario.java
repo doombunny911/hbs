@@ -16,12 +16,12 @@ class Scenario {
     
     //needs to create a map
     
-    public Scenario()
-    {
+    public Scenario(){
         Game game = new Game();
         
         Map map = new Map(10);
-       
+        GUI.scenario = this;
+   
         String name = JOptionPane.showInputDialog(null, "Enter the name for player 1");
         JOptionPane.showMessageDialog(null," choose the army for: " + name);
         Player p1 = new Player(name);
@@ -38,6 +38,7 @@ class Scenario {
        p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
        GUI.panel.add(p1.up);
        GUI.panel.add(p2.up);           
+       GUI.scenario = this;
        game.gameMap=map;
       GUI.buttonLoader();
         
