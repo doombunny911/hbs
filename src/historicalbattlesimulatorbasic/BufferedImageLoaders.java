@@ -27,7 +27,7 @@ public class BufferedImageLoaders
     private ArrayList<BufferedImageName> imageList = new ArrayList<>();
     BufferedImageName grass = grassLoader();
     BufferedImageName tree, dirt, rock, water;
-    BufferedImage attackB, defendB, cancelB, setFormB, moveB, checkB, scroll, squareB, wedgeB, lineB;
+    BufferedImage attackB, defendB, cancelB, setFormB, moveB, checkB, scroll, squareB, wedgeB, lineB, columnB;
     ArrayList<BufferedImage> buttons = new ArrayList();
     private BufferedImage background;
     private BufferedImage welcomePanelImage;
@@ -59,6 +59,7 @@ public class BufferedImageLoaders
       
            lineB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"lineFormation.png"));
       
+           columnB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"columnFormation.png"));
       
            attackB = ImageIO.read(new File("Sprites"+File.separator+"Buttons"+File.separator+"Attack.png"));
       
@@ -213,6 +214,13 @@ public class BufferedImageLoaders
             Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
             wedgeForm = new ImageIcon(newimg);
             return wedgeForm;
+    }
+    public ImageIcon getColumnFormIcon(){
+        ImageIcon column = new ImageIcon(columnB);
+            Image img = column.getImage();
+            Image newimg = img.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); 
+            column = new ImageIcon(newimg);
+            return column;
     }
     public ImageIcon getLineFormIcon(){
         ImageIcon lineFormation = new ImageIcon(lineB);

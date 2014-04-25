@@ -13,10 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -95,10 +92,12 @@ public class GUI implements MouseListener
          ImageIcon lineB = bil.getLineFormIcon();
          ImageIcon boxB = bil.getSquareFormIcon();
          ImageIcon wedgeB = bil.getWedgeFormIcon();
+         ImageIcon columnB = bil.getColumnFormIcon();
+                 
          button[0]=  new JButton(lineB);
          button[1] = new JButton(boxB);
          button[2] = new JButton(wedgeB);
-         button[3] = new JButton("column");
+         button[3] = new JButton(columnB);
          Component c = GUI.buttonPanel.getComponent(0);
          button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
          button[1].setBounds(c.getX()*2+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
@@ -119,7 +118,7 @@ public class GUI implements MouseListener
          button[2].setOpaque(false);
          button[3].setBorderPainted(false);
          button[3].setContentAreaFilled(false);
-         button[3].setOpaque(true);
+         button[3].setOpaque(false);
         formationPanel.setOpaque(false);
 //         busy=true;
          button[0].addActionListener(new ActionListener() {
@@ -994,30 +993,6 @@ public class GUI implements MouseListener
    public static boolean player1Turn() {
                return Game.playersForDemo.get(0).myTurn;
            }
-   public static boolean secretPathAvailable(){
-     boolean secret=false;
-       if(turnCountForPersians<20&&secret!=true)
-       {
-         //  System.out.println("TRUEEEE");
-            GUI.gameMap.generateTiles();
-         try {
-             GUI.gameMap.saveMap("MapSaveTest");
-         } catch (IOException ex) {
-             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-         }
-           secret = true;
-          
-       }
-       else if(turnCountForPersians<20)
-       {
-           secret = true;
-       }
-       else
-       {
-          secret = false;
-       }
-       return secret;
-   }
    public static boolean player2HasNoUnits() {
                return Game.playersForDemo.get(1).allUnits.isEmpty()||Game.playersForDemo.get(0).isWinner;
            }

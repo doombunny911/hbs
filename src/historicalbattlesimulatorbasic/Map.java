@@ -142,12 +142,12 @@ public class Map
         
         //secret path
         
-        if(GUI.secretPathAvailable()&&i>4*GUI.numberOfTilesHeight/10&& j<GUI.numberOfTilesWidth/2 && j>GUI.numberOfTilesWidth/6&&
+        if(i>4*GUI.numberOfTilesHeight/10&& j<GUI.numberOfTilesWidth/2 && j>GUI.numberOfTilesWidth/6&&
                 j>5*GUI.numberOfTilesWidth/10 && i>4*GUI.numberOfTilesHeight/10&& j>=GUI.numberOfTilesWidth/2 &&
                 j<=9*GUI.numberOfTilesWidth/10&&
                 j<(6*GUI.numberOfTilesWidth/10)&&
                 i>8.5*GUI.numberOfTilesHeight/10 &&
-                i<9*GUI.numberOfTilesHeight/10||GUI.secretPathAvailable()&&
+                i<9*GUI.numberOfTilesHeight/10&
                 i>8.5*GUI.numberOfTilesHeight/10 &&
                 i<9*GUI.numberOfTilesHeight/10)
         {
