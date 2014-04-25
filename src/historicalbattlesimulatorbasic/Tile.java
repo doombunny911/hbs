@@ -48,12 +48,16 @@ public class Tile extends Rectangle
         this.isOccupied=false; 
         this.zPosition =0;
     }
-    
+    public void setBlocked()
+    {
+        this.tileBlocked = true;
+    }
     public void setPosition(int xPosition, int yPosition)
     {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
+    
     //set the height
     public void setHeight(int Height){
         this.zPosition=Height;
@@ -255,6 +259,11 @@ public class Tile extends Rectangle
                     this.yPosition, GUI.tileWidth,
                     GUI.tileWidth,null);
       
+    }
+BufferedImageLoaders bil = new BufferedImageLoaders();
+    void setImageFromString(String imageName) {
+        BufferedImage bi = bil.getImage(imageName);
+       this.image = new BufferedImageName( bi, imageName);
     }
     
 }

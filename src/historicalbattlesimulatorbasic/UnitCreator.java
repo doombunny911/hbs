@@ -89,7 +89,7 @@ public class UnitCreator
             else if(i==2)
             {
                  final JFileChooser fc = new JFileChooser();
-                 File dir = new File("Sprites"+File.separator+"Unit Sprites"+File.separator+"anchorSprites.txt");
+                 File dir = new File("Sprites"+File.separator+"UnitSprites"+File.separator+"anchorSprites.txt");
                  System.out.println(dir);
                  fc.setCurrentDirectory(dir);
                  File  current = fc.getCurrentDirectory();

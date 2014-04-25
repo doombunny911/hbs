@@ -6,14 +6,21 @@
 
 package historicalbattlesimulatorbasic;
 
+import static historicalbattlesimulatorbasic.UnitLoader.loadUnit;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 
 /**
@@ -24,6 +31,7 @@ import java.util.Random;
 public class Map 
 {
    BufferedImageLoaders bil = new BufferedImageLoaders();
+   ArrayList<Tile> tilesToIncorporate = new ArrayList();
    private double squareHeight;
    private double squareWidth;
    private String name;
@@ -172,6 +180,29 @@ public class Map
            
              
         }
+    }
+    
+    public void loadMap()
+    {
+          
+        final JFileChooser fc = new JFileChooser();
+        File dir = new File("Maps"+File.separator+"mapAnchor.txt");
+        
+        System.out.println(dir);
+        fc.setCurrentDirectory(dir);
+        File  current = fc.getCurrentDirectory();
+        
+        System.out.println(current);
+        fc.showOpenDialog(null);
+        
+  
+       
+        String name = fc.getSelectedFile().getName();
+        System.out.println("You have selected to load "+name+ "map.");
+        tilesToIncorporate = this.loadAllTiles(name);
+      
+        
+        
     }
     public void createThermopayle(int j, int i, Random rng) {
         GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
@@ -382,6 +413,44 @@ if(!parent.exists() && !parent.mkdirs()){
         finally {
             writer.close();
         }
+    }
+
+    private ArrayList<Tile> loadAllTiles(String name) {
+        try {
+            //Load all units
+            //while
+            String fileName=name;
+            File file = new File("Maps"+ File.separator+fileName);
+            Scanner reader = new Scanner(new FileInputStream(file));
+         while(reader.hasNext())
+         {
+             if(reader.nextLine().equals("---"))
+                 {
+                     
+                     String xPos = reader.nextLine();
+                     System.out.println("xPos "+name);
+                     String yPos = reader.nextLine();
+                     String blocked = reader.nextLine();
+                     String imageName = reader.nextLine();
+                     Tile t = new Tile(10,10,Integer.parseInt(xPos),Integer.parseInt( yPos));
+                     if(blocked.equals("true"))
+                     {
+                         t.setBlocked();
+                     }
+                     t.setImageFromString(imageName);
+//                     nUnit.setUnitUnitID();
+                     tilesToIncorporate.add(t);                     
+                 }
+             else reader.nextLine();
+         }
+         
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return tilesToIncorporate;
     }
     
      
