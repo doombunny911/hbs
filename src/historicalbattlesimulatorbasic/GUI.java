@@ -77,21 +77,6 @@ public class GUI implements MouseListener
       
     }
    
-
-    
-//////////////////    static void terrainPlacer()
-//////////////////    { 
-//////////////////        BufferedImageLoaders bil = new BufferedImageLoaders();
-//////////////////        bil.loadAllImages();
-//////////////////        ArrayList<BufferedImageName> image = bil.getImages();
-//////////////////        tp = new TerrainPlacer(image);
-//////////////////      
-//////////////////       // tp.setUpButtons(image);
-//////////////////       terrainPlacerActive= true;
-//////////////////        GUI.panel.add(tp);
-//////////////////        GUI.repainter();
-//////////////////      
-//////////////////    }
    
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
@@ -433,32 +418,46 @@ public void expand(Tile corner, int i, Tile t) {
      
  
    
-public void mouseClicked(MouseEvent mac)
+    @Override
+    public void mouseClicked(MouseEvent mac)
 {
        
        
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-          
- if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
+     if(GUI.scenario!=null)
+     {
+         if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
 {
            loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-           
-           Game.playersForDemo.get(0).up.check=false;
+           UnitPlacer.check=false;
            Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-//           System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
-//           System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
-//           System.out.println("in mouseClicked going to unitplacer ");
 }
-else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
-       {
+         else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
+         {
            loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-           Game.playersForDemo.get(1).up.check=false;
+           UnitPlacer.check=false;
            Game.playersForDemo.get(1).up.unitToBeLoaded=null;
 //           System.out.println("in mouseClicked going to unitplacer ");
-       }
-else if(terrainLoading()) 
+         }
+         if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+         {
+              
+                  
+                  
+                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
+                 GUI.unitSelected=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
+                toggleButtons(GUI.buttonPanel,true);
+                      
+          }
+               
+                   
+               
+           
+     }
+ 
+      else if(terrainLoading()) 
        {
            loadTerrainPiece(tp.terrainToBeLoaded);
            
@@ -466,10 +465,29 @@ else if(terrainLoading())
          //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-//       if(GUI.tileClicked!=null)
-//        System.out.println("is this tile blocked " + GUI.tileClicked.tileBlocked);
+   else
+   {
+       
+       if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
+{
+           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+           UnitPlacer.check=false;
+           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+}
+        else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
+        {
+           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+           UnitPlacer.check=false;
+           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+//           System.out.println("in mouseClicked going to unitplacer ");
+        }
+       
+       
+       
       if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
       {
+          
+          
               if(player1Turn())   
               {
                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
@@ -530,7 +548,7 @@ else if(terrainLoading())
                }
            } 
        
-       
+      }
         GUI.repainter();
     }
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
@@ -1137,10 +1155,10 @@ else if(terrainLoading())
     }
    protected boolean player2IsReadyToLoadUnits() {
 
-        return terrainPlacerActive==false&&Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;
+        return terrainPlacerActive==false&&Game.playersForDemo!=null&&UnitPlacer.check&&GUI.tileClicked!=null&&Game.playersForDemo.get(1).up.unitToBeLoaded!=null;
     }
    protected boolean player1IsReadyToLoadUnits() {
-        return terrainPlacerActive==false&&Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null;
+        return terrainPlacerActive==false&&Game.playersForDemo!=null&&UnitPlacer.check&&GUI.tileClicked!=null&&Game.playersForDemo.get(0).up.unitToBeLoaded!=null;
  }
  
    protected static JButton[] removeDefaultLookOfJButtons(JButton[] button) {

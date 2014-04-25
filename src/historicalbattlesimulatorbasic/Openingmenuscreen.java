@@ -44,7 +44,7 @@ public final class Openingmenuscreen extends JFrame
         b1.addActionListener(new ActionListener() {
         public void actionPerformed( ActionEvent e ) 
         {
-            
+            GUI.scenario=null;
             Game game = new Game(); 
             removePanels();
             String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
@@ -134,7 +134,7 @@ public final class Openingmenuscreen extends JFrame
             public void demo() {
                 //load the game, testButton for now
                 
-                
+                GUI.scenario=null;
                 Game game = new Game();
                 Map map = new Map(10);
                 
