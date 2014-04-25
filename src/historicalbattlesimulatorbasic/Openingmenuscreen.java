@@ -105,7 +105,8 @@ public final class Openingmenuscreen extends JFrame
        @Override
        public void actionPerformed ( ActionEvent e )
        {
-           Scenario scenario = ScenarioCreator.createScenario();
+           removePanels();
+           Scenario scenario = new Scenario();
        }});
        ImageIcon load = bil.getIconLoadGame();
        b5 = new JButton(load);
@@ -325,6 +326,7 @@ public final class Openingmenuscreen extends JFrame
 //       welcomePanel.revalidate();
 
        GUI.gameFrame=gameFrame;
+       ScenarioGUI.gameFrame=gameFrame;
    }
 
    //sets to fullscreen mode, more a hinderence atm but good for final product

@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 //this class initalizes and draws the tiles for the game
 
-public class Painter extends JPanel
+public class ScenarioPainter extends JPanel
 {
     private int tileWidth;
   
@@ -26,23 +26,23 @@ public class Painter extends JPanel
     private double sHeight,sWidth;
     int x,y;
     Unit unit;
-    public Painter(int widthf){
+    public ScenarioPainter(int widthf){
         this.tileWidth=widthf;
 //        tiles=Map.gameMap;
     }
-    public Painter(double sWidth,double sHeight){
+    public ScenarioPainter(double sWidth,double sHeight){
         
         this.sWidth=sWidth;
         this.sHeight=sHeight;
     }
     
     //don't think this contructor is used
-    public Painter(int locationX,int locationY){
+    public ScenarioPainter(int locationX,int locationY){
         x =locationX;
         y=locationY;
     }
     //untested
-    public Painter(Unit unit){
+    public ScenarioPainter(Unit unit){
         this.unit=unit;
     }
     /**
@@ -63,7 +63,7 @@ public void paintComponent(Graphics g) {
                 {
                     Stroke originalStroke = g2.getStroke();
                     g2.setStroke(new BasicStroke(4));
-                    g2.draw(GUI.tileGameMap[j][i]);
+                    g2.draw(ScenarioGUI.tileGameMap[j][i]);
                     g2.setStroke(originalStroke);
                 }
                 else if(isEnemyUnitThatIsBeingAttackedFoundAt(j, i))
@@ -72,29 +72,29 @@ public void paintComponent(Graphics g) {
                     Stroke originalStroke = g2.getStroke();
                     g2.setStroke(new BasicStroke(4));
                     g2.setColor(Color.RED);
-                    g2.draw(GUI.tileGameMap[j][i]);
+                    g2.draw(ScenarioGUI.tileGameMap[j][i]);
                     g2.setStroke(originalStroke);
                     g2.setColor(originalColor);
                 }
                 else
                 {
-                    g2.draw(GUI.tileGameMap[j][i]);
+                    g2.draw(ScenarioGUI.tileGameMap[j][i]);
                 }
                 
-                 GUI.tileGameMap[j][i].paintTile((g2));  
-              if(GUI.tileGameMap[j][i].tileBlocked)
+                 ScenarioGUI.tileGameMap[j][i].paintTile((g2));  
+              if(ScenarioGUI.tileGameMap[j][i].tileBlocked)
                {
-                   g2.fill(GUI.tileGameMap[j][i]);
+                   g2.fill(ScenarioGUI.tileGameMap[j][i]);
                }
          }
       }
       //sprites
-      if(!GUI.unitDraws.isEmpty())
+      if(!ScenarioGUI.unitDraws.isEmpty())
       {
-         for(int p=0;p<GUI.unitDraws.size();p++)
+         for(int p=0;p<ScenarioGUI.unitDraws.size();p++)
          {      
              
-             GUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g,p);
+             ScenarioGUI.unitDraws.get(p).thisUnit.currentFormation.paintFormation(g,p);
          }
       }
       //not currently used
@@ -105,11 +105,13 @@ public void paintComponent(Graphics g) {
     }
 
     protected boolean isEnemyUnitThatIsBeingAttackedFoundAt(int j, int i) {
-        return CombatPanel.enemyUnitFound!=null&&GUI.tileGameMap[j][i].isOccupied&& GUI.tileGameMap[j][i].getOccupier().getUnitID()==CombatPanel.enemyUnitFound.getUnitID();
+        return CombatPanel.enemyUnitFound!=null&&ScenarioGUI.tileGameMap[j][i].isOccupied&&
+                ScenarioGUI.tileGameMap[j][i].getOccupier().getUnitID()==CombatPanel.enemyUnitFound.getUnitID();
     }
 
     protected boolean tileHasASpriteFromUnitSelectedat(int j, int i) {
-             return GUI.unitSelected!=null&&GUI.tileGameMap[j][i].isOccupied&& GUI.tileGameMap[j][i].getOccupier().getUnitID()==GUI.unitSelected.getUnitID();
+             return ScenarioGUI.unitSelected!=null&&ScenarioGUI.tileGameMap[j][i].isOccupied&& 
+                     ScenarioGUI.tileGameMap[j][i].getOccupier().getUnitID()==ScenarioGUI.unitSelected.getUnitID();
     }
  }
    
