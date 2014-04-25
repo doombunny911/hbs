@@ -78,21 +78,20 @@ public class GUI implements MouseListener
     }
    
 
-    static TerrainPlacer tp;
-    static boolean terrainPlacerActive;
-    static void terrainPlacer()
-    { 
-        BufferedImageLoaders bil = new BufferedImageLoaders();
-        bil.loadAllImages();
-        ArrayList<BufferedImageName> image = bil.getImages();
-        tp = new TerrainPlacer(image);
-      
-       // tp.setUpButtons(image);
-       terrainPlacerActive= true;
-        GUI.panel.add(tp);
-        GUI.repainter();
-      
-    }
+    
+//////////////////    static void terrainPlacer()
+//////////////////    { 
+//////////////////        BufferedImageLoaders bil = new BufferedImageLoaders();
+//////////////////        bil.loadAllImages();
+//////////////////        ArrayList<BufferedImageName> image = bil.getImages();
+//////////////////        tp = new TerrainPlacer(image);
+//////////////////      
+//////////////////       // tp.setUpButtons(image);
+//////////////////       terrainPlacerActive= true;
+//////////////////        GUI.panel.add(tp);
+//////////////////        GUI.repainter();
+//////////////////      
+//////////////////    }
    
     
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
@@ -290,8 +289,9 @@ public class GUI implements MouseListener
     //mouseClicked holds a lot of logic due to the event driven processes of our project
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
-<<<<<<< HEAD
-  public void loadTerrainPiece(Tile t) {
+
+  public void loadTerrainPiece(Tile t) 
+  {
  //   
         t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
         
@@ -299,24 +299,13 @@ public class GUI implements MouseListener
      if(tp.size<=0) 
      {
        GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
-=======
-      public void loadTerrainPiece(Tile t) {
- //       System.out.println("in loadUnit");
-        //gets the arrayList stored in unitLoader
-//        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
-        //sets the tile location of where they are at
-        t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        //adds it to the arrayList in GUI that is currently storing the unitDraws
-       
-        
-        GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
->>>>>>> 36a5800f86fcf37a125770846f50c75355ea9e44
+
+      
        if(t.tileBlocked)
        {
            GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
-       }
-<<<<<<< HEAD
-     }
+
+     }}
      else if(tp.size>0)
      {
        for(int i=0; i<tp.size; i++)
@@ -354,80 +343,83 @@ public class GUI implements MouseListener
        }
          
        }
-//     }
-//         else if(tp.size>3)
-//        {
-//         for(int i=0; i<tp.size; i++)
-//       {
-//           northCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];  
-//           southCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
-//           eastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth];  
-//           westCorner =GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth]; 
-//       northEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];   
-//        southEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
-//         northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; 
-//         southWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
-//        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
-//        
-//         northCorner.setImage(t.image);
-//         southCorner.setImage(t.image);
-//         eastCorner.setImage(t.image);
-//         westCorner.setImage(t.image);
-//         northEastCorner.setImage(t.image);
-//         southWestCorner.setImage(t.image);
-//         northWestCorner.setImage(t.image);
-//         southEastCorner.setImage(t.image);
-//         
-//        
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
-//     
-//               expand(northEastCorner, i, t);
-//               expand(northWestCorner, i, t);
-//               expand(southEastCorner, i, t);
-//               expand(southEastCorner, i, t);
-//               expand(northCorner,i, t);
-//               expand(southCorner,i,t);
-//               expand(westCorner,i,t);
-//               expand(eastCorner,i,t);
-//         if(t.tileBlocked)
-//       {
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
-//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
-//     
-//         
-       
      }
-=======
->>>>>>> 36a5800f86fcf37a125770846f50c75355ea9e44
-       tp.addToSaver(t);
-        GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
-//        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
-        //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
-//        GUI.repainter(); //repaints
-<<<<<<< HEAD
-  }
+////     
+//// else if(tp.size>3)
+////        {
+////         for(int i=0; i<tp.size; i++)
+////       {
+////           northCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];  
+////           southCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+////           eastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth];  
+////           westCorner =GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth]; 
+////       northEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];   
+////        southEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+////         northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; 
+////         southWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+////        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+////        
+////         northCorner.setImage(t.image);
+////         southCorner.setImage(t.image);
+////         eastCorner.setImage(t.image);
+////         westCorner.setImage(t.image);
+////         northEastCorner.setImage(t.image);
+////         southWestCorner.setImage(t.image);
+////         northWestCorner.setImage(t.image);
+////         southEastCorner.setImage(t.image);
+////         
+////        
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+////     
+////               expand(northEastCorner, i, t);
+////               expand(northWestCorner, i, t);
+////               expand(southEastCorner, i, t);
+////               expand(southEastCorner, i, t);
+////               expand(northCorner,i, t);
+////               expand(southCorner,i,t);
+////               expand(westCorner,i,t);
+////               expand(eastCorner,i,t);
+////         if(t.tileBlocked)
+////       {
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+////         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+////     
+////       }
+////       }
+////        }
+////  
+////  }
+       
+     
 
-    public void expand(Tile corner, int i, Tile t) {
+        GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
+        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
+        //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
+        GUI.repainter(); //repaints
+
+ }
+
+public void expand(Tile corner, int i, Tile t) {
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth].setImage(t.image);
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth-1*i][corner.yPosition/GUI.tileWidth].setImage(t.image);
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
@@ -436,54 +428,21 @@ public class GUI implements MouseListener
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth-1*i][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth][corner.yPosition/GUI.tileWidth-1*i].setImage(t.image);
-=======
->>>>>>> 36a5800f86fcf37a125770846f50c75355ea9e44
+
     }
+     
+ 
    
-    @Override
-   public void mouseClicked(MouseEvent mac) {
+public void mouseClicked(MouseEvent mac)
+{
        
        
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-<<<<<<< HEAD
-       if(player1IsReadyToLoadUnits()&& terrainPlacerActive == false) 
-=======
-       if(GUI.scenario!=null)
->>>>>>> 36a5800f86fcf37a125770846f50c75355ea9e44
-       {
           
-          
-          if(player1IsReadyToLoadUnits()&& terrainPlacerActive == false)
-          {
-              System.out.println("unitLoaded  = " + Game.playersForDemo.get(0).up.unitToBeLoaded);
-              System.out.println(GUI.tileClicked.xPosition);
-              System.out.println( GUI.tileClicked.yPosition);
-              loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-              UnitPlacer.check=false;
-              Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-          }
-          else if(player2IsReadyToLoadUnits())
-          {
-              loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-              UnitPlacer.check=false;        
-              Game.playersForDemo.get(1).up.unitToBeLoaded=null;
-              
-          }
-          
-          if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
-          {
-              
-              GUI.unitSelected = determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
-              toggleButtons(GUI.buttonPanel,true);
-          }
-       }
-       else
-       {
-           
-           if(player1IsReadyToLoadUnits()) 
-           {
+ if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
+{
            loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
            
            Game.playersForDemo.get(0).up.check=false;
@@ -491,15 +450,15 @@ public class GUI implements MouseListener
 //           System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
 //           System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
-       }
-       else if(player2IsReadyToLoadUnits()&& terrainPlacerActive == false)
+}
+else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
        {
            loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
            Game.playersForDemo.get(1).up.check=false;
            Game.playersForDemo.get(1).up.unitToBeLoaded=null;
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-       else if(terrainLoading()) 
+else if(terrainLoading()) 
        {
            loadTerrainPiece(tp.terrainToBeLoaded);
            
@@ -570,7 +529,7 @@ public class GUI implements MouseListener
                    }
                }
            } 
-       }
+       
        
         GUI.repainter();
     }
@@ -1177,19 +1136,13 @@ public class GUI implements MouseListener
 //        return GUI.tileClicked!=null&&GUI.tileClicked.isOccupied&&!GUI.impendingAttack&&GUI.unitSelected==null&&formationPanel==null&&Game.playersForDemo.get(0).up.numOfUnitsToPlace==0&&Game.playersForDemo.get(1).up.numOfUnitsToPlace==0||(formationPanel!=null&&formationPanel.isVisible());
     }
    protected boolean player2IsReadyToLoadUnits() {
-<<<<<<< HEAD
+
         return terrainPlacerActive==false&&Game.playersForDemo!=null&&Game.playersForDemo.get(1).up.check&&GUI.tileClicked!=null;
     }
    protected boolean player1IsReadyToLoadUnits() {
         return terrainPlacerActive==false&&Game.playersForDemo!=null&&Game.playersForDemo.get(0).up.check&&GUI.tileClicked!=null;
-=======
-        return terrainPlacerActive==false&&Game.playersForDemo!=null&&UnitPlacer.check&&GUI.tileClicked!=null&&Game.playersForDemo.get(1).up.unitToBeLoaded!=null;
-    }
-   protected boolean player1IsReadyToLoadUnits() {
-        return terrainPlacerActive==false&&Game.playersForDemo!=null&&UnitPlacer.check&&GUI.tileClicked!=null&&Game.playersForDemo.get(0).up.unitToBeLoaded!=null;
-    
->>>>>>> 36a5800f86fcf37a125770846f50c75355ea9e44
-    }
+ }
+ 
    protected static JButton[] removeDefaultLookOfJButtons(JButton[] button) {
         button[0].setBounds(buttonPanel.getWidth()/6-30-100,0,100,100);
         button[0].setOpaque(false);
