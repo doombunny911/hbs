@@ -63,6 +63,7 @@ public class GUI implements MouseListener
     static JPanel moveCountPanel;
     static TerrainPlacer tp;
     static boolean terrainPlacerActive;
+    static JButton scenarioButton;
     static void terrainPlacer()
     { 
         BufferedImageLoaders bil = new BufferedImageLoaders();
@@ -803,6 +804,32 @@ public void expand(Tile corner, int i, Tile t) {
                  }
              } 
        });
+       if(scenario!=null)
+       {
+          GUI.scenarioButton.addActionListener(new ActionListener(){
+           @Override
+           public void actionPerformed(ActionEvent ae)
+           {
+               //TO DO LOGIC HERE
+               
+                // loop over all the unitDraws 
+               //unitDraws contains all the units and their formations
+               //unitDraws.get(i).thisUnit
+               //and I don't think you have to record the formations, 
+               //but if you do, just have to record GUI.unitDraws.get(0).thisUnit.currentFormation.whichFormation
+               
+              
+               //than bring up the menu screen
+               
+               //gg
+               
+               
+           }
+       
+       
+            
+       });
+       }
    }
    public static void addButtonsToPanel(JButton[] button) {
         
@@ -896,6 +923,13 @@ public void expand(Tile corner, int i, Tile t) {
              endTurn.setBounds(GUI.panel.getWidth()-100,turnPanel.getHeight(),100,50);
              GUI.panel.add(endTurn);
           
+       }
+       else
+       {
+           scenarioButton=new JButton("Create Scenario");
+           scenarioButton.setVisible(true);
+           scenarioButton.setBounds(0,0,150,30);
+           GUI.panel.add(scenarioButton);
        }
        
       
