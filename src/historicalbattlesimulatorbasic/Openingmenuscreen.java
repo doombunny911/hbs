@@ -399,10 +399,15 @@ public final class Openingmenuscreen extends JFrame
         
        
     }
-    private void removePanels(){
+    public  void removePanels(){
        gameFrame.remove(welcomePanel);
        tilePanel.remove(buttonPanel);
        gameFrame.remove(tilePanel);
+   }
+     public void replacePanels(){
+       gameFrame.add(welcomePanel);
+       tilePanel.add(buttonPanel);
+       gameFrame.add(tilePanel);
    }
     private void initWelcomePanel() {
        bil.loadTopScreen();

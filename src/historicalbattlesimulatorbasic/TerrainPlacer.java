@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -105,8 +107,28 @@ public final class TerrainPlacer extends JPanel
                    size = size-1;
                 }
             });
+      JButton exit = new JButton("Close Map Creator and Save");
+      exit.addActionListener(new ActionListener() 
+     {
+      
+                    @Override
+                public void actionPerformed(ActionEvent e)
+                {
+//
+                        String fileName = JOptionPane.showInputDialog("Enter name for the map:");
+                        try {
+                            GUI.tp.saveMap(fileName);
+                        } catch (IOException ex) {
+                            Logger.getLogger(TerrainPlacer.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        GUI.terrainPlacerActive=false;
+                        
+                        Historicalbattlesimulatorbasic.Start = new Openingmenuscreen();
+                }
+            });
        add(increaseSize);
        add(decreaseSize);
+       add(exit);
     }
 
    public void addToSaver(Tile t) 

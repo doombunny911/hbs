@@ -1,0 +1,17 @@
+---
+1140
+170
+false
+rock.png
+1100
+240
+false
+rocksGround.png
+550
+500
+false
+road.png
+980
+580
+false
+mountainGrass.png

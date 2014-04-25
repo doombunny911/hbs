@@ -16,7 +16,8 @@ public class Historicalbattlesimulatorbasic
     /**
      * @param args the command line arguments
      */
+    static Openingmenuscreen Start;
 public static void main(String[] args) {
-        Openingmenuscreen Start = new Openingmenuscreen();
+        Start = new Openingmenuscreen();
     }
 }

@@ -68,9 +68,9 @@ public class GUI implements MouseListener
         bil.loadAllImages();
         ArrayList<BufferedImageName> image = bil.getImages();
         tp = new TerrainPlacer(image);
-      
+        tp.setOpaque(false);
        // tp.setUpButtons(image);
-       terrainPlacerActive= true;
+        terrainPlacerActive= true;
         GUI.panel.add(tp);
         GUI.repainter();
       
@@ -274,25 +274,135 @@ public class GUI implements MouseListener
     //mouseClicked holds a lot of logic due to the event driven processes of our project
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
-      public void loadTerrainPiece(Tile t) {
- //       System.out.println("in loadUnit");
-        //gets the arrayList stored in unitLoader
-//        Unit unit= UnitLoader.allUnits.get(GUI.unitNum-1);
-        //sets the tile location of where they are at
+  public void loadTerrainPiece(Tile t) {
+ //   
         t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        //adds it to the arrayList in GUI that is currently storing the unitDraws
-       
         
-        GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+     Tile northEastCorner, southEastCorner, southWestCorner, northWestCorner, northCorner, southCorner, eastCorner, westCorner;
+     if(tp.size<=0) 
+     {
+       GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
        if(t.tileBlocked)
        {
            GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
        }
+     }
+     else if(tp.size>0)
+     {
+       for(int i=0; i<tp.size; i++)
+       {
+          northEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];   
+          southEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+          
+          northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; 
+         southWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+         northEastCorner.setImage(t.image);
+         southWestCorner.setImage(t.image);
+         northWestCorner.setImage(t.image);
+         southEastCorner.setImage(t.image);
+         
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+     
+         
+         if(t.tileBlocked)
+       {
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+       }
+         
+       }
+//     }
+//         else if(tp.size>3)
+//        {
+//         for(int i=0; i<tp.size; i++)
+//       {
+//           northCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];  
+//           southCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+//           eastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth];  
+//           westCorner =GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth]; 
+//       northEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];   
+//        southEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+//         northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; 
+//         southWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
+//        [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
+//        
+//         northCorner.setImage(t.image);
+//         southCorner.setImage(t.image);
+//         eastCorner.setImage(t.image);
+//         westCorner.setImage(t.image);
+//         northEastCorner.setImage(t.image);
+//         southWestCorner.setImage(t.image);
+//         northWestCorner.setImage(t.image);
+//         southEastCorner.setImage(t.image);
+//         
+//        
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+//     
+//               expand(northEastCorner, i, t);
+//               expand(northWestCorner, i, t);
+//               expand(southEastCorner, i, t);
+//               expand(southEastCorner, i, t);
+//               expand(northCorner,i, t);
+//               expand(southCorner,i,t);
+//               expand(westCorner,i,t);
+//               expand(eastCorner,i,t);
+//         if(t.tileBlocked)
+//       {
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth+1*i].tileBlocked=true;
+//         GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth-1*i].tileBlocked=true;
+//     
+//         
+       
+     }
        tp.addToSaver(t);
         GUI.tileClicked=null; //used to avoid potential errors, tileClicked is reloaded everytime a tile is clicked on
 //        unitNum--; //keeps track of how many more unitDraws there are to be drawn,
         //it is intialized with how many unitDraws there are in the arraylist+1 (arrayList.size()
 //        GUI.repainter(); //repaints
+  }
+
+    public void expand(Tile corner, int i, Tile t) {
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth-1*i][corner.yPosition/GUI.tileWidth].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth-1*i][corner.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth-1*i].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth-1*i][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
+        GUI.tileGameMap[corner.xPosition/GUI.tileWidth][corner.yPosition/GUI.tileWidth-1*i].setImage(t.image);
     }
    
     @Override
