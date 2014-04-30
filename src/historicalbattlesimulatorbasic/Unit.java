@@ -471,6 +471,49 @@ if(!parent.exists() && !parent.mkdirs()){
         }
     }
 
+    
+     public void saveUnitWithPositionAndFormation(String fileName2) throws IOException {
+        PrintWriter writer = null;
+        String fileName=fileName2+".txt";
+        File file = new File("Scenarios"+File.separator+fileName);
+        File parent = file.getParentFile();
+
+if(!parent.exists() && !parent.mkdirs()){
+    throw new IllegalStateException("Couldn't create dir: " + parent);
+} 
+        try {                      
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+            writer.println("---"); //seperator 
+            writer.println(nameOfUnit);
+            writer.println(soldierType.unitType); 
+            writer.println(soldierType.dmg); // the type of dice to be rolled for damage
+            writer.println(soldierType.attack); // the bonus to the attack
+            writer.println(soldierType.dmgBonus); //bonus to damage
+            writer.println(soldierType.hp); // a soldiers health points
+            writer.println(soldierType.armorClass); //a soldiers basic armor class
+            writer.println(soldierType.defense); // a soldiers defense bonus
+            writer.println(soldierType.speed); // the distance of which a soldier can travel
+            writer.println(soldierType.range); // the range of a soldiers weapons
+            writer.println(soldierType.chargeBonus); //The bonus given to charging attack
+            writer.println(soldierType.stamina); // The amount of stamina a soldier has
+            writer.println(soldierType.morale); // The amount of moral a soldier has
+            writer.println(this.unitSize);
+            writer.println(this.spriteName);
+            writer.println(this.xPosition);
+            writer.println(this.yPosition);
+            writer.println(this.currentFormation.whichFormation);
+            System.out.println("Saved");
+            writer.close();
+             } 
+        catch (FileNotFoundException ex)
+             {
+            System.out.println("Unable to save file");
+        } 
+        finally {
+            writer.close();
+        }
+    }
+
     public String getSpriteName(){
         System.out.println("getSpriteName called");
         return this.spriteName;

@@ -13,7 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -75,7 +79,8 @@ public class GUI implements MouseListener
         terrainPlacerActive= true;
         GUI.panel.add(tp);
         GUI.repainter();
-      
+        GUI.terrainPlacerActive = false;
+        GUI.terrain = false;
     }
    
    
@@ -810,20 +815,17 @@ public void expand(Tile corner, int i, Tile t) {
            @Override
            public void actionPerformed(ActionEvent ae)
            {
-               //TO DO LOGIC HERE
-               
-                // loop over all the unitDraws 
-               //unitDraws contains all the units and their formations
-               //unitDraws.get(i).thisUnit
-               //and I don't think you have to record the formations, 
-               //but if you do, just have to record GUI.unitDraws.get(0).thisUnit.currentFormation.whichFormation
-               
-              
-               //than bring up the menu screen
-               
-               //gg
-               
-               
+              try { //TO DO LOGIC HERE
+               String fileToSaveTo = JOptionPane.showInputDialog("Enter File Name to Save Scenario as: ");
+               for(int i=0; i<unitDraws.size(); i++)
+               {
+                   
+                       unitDraws.get(i).thisUnit.saveUnitWithPositionAndFormation(fileToSaveTo);
+                  
+               }               
+                } catch (IOException ex) {
+                       Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                   }
            }
        
        
@@ -1532,9 +1534,10 @@ public void expand(Tile corner, int i, Tile t) {
    @Override
    public void mouseExited(MouseEvent me){
     }
-
+ public static boolean terrain = false;
     private boolean terrainLoading() 
     {
-     return true;   
+     return terrain;   
       }
+    
 }

@@ -45,8 +45,10 @@ public final class Openingmenuscreen extends JFrame
         public void actionPerformed( ActionEvent e ) 
         {
             GUI.scenario=null;
-            Game game = new Game(); 
+            Game game = new Game();
+            
             removePanels();
+            
             String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
             JOptionPane.showMessageDialog(null, name   +" choose your army:");
             Player p1 = new Player(name);
@@ -57,7 +59,8 @@ public final class Openingmenuscreen extends JFrame
             Game.playersForDemo.add(p1);
             Game.playersForDemo.add(p2);
 
-            Map map = new Map(10);
+            Map map = new Map(10, true);
+            //map.loadMap();
             p1.up.setUpButtons();
             p2.up.setUpButtons();
             
@@ -96,8 +99,8 @@ public final class Openingmenuscreen extends JFrame
             removePanels();
            
             
-
-            Map map = new Map(10);
+            GUI.terrain= true;
+            Map map = new Map(10, false);
             map.generateBasic();
             GUI.terrainPlacer();
            
@@ -136,7 +139,7 @@ public final class Openingmenuscreen extends JFrame
                 
                 GUI.scenario=null;
                 Game game = new Game();
-                Map map = new Map(10);
+//                Map map = new Map(10, "agincourt");
                 
                 
                 ArrayList <Unit> frenchUnits = new ArrayList();
@@ -314,7 +317,7 @@ public final class Openingmenuscreen extends JFrame
 //                GUI.panel.add(p2.up);
                 //GUI.panel.add(p1.up);
                 
-                game.gameMap=map;
+//                game.gameMap=map;
                 GUI.buttonLoader();
                 
                 
@@ -340,7 +343,7 @@ public final class Openingmenuscreen extends JFrame
 //       welcomePanel.revalidate();
 
        GUI.gameFrame=gameFrame;
-       ScenarioGUI.gameFrame=gameFrame;
+//       ScenarioGUI.gameFrame=gameFrame;
    }
 
    //sets to fullscreen mode, more a hinderence atm but good for final product

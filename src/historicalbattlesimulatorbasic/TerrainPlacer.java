@@ -47,11 +47,12 @@ public final class TerrainPlacer extends JPanel
         newJ.revalidate();
     }
     public TerrainPlacer(ArrayList<BufferedImageName> images){
-    terLoader = new BufferedImageLoaders();
-    terLoader.loadAllImages();
-    this.numOfTerrainPlaces = images.size();
-    setUpButtons(images);
-    this.setVisible(true);
+    
+        terLoader = new BufferedImageLoaders();
+        terLoader.loadAllImages();
+        this.numOfTerrainPlaces = images.size();
+        setUpButtons(images);
+        this.setVisible(true);
         this.setSize(GUI.gameFrame.getWidth(),100);
        
         
@@ -87,7 +88,7 @@ public final class TerrainPlacer extends JPanel
         }
         JButton increaseSize = new JButton(" + Size");
         increaseSize.addActionListener(new ActionListener() 
-     {
+         {
       
                     @Override
                 public void actionPerformed(ActionEvent e)
