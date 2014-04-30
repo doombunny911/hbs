@@ -91,16 +91,66 @@ public class Map
             for(int j=0;j<squareWidth;j++)
             {
                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
-                if(j>i)
-                {
-                GUI.tileGameMap[j][i].setImage(grass);}
-                else
-                {
-                    GUI.tileGameMap[j][i].setImage(dirt);
-                }
+               
+                GUI.tileGameMap[j][i].setImage(grass);
+               
             }
         } 
     }
+  
+    public final void generateLoaded()
+    {
+        this.loadMap();
+        int width = Openingmenuscreen.tilePanel.getWidth();
+        int height = Openingmenuscreen.tilePanel.getHeight();
+        squareWidth = Math.floor(width/GUI.tileWidth);
+        squareHeight = Math.floor(height/GUI.tileWidth);
+        GUI.numberOfTilesWidth=squareWidth;
+        GUI.numberOfTilesHeight=squareHeight;
+        GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
+
+      boolean b = false;
+      boolean c = false;
+      Tile adder = null;
+         for(int i=0;i<squareHeight;i++)
+        {
+            for(Tile t: tilesToIncorporate)
+            {
+                if(t.yPosition==i)
+                {
+                    b = true;
+                }
+                    
+            }
+            for(int j=0; j<squareWidth; j++)
+            {
+                if(b)
+                {
+                    for(Tile t: tilesToIncorporate)
+                     {
+                        if(t.xPosition==j)
+                            {
+                             c = true;
+                             adder = t;
+                             }
+                    
+                      }
+                }
+                if(c)
+                {
+                GUI.tileGameMap[j][i] = adder;
+                GUI.tileGameMap[j][i].setImage(adder.image);
+                }
+                else
+                {
+                    ScenarioGUI.tileGameMap[j][i]= new Tile(j*ScenarioGUI.tileWidth,i*ScenarioGUI.tileWidth,ScenarioGUI.tileWidth,ScenarioGUI.tileWidth);
+                    ScenarioGUI.tileGameMap[j][i].setImage(grass);}
+                }
+            }
+        } 
+        
+    
+  
     public final void generateTilesS(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
@@ -159,7 +209,7 @@ public class Map
            {
            
              GUI.tileGameMap[j][i].setImage(tree2);
-             GUI.tileGameMap[j][i].setTileBlocked(); 
+             //GUI.tileGameMap[j][i].setTileBlocked(); 
             }
            else
             {
@@ -439,7 +489,8 @@ if(!parent.exists() && !parent.mkdirs()){
                      }
                      t.setImageFromString(imageName);
 //                     nUnit.setUnitUnitID();
-                     tilesToIncorporate.add(t);                     
+                     tilesToIncorporate.add(t);   
+                     System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");
                  }
              else reader.nextLine();
          }
