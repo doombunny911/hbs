@@ -139,7 +139,7 @@ public final class Openingmenuscreen extends JFrame
                 
                 GUI.scenario=null;
                 Game game = new Game();
-                Map map = new Map(10, "agincourt");
+//                Map map = new Map(10, "agincourt");
                 
                 
                 ArrayList <Unit> frenchUnits = new ArrayList();
@@ -317,7 +317,7 @@ public final class Openingmenuscreen extends JFrame
 //                GUI.panel.add(p2.up);
                 //GUI.panel.add(p1.up);
                 
-                game.gameMap=map;
+//                game.gameMap=map;
                 GUI.buttonLoader();
                 
                 
@@ -343,7 +343,7 @@ public final class Openingmenuscreen extends JFrame
 //       welcomePanel.revalidate();
 
        GUI.gameFrame=gameFrame;
-       ScenarioGUI.gameFrame=gameFrame;
+//       ScenarioGUI.gameFrame=gameFrame;
    }
 
    //sets to fullscreen mode, more a hinderence atm but good for final product
