@@ -54,10 +54,10 @@ public class Map
     public Map( int xWidth, boolean creating){
         //this.name = name;
         GUI.tileWidth=xWidth;
-<<<<<<< HEAD
-        this.generateTiles();
+
+        //this.generateTiles();
 //        generateLoaded();
-=======
+
         if(creating)
         {
         this.generateLoaded();
@@ -66,7 +66,7 @@ public class Map
         {
             this.generateBasic();
         }
->>>>>>> STuff
+
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.panel.setLayout(null);
@@ -74,19 +74,6 @@ public class Map
         
 //        GUI.placeUnitTester();
         GUI.gameFrame.add(gen);
-    }
-    public Map(int xWidth,String s)
-    {
-           //this.name = name;
-        ScenarioGUI.tileWidth=xWidth;
-        this.generateTilesS();
-        ScenarioPainter gen = new ScenarioPainter(squareWidth,squareHeight);
-        ScenarioGUI gui = new ScenarioGUI(gen); //initialzes mouselistener
-        ScenarioGUI.panel.setLayout(null);
-        ScenarioGUI.copy(Openingmenuscreen.tilePanel,ScenarioGUI.panel);
-        
-//        GUI.placeUnitTester();
-        ScenarioGUI.gameFrame.add(gen);
     }
     public final void generateBasic(){
         int width = Openingmenuscreen.tilePanel.getWidth();
@@ -163,32 +150,6 @@ public class Map
         
     
   
-    public final void generateTilesS(){
-        int width = Openingmenuscreen.tilePanel.getWidth();
-        int height = Openingmenuscreen.tilePanel.getHeight();
-        squareWidth = Math.floor(width/ScenarioGUI.tileWidth);
-        squareHeight = Math.floor(height/ScenarioGUI.tileWidth);
-        ScenarioGUI.numberOfTilesWidth=squareWidth;
-        ScenarioGUI.numberOfTilesHeight=squareHeight;
-        ScenarioGUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-
-   
-         for(int i=0;i<squareHeight;i++)
-        {
-            for(int j=0;j<squareWidth;j++)
-            {
-                ScenarioGUI.tileGameMap[j][i]= new Tile(j*ScenarioGUI.tileWidth,i*ScenarioGUI.tileWidth,ScenarioGUI.tileWidth,ScenarioGUI.tileWidth);
-                if(j>i)
-                {
-                ScenarioGUI.tileGameMap[j][i].setImage(grass);}
-                else
-                {
-                    ScenarioGUI.tileGameMap[j][i].setImage(dirt);
-                }
-            }
-        } 
-    }
-    
     public final void generateTiles(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
@@ -395,7 +356,8 @@ public class Map
 //         {   
 //            for(int y=0;y<GUI.tileGameMap[x].length;y++)
 //            {
-//                Tile north=null, northeast=null, east=null, southeast=null, south=null, southwest = null, west=null, northwest=null;
+//                Tile north=null, northeast=null, east=null, southeast=null, south=null, southwest = null, west=null, 
+//northwest=null;
 //                if(GUI.tileGameMap[x][y].hasNorth())
 //                {
 //                    north=GUI.tileGameMap[x][y+1];
