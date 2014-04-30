@@ -51,10 +51,17 @@ public class Map
         
     }
    //populates the gameMap with basic tiles with no features other than area.
-    public Map( int xWidth){
+    public Map( int xWidth, boolean creating){
         //this.name = name;
         GUI.tileWidth=xWidth;
-        this.generateTiles();
+        if(creating)
+        {
+        this.generateLoaded();
+        }
+        else
+        {
+            this.generateBasic();
+        }
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.panel.setLayout(null);
@@ -143,8 +150,8 @@ public class Map
                 }
                 else
                 {
-                    ScenarioGUI.tileGameMap[j][i]= new Tile(j*ScenarioGUI.tileWidth,i*ScenarioGUI.tileWidth,ScenarioGUI.tileWidth,ScenarioGUI.tileWidth);
-                    ScenarioGUI.tileGameMap[j][i].setImage(grass);}
+                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+                 GUI.tileGameMap[j][i].setImage(grass);}
                 }
             }
         } 
@@ -476,7 +483,8 @@ if(!parent.exists() && !parent.mkdirs()){
          {
              if(reader.nextLine().equals("---"))
                  {
-                     
+                     if(reader.hasNextLine())
+                     {
                      String xPos = reader.nextLine();
                      System.out.println("xPos "+name);
                      String yPos = reader.nextLine();
@@ -490,7 +498,7 @@ if(!parent.exists() && !parent.mkdirs()){
                      t.setImageFromString(imageName);
 //                     nUnit.setUnitUnitID();
                      tilesToIncorporate.add(t);   
-                     System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");
+                     System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");}
                  }
              else reader.nextLine();
          }

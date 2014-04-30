@@ -19,7 +19,7 @@ class Scenario {
     public Scenario(){
         Game game = new Game();
         
-        Map map = new Map(10);
+        Map map = new Map(10, true);
         GUI.scenario = this;
    
         String name = JOptionPane.showInputDialog(null, "Enter the name for player 1");

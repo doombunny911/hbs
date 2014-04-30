@@ -75,7 +75,8 @@ public class GUI implements MouseListener
         terrainPlacerActive= true;
         GUI.panel.add(tp);
         GUI.repainter();
-      
+        GUI.terrainPlacerActive = false;
+        GUI.terrain = false;
     }
    
    
@@ -1532,9 +1533,10 @@ public void expand(Tile corner, int i, Tile t) {
    @Override
    public void mouseExited(MouseEvent me){
     }
-
+ public static boolean terrain = false;
     private boolean terrainLoading() 
     {
-     return true;   
+     return terrain;   
       }
+    
 }
