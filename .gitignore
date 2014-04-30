@@ -10,6 +10,8 @@ dist/
 build/
 nbproject/private/
 
+# Word stuff #
+.~lock*
+
 # Mac stuff #
 .DS_Store
-src/historicalbattlesimulatorbasic/Map.java
