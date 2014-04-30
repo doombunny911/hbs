@@ -54,6 +54,10 @@ public class Map
     public Map( int xWidth, boolean creating){
         //this.name = name;
         GUI.tileWidth=xWidth;
+<<<<<<< HEAD
+        this.generateTiles();
+//        generateLoaded();
+=======
         if(creating)
         {
         this.generateLoaded();
@@ -62,6 +66,7 @@ public class Map
         {
             this.generateBasic();
         }
+>>>>>>> STuff
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.panel.setLayout(null);
