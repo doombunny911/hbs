@@ -19,8 +19,8 @@ public class MapCreator extends JPanel
    Map world;
    public static void main(String[] args)
    {
-    MapCreator mp = new MapCreator();
-   mp.createMap();
+       MapCreator mp = new MapCreator();
+       mp.createMap();
    }
          
     public Map createMap()

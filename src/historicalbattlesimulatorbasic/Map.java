@@ -55,6 +55,7 @@ public class Map
         //this.name = name;
         GUI.tileWidth=xWidth;
         this.generateTiles();
+//        generateLoaded();
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
         GUI.panel.setLayout(null);
