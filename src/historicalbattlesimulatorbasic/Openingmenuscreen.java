@@ -59,7 +59,7 @@ public final class Openingmenuscreen extends JFrame
             Game.playersForDemo.add(p1);
             Game.playersForDemo.add(p2);
 
-            Map map = new Map(10, true);
+            Map map = new Map(10);
             //map.loadMap();
             p1.up.setUpButtons();
             p2.up.setUpButtons();
@@ -99,8 +99,8 @@ public final class Openingmenuscreen extends JFrame
             removePanels();
            
             
-            GUI.terrain= true;
-            Map map = new Map(10, false);
+            GUI.terrainPlayerActive= true;
+            Map map = new Map(10);
             map.generateBasic();
             GUI.terrainPlacer();
            

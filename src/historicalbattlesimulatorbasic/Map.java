@@ -54,7 +54,7 @@ public class Map
     public Map( int xWidth){
         //this.name = name;
         GUI.tileWidth=xWidth;
-        this.generateTiles();
+      this.generateTiles();
 //        generateLoaded();
         Painter gen = new Painter(squareWidth,squareHeight);
         GUI gui = new GUI(gen); //initialzes mouselistener
@@ -63,20 +63,22 @@ public class Map
         
 //        GUI.placeUnitTester();
         GUI.gameFrame.add(gen);
+        System.out.println("MAP CALLED");
     }
-    public Map(int xWidth,String s)
-    {
-           //this.name = name;
-        ScenarioGUI.tileWidth=xWidth;
-        this.generateTilesS();
-        ScenarioPainter gen = new ScenarioPainter(squareWidth,squareHeight);
-        ScenarioGUI gui = new ScenarioGUI(gen); //initialzes mouselistener
-        ScenarioGUI.panel.setLayout(null);
-        ScenarioGUI.copy(Openingmenuscreen.tilePanel,ScenarioGUI.panel);
-        
-//        GUI.placeUnitTester();
-        ScenarioGUI.gameFrame.add(gen);
-    }
+    
+//    public Map(int xWidth,String s)
+//    {
+//           //this.name = name;
+//        ScenarioGUI.tileWidth=xWidth;
+//        this.generateTilesS();
+//        ScenarioPainter gen = new ScenarioPainter(squareWidth,squareHeight);
+//        ScenarioGUI gui = new ScenarioGUI(gen); //initialzes mouselistener
+//        ScenarioGUI.panel.setLayout(null);
+//        ScenarioGUI.copy(Openingmenuscreen.tilePanel,ScenarioGUI.panel);
+//        
+////        GUI.placeUnitTester();
+//        ScenarioGUI.gameFrame.add(gen);
+//    }
     public final void generateBasic(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
@@ -86,7 +88,7 @@ public class Map
         GUI.numberOfTilesHeight=squareHeight;
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
 
-   
+        System.out.println("+++++++++++++ GENERATE BASIC CALLED +++++++");
          for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth;j++)
@@ -144,40 +146,15 @@ public class Map
                 }
                 else
                 {
-                    ScenarioGUI.tileGameMap[j][i]= new Tile(j*ScenarioGUI.tileWidth,i*ScenarioGUI.tileWidth,ScenarioGUI.tileWidth,ScenarioGUI.tileWidth);
-                    ScenarioGUI.tileGameMap[j][i].setImage(grass);}
+                    GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+                    GUI.tileGameMap[j][i].setImage(grass);}
                 }
             }
         } 
         
     
   
-    public final void generateTilesS(){
-        int width = Openingmenuscreen.tilePanel.getWidth();
-        int height = Openingmenuscreen.tilePanel.getHeight();
-        squareWidth = Math.floor(width/ScenarioGUI.tileWidth);
-        squareHeight = Math.floor(height/ScenarioGUI.tileWidth);
-        ScenarioGUI.numberOfTilesWidth=squareWidth;
-        ScenarioGUI.numberOfTilesHeight=squareHeight;
-        ScenarioGUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-
-   
-         for(int i=0;i<squareHeight;i++)
-        {
-            for(int j=0;j<squareWidth;j++)
-            {
-                ScenarioGUI.tileGameMap[j][i]= new Tile(j*ScenarioGUI.tileWidth,i*ScenarioGUI.tileWidth,ScenarioGUI.tileWidth,ScenarioGUI.tileWidth);
-                if(j>i)
-                {
-                ScenarioGUI.tileGameMap[j][i].setImage(grass);}
-                else
-                {
-                    ScenarioGUI.tileGameMap[j][i].setImage(dirt);
-                }
-            }
-        } 
-    }
-    
+ 
     public final void generateTiles(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
@@ -186,14 +163,15 @@ public class Map
         GUI.numberOfTilesWidth=squareWidth;
         GUI.numberOfTilesHeight=squareHeight;
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-    Random rng = new Random();
+   // Random rng = new Random();
     //boolean switcher = false;
    
          for(int i=0;i<squareHeight;i++)
         {
             for(int j=0;j<squareWidth;j++)
             {
-                createAgincourt(j, i, rng);
+                 GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+                 GUI.tileGameMap[j][i].setImage(grass);
                 
             }
         } 

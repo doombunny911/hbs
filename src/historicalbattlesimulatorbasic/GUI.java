@@ -13,8 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,8 +82,8 @@ public class GUI implements MouseListener
         terrainPlacerActive= true;
         GUI.panel.add(tp);
         GUI.repainter();
-        GUI.terrainPlacerActive = false;
-        GUI.terrain = false;
+     //   GUI.terrainPlacerActive = false;
+      
     }
    
    
@@ -817,6 +820,16 @@ public void expand(Tile corner, int i, Tile t) {
            {
               try { //TO DO LOGIC HERE
                String fileToSaveTo = JOptionPane.showInputDialog("Enter File Name to Save Scenario as: ");
+               PrintWriter writer = null;
+        String fileName=fileToSaveTo+".txt";
+        File file = new File("Scenarios"+File.separator+fileName);
+        File parent = file.getParentFile();
+        
+if(!parent.exists() && !parent.mkdirs()){
+    throw new IllegalStateException("Couldn't create dir: " + parent);
+}                       
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+           // writer.println(GUI.gameMap.name);
                for(int i=0; i<unitDraws.size(); i++)
                {
                    
@@ -1534,10 +1547,10 @@ public void expand(Tile corner, int i, Tile t) {
    @Override
    public void mouseExited(MouseEvent me){
     }
- public static boolean terrain = false;
+ public static boolean terrainPlayerActive = false;
     private boolean terrainLoading() 
     {
-     return terrain;   
+     return terrainPlayerActive;   
       }
     
 }
