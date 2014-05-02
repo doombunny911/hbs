@@ -29,7 +29,7 @@ import javax.swing.JPanel;
  *
  * @author Andrew
  */
-public final class Openingmenuscreen extends JFrame
+public final class Openingmenuscreen
 {
     static JPanel tilePanel;//becomes obselete after GUI is initialized
     JFrame gameFrame; //become obsolete after GUI is initialized
@@ -191,7 +191,7 @@ public final class Openingmenuscreen extends JFrame
     private void initFrame(){
        this.gameFrame= new JFrame("Historical Battle Simulator");
        
-       gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE); //program stops if frame is close
+       gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE); //program stops if frame is close
        
        //sets size of gameFrame to that of your screen
        gameFrame.setSize(new Dimension((int)Toolkit.
