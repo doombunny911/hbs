@@ -6,8 +6,10 @@ package historicalbattlesimulatorbasic;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -109,25 +111,32 @@ public class GUI implements MouseListener
          formationPanel=new JPanel();
          formationPanel.setLayout(null);
          formationPanel.setBounds(GUI.buttonPanel.getBounds());
-         JButton[] button = new JButton[4];
+         JButton[] button = new JButton[3];
          ImageIcon lineB = bil.getLineFormIcon();
          ImageIcon boxB = bil.getSquareFormIcon();
-         ImageIcon wedgeB = bil.getWedgeFormIcon();
+//         ImageIcon wedgeB = bil.getWedgeFormIcon();
          ImageIcon columnB = bil.getColumnFormIcon();
-                 
+//         LayoutManager lm = formationPanel.getLayout();
+//         lm = new FlowLayout();
+        
          button[0]=  new JButton(lineB);
          button[1] = new JButton(boxB);
-         button[2] = new JButton(wedgeB);
-         button[3] = new JButton(columnB);
+//         button[2] = new JButton(wedgeB);
+         button[2] = new JButton(columnB);
          Component c = GUI.buttonPanel.getComponent(0);
-         button[0].setBounds(c.getX(),c.getY(),c.getWidth(),c.getHeight());
-         button[1].setBounds(c.getX()*2+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
-         button[2].setBounds(c.getX()*3+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
-         button[3].setBounds(c.getX()*4+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
+         int height = buttonPanel.getHeight();
+         int x = buttonPanel.getX();
+         int y = buttonPanel.getY();
+         button[0].setBounds(0,0,100,30);
+         System.out.println(button[0].getBounds());
+//         button[1].setBounds(x+150*2+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
+         button[1].setBounds(150,0,c.getWidth(),c.getHeight());
+//         button[2].setBounds(c.getX()*3+c.getWidth(),c.getY(),c.getWidth(),c.getHeight());
+         button[2].setBounds(300,0,c.getWidth(),c.getHeight());
          formationPanel.add(button[0]);
          formationPanel.add(button[1]);
 //         formationPanel.add(button[2]);
-         formationPanel.add(button[3]);
+         formationPanel.add(button[2]);
          button[0].setBorderPainted(false);
          button[0].setContentAreaFilled(false);
          button[0].setOpaque(false);
@@ -137,9 +146,9 @@ public class GUI implements MouseListener
          button[2].setBorderPainted(false);
          button[2].setContentAreaFilled(false);
          button[2].setOpaque(false);
-         button[3].setBorderPainted(false);
-         button[3].setContentAreaFilled(false);
-         button[3].setOpaque(false);
+//         button[3].setBorderPainted(false);
+//         button[3].setContentAreaFilled(false);
+//         button[3].setOpaque(false);
         formationPanel.setOpaque(false);
 //         busy=true;
          button[0].addActionListener(new ActionListener() {
@@ -179,7 +188,7 @@ public class GUI implements MouseListener
 //
 //           }
 //       });
-       button[3].addActionListener(new ActionListener(){
+       button[2].addActionListener(new ActionListener(){
            
            @Override
            public void actionPerformed(ActionEvent ae){
@@ -302,9 +311,15 @@ public class GUI implements MouseListener
 //     else if(tp.size>0)
      else
      {
-       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*0]; ;
+       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*0]; 
+       
        for(int i=0; i<=tp.size*2; i++)
        {
+           for(int j=0;j<=tp.size*2;j++)
+           {
+               
+           }
+               
            
           northEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
         [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];   
@@ -480,7 +495,7 @@ public void expand(Tile corner, int i, Tile t) {
          //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-   else
+      else if(scenario==null)
    {
        
        if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
@@ -862,6 +877,7 @@ public void expand(Tile corner, int i, Tile t) {
             
         if(GUI.scenario!=null)
         {
+            
             buttonPanel.add(button[2]);
             buttonPanel.add(button[3]);
             buttonPanel.add(button[4]);
@@ -915,6 +931,7 @@ public void expand(Tile corner, int i, Tile t) {
         
         //the number of components in the panel
         int bNum =panel.getComponentCount();
+        System.out.println( " the number of components in this panel = " + bNum);
         for(int i=0;i<bNum;i++)
         {     
             panel.getComponent(i).setVisible(b);
@@ -937,9 +954,9 @@ public void expand(Tile corner, int i, Tile t) {
        
      //  endTurn.setContentAreaFilled(false);
        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
-       GUI.initTurnPanel();
        if(scenario==null)
        {
+            GUI.initTurnPanel();
            endTurn.setVisible(true);
             //endTurn.setOpaque(false);
              endTurn.setBorderPainted(true);
@@ -951,6 +968,7 @@ public void expand(Tile corner, int i, Tile t) {
        }
        else
        {
+           
            scenarioButton=new JButton("Create Scenario");
            scenarioButton.setVisible(true);
            scenarioButton.setBounds(0,0,150,30);
