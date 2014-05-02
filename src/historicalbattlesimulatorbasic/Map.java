@@ -91,6 +91,7 @@ public class Map
     public final void generateLoaded()
     {
         this.loadMap();
+        
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
         squareWidth = Math.floor(width/GUI.tileWidth);
@@ -109,9 +110,10 @@ public class Map
                     for(Tile t: tilesToIncorporate)
                      {
                          
-                        if(t.xPosition==GUI.tileGameMap[j][i].xPosition  && t.yPosition==GUI.tileGameMap[j][i].yPosition)
+                        if(t.xPosition==(j*GUI.tileWidth)  && t.yPosition==(i*GUI.tileWidth))
                         {
                             System.out.println("EVER REACHED");
+                            System.out.println("X "+t.xPosition + "Y " +t.yPosition);
                             adder = t;
                             add = true;
                             break;
@@ -122,7 +124,9 @@ public class Map
                 if(add)
                 {
                  GUI.tileGameMap[j][i] = adder;
+                 System.out.println("ADDER IMAGE NAME "+adder.image.name);
                  GUI.tileGameMap[j][i].setImage(adder.image);
+                 
                  add = false;
                 }
                 else
@@ -206,7 +210,7 @@ public class Map
         System.out.println(current);
         fc.showOpenDialog(null);
         
-  
+  bil.loadAllImages();
        
         String name = fc.getSelectedFile().getName();
         System.out.println("You have selected to load "+name+ "map.");
@@ -439,12 +443,14 @@ if(!parent.exists() && !parent.mkdirs()){
                  {
                      
                      String xPos = reader.nextLine();
-                     System.out.println("xPos: "+xPos);
+                     //System.out.println("xPos: "+xPos);
                      String yPos = reader.nextLine();
-                     System.out.print("yPos: "+xPos);
+                     //System.out.print("yPos: "+yPos);
+                     //System.out.println("");
                      String blocked = reader.nextLine();
                      String imageName = reader.nextLine();
-                     Tile t = new Tile(10,10,Integer.parseInt(xPos),Integer.parseInt( yPos));
+                     System.out.println(imageName);
+                     Tile t = new Tile(Integer.parseInt(xPos),Integer.parseInt( yPos), 10,10);
                      if(blocked.equals("true"))
                      {
                          t.setBlocked();
@@ -456,7 +462,7 @@ if(!parent.exists() && !parent.mkdirs()){
                  }
              else reader.nextLine();
          }
-         BufferedImageLoaders bil = new BufferedImageLoaders();
+         
        
         
             
@@ -469,7 +475,9 @@ if(!parent.exists() && !parent.mkdirs()){
     }
      void setImageFromString(Tile t, String imageName) {
         BufferedImage bi = bil.getImage(imageName);
-       t.image = new BufferedImageName( bi, imageName);
+        BufferedImageName bin = new BufferedImageName(bi, imageName);
+        System.out.println("IMAGE SET FROM STRING "+bin.getName());
+       t.setImage(bin);
     }
     
      
