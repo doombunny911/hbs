@@ -39,7 +39,7 @@ import javax.swing.SwingConstants;
 public class GUI implements MouseListener
 {
 //    JLabel bgL = new JLabel();
-    static Scenario scenario;
+    static Scenario scenario;  //the scenario
     static double turnCountForPersians=30;
     static double numberOfTilesWidth; //the number of tiles that make up the width
     static double numberOfTilesHeight;//the number of tiles that make up the height
@@ -71,8 +71,7 @@ public class GUI implements MouseListener
     static TerrainPlacer tp;
     static boolean terrainPlacerActive;
     static JButton scenarioButton;
-    static void terrainPlacer()
-    { 
+    static void terrainPlacer(){ 
         BufferedImageLoaders bil = new BufferedImageLoaders();
         bil.loadAllImages();
         ArrayList<BufferedImageName> image = bil.getImages();
@@ -85,9 +84,6 @@ public class GUI implements MouseListener
      //   GUI.terrainPlacerActive = false;
       
     }
-   
-   
-    
   //initualize GUI whenever need to have a new Panel with mouselistener (only called once i think)
    public GUI(JPanel panel) {
        GUI.panel=panel;
@@ -300,23 +296,27 @@ public class GUI implements MouseListener
            GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
 
      }}
-     else if(tp.size>0)
+//     else if(tp.size>0)
+     else
      {
-       for(int i=0; i<tp.size; i++)
+       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; ;
+       for(int i=0; i<=tp.size*2; i++)
        {
+           
           northEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
         [GUI.tileClicked.yPosition/GUI.tileWidth+1*i];   
           southEastCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i]
         [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
           
-          northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
-        [GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; 
+        
          southWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i]
         [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
          northEastCorner.setImage(t.image);
          southWestCorner.setImage(t.image);
          northWestCorner.setImage(t.image);
          southEastCorner.setImage(t.image);
+         
+        
          
          GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth+1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
          GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*i][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
@@ -1550,7 +1550,7 @@ if(!parent.exists() && !parent.mkdirs()){
  public static boolean terrainPlayerActive = false;
     private boolean terrainLoading() 
     {
-     return terrainPlayerActive;   
-      }
+       return terrainPlayerActive;   
+    }
     
 }

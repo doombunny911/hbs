@@ -42,9 +42,10 @@ public final class Openingmenuscreen
         ImageIcon run = bil.getIconRunSimulation();
         b1 = new JButton(run) ;
         b1.addActionListener(new ActionListener() {
+        @Override
         public void actionPerformed( ActionEvent e ) 
         {
-            GUI.scenario=null;
+            
             Game game = new Game();
             
             removePanels();
