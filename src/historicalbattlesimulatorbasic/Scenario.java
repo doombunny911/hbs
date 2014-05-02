@@ -15,11 +15,12 @@ import javax.swing.JOptionPane;
 class Scenario {
     
     //needs to create a map
-    
+    Map map = null;
     public Scenario(){
         Game game = new Game();
         
-        Map map = new Map(10);
+        map = new Map(10);
+        map.generateLoaded();
         GUI.scenario = this;
    
         String name = JOptionPane.showInputDialog(null, "Enter the name for player 1");

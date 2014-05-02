@@ -44,7 +44,7 @@ public class Map
    BufferedImageName sand = BufferedImageLoaders.imageLoader("sand.png");
      BufferedImageName tree2 = BufferedImageLoaders.imageLoader("tree.png");
    BufferedImageName rocksGround = BufferedImageLoaders.imageLoader("rocksGround2.png");
- 
+ String fileName ="";
     public static void main(String[] args) throws IOException{
 //        Map m = MapCreator.createMap();
        // m.saveMap("file");
@@ -112,8 +112,8 @@ public class Map
                          
                         if(t.xPosition==(j*GUI.tileWidth)  && t.yPosition==(i*GUI.tileWidth))
                         {
-                            System.out.println("EVER REACHED");
-                            System.out.println("X "+t.xPosition + "Y " +t.yPosition);
+                            //System.out.println("EVER REACHED");
+                            //System.out.println("X "+t.xPosition + "Y " +t.yPosition);
                             adder = t;
                             add = true;
                             break;
@@ -124,7 +124,7 @@ public class Map
                 if(add)
                 {
                  GUI.tileGameMap[j][i] = adder;
-                 System.out.println("ADDER IMAGE NAME "+adder.image.name);
+                 //System.out.println("ADDER IMAGE NAME "+adder.image.name);
                  GUI.tileGameMap[j][i].setImage(adder.image);
                  
                  add = false;
