@@ -52,7 +52,7 @@ public class Unit extends Soldier
     int playerNum;
     double speed;
     double range;
-    
+    String playerName ="";
 //    static Unit 
     //Create a unit, with position, on the battlefield
     public static void main(String[] args)
@@ -70,6 +70,18 @@ public class Unit extends Soldier
     public void setPlayerNum(int playerNum)
     {
         this.playerNum = playerNum;
+    }
+    public void setPlayerName(String playerName)
+    {
+        this.playerName = playerName;
+    }
+    public String getPlayerName()
+    {
+        return this.playerName;
+    }
+    public int getPlayerNum()
+    {
+        return this.playerNum;
     }
     public Unit(Soldier soldierType, int unitSize,int x,int y)
     {
