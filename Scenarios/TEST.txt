@@ -1,3 +1,4 @@
+fasdfa.txt
 ---
 English Longbowmen
 2
@@ -14,9 +15,9 @@ English Longbowmen
 1.0
 50
 redRange.png
-580
-450
-historicalbattlesimulatorbasic.UnitFormations@2e170a74
+1100
+690
+0
 ---
 English Longbowmen
 2
@@ -33,6 +34,6 @@ English Longbowmen
 1.0
 50
 redRange.png
-790
-600
-historicalbattlesimulatorbasic.UnitFormations@70171443
+460
+550
+0

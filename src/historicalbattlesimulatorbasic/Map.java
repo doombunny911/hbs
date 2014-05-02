@@ -213,6 +213,7 @@ public class Map
   bil.loadAllImages();
        
         String name = fc.getSelectedFile().getName();
+        this.fileName = name;
         System.out.println("You have selected to load "+name+ "map.");
         tilesToIncorporate = this.loadAllTiles(name);
       
@@ -395,6 +396,7 @@ public class Map
         t.image.setImage(img);
     }
     public void saveMap(String fileName2) throws IOException{
+        this.fileName = fileName2;
         PrintWriter writer = null;
         String fileName=fileName2+".txt";
         File file = new File("Maps"+File.separator+fileName);

@@ -830,11 +830,15 @@ public void expand(Tile corner, int i, Tile t) {
         File file = new File("Scenarios"+File.separator+fileName);
         File parent = file.getParentFile();
         
-if(!parent.exists() && !parent.mkdirs()){
-    throw new IllegalStateException("Couldn't create dir: " + parent);
-}                       
+                            if(!parent.exists() && !parent.mkdirs())
+                            {
+                         throw new IllegalStateException("Couldn't create dir: " + parent);
+                            } 
+                            
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-           // writer.println(GUI.gameMap.name);
+            System.out.println(GUI.scenario.map.fileName);
+            writer.println(GUI.scenario.map.fileName);
+            writer.close();
                for(int i=0; i<unitDraws.size(); i++)
                {
                    

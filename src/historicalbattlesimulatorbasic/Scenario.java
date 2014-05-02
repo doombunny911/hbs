@@ -44,6 +44,14 @@ class Scenario {
       GUI.buttonLoader();
         
     }
+    
+    public Scenario LoadScenario()
+    {
+        Scenario scn = null;
+        return scn;
+    }
+    
+    
     //use unitPlacers to allow prof to place units
     
     //need an arrayList of UnitDraws

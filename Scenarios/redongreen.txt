@@ -14,8 +14,8 @@ English Longbowmen
 1.0
 50
 redRange.png
-470
-380
+1160
+580
 0
 ---
 English Longbowmen
@@ -33,6 +33,6 @@ English Longbowmen
 1.0
 50
 redRange.png
-800
-650
+460
+540
 0
