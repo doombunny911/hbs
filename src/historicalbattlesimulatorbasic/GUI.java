@@ -282,15 +282,12 @@ public class GUI implements MouseListener
 
   public void loadTerrainPiece(Tile t) 
   {
-     if(t==null)
+     if(t!=null)
      {
-         
-     }
-         
-
-     t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-     tp.tilesToSave.add(GUI.tileClicked);
-     Tile northEastCorner, southEastCorner, southWestCorner, northWestCorner, northCorner, southCorner, eastCorner, westCorner;
+        t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+        System.out.println("COORDS :"+GUI.tileClicked.xPosition+" "+ GUI.tileClicked.yPosition);
+        tp.tilesToSave.add(GUI.tileClicked);
+        Tile northEastCorner, southEastCorner, southWestCorner, northWestCorner, northCorner, southCorner, eastCorner, westCorner;
      if(tp.size<=0) 
      {
        GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].setImage(t.image);
@@ -300,7 +297,8 @@ public class GUI implements MouseListener
        {
            GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth][GUI.tileClicked.yPosition/GUI.tileWidth].tileBlocked=true;
 
-     }}
+        }
+     }
 //     else if(tp.size>0)
      else
      {
@@ -318,7 +316,7 @@ public class GUI implements MouseListener
         [GUI.tileClicked.yPosition/GUI.tileWidth-1*i]; 
          northEastCorner.setImage(t.image);
          southWestCorner.setImage(t.image);
-         northWestCorner.setImage(t.image);
+    //     northWestCorner.setImage(t.image);
          southEastCorner.setImage(t.image);
          
         
@@ -342,7 +340,10 @@ public class GUI implements MouseListener
        }
          
        }
+     } 
      }
+     
+     
 ////     
 //// else if(tp.size>3)
 ////        {
