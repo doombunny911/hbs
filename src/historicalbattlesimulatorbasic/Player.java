@@ -16,7 +16,7 @@ public class Player{
 
    UnitPlacer up;
    boolean myTurn;
-   
+ int playerNumber;  
 String playerName; //the players actual name
 String nameOfArmy; //The name of the army
 int unitLimit, unitsRemaining;
@@ -37,10 +37,19 @@ UnitLoader playerUnits = new UnitLoader();
         allUnits=up.unitArrayList;
         this.playerName = playerName;
     }
+    public Player(){
+         allUnits = new ArrayList();
+//      allUnits=up.unitArrayList;
+        //this.playerName = playerName;
+    }
     public Player(String playerName,ArrayList <Unit> u){
         up=new UnitPlacer(playerName,u);
         allUnits=u;
         this.playerName = playerName;
+    }
+    public void setPlayerNum(int num)
+    {
+        this.playerNumber = num;
     }
     public void generatePlayerUnitPlacer(){
 
@@ -77,6 +86,10 @@ boolean anyClickable = true;
     }
     return anyClickable;
 }
+    public void setName(String name)
+    {
+        this.playerName = name;
+    }
 
 }
 

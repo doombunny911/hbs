@@ -1,4 +1,6 @@
-fasdfa.txt
+dfdf.txt
+ed
+de
 ---
 English Longbowmen
 2
@@ -15,9 +17,10 @@ English Longbowmen
 1.0
 50
 redRange.png
-1100
-690
+1290
+610
 0
+de
 ---
 English Longbowmen
 2
@@ -34,6 +37,7 @@ English Longbowmen
 1.0
 50
 redRange.png
-460
+360
 550
 0
+ed

@@ -48,21 +48,33 @@ public final class UnitPlacer extends JPanel
    public void setPlayer(String playerName){
        this.player = playerName;
    }
-   public UnitPlacer(String name){
+   public void setObedience()
+   {
+       for(Unit u: unitArrayList)
+       {
+           u.setPlayerName(this.player);
+       }
+   }
+   public UnitPlacer(String name)
+   {
        this.player=name;
        UnitLoader ul = new UnitLoader();
        this.unitArrayList = ul.runLoader();
        this.numOfUnitsToPlace = this.unitArrayList.size();
        //System.out.println("the number in unitPlacer = " + numOfUnitsToPlace);
+       this.setObedience();
        this.setOpaque(false);
         
    }
-   public UnitPlacer(String name, ArrayList <Unit> u){
+   public UnitPlacer(String name, ArrayList <Unit> u)
+   {
        this.player=name;
+       
        this.unitArrayList=u;
        this.numOfUnitsToPlace=u.size();
        this.setOpaque(false);
        this.setUpButtons();
+       this.setObedience();
    }
    public ArrayList<Unit> getUnitList(){
        return this.unitArrayList;

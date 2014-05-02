@@ -854,6 +854,13 @@ public void expand(Tile corner, int i, Tile t) {
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
             System.out.println(GUI.scenario.map.fileName);
             writer.println(GUI.scenario.map.fileName);
+            
+            
+            System.out.println(GUI.scenario.p1.playerName);
+           
+            
+            writer.println(GUI.scenario.p1.playerName);
+            writer.println(GUI.scenario.p2.playerName);
             writer.close();
                for(int i=0; i<unitDraws.size(); i++)
                {

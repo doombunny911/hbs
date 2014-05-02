@@ -47,28 +47,32 @@ public final class Openingmenuscreen
         {
             
             Game game = new Game();
-            
+            Scenario scn = new Scenario();
+            scn.LoadScenario();
             removePanels();
-            
-            String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
-            JOptionPane.showMessageDialog(null, name   +" choose your army:");
-            Player p1 = new Player(name);
-            name = JOptionPane.showInputDialog(null, " Enter your name player 2");
-            JOptionPane.showMessageDialog(null,name +"  choose your army:");
-            Player p2 = new Player(name);
+           
+            Player p1 = scn.p1;
+           System.out.println(p1.playerName);
+           for(Unit u: scn.p1.allUnits)
+          {
+              System.out.println(u.nameOfUnit);
+           }
+            Player p2 = scn.p2;
             p1.myTurn=true;
             Game.playersForDemo.add(p1);
             Game.playersForDemo.add(p2);
 
-            Map map = new Map(10);
+            Map map = scn.map;
             //map.loadMap();
-            p1.up.setUpButtons();
-            p2.up.setUpButtons();
+//            GUI.scenario.p1.up = new UnitPlacer(scn.p1.allUnits);
+        //    GUI.scenario.p2.up = new UnitPlacer(scn.p2.allUnits);
+//            GUI.scenario.p1.up.setUpButtons();
+         //   GUI.scenario.p2.up.setUpButtons();
             
-            p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-            p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-            GUI.panel.add(p1.up);
-            GUI.panel.add(p2.up);           
+        //    GUI.scenario.p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+       //    GUI.scenario.p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+      //      GUI.panel.add(p1.up);
+      //      GUI.panel.add(p2.up);           
             game.gameMap=map;
             GUI.buttonLoader();
 //            
@@ -123,6 +127,8 @@ public final class Openingmenuscreen
        {
            removePanels();
            Scenario scenario = new Scenario();
+           scenario.createNewScenario();
+           
        }});
        ImageIcon load = bil.getIconLoadGame();
        b5 = new JButton(load);
