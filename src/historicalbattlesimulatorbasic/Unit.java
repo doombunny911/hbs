@@ -108,7 +108,7 @@ for(int i=0; i<unitSize;i++)
             clone.setUnitID(this.unitID);
             clone.placeOnTile(tileOccupied);
             unitSoldiers.add(clone);
-    }
+        }
 
 
         this.moveMentCounter=unitSoldiers.get(0).speed;
@@ -489,7 +489,7 @@ if(!parent.exists() && !parent.mkdirs()){
         String fileName=fileName2+".txt";
         File file = new File("Scenarios"+File.separator+fileName);
         File parent = file.getParentFile();
-        
+
 if(!parent.exists() && !parent.mkdirs()){
     throw new IllegalStateException("Couldn't create dir: " + parent);
 } 
@@ -514,8 +514,6 @@ if(!parent.exists() && !parent.mkdirs()){
             writer.println(this.xPosition);
             writer.println(this.yPosition);
             writer.println(this.currentFormation.whichFormation);
-            System.out.println(this.playerName);
-            writer.println(this.playerName);
             System.out.println("Saved");
             writer.close();
              } 
