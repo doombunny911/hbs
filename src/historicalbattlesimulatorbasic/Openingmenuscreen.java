@@ -166,7 +166,7 @@ public final class Openingmenuscreen
     }
     public Openingmenuscreen(){       
        initFrame();
-//     setFullScreen();
+     setFullScreen();
      
        
       

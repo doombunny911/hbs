@@ -21,7 +21,7 @@ class Scenario {
         
         map = new Map(10);
         map.generateLoaded();
-        GUI.scenario = this;
+       
    
         String name = JOptionPane.showInputDialog(null, "Enter the name for player 1");
         JOptionPane.showMessageDialog(null," choose the army for: " + name);
