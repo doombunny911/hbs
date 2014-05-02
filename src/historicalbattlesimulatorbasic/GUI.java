@@ -41,6 +41,7 @@ import javax.swing.SwingConstants;
 public class GUI implements MouseListener
 {
 //    JLabel bgL = new JLabel();
+    
     static Scenario scenario;  //the scenario
     static double turnCountForPersians=30;
     static double numberOfTilesWidth; //the number of tiles that make up the width
@@ -464,7 +465,7 @@ public void expand(Tile corner, int i, Tile t) {
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-     if(GUI.scenario!=null)
+     if(GUI.scenario.sMode==true)
      {
          if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
 {
@@ -503,7 +504,7 @@ public void expand(Tile corner, int i, Tile t) {
          //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-      else if(scenario==null)
+      else if(GUI.scenario==null||scenario.sMode==false)
    {
        
        if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
@@ -596,7 +597,7 @@ public void expand(Tile corner, int i, Tile t) {
     }
    
     public static void initMoveCountPanel() {
-        if(scenario==null)
+        if(scenario==null||scenario.sMode==false)
         {
             moveCountPanel = new JPanel();
             moveCountPanel.setLayout(null);
@@ -841,7 +842,7 @@ public void expand(Tile corner, int i, Tile t) {
                  }
              } 
        });
-       if(scenario!=null)
+       if(scenario.sMode==true)
        {
           GUI.scenarioButton.addActionListener(new ActionListener(){
            @Override
@@ -883,7 +884,7 @@ public void expand(Tile corner, int i, Tile t) {
         
         button = setButtonsWithoutDefaults(button);
             
-        if(GUI.scenario!=null)
+        if(GUI.scenario.sMode==true)
         {
             
             buttonPanel.add(button[2]);
@@ -962,7 +963,7 @@ public void expand(Tile corner, int i, Tile t) {
        
      //  endTurn.setContentAreaFilled(false);
        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
-       if(scenario==null)
+       if(scenario==null||scenario.sMode==false)
        {
             GUI.initTurnPanel();
            endTurn.setVisible(true);
@@ -1016,7 +1017,7 @@ public void expand(Tile corner, int i, Tile t) {
       }   
    public static void initTurnPanel(){
      // GUI.panel.remove(turnPanel);
-       if(GUI.scenario==null)
+       if(GUI.scenario==null||GUI.scenario.sMode==false)
        {
             turnPanel = new JPanel();
             turnPanel.setBackground(Color.black);

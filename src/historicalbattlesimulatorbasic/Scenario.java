@@ -16,6 +16,7 @@ class Scenario {
     
     //needs to create a map
     Map map = null;
+    boolean sMode = true;
     public Scenario(){
         Game game = new Game();
         

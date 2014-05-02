@@ -138,7 +138,7 @@ public final class Openingmenuscreen
             public void demo() {
                 //load the game, testButton for now
                 
-                GUI.scenario=null;
+                
                 Game game = new Game();
 //                Map map = new Map(10, "agincourt");
                 

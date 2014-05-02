@@ -372,7 +372,7 @@ for(int i=0; i<unitSize;i++)
         return unitPoints;
     }
     public void expendUnitPoint(){
-        if(GUI.scenario==null)
+        if(GUI.scenario==null||GUI.scenario.sMode==false)
         {
            this.unitPoints = this.unitPoints -1;
            GUI.refreshTurnPanel();
