@@ -260,10 +260,6 @@ public class Tile extends Rectangle
                     GUI.tileWidth,null);
       
     }
-BufferedImageLoaders bil = new BufferedImageLoaders();
-    void setImageFromString(String imageName) {
-        BufferedImage bi = bil.getImage(imageName);
-       this.image = new BufferedImageName( bi, imageName);
-    }
+
     
 }

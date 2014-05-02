@@ -287,8 +287,8 @@ public class GUI implements MouseListener
   public void loadTerrainPiece(Tile t) 
   {
  //   
-        t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        
+     t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
+     tp.tilesToSave.add(t);
      Tile northEastCorner, southEastCorner, southWestCorner, northWestCorner, northCorner, southCorner, eastCorner, westCorner;
      if(tp.size<=0) 
      {

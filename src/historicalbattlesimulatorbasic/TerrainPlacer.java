@@ -132,11 +132,6 @@ public final class TerrainPlacer extends JPanel
        add(exit);
     }
 
-   public void addToSaver(Tile t) 
-    {
-       tilesToSave.add(t);
-    }
-   
 public void saveMap(String fileName2) throws IOException {
         PrintWriter writer = null;
         String fileName=fileName2+".txt";
@@ -148,9 +143,11 @@ if(!parent.exists() && !parent.mkdirs()){
 } 
         try {                      
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-            writer.println("---"); //seperator 
+             //seperator
+          
            for(Tile t: tilesToSave)
            {
+               writer.println("---");
                writer.println(t.xPosition);
                writer.println(t.yPosition);
                writer.println(t.tileBlocked);

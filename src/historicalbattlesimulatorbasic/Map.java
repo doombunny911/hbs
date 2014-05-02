@@ -66,19 +66,6 @@ public class Map
         System.out.println("MAP CALLED");
     }
     
-//    public Map(int xWidth,String s)
-//    {
-//           //this.name = name;
-//        ScenarioGUI.tileWidth=xWidth;
-//        this.generateTilesS();
-//        ScenarioPainter gen = new ScenarioPainter(squareWidth,squareHeight);
-//        ScenarioGUI gui = new ScenarioGUI(gen); //initialzes mouselistener
-//        ScenarioGUI.panel.setLayout(null);
-//        ScenarioGUI.copy(Openingmenuscreen.tilePanel,ScenarioGUI.panel);
-//        
-////        GUI.placeUnitTester();
-//        ScenarioGUI.gameFrame.add(gen);
-//    }
     public final void generateBasic(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
@@ -111,38 +98,29 @@ public class Map
         GUI.numberOfTilesWidth=squareWidth;
         GUI.numberOfTilesHeight=squareHeight;
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-
-      boolean b = false;
-      boolean c = false;
+        boolean add = false;
       Tile adder = null;
          for(int i=0;i<squareHeight;i++)
         {
-            for(Tile t: tilesToIncorporate)
-            {
-                if(t.yPosition==i)
-                {
-                    b = true;
-                }
-                    
-            }
+           
             for(int j=0; j<squareWidth; j++)
             {
-                if(b)
-                {
+               
                     for(Tile t: tilesToIncorporate)
                      {
-                        if(t.xPosition==j)
+                        if(t.xPosition==i && t.yPosition==j)
                             {
-                             c = true;
                              adder = t;
+                             add = true;
                              }
                     
                       }
-                }
-                if(c)
+                
+                if(add)
                 {
-                GUI.tileGameMap[j][i] = adder;
-                GUI.tileGameMap[j][i].setImage(adder.image);
+                 GUI.tileGameMap[j][i] = adder;
+                 GUI.tileGameMap[j][i].setImage(adder.image);
+                 add = false;
                 }
                 else
                 {
@@ -457,7 +435,7 @@ if(!parent.exists() && !parent.mkdirs()){
                  {
                      
                      String xPos = reader.nextLine();
-                     System.out.println("xPos "+name);
+                     System.out.println("xPos: "+xPos);
                      String yPos = reader.nextLine();
                      String blocked = reader.nextLine();
                      String imageName = reader.nextLine();
@@ -466,14 +444,16 @@ if(!parent.exists() && !parent.mkdirs()){
                      {
                          t.setBlocked();
                      }
-                     t.setImageFromString(imageName);
+                     this.setImageFromString(t, imageName);
 //                     nUnit.setUnitUnitID();
                      tilesToIncorporate.add(t);   
-                     System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");
+                     //System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");
                  }
              else reader.nextLine();
          }
-         
+         BufferedImageLoaders bil = new BufferedImageLoaders();
+       
+        
             
             
         } catch (FileNotFoundException ex) {
@@ -481,6 +461,10 @@ if(!parent.exists() && !parent.mkdirs()){
         }
         
         return tilesToIncorporate;
+    }
+     void setImageFromString(Tile t, String imageName) {
+        BufferedImage bi = bil.getImage(imageName);
+       t.image = new BufferedImageName( bi, imageName);
     }
     
      
