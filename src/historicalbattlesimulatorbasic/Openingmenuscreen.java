@@ -146,20 +146,8 @@ public final class Openingmenuscreen
                 m.generateLoaded();
                 GUI.gameMap = m;
                 
-            // p1.up.setUpButtons();
-           //  p2.up.setUpButtons();
-                
-//               p2.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-//               p1.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-//                GUI.panel.add(p2.up);
-                //GUI.panel.add(p1.up);
-                
-//                game.gameMap=map;
                 GUI.buttonLoader();
                 
-                
-                
-                //remove all panels
                 removePanels();
             }
     });
@@ -184,7 +172,6 @@ public final class Openingmenuscreen
    }
 
    //sets to fullscreen mode, more a hinderence atm but good for final product
-
     public void setFullScreen(){
       gameFrame.setUndecorated(true);
       gameFrame.setResizable(false);

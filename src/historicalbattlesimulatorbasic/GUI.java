@@ -851,14 +851,14 @@ public void expand(Tile corner, int i, Tile t) {
               try { //TO DO LOGIC HERE
                String fileToSaveTo = JOptionPane.showInputDialog("Enter File Name to Save Scenario as: ");
                PrintWriter writer = null;
-        String fileName=fileToSaveTo+".txt";
-        File file = new File("Scenarios"+File.separator+fileName);
-        File parent = file.getParentFile();
+               String fileName=fileToSaveTo+".txt";
+               File file = new File("Scenarios"+File.separator+fileName);
+               File parent = file.getParentFile();
         
-                            if(!parent.exists() && !parent.mkdirs())
-                            {
-                         throw new IllegalStateException("Couldn't create dir: " + parent);
-                            } 
+                if(!parent.exists() && !parent.mkdirs())
+                {
+                    throw new IllegalStateException("Couldn't create dir: " + parent);
+                } 
                             
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
             System.out.println(GUI.scenario.map.fileName);
@@ -886,7 +886,7 @@ public void expand(Tile corner, int i, Tile t) {
             
         if(GUI.scenario!=null&&GUI.scenario.sMode==true)
         {
-            
+
             buttonPanel.add(button[2]);
             buttonPanel.add(button[3]);
             buttonPanel.add(button[4]);
