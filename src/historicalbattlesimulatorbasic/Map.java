@@ -108,11 +108,14 @@ public class Map
                
                     for(Tile t: tilesToIncorporate)
                      {
-                        if(t.xPosition==i && t.yPosition==j)
-                            {
-                             adder = t;
-                             add = true;
-                             }
+                         
+                        if(t.xPosition==GUI.tileGameMap[j][i].xPosition  && t.yPosition==GUI.tileGameMap[j][i].yPosition)
+                        {
+                            System.out.println("EVER REACHED");
+                            adder = t;
+                            add = true;
+                            break;
+                        }
                     
                       }
                 
@@ -125,10 +128,11 @@ public class Map
                 else
                 {
                     GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
-                    GUI.tileGameMap[j][i].setImage(grass);}
+                    GUI.tileGameMap[j][i].setImage(grass);
                 }
             }
-        } 
+        }
+    } 
         
     
   
@@ -437,6 +441,7 @@ if(!parent.exists() && !parent.mkdirs()){
                      String xPos = reader.nextLine();
                      System.out.println("xPos: "+xPos);
                      String yPos = reader.nextLine();
+                     System.out.print("yPos: "+xPos);
                      String blocked = reader.nextLine();
                      String imageName = reader.nextLine();
                      Tile t = new Tile(10,10,Integer.parseInt(xPos),Integer.parseInt( yPos));
