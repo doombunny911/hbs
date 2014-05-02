@@ -44,32 +44,43 @@ public final class Openingmenuscreen
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
+
+            //TO DO
+            
+            //select a map and units
+            
+            //load the units and terrain choices for them
+            
+            //set up everything for them to play
+            
+            
+            
             
             Game game = new Game();
-            
+//            
             removePanels();
-            
-            String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
-            JOptionPane.showMessageDialog(null, name   +" choose your army:");
-            Player p1 = new Player(name);
-            name = JOptionPane.showInputDialog(null, " Enter your name player 2");
-            JOptionPane.showMessageDialog(null,name +"  choose your army:");
-            Player p2 = new Player(name);
-            p1.myTurn=true;
-            Game.playersForDemo.add(p1);
-            Game.playersForDemo.add(p2);
-
-            Map map = new Map(10);
-            //map.loadMap();
-            p1.up.setUpButtons();
-            p2.up.setUpButtons();
-            
-            p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-            p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-            GUI.panel.add(p1.up);
-            GUI.panel.add(p2.up);           
-            game.gameMap=map;
-            GUI.buttonLoader();
+//            
+//            String name = JOptionPane.showInputDialog(null, "Enter your name player 1");
+//            JOptionPane.showMessageDialog(null, name   +" choose your army:");
+//            Player p1 = new Player(name);
+//            name = JOptionPane.showInputDialog(null, " Enter your name player 2");
+//            JOptionPane.showMessageDialog(null,name +"  choose your army:");
+//            Player p2 = new Player(name);
+//            p1.myTurn=true;
+//            Game.playersForDemo.add(p1);
+//            Game.playersForDemo.add(p2);
+//
+//            Map map = new Map(10);
+//            //map.loadMap();
+//            p1.up.setUpButtons();
+//            p2.up.setUpButtons();
+//            
+//            p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+//            p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+//            GUI.panel.add(p1.up);
+//            GUI.panel.add(p2.up);           
+//            game.gameMap=map;
+//            GUI.buttonLoader();
 //            
         }
     }); 
