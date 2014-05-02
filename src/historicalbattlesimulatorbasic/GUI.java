@@ -465,7 +465,7 @@ public void expand(Tile corner, int i, Tile t) {
        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-     if(GUI.scenario.sMode==true)
+     if(GUI.scenario!=null&&GUI.scenario.sMode==true)
      {
          if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
 {
@@ -842,7 +842,7 @@ public void expand(Tile corner, int i, Tile t) {
                  }
              } 
        });
-       if(scenario.sMode==true)
+       if(GUI.scenario!=null&&scenario.sMode==true)
        {
           GUI.scenarioButton.addActionListener(new ActionListener(){
            @Override
@@ -884,7 +884,7 @@ public void expand(Tile corner, int i, Tile t) {
         
         button = setButtonsWithoutDefaults(button);
             
-        if(GUI.scenario.sMode==true)
+        if(GUI.scenario!=null&&GUI.scenario.sMode==true)
         {
             
             buttonPanel.add(button[2]);
