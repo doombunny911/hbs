@@ -299,7 +299,7 @@ public class GUI implements MouseListener
 //     else if(tp.size>0)
      else
      {
-       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; ;
+//       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; ;
        for(int i=0; i<=tp.size*2; i++)
        {
            
