@@ -282,9 +282,14 @@ public class GUI implements MouseListener
 
   public void loadTerrainPiece(Tile t) 
   {
- //   
+     if(t==null)
+     {
+         
+     }
+         
+
      t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-     tp.tilesToSave.add(t);
+     tp.tilesToSave.add(GUI.tileClicked);
      Tile northEastCorner, southEastCorner, southWestCorner, northWestCorner, northCorner, southCorner, eastCorner, westCorner;
      if(tp.size<=0) 
      {
@@ -299,7 +304,7 @@ public class GUI implements MouseListener
 //     else if(tp.size>0)
      else
      {
-//       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*i]; ;
+       northWestCorner = GUI.tileGameMap[GUI.tileClicked.xPosition/GUI.tileWidth-1*tp.size][GUI.tileClicked.yPosition/GUI.tileWidth+1*0]; ;
        for(int i=0; i<=tp.size*2; i++)
        {
            

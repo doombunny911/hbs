@@ -127,6 +127,7 @@ public final class TerrainPlacer extends JPanel
                         Historicalbattlesimulatorbasic.Start = new Openingmenuscreen();
                 }
             });
+     
        add(increaseSize);
        add(decreaseSize);
        add(exit);
@@ -144,17 +145,18 @@ if(!parent.exists() && !parent.mkdirs()){
         try {                      
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
              //seperator
-          
+           System.out.println(tilesToSave.size());
            for(Tile t: tilesToSave)
            {
                writer.println("---");
+               System.out.println("xPosition = "  + t.xPosition);
                writer.println(t.xPosition);
                writer.println(t.yPosition);
                writer.println(t.tileBlocked);
                writer.println(t.image.name);
            }
             System.out.println("Saved");
-            writer.close();
+//            writer.close();
              } 
         catch (FileNotFoundException ex)
              {
