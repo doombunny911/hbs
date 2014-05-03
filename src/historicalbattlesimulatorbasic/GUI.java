@@ -91,6 +91,7 @@ public class GUI implements MouseListener
        GUI.panel=panel;
        GUI.panel.addMouseListener(this);
        GUI.statPanel.setVisible(false);
+       GUI.copy(panel, GUI.panel);
        
    }
    private static void initCombatPanel(){
@@ -840,20 +841,21 @@ public void expand(Tile corner, int i, Tile t) {
            public void actionPerformed(ActionEvent ae)
            {
               try { //TO DO LOGIC HERE
-               String fileToSaveTo = JOptionPane.showInputDialog("Enter File Name to Save Scenario as: ");
-               PrintWriter writer = null;
-        String fileName=fileToSaveTo+".txt";
-        File file = new File("Scenarios"+File.separator+fileName);
-        File parent = file.getParentFile();
+                String fileToSaveTo = JOptionPane.showInputDialog
+                    ("Enter File Name to Save Scenario as: ");
+                PrintWriter writer = null;
+                String fileName=fileToSaveTo+".txt";
+                File file = new File("Scenarios"+File.separator+fileName);
+                File parent = file.getParentFile();
         
-                            if(!parent.exists() && !parent.mkdirs())
-                            {
-                         throw new IllegalStateException("Couldn't create dir: " + parent);
-                            } 
+                if(!parent.exists() && !parent.mkdirs())
+                {
+                    throw new IllegalStateException("Couldn't create dir: " + parent);
+                } 
                             
-            writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-            System.out.println(GUI.scenario.map.fileName);
-            writer.println(GUI.scenario.map.fileName);
+                writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+                System.out.println(GUI.scenario.map.fileName);
+                writer.println(GUI.scenario.map.fileName);
             
             
             System.out.println(GUI.scenario.p1.playerName);
@@ -871,6 +873,7 @@ public void expand(Tile corner, int i, Tile t) {
                 } catch (IOException ex) {
                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                    }
+              Openingmenuscreen o = new Openingmenuscreen();
            }
        
        

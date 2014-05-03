@@ -27,7 +27,7 @@ class Scenario {
     Map map = null;
     Player p1 = null;
     Player p2 = null;
-   
+    boolean sMode = true;
     public Scenario(){
        // createNewScenario();
         p1 = new Player();
@@ -64,14 +64,10 @@ class Scenario {
     
     public void LoadScenario()
     {
-       //GUI.scenario = null;
-        
-         
         final JFileChooser fc = new JFileChooser();
         File dir = new File("Scenarios"+File.separator+"SAnchor.txt");
         
-        
-        
+
         System.out.println(dir);
         fc.setCurrentDirectory(dir);
         File  current = fc.getCurrentDirectory();
@@ -83,7 +79,7 @@ class Scenario {
        
         String name = fc.getSelectedFile().getName();
        
-        System.out.println("You have selected to load "+name+ "map.");
+        System.out.println("You have selected to load "+name+ " map.");
         
          this.loadAllScenarioParts(name);
       

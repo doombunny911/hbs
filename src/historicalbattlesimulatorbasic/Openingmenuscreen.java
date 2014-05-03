@@ -45,24 +45,23 @@ public final class Openingmenuscreen
         @Override
         public void actionPerformed( ActionEvent e ) 
         {
-            
-            Game game = new Game();
-            Scenario scn = new Scenario();
-            scn.LoadScenario();
-            removePanels();
+           Game game = new Game();
+           Scenario scn = new Scenario();
+           scn.LoadScenario();
+           removePanels();
            
-            Player p1 = scn.p1;
+           Player p1 = scn.p1;
            System.out.println(p1.playerName);
            for(Unit u: scn.p1.allUnits)
-          {
+           {
               System.out.println(u.nameOfUnit);
            }
-            Player p2 = scn.p2;
-            p1.myTurn=true;
-            Game.playersForDemo.add(p1);
-            Game.playersForDemo.add(p2);
+           Player p2 = scn.p2;
+           p1.myTurn=true;
+           Game.playersForDemo.add(p1);
+           Game.playersForDemo.add(p2);
 
-            Map map = scn.map;
+           Map map = scn.map;
             //map.loadMap();
 //            GUI.scenario.p1.up = new UnitPlacer(scn.p1.allUnits);
         //    GUI.scenario.p2.up = new UnitPlacer(scn.p2.allUnits);
@@ -72,8 +71,14 @@ public final class Openingmenuscreen
         //    GUI.scenario.p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
        //    GUI.scenario.p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
       //      GUI.panel.add(p1.up);
-      //      GUI.panel.add(p2.up);           
+      //      GUI.panel.add(p2.up); 
+//            GUI.panel=
+//            GUI.copy(Openingmenuscreen.tilePanel, GUI.panel);
             game.gameMap=map;
+            map=new Map(10);
+            
+            System.out.println(map);
+            
             GUI.buttonLoader();
 //            
         }
@@ -142,7 +147,6 @@ public final class Openingmenuscreen
         }
 
             public void demo() {
-                //load the game, testButton for now
                 
                 GUI.scenario=null;
                 Game game = new Game();
@@ -186,7 +190,7 @@ public final class Openingmenuscreen
 //       welcomePanel.revalidate();
 
        GUI.gameFrame=gameFrame;
-//       ScenarioGUI.gameFrame=gameFrame;
+       
    }
 
    //sets to fullscreen mode, more a hinderence atm but good for final product

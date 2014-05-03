@@ -34,6 +34,7 @@ public class Map
    private double squareHeight;
    private double squareWidth;
    private String name;
+   int tileWidth;
    BufferedImageName dirt = BufferedImageLoaders.dirtLoader();
    BufferedImageName rock = BufferedImageLoaders.rockLoader();
    BufferedImageName grass =  BufferedImageLoaders.grassLoader();
@@ -41,17 +42,19 @@ public class Map
    BufferedImageName mountain = BufferedImageLoaders.imageLoader("mountainRock.png");
    BufferedImageName wave = BufferedImageLoaders.imageLoader("wave.png");
    BufferedImageName sand = BufferedImageLoaders.imageLoader("sand.png");
-     BufferedImageName tree2 = BufferedImageLoaders.imageLoader("tree.png");
+   BufferedImageName tree2 = BufferedImageLoaders.imageLoader("tree.png");
    BufferedImageName rocksGround = BufferedImageLoaders.imageLoader("rocksGround2.png");
- String fileName ="";
-    public static void main(String[] args) throws IOException{
+   String fileName ="";
+   
+   public static void main(String[] args) throws IOException{
 //        Map m = MapCreator.createMap();
        // m.saveMap("file");
         
     }
    //populates the gameMap with basic tiles with no features other than area.
-    public Map( int xWidth){
+   public Map( int xWidth){ 
         //this.name = name;
+       this.tileWidth=xWidth;
         GUI.tileWidth=xWidth;
       this.generateTiles();
 //        generateLoaded();
@@ -65,7 +68,7 @@ public class Map
         System.out.println("MAP CALLED");
     }
     
-    public final void generateBasic(){
+   public final void generateBasic(){
         int width = Openingmenuscreen.tilePanel.getWidth();
         int height = Openingmenuscreen.tilePanel.getHeight();
         squareWidth = Math.floor(width/GUI.tileWidth);
@@ -86,9 +89,8 @@ public class Map
             }
         } 
     }
-  
-    public final void generateLoaded()
-    {
+ 
+   public final void generateLoaded(){
         this.loadMap();
         
         int width = Openingmenuscreen.tilePanel.getWidth();
