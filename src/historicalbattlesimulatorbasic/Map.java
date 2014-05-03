@@ -6,7 +6,6 @@
 
 package historicalbattlesimulatorbasic;
 
-import static historicalbattlesimulatorbasic.UnitLoader.loadUnit;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
