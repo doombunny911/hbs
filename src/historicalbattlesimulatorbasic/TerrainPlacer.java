@@ -105,7 +105,8 @@ public final class TerrainPlacer extends JPanel
                 public void actionPerformed(ActionEvent e)
                 {
 //                  Add tile to be loaded here
-                   size = size-1;
+                    if(size>0)
+                        size = size-1;
                 }
             });
       JButton exit = new JButton("Close Map Creator and Save");
