@@ -75,7 +75,7 @@ public final class Openingmenuscreen
 //            GUI.panel=
 //            GUI.copy(Openingmenuscreen.tilePanel, GUI.panel);
             game.gameMap=map;
-            map=new Map(10);
+//            map=new Map(10);
             
             System.out.println(map);
             
@@ -121,7 +121,7 @@ public final class Openingmenuscreen
        b4.addActionListener(new ActionListener() {
        
        @Override
-       public void actionPerformed ( ActionEvent e )
+       public void actionPerformed ( ActionEvent e ) //scenario Creator
        {
            removePanels();
            Scenario scenario = new Scenario();
