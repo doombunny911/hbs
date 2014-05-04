@@ -320,7 +320,7 @@ public class GUI implements MouseListener
        {
            for(int j=0;j<=tp.size*2;j++)
            {
-               if(GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth]!=null)
+               if((baseX+j*GUI.tileWidth)/GUI.tileWidth<GUI.numberOfTilesWidth&&(baseY+i*GUI.tileWidth)/GUI.tileWidth<GUI.numberOfTilesHeight)
                {
                     GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].setImage(t.image);
                     tp.tilesToSave.add(GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth]);
@@ -459,126 +459,8 @@ public class GUI implements MouseListener
    
     @Override
     public void mouseClicked(MouseEvent mac)
-{
-        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
-        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
-        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-        if(GUI.scenario!=null&&GUI.scenario.inScenarioCreator)
         {
-           if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
-           {
-                loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-                UnitPlacer.check=false;
-                Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-           }
-            else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
-            {
-                loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-                UnitPlacer.check=false;
-                Game.playersForDemo.get(1).up.unitToBeLoaded=null;
-     //           System.out.println("in mouseClicked going to unitplacer ");
-            }
-            if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
-            {
-                //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-                GUI.unitSelected=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
-                toggleButtons(GUI.buttonPanel,true);
-            }
-     }
- 
-      else if(terrainLoading()) 
-       {
-           loadTerrainPiece(tp.terrainToBeLoaded);
-           
-       //    System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
-         //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
-//           System.out.println("in mouseClicked going to unitplacer ");
-       }
-      else if(scenario==null||!scenario.inScenarioCreator)
-     {
-       
-       if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
-{
-           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-           UnitPlacer.check=false;
-           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-}
-        else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
-        {
-           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-           UnitPlacer.check=false;
-           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
-//           System.out.println("in mouseClicked going to unitplacer ");
-        }
-       
-       
-       
-      if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
-      {
-          
-          
-              if(player1Turn())   
-              {
-                  for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
-                  {
-                      if(player1UnitIsEqualToUnitSelectedAt(i))
-                      {
-                          System.out.println("unitSelected is being initialized ");
-                  
-                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-                          GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
-                          toggleButtons(GUI.buttonPanel,true);
-                      }
-                  }
-                  for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
-                  {
-                      if(player2UnitIsEqualToUnitSelectedAt(i))
-                      {
-                          if(PlayerSelectedSameEnemyUnitAgain(1,i))
-                          {
-                              GUI.statPanel.setVisible(false);
-                              enemySelected=null;
-                          }
-                          else
-                          {
-                               GUI.enemySelected = Game.playersForDemo.get(1).allUnits.get(i);
-                               GUI.printStats(Game.playersForDemo.get(1).allUnits.get(i));
-                          }
-                      }
-                  }
-              }
-               else if(player2Turn())
-               {
-                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
-                   {
-                      if(player2UnitIsEqualToUnitSelectedAt(i))
-                        {
-                            System.out.println("unitSelected is being initialized ");
-                            GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
-                            toggleButtons(GUI.buttonPanel,true);
-                        } 
-                   }
-                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
-                   {
-                      if(player1UnitIsEqualToUnitSelectedAt(i))
-                      {
-                          if(PlayerSelectedSameEnemyUnitAgain(0,i))
-                          {
-                              GUI.statPanel=null;
-                              enemySelected=null;
-                          }
-                          else
-                          {
-                               GUI.enemySelected = Game.playersForDemo.get(0).allUnits.get(0);
-                               GUI.printStats(Game.playersForDemo.get(0).allUnits.get(0));
-                          } 
-                      }
-                   }
-               }
-           } 
-       
-      }
-        GUI.repainter();
+        
     }
     //checks to see if someone clicked a tile and there are unitDraws in "queue"
    public boolean thereIsAUnitReadyToBeLoaded() {
@@ -871,6 +753,7 @@ public class GUI implements MouseListener
                 } catch (IOException ex) {
                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                    }
+              GUI.scenario.inScenarioCreator=false;
               Openingmenuscreen o = new Openingmenuscreen();
            }
        
@@ -1572,6 +1455,127 @@ public class GUI implements MouseListener
     }
    @Override
    public void mousePressed(MouseEvent me) {
+       
+       double findTileX= Math.ceil(me.getX()/GUI.tileWidth);
+        double findTileY=Math.ceil(me.getY()/GUI.tileWidth);
+        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
+        if(GUI.scenario!=null&&GUI.scenario.inScenarioCreator)
+        {
+           if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
+           {
+                loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+                UnitPlacer.check=false;
+                Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+           }
+            else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
+            {
+                loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+                UnitPlacer.check=false;
+                Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+     //           System.out.println("in mouseClicked going to unitplacer ");
+            }
+            if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+            {
+                //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
+                GUI.unitSelected=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
+                toggleButtons(GUI.buttonPanel,true);
+            }
+     }
+ 
+      else if(terrainLoading()) 
+       {
+           loadTerrainPiece(tp.terrainToBeLoaded);
+           
+       //    System.out.println("X Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getXPosition());
+         //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
+//           System.out.println("in mouseClicked going to unitplacer ");
+       }
+      else if(scenario==null||!scenario.inScenarioCreator)
+     {
+       
+       if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
+{
+           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+           UnitPlacer.check=false;
+           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+}
+        else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
+        {
+           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+           UnitPlacer.check=false;
+           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+//           System.out.println("in mouseClicked going to unitplacer ");
+        }
+       
+       
+       
+      if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+      {
+          
+          
+              if(player1Turn())   
+              {
+                  for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
+                  {
+                      if(player1UnitIsEqualToUnitSelectedAt(i))
+                      {
+                          System.out.println("unitSelected is being initialized ");
+                  
+                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
+                          GUI.unitSelected=Game.playersForDemo.get(0).allUnits.get(i);
+                          toggleButtons(GUI.buttonPanel,true);
+                      }
+                  }
+                  for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
+                  {
+                      if(player2UnitIsEqualToUnitSelectedAt(i))
+                      {
+                          if(PlayerSelectedSameEnemyUnitAgain(1,i))
+                          {
+                              GUI.statPanel.setVisible(false);
+                              enemySelected=null;
+                          }
+                          else
+                          {
+                               GUI.enemySelected = Game.playersForDemo.get(1).allUnits.get(i);
+                               GUI.printStats(Game.playersForDemo.get(1).allUnits.get(i));
+                          }
+                      }
+                  }
+              }
+               else if(player2Turn())
+               {
+                   for(int i=0;i<Game.playersForDemo.get(1).allUnits.size();i++)
+                   {
+                      if(player2UnitIsEqualToUnitSelectedAt(i))
+                        {
+                            System.out.println("unitSelected is being initialized ");
+                            GUI.unitSelected=Game.playersForDemo.get(1).allUnits.get(i);
+                            toggleButtons(GUI.buttonPanel,true);
+                        } 
+                   }
+                   for(int i=0;i<Game.playersForDemo.get(0).allUnits.size();i++)
+                   {
+                      if(player1UnitIsEqualToUnitSelectedAt(i))
+                      {
+                          if(PlayerSelectedSameEnemyUnitAgain(0,i))
+                          {
+                              GUI.statPanel=null;
+                              enemySelected=null;
+                          }
+                          else
+                          {
+                               GUI.enemySelected = Game.playersForDemo.get(0).allUnits.get(0);
+                               GUI.printStats(Game.playersForDemo.get(0).allUnits.get(0));
+                          } 
+                      }
+                   }
+               }
+           } 
+       
+      }
+        GUI.repainter();
+       
     }
    @Override
    public void mouseReleased(MouseEvent me) {
