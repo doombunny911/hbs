@@ -324,7 +324,9 @@ public class GUI implements MouseListener
                GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].setImage(t.image);
                
                if(t.tileBlocked)
-                   GUI.tileGameMap[j][i].tileBlocked=true;
+                   GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].tileBlocked=true;
+               else
+                   GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].tileBlocked=false;
            }
                
        } 
