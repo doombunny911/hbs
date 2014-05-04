@@ -290,12 +290,11 @@ public class GUI implements MouseListener
     //and how we get around waiting for users to do something.
     //this is how we get around while loops
 
-  public void loadTerrainPiece(Tile t) 
-  {
+  public void loadTerrainPiece(Tile t) {
      if(t!=null)
      {
-        t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition);
-        System.out.println("COORDS :"+GUI.tileClicked.xPosition+" "+ GUI.tileClicked.yPosition);
+        t.setPosition(GUI.tileClicked.xPosition,GUI.tileClicked.yPosition); //exactly where was clicked
+//        System.out.println("COORDS :"+GUI.tileClicked.xPosition+" "+ GUI.tileClicked.yPosition);
         tp.tilesToSave.add(GUI.tileClicked);
         Tile northEastCorner, southEastCorner, southWestCorner, northWestCorner, northCorner, southCorner, eastCorner, westCorner;
      if(tp.size<=0) 
@@ -321,12 +320,13 @@ public class GUI implements MouseListener
        {
            for(int j=0;j<=tp.size*2;j++)
            {
-               GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].setImage(t.image);
-               
-               if(t.tileBlocked)
-                   GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].tileBlocked=true;
-               else
-                   GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].tileBlocked=false;
+               if(GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth]!=null)
+               {
+                    GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].setImage(t.image);
+                    tp.tilesToSave.add(GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth]);
+                    GUI.tileGameMap[(baseX+j*GUI.tileWidth)/GUI.tileWidth][(baseY+i*GUI.tileWidth)/GUI.tileWidth].tileBlocked = t.tileBlocked;
+               }
+             
            }
                
        } 
@@ -443,7 +443,7 @@ public class GUI implements MouseListener
 
  }
 
-public void expand(Tile corner, int i, Tile t) {
+  public void expand(Tile corner, int i, Tile t) {
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth].setImage(t.image);
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth-1*i][corner.yPosition/GUI.tileWidth].setImage(t.image);
         GUI.tileGameMap[corner.xPosition/GUI.tileWidth+1*i][corner.yPosition/GUI.tileWidth+1*i].setImage(t.image);
@@ -460,40 +460,30 @@ public void expand(Tile corner, int i, Tile t) {
     @Override
     public void mouseClicked(MouseEvent mac)
 {
-       
-       
-       double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
-       double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
-       GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
-     if(GUI.scenario!=null)
-     {
-         if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
-{
-           loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
-           UnitPlacer.check=false;
-           Game.playersForDemo.get(0).up.unitToBeLoaded=null;
-}
-         else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
-         {
-           loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
-           UnitPlacer.check=false;
-           Game.playersForDemo.get(1).up.unitToBeLoaded=null;
-//           System.out.println("in mouseClicked going to unitplacer ");
-         }
-         if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
-         {
-              
-                  
-                  
-                        //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
-                 GUI.unitSelected=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
+        double findTileX= Math.ceil(mac.getX()/GUI.tileWidth);
+        double findTileY=Math.ceil(mac.getY()/GUI.tileWidth);
+        GUI.tileClicked=GUI.tileGameMap[(int)findTileX][(int)findTileY]; //sets the tile= the tile with the coords in the tileGameMap
+        if(GUI.scenario!=null&&GUI.scenario.inScenarioCreator)
+        {
+           if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
+           {
+                loadUnit(Game.playersForDemo.get(0).up.unitToBeLoaded);
+                UnitPlacer.check=false;
+                Game.playersForDemo.get(0).up.unitToBeLoaded=null;
+           }
+            else if(terrainPlacerActive == false && player2IsReadyToLoadUnits() )
+            {
+                loadUnit(Game.playersForDemo.get(1).up.unitToBeLoaded);
+                UnitPlacer.check=false;
+                Game.playersForDemo.get(1).up.unitToBeLoaded=null;
+     //           System.out.println("in mouseClicked going to unitplacer ");
+            }
+            if(thereIsNoUnitCurrentlyAndThereIsAUnitOnThisTile())
+            {
+                //this is where unitselected gets initialized.  it will stay initialized until cancel selection is pressed
+                GUI.unitSelected=GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelectedUsingID(GUI.tileClicked.getOccupier().getUnitID());
                 toggleButtons(GUI.buttonPanel,true);
-                      
-          }
-               
-                   
-               
-           
+            }
      }
  
       else if(terrainLoading()) 
@@ -504,8 +494,8 @@ public void expand(Tile corner, int i, Tile t) {
          //  System.out.println("Y Pos: "+ Game.playersForDemo.get(0).up.unitToBeLoaded.getYPosition());
 //           System.out.println("in mouseClicked going to unitplacer ");
        }
-      else if(scenario==null)
-   {
+      else if(scenario==null||!scenario.inScenarioCreator)
+     {
        
        if(terrainPlacerActive == false &&player1IsReadyToLoadUnits()) 
 {
@@ -597,7 +587,7 @@ public void expand(Tile corner, int i, Tile t) {
     }
    
     public static void initMoveCountPanel() {
-        if(scenario==null)
+        if(scenario==null||!scenario.inScenarioCreator)
         {
             moveCountPanel = new JPanel();
             moveCountPanel.setLayout(null);
@@ -842,7 +832,7 @@ public void expand(Tile corner, int i, Tile t) {
                  }
              } 
        });
-       if(scenario!=null)
+       if(scenario!=null&&scenario.inScenarioCreator)
        {
           GUI.scenarioButton.addActionListener(new ActionListener(){
            @Override
@@ -893,7 +883,7 @@ public void expand(Tile corner, int i, Tile t) {
         
         button = setButtonsWithoutDefaults(button);
             
-        if(GUI.scenario!=null)
+        if(GUI.scenario!=null&&GUI.scenario.inScenarioCreator)
         {
             
             buttonPanel.add(button[2]);
@@ -972,7 +962,7 @@ public void expand(Tile corner, int i, Tile t) {
        
      //  endTurn.setContentAreaFilled(false);
        javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
-       if(scenario==null)
+       if(scenario==null||!scenario.inScenarioCreator)
        {
             GUI.initTurnPanel();
            endTurn.setVisible(true);
@@ -1026,7 +1016,7 @@ public void expand(Tile corner, int i, Tile t) {
       }   
    public static void initTurnPanel(){
      // GUI.panel.remove(turnPanel);
-       if(GUI.scenario==null)
+       if(GUI.scenario==null||!GUI.scenario.inScenarioCreator)
        {
             turnPanel = new JPanel();
             turnPanel.setBackground(Color.black);

@@ -185,7 +185,7 @@ public final class Compass extends JPanel{
        
        int index = GUI.determineWhichUnitDrawContainsUnitIdEqaulToUnitSelected(GUI.unitSelected);
        int tileMoveChange;
-       if(GUI.scenario==null||GUI.scenario.sMode==false)
+       if(GUI.scenario==null||GUI.scenario.inScenarioCreator==false)
        {
            GUI.moveCountPanel.setVisible(false);
            GUI.moveCountPanel.setVisible(true); 
@@ -204,7 +204,7 @@ public final class Compass extends JPanel{
       {
           
           System.out.println("in compass logic, should be free to move");
-          if(GUI.scenario==null||GUI.scenario.sMode==false)
+          if(GUI.scenario==null||GUI.scenario.inScenarioCreator==false)
            GUI.moveCountPanel.setVisible(false);
          GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
          if(!GUI.unitSelected.hasMoved) 
@@ -232,7 +232,7 @@ public final class Compass extends JPanel{
             previousMoveDirection= moveDirection ;
             GUI.unitSelected.moveMentCounter--; //removes one move counter from the unit 
             
-            if(GUI.scenario==null||GUI.scenario.sMode==false)
+            if(GUI.scenario==null||GUI.scenario.inScenarioCreator==false)
                 GUI.initMoveCountPanel();
             GUI.repainter();
       } 

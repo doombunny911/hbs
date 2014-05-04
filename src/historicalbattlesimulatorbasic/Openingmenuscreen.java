@@ -43,7 +43,7 @@ public final class Openingmenuscreen
         b1 = new JButton(run) ;
         b1.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed( ActionEvent e ) 
+        public void actionPerformed( ActionEvent e ) //run sim
         {
            Game game = new Game();
            Scenario scn = new Scenario();
@@ -87,7 +87,7 @@ public final class Openingmenuscreen
         b2 = new JButton(create) ;
         b2.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed( ActionEvent e ) 
+        public void actionPerformed( ActionEvent e ) //unit creator
         {
            
             try {
@@ -104,7 +104,7 @@ public final class Openingmenuscreen
         b3 = new JButton(map);
         b3.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed( ActionEvent e ) 
+        public void actionPerformed( ActionEvent e ) //map creator
         {
             removePanels();
            
@@ -114,13 +114,6 @@ public final class Openingmenuscreen
           //  map.generateBasic();
             GUI.terrainPlacer();
            
-            
-                     
-           
-           // GUI.buttonLoader();
-//needs a lot of fiddling
-            
-//         Map  gameMap = MapCreator.createMap();
         }
     });
       ImageIcon scenario = bil.getIconCreateScenario();

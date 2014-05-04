@@ -27,7 +27,7 @@ class Scenario {
     Map map = null;
     Player p1 = null;
     Player p2 = null;
-    boolean sMode = true;
+    boolean inScenarioCreator = true;
     public Scenario(){
        // createNewScenario();
         p1 = new Player();
