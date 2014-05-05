@@ -100,7 +100,12 @@ public final class UnitFormations
                {
                    for(int i=0;i<effectiveSoldiers;i=i+soldiersPerSprite)
                   {
-                       
+                       if(thisTile.xPosition/GUI.tileWidth+count>=GUI.numberOfTilesWidth||thisTile.yPosition/GUI.tileWidth+rowNum>=GUI.numberOfTilesHeight)
+                       {
+                           
+                       }
+                       else
+                       {
 //                      if(thisTile.xPosition/GUI.tileWidth+this.index==GUI.numberOfTilesWidth)
 //                      {
 //                          //make the button visible and undraw the sprites already drawn, currently not being done
@@ -123,7 +128,7 @@ public final class UnitFormations
                                 rowNum++;
                                 count =0;
                             }
-                       
+                       }
                   }
                     break;
                }
@@ -493,7 +498,11 @@ public final class UnitFormations
 //                          //make the button visible and undraw the sprites already drawn, currently not being done
 //             System.out.println("I am out of bounds");
 //         }
-                      
+                      if(thisTile.xPosition/GUI.tileWidth+columnNum>=GUI.numberOfTilesWidth||thisTile.yPosition/GUI.tileWidth+count>=GUI.numberOfTilesHeight)
+                      {
+                          
+                      }
+                      else
                       {
                           spriteLocations[this.index]= 
                           GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+columnNum]
