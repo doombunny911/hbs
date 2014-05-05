@@ -47,6 +47,7 @@ public final class Openingmenuscreen
         {
            Game game = new Game();
            Scenario scn = new Scenario();
+          //
            scn.LoadScenario();
            removePanels();
            

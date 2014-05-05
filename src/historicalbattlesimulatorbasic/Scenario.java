@@ -32,8 +32,8 @@ class Scenario {
        // createNewScenario();
          Game game = new Game();
         
-        map = new Map(10);
-        map.generateLoaded();
+       
+       
         GUI.scenario = this;
         p1 = new Player();
         p2 = new Player();
@@ -72,7 +72,7 @@ class Scenario {
     {
         final JFileChooser fc = new JFileChooser();
         File dir = new File("Scenarios"+File.separator+"SAnchor.txt");
-        
+       
 
         System.out.println(dir);
         fc.setCurrentDirectory(dir);
@@ -88,7 +88,7 @@ class Scenario {
         System.out.println("You have selected to load "+name+ " map.");
         
          this.loadAllScenarioParts(name);
-      
+     
         //loads in the file, and determines a few different things
         //Map 
         //Player Names
@@ -154,8 +154,8 @@ class Scenario {
                 //System.out.println( reader.nextLine());
             }
         }
-         
-       
+           map = new Map(10);
+         map.generateLoaded(mapName);
         
             
             

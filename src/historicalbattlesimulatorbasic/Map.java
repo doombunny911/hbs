@@ -139,6 +139,54 @@ public class Map
         }
     } 
         
+     public final void generateLoaded(String mapName){
+        this.loadMap(mapName);
+        
+        int width = Openingmenuscreen.tilePanel.getWidth();
+        int height = Openingmenuscreen.tilePanel.getHeight();
+        squareWidth = Math.floor(width/GUI.tileWidth);
+        squareHeight = Math.floor(height/GUI.tileWidth);
+        GUI.numberOfTilesWidth=squareWidth;
+        GUI.numberOfTilesHeight=squareHeight;
+        GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
+        boolean add = false;
+      Tile adder = null;
+         for(int i=0;i<squareHeight;i++)
+        {
+           
+            for(int j=0; j<squareWidth; j++)
+            {
+               
+                    for(Tile t: tilesToIncorporate)
+                     {
+                         
+                        if(t.xPosition==(j*GUI.tileWidth)  && t.yPosition==(i*GUI.tileWidth))
+                        {
+                            //System.out.println("EVER REACHED");
+                            //System.out.println("X "+t.xPosition + "Y " +t.yPosition);
+                            adder = t;
+                            add = true;
+                            break;
+                        }
+                    
+                      }
+                
+                if(add)
+                {
+                 GUI.tileGameMap[j][i] = adder;
+                 //System.out.println("ADDER IMAGE NAME "+adder.image.name);
+                 GUI.tileGameMap[j][i].setImage(adder.image);
+                 
+                 add = false;
+                }
+                else
+                {
+                    GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
+                    GUI.tileGameMap[j][i].setImage(grass);
+                }
+            }
+        }
+    } 
     
   
  
@@ -221,6 +269,23 @@ public class Map
         
         
     }
+    
+    public void loadMap(String map)
+    {
+          
+       
+        
+        
+       
+  bil.loadAllImages();
+       
+       
+        tilesToIncorporate = this.loadAllTiles(map);
+      
+        
+        
+    }
+   
     public void createThermopayle(int j, int i, Random rng) {
         GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
         
