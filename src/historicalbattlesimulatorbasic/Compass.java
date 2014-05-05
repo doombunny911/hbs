@@ -200,10 +200,10 @@ public final class Compass extends JPanel{
     //which direction was unit moved in
        //not inherienting speed from soldiers, needs to be fixed. should be able to call units speed not a soldiers speed
 //      System.out.println("movementcounter value = " + GUI.unitSelected.moveMentCounter);
-      if(determineTheNewLocationOfTheUnit(tileMoveChange))
+      if(determineTheNewLocationOfTheUnit(tileMoveChange)&&GUI.unitSelected.moveMentCounter>0)
       {
           
-          System.out.println("in compass logic, should be free to move");
+//          System.out.println("in compass logic, should be free to move");
           if(GUI.scenario==null||GUI.scenario.inScenarioCreator==false)
            GUI.moveCountPanel.setVisible(false);
          GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
@@ -236,6 +236,42 @@ public final class Compass extends JPanel{
                 GUI.initMoveCountPanel();
             GUI.repainter();
       } 
+      else if(determineTheNewLocationOfTheUnit(tileMoveChange)&&GUI.scenario!=null&&GUI.scenario.inScenarioCreator)
+      {
+          
+//          System.out.println("in compass logic, should be free to move");
+          if(GUI.scenario==null||GUI.scenario.inScenarioCreator==false)
+           GUI.moveCountPanel.setVisible(false);
+         GUI.removeSoldiersFromPreviousTiles(GUI.unitSelected);
+         if(!GUI.unitSelected.hasMoved) 
+         {
+            GUI.unitSelected.expendUnitPoint();
+            GUI.unitSelected.hasMoved=true;
+         }
+         
+         if(GUI.unitSelected.isSprinting)
+         {
+              GUI.unitSelected.stamina--;
+              GUI.unitSelected.hasSprinted=true;
+         }
+       
+          
+          
+            GUI.unitSelected.setPosition(newXPosition,newYPosition);
+
+          //updates the draw to show new location of unit
+            UnitDraw draw = new UnitDraw(GUI.unitSelected,new Tile(GUI.unitSelected.xPosition,GUI.unitSelected.yPosition,GUI.tileWidth,GUI.tileWidth));
+            
+           
+            GUI.unitDraws.remove(index); //removes the previous unit
+            GUI.unitDraws.add(draw);//adds the new unit
+            previousMoveDirection= moveDirection ;
+            GUI.unitSelected.moveMentCounter--; //removes one move counter from the unit 
+            
+            if(GUI.scenario==null||GUI.scenario.inScenarioCreator==false)
+                GUI.initMoveCountPanel();
+            GUI.repainter();
+      }
    }
     /*
     Returns true or false if the direction is blocked (ie: there is something on it)

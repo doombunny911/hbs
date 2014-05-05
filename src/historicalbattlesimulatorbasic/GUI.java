@@ -469,8 +469,15 @@ public class GUI implements MouseListener
     }
    
     public static void initMoveCountPanel() {
+        
         if(scenario==null||!scenario.inScenarioCreator)
         {
+            System.out.println("im in in GUI initMoveCountPanel");
+            if(moveCountPanel!=null)
+            {
+                 moveCountPanel.setVisible(false);
+                moveCountPanel=null;
+            }
             moveCountPanel = new JPanel();
             moveCountPanel.setLayout(null);
             moveCountPanel.setEnabled(false);
