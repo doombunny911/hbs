@@ -132,7 +132,7 @@ public Soldier(String unitName,
      }
      else if(unitType==5)
      {
-         this.range = 15000;
+         this.range = 1000;
      }
      else
     {
