@@ -27,7 +27,7 @@ class Scenario {
     Map map = null;
     Player p1 = null;
     Player p2 = null;
-    boolean inScenarioCreator = true;
+    boolean inScenarioCreator;
     public Scenario(){
        // createNewScenario();
          Game game = new Game();
@@ -41,7 +41,7 @@ class Scenario {
 
     public void createNewScenario() throws HeadlessException {
         Game game = new Game();
-        
+        inScenarioCreator=true;
         map = new Map(10);
         map.generateLoaded();
         GUI.scenario = this;
