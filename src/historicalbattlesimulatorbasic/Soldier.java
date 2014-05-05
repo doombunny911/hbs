@@ -130,6 +130,10 @@ public Soldier(String unitName,
      {
          this.range = 150;
      }
+     else if(unitType==5)
+     {
+         this.range = 15000;
+     }
      else
     {
         this.range = 25;

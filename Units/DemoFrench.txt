@@ -12,7 +12,7 @@ French Infantry
 2.0
 2.0
 100.0
-20
+50
 blueMelee.png
 ---
 French Crossbowmen
@@ -28,7 +28,7 @@ French Crossbowmen
 2.0
 2.0
 10.0
-20
+50
 blueRange.png
 ---
 French Mounted Knights
@@ -44,5 +44,5 @@ French Mounted Knights
 1.0
 1.0
 100.0
-10
+20
 blueCavalry.png

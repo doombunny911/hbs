@@ -80,7 +80,10 @@ public final class Openingmenuscreen
 //            map=new Map(10);
             
             //System.out.println(map);
-            
+            for(Unit u: p1.allUnits)
+            {
+                
+            }
             GUI.buttonLoader();
 //            
         }
