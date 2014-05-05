@@ -1,0 +1,32 @@
+---
+Engligh Mounted Knights
+3
+6
+2.0
+2.0
+10.0
+12.0
+3.0
+3.0
+25.0
+5.0
+2.0
+1.0
+10
+redCavalry.png
+---
+English Longbowmen
+2
+8
+4.0
+5.0
+9.0
+10.0
+1.0
+10.0
+150.0
+1.0
+1.0
+100.0
+30
+redRange.png
