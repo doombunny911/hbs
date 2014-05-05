@@ -862,7 +862,8 @@ public class GUI implements MouseListener
              endTurn.setBorderPainted(true);
             endTurn.setBackground(Color.black);
             endTurn.setBorder(borderUsed);      
-             endTurn.setBounds(GUI.panel.getWidth()-100,turnPanel.getHeight(),100,50);
+             endTurn.setBounds(GUI.panel.getWidth()-100,0,100,50);
+//             endTurn.setBounds(GUI.panel.getWidth()-100,turnPanel.getHeight(),100,50);
              GUI.panel.add(endTurn);
           
        }
@@ -908,19 +909,19 @@ public class GUI implements MouseListener
       }   
    public static void initTurnPanel(){
      // GUI.panel.remove(turnPanel);
-       if(GUI.scenario==null||!GUI.scenario.inScenarioCreator)
-       {
-            turnPanel = new JPanel();
-            turnPanel.setBackground(Color.black);
-            turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
-
-             refreshTurnPanel();
-            javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
-            turnPanel.setBorder(borderUsed);
-
-            GUI.panel.add(turnPanel);
-            refreshTurnPanel();
-       }
+//       if(GUI.scenario==null||!GUI.scenario.inScenarioCreator)
+//       {
+//            turnPanel = new JPanel();
+//            turnPanel.setBackground(Color.black);
+//            turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
+//
+//             refreshTurnPanel();
+//            javax.swing.border.Border borderUsed = BorderFactory.createLineBorder(Color.white);
+//            turnPanel.setBorder(borderUsed);
+//
+//            GUI.panel.add(turnPanel);
+//            refreshTurnPanel();
+//       }
        
       
    } 
@@ -932,73 +933,73 @@ public class GUI implements MouseListener
    static boolean oneDisplay6 = true;
    
     public static void refreshTurnPanel() {
-        GUI.panel.remove(turnPanel);
-       turnPanel = new JPanel();
-       turnPanel.setBackground(Color.black);
-       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
-        JLabel whichPlayersTurn = new JLabel();
-        JLabel turnCount = new JLabel();
-//        if(player1Turn())
-//        {
-//            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<h1><font color = 'white'>1</h1><font color='white'>'s Turn</font></h3></center><br><b><font color='white'>-------------</b></font></html>");
-//            turnPanel.add(whichPlayersTurn);
-//            for(Unit u: Game.playersForDemo.get(0).getUnitList())
-//            {
-//                JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br><font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
-//                turnPanel.add(unitPoints);
-//                
-//            }
-//            
-//        }
-//        else if(player2Turn())
-//        {
-//            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>2</font></h1><font color='white'>s Turn</font></h3></center></html>");
-//            turnPanel.add(whichPlayersTurn);
-//            for(Unit u: Game.playersForDemo.get(1).getUnitList())
-//            {
-//                JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br> <font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
-//                turnPanel.add(unitPoints);
-//                
-//            }
-//        }
-//        //Turn Count
-//        turnCount.setText("<html><br><center><font face='Times New Roman' color='white'>Turns Till<br>"
-//                + " The Spartans Win:<br> <h1><b><font color = 'red' face='Times New Roman'>"+
-//                turnCountForPersians+"</font></b></h1></center></font></html>");
-//            turnPanel.add(turnCount);
-//           
-//            if(turnCountForPersians==30&&oneDisplay1)
-//            {
-//                JOptionPane.showMessageDialog(GUI.panel,"<html><i>The 'God King' Xerxes of Persia stands on the verge of conquering all of Greece. <br>"
-//                        + " In between him and his goal is a group of 300 Spartans and approximately 7,000 other Greeks, <br>lead by King Leonidas of Sparta prepared to face his army"
-//                        + "of over a million military personnel</i></html>");
-//                oneDisplay1 = false;
-//            }
-//            else if(turnCountForPersians==20&&oneDisplay2)
-//            {
-//                JOptionPane.showMessageDialog(GUI.panel,"<html><i>After assault by the Persian forces, the first day of fighting draws to a close...</i></html>");
-//                oneDisplay2 = false;
-//            }
-//            else if(turnCountForPersians==10&&oneDisplay3)
-//            {
-//                JOptionPane.showMessageDialog(GUI.panel,"<html><i>After the failure of Xerxes deadly 'Immortals' to encircle and destroy the Spartan forces <br"
-//                        + "on the Second day of fighting, his forces were given an unexpected boon:<br "
-//                        + "the discovery of a mountain path that would allow them to outflank the Greeks.<br>"
-//                        + " Meanwhile, the majority of the Greek army retreated, but Leonidas and his Spartans and some of the Thebans remained as a rearguard... </i></html>");
-//                oneDisplay3 = false;
-//            }
-//            else if(turnCountForPersians==0&&oneDisplay4)
-//            {
-//                JOptionPane.showMessageDialog(GUI.panel,"<html><i>Although all the Spartans and Thebans who remained perished, they held the pass for long enough to allow the <br>"
-//                        + "rest of Greece to prepare for war. Herodatus, classical historian remarks<br>"
-//                        + "</i></html>");
-//                JOptionPane.showMessageDialog(GUI.panel,"<html><i>'Go tell the Spartans, passerby:\n" +
-//                "That here, by Spartan law, we lie</i></html>");
-//                oneDisplay4 = false;
-//       
-//            }
-        GUI.panel.add(turnPanel);
-        GUI.repainter();
+//        GUI.panel.remove(turnPanel);
+//       turnPanel = new JPanel();
+//       turnPanel.setBackground(Color.black);
+//       turnPanel.setBounds(GUI.panel.getWidth()-100, 0, 100, 500);
+//        JLabel whichPlayersTurn = new JLabel();
+//        JLabel turnCount = new JLabel();
+////        if(player1Turn())
+////        {
+////            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<h1><font color = 'white'>1</h1><font color='white'>'s Turn</font></h3></center><br><b><font color='white'>-------------</b></font></html>");
+////            turnPanel.add(whichPlayersTurn);
+////            for(Unit u: Game.playersForDemo.get(0).getUnitList())
+////            {
+////                JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br><font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
+////                turnPanel.add(unitPoints);
+////                
+////            }
+////            
+////        }
+////        else if(player2Turn())
+////        {
+////            whichPlayersTurn.setText("<html><center><h3><font color = 'white' face='Times New Roman'>Player<br><h1><font color = 'white'>2</font></h1><font color='white'>s Turn</font></h3></center></html>");
+////            turnPanel.add(whichPlayersTurn);
+////            for(Unit u: Game.playersForDemo.get(1).getUnitList())
+////            {
+////                JLabel unitPoints = new JLabel("<html><center><font face='Times New Roman' color='white'>"+u.nameOfUnit+":<br> <font color='red'><b>"+u.unitPoints+"</b></font> U.P.</center></html>");
+////                turnPanel.add(unitPoints);
+////                
+////            }
+////        }
+////        //Turn Count
+////        turnCount.setText("<html><br><center><font face='Times New Roman' color='white'>Turns Till<br>"
+////                + " The Spartans Win:<br> <h1><b><font color = 'red' face='Times New Roman'>"+
+////                turnCountForPersians+"</font></b></h1></center></font></html>");
+////            turnPanel.add(turnCount);
+////           
+////            if(turnCountForPersians==30&&oneDisplay1)
+////            {
+////                JOptionPane.showMessageDialog(GUI.panel,"<html><i>The 'God King' Xerxes of Persia stands on the verge of conquering all of Greece. <br>"
+////                        + " In between him and his goal is a group of 300 Spartans and approximately 7,000 other Greeks, <br>lead by King Leonidas of Sparta prepared to face his army"
+////                        + "of over a million military personnel</i></html>");
+////                oneDisplay1 = false;
+////            }
+////            else if(turnCountForPersians==20&&oneDisplay2)
+////            {
+////                JOptionPane.showMessageDialog(GUI.panel,"<html><i>After assault by the Persian forces, the first day of fighting draws to a close...</i></html>");
+////                oneDisplay2 = false;
+////            }
+////            else if(turnCountForPersians==10&&oneDisplay3)
+////            {
+////                JOptionPane.showMessageDialog(GUI.panel,"<html><i>After the failure of Xerxes deadly 'Immortals' to encircle and destroy the Spartan forces <br"
+////                        + "on the Second day of fighting, his forces were given an unexpected boon:<br "
+////                        + "the discovery of a mountain path that would allow them to outflank the Greeks.<br>"
+////                        + " Meanwhile, the majority of the Greek army retreated, but Leonidas and his Spartans and some of the Thebans remained as a rearguard... </i></html>");
+////                oneDisplay3 = false;
+////            }
+////            else if(turnCountForPersians==0&&oneDisplay4)
+////            {
+////                JOptionPane.showMessageDialog(GUI.panel,"<html><i>Although all the Spartans and Thebans who remained perished, they held the pass for long enough to allow the <br>"
+////                        + "rest of Greece to prepare for war. Herodatus, classical historian remarks<br>"
+////                        + "</i></html>");
+////                JOptionPane.showMessageDialog(GUI.panel,"<html><i>'Go tell the Spartans, passerby:\n" +
+////                "That here, by Spartan law, we lie</i></html>");
+////                oneDisplay4 = false;
+////       
+////            }
+//        GUI.panel.add(turnPanel);
+//        GUI.repainter();
     }
    //method that prints stats, gets the information from the unit and prints it
    private static void printStats(Unit unitSelected){
