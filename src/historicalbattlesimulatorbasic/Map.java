@@ -104,23 +104,32 @@ public class Map
       Tile adder = null;
          for(int i=0;i<squareHeight;i++)
         {
-           
+            for(Tile t: tilesToIncorporate)
+                     {
+                   
+                      }
             for(int j=0; j<squareWidth; j++)
             {
-               
-                    for(Tile t: tilesToIncorporate)
+              
+                for(Tile t: tilesToIncorporate)
                      {
                          
                         if(t.xPosition==(j*GUI.tileWidth)  && t.yPosition==(i*GUI.tileWidth))
                         {
+                            System.out.println(t.image.name);
                             //System.out.println("EVER REACHED");
                             //System.out.println("X "+t.xPosition + "Y " +t.yPosition);
                             adder = t;
                             add = true;
                             break;
                         }
+                        else
+                        {
+                            add = false;
+                        }
                     
                       }
+                   
                 
                 if(add)
                 {
@@ -272,12 +281,7 @@ public class Map
     
     public void loadMap(String map)
     {
-          
-       
-        
-        
-       
-  bil.loadAllImages();
+      bil.loadAllImages();
        
        
         tilesToIncorporate = this.loadAllTiles(map);
@@ -543,7 +547,10 @@ if(!parent.exists() && !parent.mkdirs()){
     }
      void setImageFromString(Tile t, String imageName) {
         BufferedImage bi = bil.getImage(imageName);
+        //long time1 = System.currentTimeMillis();
         BufferedImageName bin = new BufferedImageName(bi, imageName);
+        //long time2 = time1-System.currentTimeMillis();
+       // System.out.println(time2);
        // System.out.println("IMAGE SET FROM STRING "+bin.getName());
        t.setImage(bin);
     }
