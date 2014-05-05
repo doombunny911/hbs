@@ -514,6 +514,7 @@ if(!parent.exists() && !parent.mkdirs()){
             writer.println(this.xPosition);
             writer.println(this.yPosition);
             writer.println(this.currentFormation.whichFormation);
+            writer.println(this.playerNum);
             System.out.println("Saved");
             writer.close();
              } 
@@ -534,6 +535,7 @@ if(!parent.exists() && !parent.mkdirs()){
         this.xPosition = x;
         this.yPosition = y;
     }
+      @Override
     public int getUnitID() {
             return this.unitID;
         }

@@ -26,19 +26,23 @@ public ArrayList <Unit> allUnits; //all of a players units
 UnitLoader playerUnits = new UnitLoader();
    
     public static void main(String[] args){
-        Player newPlayer = new Player("Edward");
+        Player newPlayer = new Player("Edward", 1);
         newPlayer.generatePlayerUnitPlacer();
     }
     public ArrayList<Unit> getUnitList(){
         return allUnits;
     }
-    public Player(String playerName){
-        up=new UnitPlacer(playerName);  
+    public Player(String playerName, int num)
+    {
+        up=new UnitPlacer(playerName, num);
+        this.playerNumber = num;
+                
         allUnits=up.unitArrayList;
         this.playerName = playerName;
     }
     public Player(){
          allUnits = new ArrayList();
+      
 //      allUnits=up.unitArrayList;
         //this.playerName = playerName;
     }
@@ -53,8 +57,8 @@ UnitLoader playerUnits = new UnitLoader();
     }
     public void generatePlayerUnitPlacer(){
 
-        this.up = new UnitPlacer(playerName);
-        up.setPlayer(playerName);
+        this.up = new UnitPlacer(playerName, playerNumber);
+        up.setPlayer(playerName, playerNumber);
         up.setUpButtons();
 
     }

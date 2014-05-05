@@ -30,6 +30,8 @@ public final class UnitPlacer extends JPanel
     int index =0;
     static boolean check = false;
     String player = "";
+    int playerNum =0;
+    
    public static void main(String[] args){
         UnitLoader ul = new UnitLoader();
         ArrayList units = ul.runLoader();
@@ -45,7 +47,7 @@ public final class UnitPlacer extends JPanel
         newJ.repaint();
         newJ.revalidate();
     }
-   public void setPlayer(String playerName){
+   public void setPlayer(String playerName, int playerNum){
        this.player = playerName;
    }
    public void setObedience()
@@ -53,11 +55,13 @@ public final class UnitPlacer extends JPanel
        for(Unit u: unitArrayList)
        {
            u.setPlayerName(this.player);
+           u.setPlayerNum(this.playerNum);
        }
    }
-   public UnitPlacer(String name)
+   public UnitPlacer(String name, int playerNum)
    {
        this.player=name;
+       this.playerNum = playerNum;
        UnitLoader ul = new UnitLoader();
        this.unitArrayList = ul.runLoader();
        this.numOfUnitsToPlace = this.unitArrayList.size();

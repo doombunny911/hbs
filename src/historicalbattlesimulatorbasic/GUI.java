@@ -739,10 +739,12 @@ public class GUI implements MouseListener
             
             
             System.out.println(GUI.scenario.p1.playerName);
-           
+            
             
             writer.println(GUI.scenario.p1.playerName);
+            writer.println(GUI.scenario.p1.playerNumber);
             writer.println(GUI.scenario.p2.playerName);
+            writer.println(GUI.scenario.p2.playerNumber);
             writer.close();
                for(int i=0; i<unitDraws.size(); i++)
                {

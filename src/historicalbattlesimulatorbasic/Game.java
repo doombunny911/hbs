@@ -38,10 +38,10 @@ public class Game
     Scanner in = new Scanner(System.in);
     System.out.println("what is your name player one ?");
     String name = in.next();
-    Player p1 = new Player(name);
+    Player p1 = new Player(name,1);
     System.out.println("what is your name player two ?");
     name = in.next();
-    Player p2 = new Player(name);
+    Player p2 = new Player(name,2);
 
     playersForDemo.add(p1);
     playersForDemo.add(p2);

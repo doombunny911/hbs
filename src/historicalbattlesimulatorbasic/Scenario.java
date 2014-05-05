@@ -43,13 +43,14 @@ class Scenario {
    
         String name = JOptionPane.showInputDialog(null, "Enter the name for player 1");
         JOptionPane.showMessageDialog(null," choose the army for: " + name);
-        p1 = new Player(name);
-        name = JOptionPane.showInputDialog(null, " Enter the name for player 2");
+        p1 = new Player(name,1);
+        p1.setPlayerNum(1);
+        String name2 = JOptionPane.showInputDialog(null, " Enter the name for player 2");
         JOptionPane.showMessageDialog(null,"  choose the army for : " +name );
-        p2 = new Player(name);
+        p2 = new Player(name2,2);
         Game.playersForDemo.add(p1);
         Game.playersForDemo.add(p2);
-        
+        p2.setPlayerNum(2);
         p1.up.setUpButtons();
         p2.up.setUpButtons();
         
@@ -92,7 +93,7 @@ class Scenario {
     String mapName ="";
     String player1Name ="";
     String player2Name = "";
-     private ArrayList<Tile> loadAllScenarioParts(String name) {
+     private void loadAllScenarioParts(String name) {
         try {
             //Load all units
             //while
@@ -101,39 +102,32 @@ class Scenario {
             Scanner reader = new Scanner(new FileInputStream(file));
          mapName = reader.nextLine();
          player1Name = reader.nextLine();
-         System.out.println(player1Name+" =");
+        // System.out.println(player1Name+" =");
          //System.out.println(player1Name);
          p1.setName(player1Name);
+         int num1 = Integer.parseInt(reader.nextLine()); 
+         p1.setPlayerNum(num1);
          player2Name = reader.nextLine();
+         int num2 = Integer.parseInt(reader.nextLine()); 
          p2.setName(player2Name);
-         while(reader.hasNext())
+         p2.setPlayerNum(num2);
+         //System.out.println(p1.playerName); System.out.println(p1.playerNumber); System.out.println(p2.playerName); System.out.println(p2.playerNumber);
+         while(reader.hasNextLine())
          {
+           //  System.out.println(reader.nextLine());
              if(reader.nextLine().equals("---"))
                  {
-                     
+                  //   System.out.println("EQUALS ---");
+                   
                      String unitName = reader.nextLine(); ///   Unit Name 
                      System.out.println(unitName);
-                     //System.out.println("xPos: "+xPos);
-                    // String yPos = reader.nextLine();
-                     //System.out.print("yPos: "+yPos);
-                     //System.out.println("");
-                    // String blocked = reader.nextLine();
-                     //String imageName = reader.nextLine();
-                     //System.out.println(imageName);
-//                     Tile t = new Tile(Integer.parseInt(xPos),Integer.parseInt( yPos), 10,10);
- //                 if(blocked.equals("true"))
-//               {
-//                       t.setBlocked();
-//                       }
-//                    this.setImageFromString(t, imageName);
-//                     nUnit.setUnitUnitID();
-//                     tilesToIncorporate.add(t);   
-                     //System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");
+                     
                      loadUnit(reader,unitName);
                  }
-             else 
+             else
              {
-//                 reader.nextLine();
+                 System.out.println(reader.nextLine());
+                //System.out.println( reader.nextLine());
              }
          }
          
@@ -145,13 +139,13 @@ class Scenario {
             Logger.getLogger(UnitLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;//tilesToIncorporate;
+        //return null;//tilesToIncorporate;
     }
     public void loadUnit(Scanner reader, String unitName){        
        
             //Scanner reader = new Scanner(new FileInputStream(file));
             //reader.findWithinHorizon(nameOfUnit, 0);
-            String nUnitName= unitName; //0
+                String nUnitName= unitName; //0
             
                 int nUnitType= Integer.parseInt(reader.nextLine()); //1
                 
@@ -172,31 +166,37 @@ class Scenario {
                 int xPos = Integer.parseInt(reader.nextLine());
                 int yPos = Integer.parseInt(reader.nextLine());
                 //System.out.println("XPOS " +xPos);
+                int formation = Integer.parseInt(reader.nextLine());
+              //  System.out.println(
+              //  "FORMATION "+ formation);
                 int playerNum = Integer.parseInt(reader.nextLine());
-                System.out.println("PLAYER NUM "+playerNum);
-                String playerName = reader.nextLine();
-                System.out.println(playerName);
+                System.out.println("PLAYER NUMBER"+playerNum);
+              //  System.out.println("PLAYER NUM "+playerNum);
+                //String playerName = reader.nextLine();
+                //System.out.println(playerName);
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             
             Unit unit = new Unit(soldier,unitSize);
+            unit.playerNum = playerNum;
             unit.setSprite(spriteName);
             unit.xPosition = xPos; //may need to be multipled by 10
             unit.yPosition = yPos; //may need to be multiplied by 10
-            unit.playerName = playerName;
+          //  unit.playerName = playerName;
             System.out.print(unit.playerName);
          //  System.out.println("Units Speed "+unit.speed);
-            if(p1.playerName.equals(unit.playerName))
+            if(p1.playerNumber == unit.playerNum)
             {
-                System.out.println("MATCH");
+               // System.out.println("MATCH");
                 p1.allUnits.add(unit);
             }
-            else if(p2.playerName.equals(unit.playerName))
+            else if(unit.playerNum == p2.playerNumber)
             {
                 p2.allUnits.add(unit);
             }
             else
             {
                 System.out.println("NO MATCH");
+                
             }
     } 
   
