@@ -51,12 +51,21 @@ public final class Openingmenuscreen
            removePanels();
            
            Player p1 = scn.p1;
-           System.out.println(p1.playerName);
+           System.out.println(p1.playerName+  " size "+p1.allUnits.size());
+           
            for(Unit u: scn.p1.allUnits)
            {
+            //   System.out.println("HAVE WE FOUNDED THIS?");
               System.out.println(u.nameOfUnit);
            }
            Player p2 = scn.p2;
+           System.out.println(p2.playerName+ " size "+p2.allUnits.size());
+           
+           for(Unit u: scn.p2.allUnits)
+           {
+            //   System.out.println("HAVE WE FOUNDED THIS?");
+              System.out.println(u.nameOfUnit);
+           }
            p1.myTurn=true;
            Game.playersForDemo.add(p1);
            Game.playersForDemo.add(p2);

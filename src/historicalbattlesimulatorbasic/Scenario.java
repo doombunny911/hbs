@@ -30,6 +30,11 @@ class Scenario {
     boolean inScenarioCreator = true;
     public Scenario(){
        // createNewScenario();
+         Game game = new Game();
+        
+        map = new Map(10);
+        map.generateLoaded();
+        GUI.scenario = this;
         p1 = new Player();
         p2 = new Player();
     }
@@ -125,13 +130,14 @@ class Scenario {
                  {
                   //   System.out.println("EQUALS ---");
                     if(reader.hasNextLine())
-                 {
+                    {
                      unitName = reader.nextLine(); ///   Unit Name 
                      System.out.println(unitName);
-                     if(unitName!=null){
-                     loadUnit(reader,unitName);
+                     if(unitName!=null)
+                         {
+                         loadUnit(reader,unitName);
+                        }
                      }
-                 }
                  }
              else
             {
@@ -161,6 +167,7 @@ class Scenario {
     }
     public void loadUnit(Scanner reader, String unitName){        
        
+     //   System.out.println("UNIT NAME INSIDE THE LOADER "+unitName);
             //Scanner reader = new Scanner(new FileInputStream(file));
             //reader.findWithinHorizon(nameOfUnit, 0);
                 String nUnitName= unitName; //0
@@ -205,13 +212,13 @@ class Scenario {
           //  unit.playerName = playerName;
             System.out.print(unit.playerName);
          //  System.out.println("Units Speed "+unit.speed);
-            if(p1.playerNumber == unit.playerNum)
+            if(p1.playerNumber == unit.playerNum && unit != null )
             {
                // System.out.println("MATCH");
                 p1.allUnits.add(unit);
                 //System.out.println(p1.allUnits.get(0).nameOfUnit);
             }
-            else if(unit.playerNum == p2.playerNumber)
+            else if(unit.playerNum == p2.playerNumber && unit != null)
             {
                 p2.allUnits.add(unit);
                //  System.out.println(p1.allUnits.get(0).nameOfUnit);
