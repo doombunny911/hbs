@@ -111,25 +111,43 @@ class Scenario {
          int num2 = Integer.parseInt(reader.nextLine()); 
          p2.setName(player2Name);
          p2.setPlayerNum(num2);
+         int i =0;
          //System.out.println(p1.playerName); System.out.println(p1.playerNumber); System.out.println(p2.playerName); System.out.println(p2.playerNumber);
+        
          while(reader.hasNextLine())
-         {
+         { 
+             String unitName=null;
+             String unitName2=null;
+             System.out.println("Line "+ i);
+             i++;
            //  System.out.println(reader.nextLine());
              if(reader.nextLine().equals("---"))
                  {
                   //   System.out.println("EQUALS ---");
-                   
-                     String unitName = reader.nextLine(); ///   Unit Name 
+                    if(reader.hasNextLine())
+                 {
+                     unitName = reader.nextLine(); ///   Unit Name 
                      System.out.println(unitName);
-                     
+                     if(unitName!=null){
                      loadUnit(reader,unitName);
+                     }
+                 }
                  }
              else
-             {
-                 System.out.println(reader.nextLine());
+            {
+                 if(reader.hasNextLine())
+                 {
+                   unitName2 = reader.nextLine();
+                 
+                   System.out.println(unitName2);
+                // if(unitName2!=null){
+                   if(unitName2!=null){
+                   loadUnit(reader, unitName2);}
+                 }
+//}
                 //System.out.println( reader.nextLine());
-             }
-         }
+            }
+        }
          
        
         
@@ -146,7 +164,7 @@ class Scenario {
             //Scanner reader = new Scanner(new FileInputStream(file));
             //reader.findWithinHorizon(nameOfUnit, 0);
                 String nUnitName= unitName; //0
-            
+                //System.out.println("UNIT NAME INSIDE LOAD UNIT "+nUnitName);
                 int nUnitType= Integer.parseInt(reader.nextLine()); //1
                 
                 int nDMGDice = Integer.parseInt(reader.nextLine()); //3
@@ -170,13 +188,16 @@ class Scenario {
               //  System.out.println(
               //  "FORMATION "+ formation);
                 int playerNum = Integer.parseInt(reader.nextLine());
-                System.out.println("PLAYER NUMBER"+playerNum);
+             //   System.out.println("PLAYER NUMBER"+playerNum);
               //  System.out.println("PLAYER NUM "+playerNum);
                 //String playerName = reader.nextLine();
                 //System.out.println(playerName);
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             
             Unit unit = new Unit(soldier,unitSize);
+           
+           // System.out.println("NAME OF UNIT "+unit.nameOfUnit);
+            
             unit.playerNum = playerNum;
             unit.setSprite(spriteName);
             unit.xPosition = xPos; //may need to be multipled by 10
@@ -188,10 +209,12 @@ class Scenario {
             {
                // System.out.println("MATCH");
                 p1.allUnits.add(unit);
+                //System.out.println(p1.allUnits.get(0).nameOfUnit);
             }
             else if(unit.playerNum == p2.playerNumber)
             {
                 p2.allUnits.add(unit);
+               //  System.out.println(p1.allUnits.get(0).nameOfUnit);
             }
             else
             {
