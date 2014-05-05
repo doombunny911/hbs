@@ -118,7 +118,8 @@ class Scenario {
          p2.setPlayerNum(num2);
          int i =0;
          //System.out.println(p1.playerName); System.out.println(p1.playerNumber); System.out.println(p2.playerName); System.out.println(p2.playerNumber);
-        
+          map = new Map(10);
+         map.generateLoaded(mapName);
          while(reader.hasNextLine())
          { 
              String unitName=null;
@@ -154,8 +155,7 @@ class Scenario {
                 //System.out.println( reader.nextLine());
             }
         }
-           map = new Map(10);
-         map.generateLoaded(mapName);
+         
         
             
             
@@ -202,9 +202,12 @@ class Scenario {
             Soldier soldier = new Soldier(nUnitName, nUnitType, nDMGDice, nAttackBonus,dmgBonus, hp,ac,def, speed, range, chargeBonus, stamina, morale);
             
             Unit unit = new Unit(soldier,unitSize);
-           
+            UnitFormations form = new UnitFormations(unit,new Tile(xPos,yPos,GUI.tileWidth,GUI.tileWidth));
+            form.whichFormation=formation;
+            unit.currentFormation=form;
+            UnitDraw ud = new UnitDraw(unit,new Tile(xPos,yPos,GUI.tileWidth,GUI.tileWidth));
            // System.out.println("NAME OF UNIT "+unit.nameOfUnit);
-            
+            GUI.unitDraws.add(ud);
             unit.playerNum = playerNum;
             unit.setSprite(spriteName);
             unit.xPosition = xPos; //may need to be multipled by 10

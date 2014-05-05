@@ -109,6 +109,7 @@ public final class UnitFormations
                       
 //                          System.out.println("this.index = " + this.index);
                            //soldier will be +1 tile to the "right"
+                      System.out.println(GUI.tileWidth);
                             spriteLocations[i]= 
                             GUI.tileGameMap[thisTile.xPosition/GUI.tileWidth+count]
                                      [thisTile.yPosition/GUI.tileWidth+rowNum]; 
