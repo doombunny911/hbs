@@ -54,40 +54,32 @@ public final class Openingmenuscreen
            Player p1 = scn.p1;
            System.out.println(p1.playerName+  " size "+p1.allUnits.size());
            
-           for(Unit u: scn.p1.allUnits)
-           {
-            //   System.out.println("HAVE WE FOUNDED THIS?");
-              System.out.println(u.nameOfUnit);
-           }
+       
            Player p2 = scn.p2;
-           System.out.println(p2.playerName+ " size "+p2.allUnits.size());
+          // System.out.println(p2.playerName+ " size "+p2.allUnits.size());
            
-           for(Unit u: scn.p2.allUnits)
-           {
-            //   System.out.println("HAVE WE FOUNDED THIS?");
-              System.out.println(u.nameOfUnit);
-           }
+        
            p1.myTurn=true;
            Game.playersForDemo.add(p1);
            Game.playersForDemo.add(p2);
 
            Map map = scn.map;
-            //map.loadMap();
+          //  map.loadMap();
 //            GUI.scenario.p1.up = new UnitPlacer(scn.p1.allUnits);
-        //    GUI.scenario.p2.up = new UnitPlacer(scn.p2.allUnits);
+//            GUI.scenario.p2.up = new UnitPlacer(scn.p2.allUnits);
 //            GUI.scenario.p1.up.setUpButtons();
-         //   GUI.scenario.p2.up.setUpButtons();
-            
-        //    GUI.scenario.p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
-       //    GUI.scenario.p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
-      //      GUI.panel.add(p1.up);
-      //      GUI.panel.add(p2.up); 
-//            GUI.panel=
-//            GUI.copy(Openingmenuscreen.tilePanel, GUI.panel);
+//            GUI.scenario.p2.up.setUpButtons();
+//            
+//            GUI.scenario.p1.up.setBounds(200, GUI.gameFrame.getHeight()-400, 200, 200);
+//           GUI.scenario.p2.up.setBounds(GUI.gameFrame.getWidth()-400, GUI.gameFrame.getHeight()-400, 200, 200);
+//            GUI.panel.add(p1.up);
+//            GUI.panel.add(p2.up); 
+        //    GUI.panel=
+         //   GUI.copy(Openingmenuscreen.tilePanel, GUI.panel);
             game.gameMap=map;
 //            map=new Map(10);
             
-            System.out.println(map);
+            //System.out.println(map);
             
             GUI.buttonLoader();
 //            

@@ -252,11 +252,11 @@ public class Map
         final JFileChooser fc = new JFileChooser();
         File dir = new File("Maps"+File.separator+"mapAnchor.txt");
         
-        System.out.println(dir);
+     //   System.out.println(dir);
         fc.setCurrentDirectory(dir);
         File  current = fc.getCurrentDirectory();
         
-        System.out.println(current);
+      //  System.out.println(current);
         fc.showOpenDialog(null);
         
   bil.loadAllImages();
@@ -517,14 +517,14 @@ if(!parent.exists() && !parent.mkdirs()){
                      //System.out.println("");
                      String blocked = reader.nextLine();
                      String imageName = reader.nextLine();
-                     System.out.println(imageName);
+                  //   System.out.println(imageName);
                      Tile t = new Tile(Integer.parseInt(xPos),Integer.parseInt( yPos), 10,10);
                      if(blocked.equals("true"))
                      {
                          t.setBlocked();
                      }
                      this.setImageFromString(t, imageName);
-//                     nUnit.setUnitUnitID();
+//                     nUniprint.setUnitUnitID();
                      tilesToIncorporate.add(t);   
                      //System.out.println("++++++++++++++++++++++ TILE "+t.image.name+" LOADED ");
                  }
@@ -544,7 +544,7 @@ if(!parent.exists() && !parent.mkdirs()){
      void setImageFromString(Tile t, String imageName) {
         BufferedImage bi = bil.getImage(imageName);
         BufferedImageName bin = new BufferedImageName(bi, imageName);
-        System.out.println("IMAGE SET FROM STRING "+bin.getName());
+       // System.out.println("IMAGE SET FROM STRING "+bin.getName());
        t.setImage(bin);
     }
     
