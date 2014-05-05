@@ -104,10 +104,7 @@ public class Map
       Tile adder = null;
          for(int i=0;i<squareHeight;i++)
         {
-            for(Tile t: tilesToIncorporate)
-                     {
-                   
-                      }
+           
             for(int j=0; j<squareWidth; j++)
             {
               
@@ -116,7 +113,7 @@ public class Map
                          
                         if(t.xPosition==(j*GUI.tileWidth)  && t.yPosition==(i*GUI.tileWidth))
                         {
-                            System.out.println(t.image.name);
+                         //   System.out.println(t.image.name);
                             //System.out.println("EVER REACHED");
                             //System.out.println("X "+t.xPosition + "Y " +t.yPosition);
                             adder = t;
@@ -125,7 +122,7 @@ public class Map
                         }
                         else
                         {
-                            add = false;
+                           ///add = false;
                         }
                     
                       }
@@ -146,6 +143,7 @@ public class Map
                 }
             }
         }
+         
     } 
         
      public final void generateLoaded(String mapName){
@@ -158,44 +156,29 @@ public class Map
         GUI.numberOfTilesWidth=squareWidth;
         GUI.numberOfTilesHeight=squareHeight;
         GUI.tileGameMap=new Tile[(int)squareWidth][(int)squareHeight];
-        boolean add = false;
-      Tile adder = null;
+   //     boolean add = false;
+   //   Tile adder = null;
+      
+ for(Tile t: tilesToIncorporate)
+            { 
+                 GUI.tileGameMap[t.xPosition/tileWidth][t.yPosition/tileWidth] = t;
+                 GUI.tileGameMap[t.xPosition/tileWidth][t.yPosition/tileWidth].setImage(t.image);
+            }
+                    
          for(int i=0;i<squareHeight;i++)
         {
            
             for(int j=0; j<squareWidth; j++)
             {
                
-                    for(Tile t: tilesToIncorporate)
-                     {
-                         
-                        if(t.xPosition==(j*GUI.tileWidth)  && t.yPosition==(i*GUI.tileWidth))
-                        {
-                            //System.out.println("EVER REACHED");
-                            //System.out.println("X "+t.xPosition + "Y " +t.yPosition);
-                            adder = t;
-                            add = true;
-                            break;
-                        }
-                    
-                      }
-                
-                if(add)
-                {
-                 GUI.tileGameMap[j][i] = adder;
-                 //System.out.println("ADDER IMAGE NAME "+adder.image.name);
-                 GUI.tileGameMap[j][i].setImage(adder.image);
-                 
-                 add = false;
-                }
-                else
-                {
+                      
+              if(GUI.tileGameMap[j][i]==null){
                     GUI.tileGameMap[j][i]= new Tile(j*GUI.tileWidth,i*GUI.tileWidth,GUI.tileWidth,GUI.tileWidth);
                     GUI.tileGameMap[j][i].setImage(grass);
-                }
+                }}
             }
         }
-    } 
+     
     
   
  
