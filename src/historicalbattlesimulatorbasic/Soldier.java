@@ -33,8 +33,7 @@ public class Soldier
     double armorClass; //a soldiers basic armor class
     double defense; // a soldiers defense bonus
     double speed; // the distance of which a soldier can travel
-    double range
-            ; // the range of a soldiers weapons
+    double range; // the range of a soldiers weapons
     double chargeBonus; //The bonus given to charging attack
     double stamina; // The amount of stamina a soldier has
     double morale; // The amount of moral a soldier has
