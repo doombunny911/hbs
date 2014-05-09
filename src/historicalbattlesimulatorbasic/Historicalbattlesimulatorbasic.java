@@ -8,7 +8,7 @@ package historicalbattlesimulatorbasic;
 
 /**
  *
- * @author Andrew       
+ * @author Andrew
  */
 public class Historicalbattlesimulatorbasic 
 {
